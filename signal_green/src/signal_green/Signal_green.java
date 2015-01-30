@@ -25,7 +25,8 @@ public class Signal_green {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+	//set instance variables from args.
+	//make a few constructors for addding to classes
     }
     
 }

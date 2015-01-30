@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package signal_green;
+package signal_blue;
 
 /**
  *
- * @author Andrea Senf
+ * @author Adeela not really
  */
 public class Signal_green {
 

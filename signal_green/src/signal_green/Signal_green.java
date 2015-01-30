@@ -17,11 +17,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package signal_green;
+package signal_red;
 
 /**
  *
- * @author Andrea Senf
+ * @author red
  */
 public class Signal_green {
 
@@ -29,7 +29,6 @@ public class Signal_green {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int area=0; // change to test this file.
 	//set instance variables from args.
 	//make a few constructors for addding to classes
     }

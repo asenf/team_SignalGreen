@@ -17,11 +17,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package signal_red;
+package code;
 
 /**
  *
- * @author red
+ * @author James
  */
 public class Signal_green {
 

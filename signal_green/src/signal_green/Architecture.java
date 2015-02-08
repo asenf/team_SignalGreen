@@ -13,27 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package code;
 
-/**
- *
- * @author Adeela not really
-=======
-package code;
-
-/**
- *
- * @author James
->>>>>>> 7df4ed5f1af4f3541c80ae619adf2793cd10b7ba
- */
-public class Signal_green {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-	//set instance variables from args.
-	//make a few constructors for addding to classes
-    }
-    
-}

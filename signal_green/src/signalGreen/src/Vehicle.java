@@ -23,7 +23,7 @@ import repast.simphony.util.SimUtilities;
  * Cars, ambulances, trucks are subclasses of Vehicle, and have special behaviour such as 
  * cars having reckless or cautious drivers.
  * 
- * @author Yoann Strigini
+ * @author Yoann
  *
  */
 public class Vehicle {

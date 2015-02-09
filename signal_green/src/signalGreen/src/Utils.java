@@ -9,7 +9,7 @@ import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 
 /**
- * @author Yoann Strigini
+ * @author Yoann
  *
  */
 public class Utils {

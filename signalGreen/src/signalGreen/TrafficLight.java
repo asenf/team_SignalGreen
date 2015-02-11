@@ -4,7 +4,7 @@ import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.engine.schedule.ScheduledMethod;
-import repast_SG_first.Constants.Lights;
+import signalGreen.Constants.Lights;
 
 public class TrafficLight extends Junction {
 	

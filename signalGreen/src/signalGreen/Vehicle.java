@@ -37,6 +37,11 @@ public class Vehicle {
 	private int maxVelocity;
 	private int acceleration = 3; // m/s
 	
+	// arbitrary value for time to make simulation faster, it should actually be 1 tick.
+	// Used to compute velocity and displacement.
+	// TODO adjust it to an optimal value. 
+	private final int t = 7;
+	
 	// Simulation is based on Origin Destination pattern.
 	// Vehicles have an origin (x, y) starting point
 	// and a destination point which is randomly reset to another
@@ -199,63 +204,93 @@ public class Vehicle {
 	 */
 	public void moveTowards(GridPoint pt) 
 	{
-		int t = 7;
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) 
 		{
-			// find the amount of space to move, based on current speed/velocity
-			// we use the kinematics equations for this
-			//      x = v0 * t + 1/2 a * t^2
-			//		Where:
-			//		x = displacement
-			//		v0 = initial velocity
-			//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
-			//		t = time
 			System.out.println("----");
-			System.out.println("Old velocity is: " + this.velocity);		
-			int x = (int) Math.ceil(velocity + 0.5 * (double) acceleration * t * t); // t is arbitrarily choosen
-			System.out.println("Displacement is: " + x);
-			// new velocity is:
-			// V = V0 + a * t
-			this.velocity += acceleration * t; // using arbitrary constant to make it faster, time is always = 1 tick
-			// vehicle cannot go faster than ist maxVelocity
-			if (this.velocity > this.maxVelocity) {
-				this.velocity = this.maxVelocity;
+			// find correct displacement
+			int tmp = this.computeDisplacement(pt, false);
+			int x = this.computeDisplacement(pt, true);
+			// adjust velocity
+			// TODO make it adjstVel() method which finds if need to brake or accelerate
+			System.out.println("hyp. displacement > real displacement ?? " + tmp + " > " + x);
+			// comparing hypothetical displacement against real displ.
+			// real displacement takes into account traffic lights, other cars etc. 
+			if (tmp > x) {
+				System.out.println("Slow down!!");
+				this.slowDown();
+				// TODO now check if slowing down because of junction or car ahead
+				// by finding the closest agent on the way 
+				// between the current position and x displacement towards destination point
 			}
-			System.out.println("New velocity is: " + this.velocity);
-
-			
-			// workaround in order to get a displacement on the map
-			// conversion is for now: 1 cell = 50 meters
-			x = x / 50;
-			System.out.println("Will move car by: " + x + " cells");
-			
-			// if with current value of x vehicle will pass junction,
-			// just go to the junction
-			double dist = grid.getDistance(grid.getLocation(this), pt);
-			if (x >  dist) {
-				System.out.println("Going too far... " + x + " > " + dist);
-				// reset distance to Junction
-				// this means the car will actually brake going to the junction
-				// which is correct.
-				// TODO recompute velocity because car is actually braking.
-				x = (int) dist;
+			else {
+				System.out.println("Accelerate!!");
+				this.accelerate();
 			}
 			
 			System.out.println("----");
-			
 			
 			// now find the right direction to move to
 			NdPoint myPoint = space.getLocation(this);
 			NdPoint otherPoint = new NdPoint (pt.getX(), pt.getY());
 			double angle = SpatialMath.calcAngleFor2DMovement (space, myPoint, otherPoint);
-//			x = 1;
 			space.moveByVector(this, x, angle, 0);
 			myPoint = space.getLocation(this);
 			grid.moveTo(this, (int) myPoint.getX(), (int) myPoint.getY());		
 		 }
 	}
 	
+	
+	/**
+	 * Computes the displacement distance and adjusts
+	 * the velocity according to:<br />
+	 * 1. current velocity<br />
+	 * 2. max velocity<br />
+	 * 3. how far is the next junction<br />
+	 * Uses standard kinematics equations for this purpose.
+	 * 
+	 * @param pt
+	 * @param isForRealDisplacement
+	 * @return
+	 */
+	private int computeDisplacement(GridPoint pt, boolean isForRealDisplacement) {
+		// conversion is for now: 1 cell = 50 meters
+		final int convRatioMeters = 50;	
+		
+		//      Equation to find displacement:
+		//      x = v0 * t + 1/2 a * t^2
+		//		Where:
+		//		x = displacement
+		//		v0 = initial velocity
+		//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
+		//		t = time
+		int x = (int) Math.ceil(velocity + 0.5 * (double) acceleration * t * t);	
+		System.out.println("Displacement is: " + x);
+
+		// conversion from meters to cells in order to get a displacement on the map
+		x = x / convRatioMeters;
+		
+		if (!isForRealDisplacement) {
+			// this means we just want to know the hypothetical displacement
+			return x;
+		}
+		
+		// if with current value of x vehicle will pass junction,
+		// just go to the junction
+		double dist = grid.getDistance(grid.getLocation(this), pt);
+		if (x >  dist) {
+			System.out.println("Going too far... " + x + " > " + dist);
+			// reset distance to Junction
+			// this means the car will actually brake going to the junction
+			// which is correct.
+			// TODO recompute velocity because car is actually braking?? not sure
+			x = (int) dist;
+		}
+		
+		System.out.println("Will move car by: " + x + " cells");
+		return x;
+	}
+
 	/**
 	 * @return the currSpeed
 	 */
@@ -270,12 +305,35 @@ public class Vehicle {
 		this.velocity = currSpeed;
 	}
 	
-	public void accelerate() {
-		// TODO
+	/**
+	 * Method computes new velocity
+	 * according to acceleration and max velocity.<br />
+	 * Uses standard kinematics equations for this purpose. 
+	 */
+	private void accelerate() {
+		// new velocity is:
+		// V = V0 + a * t
+		System.out.println("Old velocity is: " + this.velocity);	
+		this.velocity += acceleration * t;
+		// vehicle cannot go faster than its maxVelocity
+		if (this.velocity > this.maxVelocity) {
+			this.velocity = this.maxVelocity;
+		}
+		System.out.println("New velocity is: " + this.velocity);
 	}
-	
+
+	/**
+	 * Similar algorithm to to acceleration.
+	 * Uses standard kinematics equations for this purpose. 
+	 */
 	public void slowDown(){
-		// TODO
+		System.out.println("Old velocity is: " + this.velocity);	
+		this.velocity -= acceleration * t;
+		// velocity cannot be negative
+		if (this.velocity < 0) {
+			this.velocity = 0;
+		}
+		System.out.println("New velocity is: " + this.velocity);
 	}	
 	
 }

@@ -82,6 +82,13 @@ public class Vehicle {
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
+		
+		// workaround for vehicles stuck in impasse.
+		// from now vehicle won't move anymore.
+		// TODO change this once vehicles are able to stop in front of other vehicles.
+		if (this.vehicleRoute.size() == 0)
+			return;
+		
 		// get current position of this Vehicle on the grid
 		GridPoint currPosition = grid.getLocation(this);
 			

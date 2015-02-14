@@ -54,6 +54,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	
 		buildLayout(junctions, Constants.SCALE);
 		addVehicleAtJunction(junctions.get(0));
+		addVehicleAtJunction(junctions.get(1));
+		addVehicleAtJunction(junctions.get(4));
 		
 		for (Object obj : context) {
 			NdPoint pt = space.getLocation(obj);

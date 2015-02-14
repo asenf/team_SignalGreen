@@ -53,9 +53,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				true, 50, 50));
 	
 		buildLayout(junctions, Constants.SCALE);
-		addVehicleAtJunction(junctions.get(0));
-		addVehicleAtJunction(junctions.get(1));
-		addVehicleAtJunction(junctions.get(4));
+		addVehicleAtJunction(junctions.get(0), 100);
+		addVehicleAtJunction(junctions.get(1), 140);
+		addVehicleAtJunction(junctions.get(4), 60);
 		
 		for (Object obj : context) {
 			NdPoint pt = space.getLocation(obj);
@@ -109,9 +109,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		
 	}
 	
-	public void addVehicleAtJunction(Junction junc) {
+	public void addVehicleAtJunction(Junction junc, int maxSpeed) {
 		
-		Vehicle vehicle = new Vehicle(space, grid, network);
+		Vehicle vehicle = new Vehicle(space, grid, network, maxSpeed);
 		context.add(vehicle);
 		NdPoint location = space.getLocation(junc);
 		space.moveTo(vehicle, location.getX(), location.getY());

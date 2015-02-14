@@ -33,8 +33,9 @@ public class Vehicle {
 	private Grid<Object> grid;
 	private Network<Object> roadNetwork;
 	
-	private int currSpeed;
-	private int maxSpeed;
+	private int velocity;
+	private int maxVelocity;
+	private int acceleration = 3; // m/s
 	
 	// Simulation is based on Origin Destination pattern.
 	// Vehicles have an origin (x, y) starting point
@@ -54,12 +55,15 @@ public class Vehicle {
 	 * @param grid
 	 * @param roadNetwork
 	 */
-	public Vehicle(ContinuousSpace<Object> space, Grid<Object> grid, Network<Object> roadNetwork)
+	public Vehicle(ContinuousSpace<Object> space, Grid<Object> grid, Network<Object> roadNetwork,
+			int maxVelocity)
 	{
 		// repast projections
 		this.space = space;
 		this.grid = grid;
 		this.roadNetwork = roadNetwork;
+		this.velocity = 0;
+		this.maxVelocity = maxVelocity;
 	}
 	
 	/**
@@ -86,8 +90,10 @@ public class Vehicle {
 		// workaround for vehicles stuck in impasse.
 		// from now vehicle won't move anymore.
 		// TODO change this once vehicles are able to stop in front of other vehicles.
-		if (this.vehicleRoute.size() == 0)
+		if (this.vehicleRoute.size() == 0) {
+			System.out.println("Vehicle is stuck in imasse. Cannot move... will wait indefinitely.");
 			return;
+		}			
 		
 		// get current position of this Vehicle on the grid
 		GridPoint currPosition = grid.getLocation(this);
@@ -193,13 +199,58 @@ public class Vehicle {
 	 */
 	public void moveTowards(GridPoint pt) 
 	{
+		int t = 7;
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) 
 		{
+			// find the amount of space to move, based on current speed/velocity
+			// we use the kinematics equations for this
+			//      x = v0 * t + 1/2 a * t^2
+			//		Where:
+			//		x = displacement
+			//		v0 = initial velocity
+			//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
+			//		t = time
+			System.out.println("----");
+			System.out.println("Old velocity is: " + this.velocity);		
+			int x = (int) Math.ceil(velocity + 0.5 * (double) acceleration * t * t); // t is arbitrarily choosen
+			System.out.println("Displacement is: " + x);
+			// new velocity is:
+			// V = V0 + a * t
+			this.velocity += acceleration * t; // using arbitrary constant to make it faster, time is always = 1 tick
+			// vehicle cannot go faster than ist maxVelocity
+			if (this.velocity > this.maxVelocity) {
+				this.velocity = this.maxVelocity;
+			}
+			System.out.println("New velocity is: " + this.velocity);
+
+			
+			// workaround in order to get a displacement on the map
+			// conversion is for now: 1 cell = 50 meters
+			x = x / 50;
+			System.out.println("Will move car by: " + x + " cells");
+			
+			// if with current value of x vehicle will pass junction,
+			// just go to the junction
+			double dist = grid.getDistance(grid.getLocation(this), pt);
+			if (x >  dist) {
+				System.out.println("Going too far... " + x + " > " + dist);
+				// reset distance to Junction
+				// this means the car will actually brake going to the junction
+				// which is correct.
+				// TODO recompute velocity because car is actually braking.
+				x = (int) dist;
+			}
+			
+			System.out.println("----");
+			
+			
+			// now find the right direction to move to
 			NdPoint myPoint = space.getLocation(this);
 			NdPoint otherPoint = new NdPoint (pt.getX(), pt.getY());
 			double angle = SpatialMath.calcAngleFor2DMovement (space, myPoint, otherPoint);
-			space.moveByVector(this, 2, angle, 0);
+//			x = 1;
+			space.moveByVector(this, x, angle, 0);
 			myPoint = space.getLocation(this);
 			grid.moveTo(this, (int) myPoint.getX(), (int) myPoint.getY());		
 		 }
@@ -209,14 +260,14 @@ public class Vehicle {
 	 * @return the currSpeed
 	 */
 	public int getCurrSpeed() {
-		return this.currSpeed;
+		return this.velocity;
 	}
 
 	/**
 	 * @param currSpeed the currSpeed to set
 	 */
 	public void setCurrSpeed(int currSpeed) {
-		this.currSpeed = currSpeed;
+		this.velocity = currSpeed;
 	}
 	
 	public void accelerate() {

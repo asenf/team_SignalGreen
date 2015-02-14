@@ -29,6 +29,13 @@ public class Utils {
 			l.add(it.next());			
 		}
 
+		/* TEST BEGIN */
+		// for test purpose, returns the last junction.
+		// comment out when not needed anymore
+		if (true)
+			return (Junction) l.get(l.size()-1).getTarget();
+		/* TEST END */
+		
 		if (l.size() > 0) {
 			Random rand = new Random();
 			int index = rand.nextInt(l.size());

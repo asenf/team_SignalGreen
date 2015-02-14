@@ -4,6 +4,8 @@ import java.util.*;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.engine.watcher.Watch;
+import repast.simphony.engine.watcher.WatcherTriggerSchedule;
 import repast.simphony.query.space.grid.GridCell;
 import repast.simphony.query.space.grid.GridCellNgh;
 import repast.simphony.random.RandomHelper;
@@ -41,6 +43,8 @@ public class Vehicle {
 	// Used to compute velocity and displacement.
 	// TODO adjust it to an optimal value. 
 	private final int t = 7;
+	// conversion is for now: 1 cell = 50 meters
+	private final int convRatioMeters = 50;		
 	
 	// Simulation is based on Origin Destination pattern.
 	// Vehicles have an origin (x, y) starting point
@@ -96,7 +100,7 @@ public class Vehicle {
 		// from now vehicle won't move anymore.
 		// TODO change this once vehicles are able to stop in front of other vehicles.
 		if (this.vehicleRoute.size() == 0) {
-			System.out.println("Vehicle is stuck in imasse. Cannot move... will wait indefinitely.");
+			System.out.println("Vehicle is stuck in impasse. Cannot move... will wait indefinitely.");
 			return;
 		}			
 		
@@ -148,6 +152,18 @@ public class Vehicle {
 		// See http://repast.sourceforge.net/docs/RepastReference.pdf		
 	}
 	
+//	scheduleTriggerPriority = 15
+//	@Watch (watcheeClassName = "signalGreen.Vehicle",
+//			watcheeFieldNames = "velocity",
+//			query = " within_moore 1",
+//			whenToTrigger = WatcherTriggerSchedule.IMMEDIATE
+//			//, triggerCondition = "$watchee.getVelocity() > 100"
+//			)
+//	void stopVehicleTraffic(Vehicle watchedVehicle) {
+//		System.out.println("Hey! Watchee is going at: " + watchedVehicle.getVelocity());
+//	}
+
+	
 	/**
 	 * Method uses origin and destination Junctions to find the best
 	 * path, using SPF algorithm. 
@@ -182,6 +198,7 @@ public class Vehicle {
 	private Vehicle getVehicleAhead(int visionRangeDistance) {
 		// note: this method hasnt been tested, dunno if it works correctly
 		Vehicle vehicleAhead = null;
+		Vehicle tmp = null;
 		GridPoint currPosition = grid.getLocation(this);
 
 		// ..., visionRangeDistance) means how many cells of distance to look for neighbor agents
@@ -189,8 +206,11 @@ public class Vehicle {
 		List<GridCell<Vehicle>> gridCells = nghCreator.getNeighborhood(false);
 		for (GridCell<Vehicle> cell : gridCells) {
 			if (cell.size() > 0) {
-				// found vehicle ahead
-				vehicleAhead = cell.items().iterator().next();
+				// found a vehicle
+				tmp = cell.items().iterator().next();
+				if (this.origin.equals(tmp.origin)) {
+					System.out.println("same origin! Possibly a vehicle ahead...");
+				}
 			}
 		}
 		return vehicleAhead;
@@ -228,6 +248,9 @@ public class Vehicle {
 				this.accelerate();
 			}
 			
+			// try see if there are other vehicles on the way
+			this.getVehicleAhead(x);
+			
 			System.out.println("----");
 			
 			// now find the right direction to move to
@@ -253,10 +276,7 @@ public class Vehicle {
 	 * @param isForRealDisplacement
 	 * @return
 	 */
-	private int computeDisplacement(GridPoint pt, boolean isForRealDisplacement) {
-		// conversion is for now: 1 cell = 50 meters
-		final int convRatioMeters = 50;	
-		
+	private int computeDisplacement(GridPoint pt, boolean isForRealDisplacement) {		
 		//      Equation to find displacement:
 		//      x = v0 * t + 1/2 a * t^2
 		//		Where:
@@ -292,9 +312,9 @@ public class Vehicle {
 	}
 
 	/**
-	 * @return the currSpeed
+	 * @return the current velocity
 	 */
-	public int getCurrSpeed() {
+	public int getVelocity() {
 		return this.velocity;
 	}
 
@@ -323,10 +343,10 @@ public class Vehicle {
 	}
 
 	/**
-	 * Similar algorithm to to acceleration.
+	 * Similar algorithm to the acceleration.
 	 * Uses standard kinematics equations for this purpose. 
 	 */
-	public void slowDown(){
+	public void slowDown() {
 		System.out.println("Old velocity is: " + this.velocity);	
 		this.velocity -= acceleration * t;
 		// velocity cannot be negative

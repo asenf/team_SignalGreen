@@ -128,7 +128,7 @@ public class Vehicle {
 			System.out.println("Destination: " + destination.toString());
 			
 			// check if Vehicle has reached destination
-			if (this.origin.equals(this.destination)) {
+			while (this.origin.equals(this.destination)) {
 				System.out.println("Origin == destination!");
 				// choose new random destination
 				this.destination = Utils.getRandJunction(roadNetwork);
@@ -237,11 +237,20 @@ public class Vehicle {
 			// comparing hypothetical displacement against real displ.
 			// real displacement takes into account traffic lights, other cars etc. 
 			if (tmp > x) {
-				System.out.println("Slow down!!");
-				this.slowDown();
+				System.out.println("more route to do...");
+				// 1. get the next junction and update it to the origin
+				// 2. compute the next segment to drive
+				// 3. update curr location to the one we just found
+				// 4. move the rest of the segment
+				// 5. as below, update all locations
+				
 				// TODO now check if slowing down because of junction or car ahead
 				// by finding the closest agent on the way 
 				// between the current position and x displacement towards destination point
+//				System.out.println("Slow down!!");
+//				this.slowDown();
+				
+				
 			}
 			else {
 				System.out.println("Accelerate!!");
@@ -259,7 +268,7 @@ public class Vehicle {
 			double angle = SpatialMath.calcAngleFor2DMovement (space, myPoint, otherPoint);
 			space.moveByVector(this, x, angle, 0);
 			myPoint = space.getLocation(this);
-			grid.moveTo(this, (int) myPoint.getX(), (int) myPoint.getY());		
+			grid.moveTo(this, (int) myPoint.getX(), (int) myPoint.getY());
 		 }
 	}
 	

@@ -125,6 +125,32 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		junctions.get(10).addLane(junctions.get(14), true);
 		junctions.get(11).addLane(junctions.get(15), true);
 		
+
+		junctions.get(1).addLane(junctions.get(0), true);
+		junctions.get(2).addLane(junctions.get(1), true);
+		junctions.get(3).addLane(junctions.get(2), true);
+		junctions.get(5).addLane(junctions.get(4), true);
+		junctions.get(6).addLane(junctions.get(5), true);
+		junctions.get(7).addLane(junctions.get(6), true);
+		junctions.get(9).addLane(junctions.get(8), true);
+		junctions.get(10).addLane(junctions.get(9), true);
+		junctions.get(11).addLane(junctions.get(10), true);
+		junctions.get(13).addLane(junctions.get(12), true);
+		junctions.get(14).addLane(junctions.get(13), true);
+		junctions.get(15).addLane(junctions.get(14), true);
+		junctions.get(4).addLane(junctions.get(0), true);
+		junctions.get(5).addLane(junctions.get(1), true);
+		junctions.get(6).addLane(junctions.get(2), true);
+		junctions.get(7).addLane(junctions.get(3), true);
+		junctions.get(8).addLane(junctions.get(4), true);
+		junctions.get(9).addLane(junctions.get(5), true);
+		junctions.get(10).addLane(junctions.get(6), true);
+		junctions.get(7).addLane(junctions.get(11), true);
+		junctions.get(8).addLane(junctions.get(12), true);
+		junctions.get(13).addLane(junctions.get(9), true);
+		junctions.get(14).addLane(junctions.get(10), true);
+		junctions.get(15).addLane(junctions.get(11), true);
+		
 	}
 	
 	/**

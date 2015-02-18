@@ -32,8 +32,8 @@ public class Utils {
 		/* TEST BEGIN */
 		// for test purpose, returns the last junction.
 		// comment out when not needed anymore
-		if (true)
-			return (Junction) l.get(l.size()-1).getTarget();
+//		if (true)
+//			return (Junction) l.get(l.size()-1).getTarget();
 		/* TEST END */
 		
 		if (l.size() > 0) {

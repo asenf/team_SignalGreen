@@ -1,6 +1,5 @@
 package signalGreen;
 
-// test  aks was here :)
 public final class Constants {
 	
 	public static final String NETWORK = "road network";

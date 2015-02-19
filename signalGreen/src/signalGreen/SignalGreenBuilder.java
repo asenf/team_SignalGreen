@@ -166,14 +166,14 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		addJunction(1, 2);
 		addJunction(1, 3);
 		
-		Junction junc = new Junction(network, space, grid);
+		TrafficLight junc = new TrafficLight(network, space, grid);
     	junctions.add(junc);
     	context.add(junc);
     	junc.setLocation(25, 25);
     	
     	for (int i = 0; i < 12; i++) {
-    		junctions.get(i).addLane(junctions.get(12), true, 1);
-    		junctions.get(i).addLane(junctions.get(12), false, 1);
+    		junctions.get(12).addLane(junctions.get(i), true, 1);
+    		junctions.get(12).addLane(junctions.get(i), false, 1);
     	}
     	
     	for (int i = 0; i < 11; i++) {

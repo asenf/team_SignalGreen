@@ -7,7 +7,7 @@ import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.engine.schedule.ScheduledMethod;
-import signalGreen.Constants.Lights;
+import signalGreen.Constants.Signal;
 
 /**
  * TrafficLight object is a subclass of the Junction object. It has
@@ -22,7 +22,7 @@ import signalGreen.Constants.Lights;
 public class TrafficLight extends Junction {
 	
 	//List of lights for each lane linking to the Junction
-	private List<Lights> lights;
+	private List<Light> lights;
 	
 	/**
 	 * @param network
@@ -33,12 +33,23 @@ public class TrafficLight extends Junction {
 			Grid<Object> grid) {
 		super(network, space, grid);
 		
-		this.lights = new ArrayList<Lights>();
+		this.lights = new ArrayList<Light>();
 		
+		//Have each light initialized with the number of junctions and set RED.
 		for (Junction junc : getJunctions()) {
-			Lights light = Lights.RED;
+			Light light = new Light(Signal.RED);
 			lights.add(light);
 		}
+		
+		//If even, toggle every other light. If odd, toggle first light.
+		if (lights.size() % 2 == 0) {
+			for (int i = 0; i < lights.size(); i += 2) {
+				lights.get(i).toggleSignal();
+			}
+		} else {
+			lights.get(0).toggleSignal();
+		}
+		
 	}
 	
 	/**
@@ -48,7 +59,7 @@ public class TrafficLight extends Junction {
 	 */
 	@Override
 	public void addLane(Junction junc, boolean out, double weight) {
-		Lights light = Lights.RED;
+		Light light = new Light(Signal.RED);
 		lights.add(light);
 		super.addLane(junc, out, weight);
 	}
@@ -83,7 +94,42 @@ public class TrafficLight extends Junction {
 	public void step() {
 		System.out.println("Change light");
 		
-		// TODO:Implement traffic light changing algorithm.
+		if (lights.size() % 2 == 0) {
+			toggleAllLights();
+		} else {
+			toggleNextLight();
+		}
+	}
+	
+	/**
+	 * Toggle the current state of all traffic lights.
+	 */
+	public void toggleAllLights() {
+		for (Light light : lights) {
+			light.toggleSignal();
+		}
+	}
+	
+	/**
+	 * Toggle to the next traffic light.
+	 */
+	public void toggleNextLight() {
+		int lastGreenLightIndex = 0;
+		
+		for (Light light : lights) {
+			if (light.getSignal() == Signal.GREEN) {
+				lastGreenLightIndex = lights.indexOf(light);
+			}
+		}
+		
+		lights.get(lastGreenLightIndex).toggleSignal();
+		
+		if (lights.size() == lastGreenLightIndex) {
+			lights.get(0).toggleSignal();
+			
+		} else {
+			lights.get(lastGreenLightIndex + 1).toggleSignal();
+		}	
 	}
 
 }

@@ -47,10 +47,10 @@ public class TrafficLight extends Junction {
 	 * @see signalGreen.Junction#addLane(signalGreen.Junction, boolean)
 	 */
 	@Override
-	public void addLane(Junction junc, boolean out) {
+	public void addLane(Junction junc, boolean out, double weight) {
 		Lights light = Lights.RED;
 		lights.add(light);
-		super.addLane(junc, out);
+		super.addLane(junc, out, weight);
 	}
 	
 	/**

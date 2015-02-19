@@ -70,14 +70,15 @@ public class Junction {
 	 * 
 	 * @param junc is the other Junction the lane will be between.
 	 * @param out is a boolean flag for the lane direction being outward.
+	 * @param weight for this new edge on the Graph. 
 	 */
-	public void addLane(Junction junc, boolean out) {
+	public void addLane(Junction junc, boolean out, double weight) {
 		this.junctions.add(junc);
 		
 		if (out) {
-			network.addEdge(this, junc);
+			network.addEdge(this, junc, weight);
 		} else {
-			network.addEdge(junc, this);
+			network.addEdge(junc, this, weight);
 		}
 	}
 	

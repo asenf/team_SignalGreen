@@ -9,7 +9,7 @@ public final class Constants {
 	
 	public static final int SCALE = 10;
 	
-	public static enum Lights {
+	public static enum Signal {
 		GREEN, AMBER, RED
 	}
 	

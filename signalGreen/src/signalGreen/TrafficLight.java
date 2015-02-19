@@ -35,33 +35,27 @@ public class TrafficLight extends Junction {
 		
 		this.lights = new ArrayList<Light>();
 		
-		//Have each light initialized with the number of junctions and set RED.
-		for (Junction junc : getJunctions()) {
-			Light light = new Light(Signal.RED);
-			lights.add(light);
-		}
-		
-		//If even, toggle every other light. If odd, toggle first light.
-		if (lights.size() % 2 == 0) {
-			for (int i = 0; i < lights.size(); i += 2) {
-				lights.get(i).toggleSignal();
-			}
-		} else {
-			lights.get(0).toggleSignal();
-		}
-		
 	}
 	
 	/**
-	 * Add traffic light for new lane to given Junction.
+	 * Add traffic light for new lane to given Junction. If it is the
+	 * first light, set state to GREEN, else RED.
 	 * 
 	 * @see signalGreen.Junction#addLane(signalGreen.Junction, boolean)
 	 */
 	@Override
 	public void addLane(Junction junc, boolean out, double weight) {
 		Light light = new Light(Signal.RED);
+		
+		if(lights.size() == 0)  {
+			light.setSignal(Signal.GREEN);
+		}
+		
 		lights.add(light);
 		super.addLane(junc, out, weight);
+		
+		System.out.println("Added Light");
+		
 	}
 	
 	/**
@@ -90,21 +84,34 @@ public class TrafficLight extends Junction {
 	 * Step() method to perform light changing algorithm with the
 	 * scheduled method annotation by Repast.
 	 */
-	@ScheduledMethod(start = 1, interval = 300000)
+	@ScheduledMethod(start = 1, interval = 3)
 	public void step() {
-		System.out.println("Change light");
 		
-		if (lights.size() % 2 == 0) {
-			toggleAllLights();
-		} else {
+		System.out.println("Change " + lights.size() + " light(s)!");
+		
+		if (lights.size() != 0) {
 			toggleNextLight();
+		}
+			
+		for (int i = 0; i < lights.size(); i++) {
+			if (lights.get(i).getSignal() == Signal.GREEN)
+				System.out.println("Light " + i + " : GREEN");
 		}
 	}
 	
 	/**
-	 * Toggle the current state of all traffic lights.
+	 * Toggle the current state of all traffic lights to GREEN.
 	 */
-	public void toggleAllLights() {
+	public void toggleAllLightsOn() {
+		for (Light light : lights) {
+			light.toggleSignal();
+		}
+	}
+	
+	/**
+	 * Toggle the current state of all traffic lights to RED.
+	 */
+	public void toggleAllLightsOff() {
 		for (Light light : lights) {
 			light.toggleSignal();
 		}

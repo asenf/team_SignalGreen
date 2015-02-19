@@ -100,11 +100,35 @@ public class TrafficLight extends Junction {
 	}
 	
 	/**
+	 * Get a List of all Lights, their indexes match junctions indexes.
+	 * @return
+	 */
+	public List<Light> getLights() {
+		return lights;
+	}
+	
+	/**
+	 * Get a List of all Lights currently in GREEN state.
+	 * 
+	 * @return List of GREEN lights.
+	 */
+	public List<Light> getLightsOn() {
+		List<Light> lightsOn = new ArrayList<Light>();
+		for (Light light : lights) {
+			if (light.getSignal() == Signal.GREEN) {
+				lightsOn.add(light);
+			}
+		}
+		
+		return lightsOn;
+	}
+	
+	/**
 	 * Toggle the current state of all traffic lights to GREEN.
 	 */
 	public void toggleAllLightsOn() {
 		for (Light light : lights) {
-			light.toggleSignal();
+			light.setSignal(Signal.GREEN);
 		}
 	}
 	
@@ -113,7 +137,7 @@ public class TrafficLight extends Junction {
 	 */
 	public void toggleAllLightsOff() {
 		for (Light light : lights) {
-			light.toggleSignal();
+			light.setSignal(Signal.RED);
 		}
 	}
 	

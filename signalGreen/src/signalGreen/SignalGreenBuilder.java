@@ -69,7 +69,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				new SimpleGridAdder<Object>(),
 				true, 50, 50));
 	
-		buildJunctionsAndLanes(junctions, Constants.SCALE);
+		//buildJunctionsAndLanes();
+		buildComplexJunctionsAndLanes();
 		addVehicleAtJunction(junctions.get(0), 280);
 		addVehicleAtJunction(junctions.get(1), 40);
 		addVehicleAtJunction(junctions.get(4), 200);
@@ -85,72 +86,117 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	/**
 	 * Initialize and draw out a grid of Junction objects, with the
 	 * default lanes specified. 
-	 * 
-	 * @param junctions is the List to store all Junction objects.
-	 * @param scale is the scale for the grid to be drawn.
 	 */
-	public void buildJunctionsAndLanes(List<Junction> junctions, int scale) {
+	public void buildJunctionsAndLanes() {
 		
 		for (int i = 1; i < 5; i++) {
 		    for (int j = 1; j < 5; j++) {
-		    	Junction junc = new Junction(network, space, grid);
-		    	junctions.add(junc);
-		    	context.add(junc);
-		    	junc.setLocation(scale*i, scale*j);
+		    	addJunction(i, j);	
 		    }
 		}
 		
-		junctions.get(0).addLane(junctions.get(1), true);
-		junctions.get(1).addLane(junctions.get(2), true);
-		junctions.get(2).addLane(junctions.get(3), true);
-		junctions.get(4).addLane(junctions.get(5), true);
-		junctions.get(5).addLane(junctions.get(6), true);
-		junctions.get(6).addLane(junctions.get(7), true);
-		junctions.get(8).addLane(junctions.get(9), true);
-		junctions.get(9).addLane(junctions.get(10), true);
-		junctions.get(10).addLane(junctions.get(11), true);
-		junctions.get(12).addLane(junctions.get(13), true);
-		junctions.get(13).addLane(junctions.get(14), true);
-		junctions.get(14).addLane(junctions.get(15), true);
-		junctions.get(0).addLane(junctions.get(4), true);
-		junctions.get(1).addLane(junctions.get(5), true);
-		junctions.get(2).addLane(junctions.get(6), true);
-		junctions.get(3).addLane(junctions.get(7), true);
-		junctions.get(4).addLane(junctions.get(8), true);
-		junctions.get(5).addLane(junctions.get(9), true);
-		junctions.get(6).addLane(junctions.get(10), true);
-		junctions.get(7).addLane(junctions.get(11), true);
-		junctions.get(8).addLane(junctions.get(12), true);
-		junctions.get(9).addLane(junctions.get(13), true);
-		junctions.get(10).addLane(junctions.get(14), true);
-		junctions.get(11).addLane(junctions.get(15), true);
+		junctions.get(0).addLane(junctions.get(1), true, 1);
+		junctions.get(1).addLane(junctions.get(2), true, 1);
+		junctions.get(2).addLane(junctions.get(3), true, 1);
+		junctions.get(4).addLane(junctions.get(5), true, 1);
+		junctions.get(5).addLane(junctions.get(6), true, 1);
+		junctions.get(6).addLane(junctions.get(7), true, 1);
+		junctions.get(8).addLane(junctions.get(9), true, 1);
+		junctions.get(9).addLane(junctions.get(10), true, 1);
+		junctions.get(10).addLane(junctions.get(11), true, 1);
+		junctions.get(12).addLane(junctions.get(13), true, 1);
+		junctions.get(13).addLane(junctions.get(14), true, 1);
+		junctions.get(14).addLane(junctions.get(15), true, 1);
+		junctions.get(0).addLane(junctions.get(4), true, 1);
+		junctions.get(1).addLane(junctions.get(5), true, 1);
+		junctions.get(2).addLane(junctions.get(6), true, 1);
+		junctions.get(3).addLane(junctions.get(7), true, 1);
+		junctions.get(4).addLane(junctions.get(8), true, 1);
+		junctions.get(5).addLane(junctions.get(9), true, 1);
+		junctions.get(6).addLane(junctions.get(10), true, 1);
+		junctions.get(7).addLane(junctions.get(11), true, 1);
+		junctions.get(8).addLane(junctions.get(12), true, 1);
+		junctions.get(9).addLane(junctions.get(13), true, 1);
+		junctions.get(10).addLane(junctions.get(14), true, 1);
+		junctions.get(11).addLane(junctions.get(15), true, 1);
 		
+		junctions.get(1).addLane(junctions.get(0), true, 1);
+		junctions.get(2).addLane(junctions.get(1), true, 1);
+		junctions.get(3).addLane(junctions.get(2), true, 1);
+		junctions.get(5).addLane(junctions.get(4), true, 1);
+		junctions.get(6).addLane(junctions.get(5), true, 1);
+		junctions.get(7).addLane(junctions.get(6), true, 1);
+		junctions.get(9).addLane(junctions.get(8), true, 1);
+		junctions.get(10).addLane(junctions.get(9), true, 1);
+		junctions.get(11).addLane(junctions.get(10), true, 1);
+		junctions.get(13).addLane(junctions.get(12), true, 1);
+		junctions.get(14).addLane(junctions.get(13), true, 1);
+		junctions.get(15).addLane(junctions.get(14), true, 1);
+		junctions.get(4).addLane(junctions.get(0), true, 1);
+		junctions.get(5).addLane(junctions.get(1), true, 1);
+		junctions.get(6).addLane(junctions.get(2), true, 1);
+		junctions.get(7).addLane(junctions.get(3), true, 1);
+		junctions.get(8).addLane(junctions.get(4), true, 1);
+		junctions.get(9).addLane(junctions.get(5), true, 1);
+		junctions.get(10).addLane(junctions.get(6), true, 1);
+		junctions.get(7).addLane(junctions.get(11), true, 1);
+		junctions.get(8).addLane(junctions.get(12), true, 1);
+		junctions.get(13).addLane(junctions.get(9), true, 1);
+		junctions.get(14).addLane(junctions.get(10), true, 1);
+		junctions.get(15).addLane(junctions.get(11), true, 1);
+		
+	}
+	
+	/**
+	 * Initialize and draw out a grid of Junction objects, with the
+	 * default lanes specified. This includes complex junctions. 
+	 */
+	public void buildComplexJunctionsAndLanes() {
+		
+		addJunction(1, 4);
+		addJunction(2, 4);
+		addJunction(3, 4);
+		addJunction(4, 4);
+		addJunction(4, 3);
+		addJunction(4, 2);
+		addJunction(4, 1);
+		addJunction(3, 1);
+		addJunction(2, 1);
+		addJunction(1, 1);
+		addJunction(1, 2);
+		addJunction(1, 3);
+		
+		Junction junc = new Junction(network, space, grid);
+    	junctions.add(junc);
+    	context.add(junc);
+    	junc.setLocation(25, 25);
+    	
+    	for (int i = 0; i < 12; i++) {
+    		junctions.get(i).addLane(junctions.get(12), true, 1);
+    		junctions.get(i).addLane(junctions.get(12), false, 1);
+    	}
+    	
+    	for (int i = 0; i < 11; i++) {
+    		junctions.get(i).addLane(junctions.get(i+1), true, 1);
+    		junctions.get(i).addLane(junctions.get(i+1), false, 1);
+    	}
+    	
+    	junctions.get(0).addLane(junctions.get(11), true, 1);
+		junctions.get(0).addLane(junctions.get(11), false, 1);
 
-		junctions.get(1).addLane(junctions.get(0), true);
-		junctions.get(2).addLane(junctions.get(1), true);
-		junctions.get(3).addLane(junctions.get(2), true);
-		junctions.get(5).addLane(junctions.get(4), true);
-		junctions.get(6).addLane(junctions.get(5), true);
-		junctions.get(7).addLane(junctions.get(6), true);
-		junctions.get(9).addLane(junctions.get(8), true);
-		junctions.get(10).addLane(junctions.get(9), true);
-		junctions.get(11).addLane(junctions.get(10), true);
-		junctions.get(13).addLane(junctions.get(12), true);
-		junctions.get(14).addLane(junctions.get(13), true);
-		junctions.get(15).addLane(junctions.get(14), true);
-		junctions.get(4).addLane(junctions.get(0), true);
-		junctions.get(5).addLane(junctions.get(1), true);
-		junctions.get(6).addLane(junctions.get(2), true);
-		junctions.get(7).addLane(junctions.get(3), true);
-		junctions.get(8).addLane(junctions.get(4), true);
-		junctions.get(9).addLane(junctions.get(5), true);
-		junctions.get(10).addLane(junctions.get(6), true);
-		junctions.get(7).addLane(junctions.get(11), true);
-		junctions.get(8).addLane(junctions.get(12), true);
-		junctions.get(13).addLane(junctions.get(9), true);
-		junctions.get(14).addLane(junctions.get(10), true);
-		junctions.get(15).addLane(junctions.get(11), true);
-		
+	}
+	
+	/**
+	 * Add a Junction to simulation with the given coordinates.
+	 * 
+	 * @param x is the x-coordinate.
+	 * @param y is the y-coordinate.
+	 */
+	public void addJunction(int x, int y) {
+		Junction junc = new Junction(network, space, grid);
+    	junctions.add(junc);
+    	context.add(junc);
+    	junc.setLocation(Constants.SCALE*x, Constants.SCALE*y);
 	}
 	
 	/**

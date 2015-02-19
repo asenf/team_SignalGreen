@@ -1,3 +1,8 @@
+package bdi;
+
+import java.util.Queue;
+import java.util.ArrayList;
+
 
 //only works for one type of reasoning.
 // algo is not complete at all yet
@@ -21,7 +26,7 @@
 
 
 
-private class BDIReasoning {
+public class BDIReasoning {
 
 	//percepts are what the agent perceives about the enviroment, currently
 	Queue<Percept> currentPercepts = new Queue<Percept>().add(Percept slowRoad)
@@ -30,7 +35,7 @@ private class BDIReasoning {
 /* Beliefs are what the agent thinks the actual enviroment state is like
   there often updated with new percepts */
 
-List<Beliefs> currentBeliefs = new LinkedList<Beliefs>().add(fasterIsBetter).add(roadsAreQuiet);
+ArrayList<Belief> currentBeliefs = new ArrayList<Belief>().add(fasterIsBetter).add(roadsAreQuiet);
 
 
 

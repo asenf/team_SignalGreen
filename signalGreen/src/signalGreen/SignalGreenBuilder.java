@@ -69,8 +69,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				new SimpleGridAdder<Object>(),
 				true, 50, 50));
 	
-		//buildJunctionsAndLanes();
-		buildComplexJunctionsAndLanes();
+		buildJunctionsAndLanes();
+//		buildComplexJunctionsAndLanes();
 		addVehicleAtJunction(junctions.get(0), 280);
 		addVehicleAtJunction(junctions.get(1), 40);
 		addVehicleAtJunction(junctions.get(4), 200);

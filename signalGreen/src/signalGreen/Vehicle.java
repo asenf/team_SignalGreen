@@ -110,37 +110,59 @@ public class Vehicle {
 		// get location of next Junction along the route
 		Junction nextJunction = (Junction) this.vehicleRoute.iterator().next().getTarget();
 		GridPoint nextJunctionPt = grid.getLocation(nextJunction);
-			
-		// move forward
-		moveTowards(nextJunctionPt);
-		
-		// TODO accelerate/decelerate using maxspeed and current speed
-		// which means just setting the current speed to its new value
-		// and move forward the right amount of space, depending on
-		// current speed and max speeed
-		
-		// update vehicle position
-		if (currPosition.equals(nextJunctionPt)) {
-			this.origin = nextJunction;
-
-			// DEBUG
-			System.out.println("\nOrigin: " + origin.toString());
-			System.out.println("Destination: " + destination.toString());
-			
-			// check if Vehicle has reached destination
-			while (this.origin.equals(this.destination)) {
-				System.out.println("Origin == destination!");
-				// choose new random destination
-				this.destination = Utils.getRandJunction(roadNetwork);
 				
-				// DEBUG
-				System.out.println("New origin: " + origin.toString());
-				System.out.println("New destination: " + destination.toString());				
+		// compute how many cells we need to move
+		int x = this.computeDisplacement();
+		// how far is the next junction?
+		int y = (int) grid.getDistance(currPosition, nextJunctionPt);
+		
+		// TODO find vehicles from current position to x position
+		// and check their velocity to know if we need to stop, slowdown or accelerate
+		Vehicle vehicleAhead = getVehicleAhead(x);
+		if (vehicleAhead != null) {
+			System.out.println("Found a vehicle ahead...");
+			int dist = (int) grid.getDistance(currPosition, grid.getLocation(vehicleAhead));
+			System.out.println("Distance to vehicle ahead: " + (x - dist));
+			System.out.println("Velocity vehicle ahead: " + vehicleAhead.getVelocity());
+			System.out.println("Velocity current vehicle: " + this.getVelocity());
+		}
+		
+		// following algorithm is for moving vehicles along
+		// the road network.
+		do {			
+			
+			if (x < y) {
+				// we cannot reach the next junction on the road network
+				// because it is too far... just move towards it.
+				moveTowards(nextJunctionPt, x);
+				x = 0;
+			}
+			else if (x == y) {
+				// we can reach the junction but we won't go further.
+				moveTowards(nextJunctionPt, x);
+				x = 0;
+				this.origin = nextJunction;
+				// update best route
+				findBestRoute();
+			}
+			else if (x > y) {
+				// we are going to move more than 
+				// the next junction, so we first go towards it
+				// then we keep moving towards the next one.
+				moveTowards(nextJunctionPt, y);
+				x -= y;
+				this.origin = nextJunction;
+				findBestRoute();
 			}
 			
-			// update best route
-			findBestRoute();			
-		}
+			// workaround to keep cars moving indefinitely
+			// if they reached their destination, pick a new random destination
+			ifVehicleAtDestination();
+			
+		} while (x > 0);
+		
+		this.accelerate();
+
 		
 		// TODO
 		// get vehicle ahead, if any - in order to take decisions:
@@ -164,6 +186,26 @@ public class Vehicle {
 //	}
 
 	
+	private void ifVehicleAtDestination() {
+		// DEBUG
+		System.out.println("\nOrigin: " + origin.toString());
+		System.out.println("Destination: " + destination.toString());
+		
+		// check if Vehicle has reached destination
+		while (this.origin.equals(this.destination)) {
+			System.out.println("Origin == destination!");
+			// choose new random destination
+			this.destination = Utils.getRandJunction(roadNetwork);
+			
+			// DEBUG
+			System.out.println("New origin: " + origin.toString());
+			System.out.println("New destination: " + destination.toString());				
+		}
+		
+		// update best route
+		findBestRoute();		
+	}
+
 	/**
 	 * Method uses origin and destination Junctions to find the best
 	 * path, using SPF algorithm. 
@@ -200,16 +242,30 @@ public class Vehicle {
 		Vehicle vehicleAhead = null;
 		Vehicle tmp = null;
 		GridPoint currPosition = grid.getLocation(this);
+		double distance = java.lang.Double.MAX_VALUE;
+		double distanceTmp = 0.0;
 
 		// ..., visionRangeDistance) means how many cells of distance to look for neighbor agents
-		GridCellNgh<Vehicle> nghCreator = new GridCellNgh<Vehicle>(grid, currPosition, Vehicle.class, visionRangeDistance, visionRangeDistance);
+		GridCellNgh<Vehicle> nghCreator = new GridCellNgh<Vehicle>(grid, currPosition, 
+				Vehicle.class, visionRangeDistance, visionRangeDistance);
+		
 		List<GridCell<Vehicle>> gridCells = nghCreator.getNeighborhood(false);
+		
 		for (GridCell<Vehicle> cell : gridCells) {
 			if (cell.size() > 0) {
 				// found a vehicle
 				tmp = cell.items().iterator().next();
-				if (this.origin.equals(tmp.origin)) {
-					System.out.println("same origin! Possibly a vehicle ahead...");
+				if (this.origin.equals(tmp.origin) 
+						&& this.vehicleRoute.iterator().next().getTarget()
+							.equals(tmp.vehicleRoute.iterator().next().getTarget())
+							) {
+					distanceTmp = grid.getDistance(currPosition, grid.getLocation(tmp));
+					// trying to find out the closest vehicle to the current vehicle
+					// on the same path.
+					if (distanceTmp < distance) {
+						vehicleAhead = tmp;
+						distance = distanceTmp;
+					}
 				}
 			}
 		}
@@ -220,48 +276,14 @@ public class Vehicle {
 	/**
 	 * Moves an agent towards a given point.
 	 * Credits: http://repast.sourceforge.net/docs/RepastJavaGettingStarted.pdf
-	 * @param pt
+	 * @param pt the point to move towards
+	 * @param x is the number of cells of displacement
 	 */
-	public void moveTowards(GridPoint pt) 
+	public void moveTowards(GridPoint pt, int x) 
 	{
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) 
-		{
-			System.out.println("----");
-			// find correct displacement
-			int tmp = this.computeDisplacement(pt, false);
-			int x = this.computeDisplacement(pt, true);
-			// adjust velocity
-			// TODO make it adjstVel() method which finds if need to brake or accelerate
-			System.out.println("hyp. displacement > real displacement ?? " + tmp + " > " + x);
-			// comparing hypothetical displacement against real displ.
-			// real displacement takes into account traffic lights, other cars etc. 
-			if (tmp > x) {
-				System.out.println("more route to do...");
-				// 1. get the next junction and update it to the origin
-				// 2. compute the next segment to drive
-				// 3. update curr location to the one we just found
-				// 4. move the rest of the segment
-				// 5. as below, update all locations
-				
-				// TODO now check if slowing down because of junction or car ahead
-				// by finding the closest agent on the way 
-				// between the current position and x displacement towards destination point
-//				System.out.println("Slow down!!");
-//				this.slowDown();
-				
-				
-			}
-			else {
-				System.out.println("Accelerate!!");
-				this.accelerate();
-			}
-			
-			// try see if there are other vehicles on the way
-			this.getVehicleAhead(x);
-			
-			System.out.println("----");
-			
+		{			
 			// now find the right direction to move to
 			NdPoint myPoint = space.getLocation(this);
 			NdPoint otherPoint = new NdPoint (pt.getX(), pt.getY());
@@ -278,14 +300,11 @@ public class Vehicle {
 	 * the velocity according to:<br />
 	 * 1. current velocity<br />
 	 * 2. max velocity<br />
-	 * 3. how far is the next junction<br />
 	 * Uses standard kinematics equations for this purpose.
 	 * 
-	 * @param pt
-	 * @param isForRealDisplacement
 	 * @return
 	 */
-	private int computeDisplacement(GridPoint pt, boolean isForRealDisplacement) {		
+	private int computeDisplacement() {		
 		//      Equation to find displacement:
 		//      x = v0 * t + 1/2 a * t^2
 		//		Where:
@@ -298,24 +317,7 @@ public class Vehicle {
 
 		// conversion from meters to cells in order to get a displacement on the map
 		x = x / convRatioMeters;
-		
-		if (!isForRealDisplacement) {
-			// this means we just want to know the hypothetical displacement
-			return x;
-		}
-		
-		// if with current value of x vehicle will pass junction,
-		// just go to the junction
-		double dist = grid.getDistance(grid.getLocation(this), pt);
-		if (x >  dist) {
-			System.out.println("Going too far... " + x + " > " + dist);
-			// reset distance to Junction
-			// this means the car will actually brake going to the junction
-			// which is correct.
-			// TODO recompute velocity because car is actually braking?? not sure
-			x = (int) dist;
-		}
-		
+				
 		System.out.println("Will move car by: " + x + " cells");
 		return x;
 	}

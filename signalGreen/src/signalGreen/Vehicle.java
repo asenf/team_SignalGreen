@@ -197,7 +197,7 @@ public class Vehicle {
 			// choose new random destination
 			this.destination = Utils.getRandJunction(roadNetwork);
 			
-			// DEBUG
+			// DEBUGz
 			System.out.println("New origin: " + origin.toString());
 			System.out.println("New destination: " + destination.toString());				
 		}

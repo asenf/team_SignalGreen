@@ -2,6 +2,7 @@ package signalGreen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.*;
 
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.graph.Network;
@@ -19,7 +20,7 @@ import signalGreen.Constants.Signal;
  * @author Waqar, Adeela
  * 
  */
-public class TrafficLight extends Junction {
+public class TrafficLight extends Junction{
 	
 	//List of lights for each lane linking to the Junction
 	private List<Light> lights;
@@ -161,6 +162,15 @@ public class TrafficLight extends Junction {
 		} else {
 			lights.get(lastGreenLightIndex + 1).toggleSignal();
 		}	
+	}
+	/**
+	 * Not working, just a try to draw a traffic light
+	 * @param gc
+	 */
+	public void drawTrafficLight(Graphics gc){
+		gc.setColor(Color.GREEN);
+		gc.fillOval(65,65,85,85);
+		
 	}
 
 }

@@ -15,7 +15,7 @@ public class Belief {
 	public enum Attribute {
 		fasterIsBetter, 
 		//can imagine others like aggression, 
-		//longquitroad vs shortbusy one	
+		//lonquitroad vs shortbusy one	
 	}
 	
 		

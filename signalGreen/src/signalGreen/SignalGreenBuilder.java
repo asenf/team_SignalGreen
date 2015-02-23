@@ -1,3 +1,4 @@
+
 package signalGreen;
 
 import java.util.ArrayList;
@@ -217,5 +218,21 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		space.moveTo(vehicle, location.getX(), location.getY());
 		vehicle.initVehicle(junc);
 	}
+
+
+
+
+	/**
+	 * Not working, just a try to draw a traffic light.
+	 * @adeelasaalim
+	 */
+	public void addTrafficLight(){
+		TrafficLight tl = new TrafficLight(network, space, grid);
+		context.add(tl);
+		tl.setLocation(Constants.SCALE*10,Constants.SCALE*20);
+		tl.drawTrafficLight(null);
+	
+		}
+	
 
 }

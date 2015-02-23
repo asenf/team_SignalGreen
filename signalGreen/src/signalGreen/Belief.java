@@ -20,6 +20,10 @@ public class Belief {
 		ifJunctionBusyAvoid,
 		ifJunctionBusyWait
 
+
+		//can imagine others like aggression, 
+		//lonquitroad vs shortbusy one	
+
 	}
 	
 		

@@ -3,13 +3,15 @@
   <hashtable>
     <default>
       <loadFactor>0.75</loadFactor>
-      <threshold>2</threshold>
+      <threshold>3</threshold>
     </default>
+    <int>5</int>
     <int>3</int>
-    <int>2</int>
-    <string>SettingsRegistryId</string>
-    <string>Repast.registry</string>
     <string>SettingsFileName</string>
     <string>Repast.settings</string>
+    <string>SettingsRegistryId</string>
+    <string>Repast.registry</string>
+    <string>LastLoadedScenario</string>
+    <string>C:\Users\James\Documents\repos\team_SignalGreen\signalGreen\signalGreen.rs</string>
   </hashtable>
 </simphony.settings.SettingsRegistry>

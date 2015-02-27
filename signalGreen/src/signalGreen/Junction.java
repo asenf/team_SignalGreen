@@ -3,6 +3,8 @@ package signalGreen;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.graph.Network;
@@ -23,7 +25,7 @@ import repast.simphony.space.grid.Grid;
  * @author Waqar
  *
  */
-public class Junction {
+public class Junction extends GisAgent {
 
 	/**
 	 * Prints out number of Junctions that this Junction has a lane between.
@@ -34,25 +36,27 @@ public class Junction {
 	}
 
 	// Repast projections
-	private Network<Object> network;
-	private ContinuousSpace<Object> space;
-	private Grid<Object> grid;
+	private Network<Junction> network;
+	
+	private Coordinate coordinate;
+	public static int UniqueID = 0;
+	private int ID;
+	private List<Road> roads;
 	
 	//List of Junctions it has a lane between
 	private List<Junction> junctions;
 			
-	/**
-	 * @param network
+	/**	 * @param network
 	 * @param space
 	 * @param grid
+
 	 */
-	public Junction(Network<Object> network, ContinuousSpace<Object> space, 
-			Grid<Object> grid) {
+	public Junction(Network<Junction> network) {
 	
 		this.network = network;
-		this.space = space;
-		this.grid = grid;
 		this.junctions = new ArrayList<Junction>();
+		this.ID = UniqueID++;
+		this.roads = new ArrayList<Road>();
 	}
 	
 	/**
@@ -94,7 +98,7 @@ public class Junction {
 	public void removeLane(Junction junc, boolean out) {
 		this.junctions.remove(junc);
 		
-		RepastEdge<Object> edge;
+		RepastEdge<Junction> edge;
 		
 		if (out) {
 			edge = network.getEdge(this, junc);
@@ -112,8 +116,8 @@ public class Junction {
 	 */
 	public void removeAllLanes() {
 		
-		RepastEdge<Object> edgeIn;
-		RepastEdge<Object> edgeOut;
+		RepastEdge<Junction> edgeIn;
+		RepastEdge<Junction> edgeOut;
 		
 		for (Junction junc : junctions) {
 			edgeIn = network.getEdge(this, junc);
@@ -125,23 +129,33 @@ public class Junction {
 		this.junctions.clear();
 	}
 	
-	/**
-	 * Sets the Junction location in the Continuous Space object.
-	 * 
-	 * @param x is the x-coordinate.
-	 * @param y is the y-coordinate.
-	 */
-	public void setLocation(int x, int y) {
-		space.moveTo(this, x, y);
+    @Override
+    public boolean equals(Object obj) {
+            if (!(obj instanceof Junction)) {
+                    return false;
+            }
+            Junction j = (Junction) obj;
+            return this.getCoords().equals(j.getCoords());
+    }
+
+    /**
+     * Get the coordinates of current Junction
+     */
+    public Coordinate getCoords() {
+            return coordinate;
+    }
+    
+    public void setCoords(Coordinate c) {
+            this.coordinate = c;
+            
+    }
+
+	public int getID() {
+		return ID;
 	}
 	
-	/**
-	 * Returns the Junction location in the Continuous Space object.
-	 * 
-	 * @return the Junction location as (x,y) in an NdPoint object.
-	 */
-	public NdPoint getLocation() {
-		return space.getLocation(this);
+	public List<Road> getRoads() {
+		return this.roads;
 	}
 	
 }

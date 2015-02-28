@@ -1,1 +1,2 @@
 The signalGreen model is licensed as provided for by the authors. Please contact them for details.
+but may well include copyleft code like GNU public licence that forces a licence upon us. 

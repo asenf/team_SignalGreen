@@ -73,7 +73,7 @@ public class BDI {
 	
 	
 	public PriorityQueue<Intention> getIntentions(){
-		return this.intentions;
+		return this.intent	ions;
 	}
 	
 }

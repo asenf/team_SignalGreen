@@ -31,6 +31,8 @@ import repast.simphony.context.space.graph.NetworkBuilder;
 import repast.simphony.context.space.grid.GridFactory;
 import repast.simphony.context.space.grid.GridFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.continuous.RandomCartesianAdder;
@@ -58,12 +60,12 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	
 	private Network<Junction> network;
 	
-	int numVehicle = 5;
-
+	
 	// holds mapping between repast edges and roads, used to get the individual coordinates
 	// alond the road segment.
 	private Map<RepastEdge<Junction>, Road> roads = new HashMap<RepastEdge<Junction>, Road>();
 	
+	@Override
 	public Context build(Context context) {
 
 		System.out.println("Geography Demo ContextBuilder.build()");
@@ -93,10 +95,15 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 //		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // custom small
 //		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // custom minimal
 		
-	
+		// User decides the number of vehicles placed on the map at runtime (aks)
+		final Parameters params = RunEnvironment.getInstance().getParameters();
+		final int vehCount = ((Integer) params
+                .getValue(Constants.NUM_VEHICLES)).intValue();
+		
 		// create a few vehicles at random Junctions
 		Random rand = new Random();
-		for (int i = 0; i < numVehicle; i++) {
+		//for (int i = 0; i < 5; i++) {               // for hard coding number vehicles
+		for (int i = 0; i < vehCount; i++) {          // user defined at runtime (aks)
 			int[] speed = {100, 160, 240, 280};
 			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
 			Vehicle vehicle = new Vehicle(network, geography, maxSpeed);
@@ -107,6 +114,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
             geography.move(vehicle, p);
             vehicle.initVehicle(origin);
 		}
+		
 		
 		return context;
 	}

@@ -57,6 +57,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	private List<Junction> junctions;
 	
 	private Network<Junction> network;
+	
+	int numVehicle = 5;
 
 	// holds mapping between repast edges and roads, used to get the individual coordinates
 	// alond the road segment.
@@ -91,9 +93,10 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 //		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // custom small
 //		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // custom minimal
 		
+	
 		// create a few vehicles at random Junctions
 		Random rand = new Random();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < numVehicle; i++) {
 			int[] speed = {100, 160, 240, 280};
 			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
 			Vehicle vehicle = new Vehicle(network, geography, maxSpeed);

@@ -16,8 +16,8 @@ public class Aggressive extends Vehicle {
 
 	public Aggressive(Network<Junction> network, Geography geography,
 			int maxVelocity) {
-		super(network, geography, maxVelocity);
-		BDI brain = new()
+		super(network, geography, 80);
+		BDI brain = new BDI()
 		
 	}
 	

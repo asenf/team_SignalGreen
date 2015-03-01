@@ -8,7 +8,7 @@ public class Belief {
 	private Attribute attribute;
 	
 	public Belief(int c, Attribute a){
-		this.confidence = c;
+		this.confidence = c; //10 aggresive 30 emergencyS
 		this.attribute = a;
 	}
 	

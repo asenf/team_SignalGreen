@@ -26,9 +26,9 @@ public class BDI {
 	//private percept currentPercept;
 	
 	//just one intent, a junction. beleif depends on cautiious or reckless
-	public BDI(ArrayList<Belief> b, ArrayList<Intention> intents){
-		this.beliefs = b;
-		this.intentions = intents;
+	//because the only intent is a junction...someone else can choose that
+	
+	public BDI(ArrayList<Belief> b){this.beliefs = b;}
 	}
 	
 	

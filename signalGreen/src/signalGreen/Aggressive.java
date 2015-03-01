@@ -9,15 +9,23 @@ package signalGreen;
 
 //always try and attain maxspeed, within speedlimit
 
+import java.util.ArrayList;
+
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
+import signalGreen.Belief.Attribute;
 
 public class Aggressive extends Vehicle {
 
 	public Aggressive(Network<Junction> network, Geography geography,
 			int maxVelocity) {
 		super(network, geography, 80);
-		BDI brain = new BDI()
+		BDI brain = new BDI(new ArrayList<Belief>(){
+			{
+			add(new Belief(10,Attribute.fasterIsBetter));
+			add(new Belief(5,Attribute.ifStoppedCarTurnRound));
+			}
+		});
 		
 	}
 	

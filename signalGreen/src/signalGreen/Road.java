@@ -16,14 +16,19 @@ public class Road extends GisAgent {
 	private ArrayList<Junction> junctions;
 	private ArrayList<Coordinate> coordinates; // A list of coordinates between the two junctions
 	private double length = 0;
-	private int speedLimit;
+	private int speedLimit = 30; //mph in built up areas in uk
 	
-	public Road(String name, int ) {
-		super();
+	public Road(String name) {
+		//super();
 		this.name = name;
 		this.ID = UniqueID++;
 		this.junctions = new ArrayList<Junction>();
 		this.coordinates = new ArrayList<Coordinate>();
+	}
+	
+	public Road(String name, int speedLimit){
+		this.name = name;
+		this.speedLimit = speedLimit;
 	}
 
 	@Override

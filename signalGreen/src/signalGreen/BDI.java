@@ -33,7 +33,7 @@ public class BDI {
 	
 	
 	public addNewPercept(enum p){
-		
+		String pass = "pass";
 	}
 	
 	
@@ -75,5 +75,6 @@ public class BDI {
 	public PriorityQueue<Intention> getIntentions(){
 		return this.intentions;
 	}
+}
 	
 }

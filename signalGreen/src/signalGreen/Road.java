@@ -16,8 +16,9 @@ public class Road extends GisAgent {
 	private ArrayList<Junction> junctions;
 	private ArrayList<Coordinate> coordinates; // A list of coordinates between the two junctions
 	private double length = 0;
+	private int speedLimit;
 	
-	public Road(String name) {
+	public Road(String name, int ) {
 		super();
 		this.name = name;
 		this.ID = UniqueID++;

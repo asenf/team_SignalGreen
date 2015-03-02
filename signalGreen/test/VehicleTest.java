@@ -1,10 +1,9 @@
-package signalGreen;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class Vheicle {
+
+public class VehicleTest {
 
 	@Test
 	public void testInitVehicle() {

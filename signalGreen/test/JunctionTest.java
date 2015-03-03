@@ -9,20 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import repast.simphony.context.Context;
-import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
-import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
-import repast.simphony.context.space.graph.NetworkBuilder;
-import repast.simphony.context.space.grid.GridFactory;
-import repast.simphony.context.space.grid.GridFactoryFinder;
+
+
 import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.RandomCartesianAdder;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
-import repast.simphony.space.grid.GridBuilderParameters;
-import repast.simphony.space.grid.SimpleGridAdder;
-import repast.simphony.space.grid.WrapAroundBorders;
-import signalGreen.Constants;
 import signalGreen.Junction;
 
 /**
@@ -66,18 +57,16 @@ public class JunctionTest {
 		
 	}
 
-	/*@Test
-	public final void testJunction() {
-		//fail("Not yet implemented"); // TODO
-	}
+	
 
 	
 	@Test
 	public final void testGetJunctions() {
-		//fail("Not yet implemented"); // TODO
+		 // TODO
+		 
 	}
 
-	@Test
+	/*@Test
 	public final void testAddLane() {
 		//fail("Not yet implemented"); // TODO
 	}

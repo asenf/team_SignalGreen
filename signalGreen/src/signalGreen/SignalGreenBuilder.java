@@ -8,8 +8,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 
 import org.geotools.data.shapefile.ShapefileDataStore;
@@ -57,9 +60,11 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	
 	// List to store Junctions
 	private List<Junction> junctions;
-	
 	private Network<Junction> network;
 	
+	// user-defined parameters
+	private int vehCount;
+	private boolean usesTrafficLights;
 	
 	// holds mapping between repast edges and roads, used to get the individual coordinates
 	// alond the road segment.
@@ -68,20 +73,12 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	@Override
 	public Context build(Context context) {
 
-		System.out.println("Geography Demo ContextBuilder.build()");
 		junctions = new ArrayList<Junction>();
-		
-//		Parameters parm = RunEnvironment.getInstance().getParameters();
-//		numAgents = (Integer)parm.getValue("numAgents");
 
 		// To store GIS roads
 		GeographyParameters geoParams = new GeographyParameters();
 		Geography geography = GeographyFactoryFinder.createGeographyFactory(null)
 				.createGeography("Geography", context, geoParams);
-
-		// To store Junctions taken from the GIS shapefile
-//		Geography junctionGeography = GeographyFactoryFinder.createGeographyFactory(null)
-//				.createGeography("JunctionGeography", context, params);		
 		
 		// Road network
 		// network.addEdge(this, junc, weight);
@@ -91,14 +88,34 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		
 		// Load Features from shapefiles
 		// SWITCH MAPS HERE FOR DIFFERENT SCALES
-		loadShapefile("data/NEW_YORK_MAPS/map1.shp", context, geography, network); // custom
+//		loadShapefile("data/NEW_YORK_MAPS/map1.shp", context, geography, network); // custom
 //		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // custom small
-//		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // custom minimal
+		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // custom minimal
 		
 		// User decides the number of vehicles placed on the map at runtime (aks)
 		final Parameters params = RunEnvironment.getInstance().getParameters();
-		final int vehCount = ((Integer) params
+		vehCount = ((Integer) params
                 .getValue(Constants.NUM_VEHICLES)).intValue();
+		usesTrafficLights = ((boolean) params.getValue("usesTrafficLights"));
+
+		// sets some default data for each junction in the topology.
+		initJunctions();
+		
+		// Set up TrafficLights
+		Iterator<Junction> it = junctions.iterator();
+		System.out.println("junction size: " + this.junctions.size());
+		// for each junction in the whole geography
+		while (it.hasNext()) {
+			Junction j = it.next();
+			Iterator<Junction> it2 = j.getJunctions().iterator();
+			// for each in edge of the current Junction
+			while (it2.hasNext()) {
+				Junction inJunction = it2.next();
+				// 1. create Light using moveLight(Coordinate c, double x) <-- implement this
+				// 2. add to context
+				// 3. move it using moveByVector
+			}
+		}
 		
 		// create a few vehicles at random Junctions
 		Random rand = new Random();
@@ -114,6 +131,13 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
             geography.move(vehicle, p);
             vehicle.initVehicle(origin);
 		}
+		
+		// DEBUG
+//		Iterator<Junction> it =	this.junctions.iterator();
+//		while (it.hasNext()) {
+//			Junction j = it.next(); 
+//			System.out.println("N. Adj. Junctions: " + j.getJunctions().size());			
+//		}
 		
 		
 		return context;
@@ -195,7 +219,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 }
                 else {
                     // create start junction
-                    j1 = new Junction(this.network);
+                    j1 = (usesTrafficLights == true) 
+                    		? new TrafficLight(this.network)
+                    		: new Junction(this.network);
                     j1.setCoords(c1);
                     context.add(j1);
                     Point p1 = geomFac.createPoint(c1);
@@ -210,7 +236,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 }
                 else {
 	                // create end junction
-	                j2 = new Junction(this.network);
+	                j2 = (usesTrafficLights == true) 
+                    		? new TrafficLight(this.network)
+                    		: new Junction(this.network);
 	                j2.setCoords(c2);
 	                context.add(j2);
 	                Point p2 = geomFac.createPoint(c2);
@@ -219,15 +247,15 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	                junctions.add(j2);
                 }                               
                 
-                // road needs to know its in and out edges
+                // set road data
                 double weight = Utils.distance(c1, c2, geography);
-//              System.out.println("---\nKM: " + feature.getAttribute("KM"));
-                RepastEdge<Junction> inEdge = network.addEdge(j1, j2, weight);
-                RepastEdge<Junction> outEdge = network.addEdge(j2, j1, weight);
-                this.roads.put(inEdge, (Road) agent); // tell the road which RepastEdge it has
-                this.roads.put(outEdge, (Road) agent);
-                ((Road) agent).setInEdge(inEdge);
-                ((Road) agent).setOutEdge(outEdge);
+
+    			network.addEdge(j1, j2, weight);
+				network.addEdge(j2, j1, weight);
+                
+                j1.addJunction(j2);
+                j2.addJunction(j1);
+                
                 ((Road) agent).setLength(weight);
                 ((Road) agent).setCoordinates(new ArrayList<Coordinate>(Arrays.asList(c)));
 //                System.out.println(((Road) agent).toString()); // DEBUG
@@ -252,5 +280,26 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 			}
 
 		}				
+	}
+	
+	
+	/**
+	 * 1. Initialises queues for every junction. Each junction holds
+	 * a list of incoming vehicles for each in-edge road segment.
+	 * To be called only after all junctions have been loaded from
+	 * the GIS shapefile.
+	 */
+	private void initJunctions() {
+		Iterator<Junction> it = this.junctions.iterator();
+		while (it.hasNext()) {
+			Junction j = it.next();
+			List<Junction> l = j.getJunctions();
+
+			// initialise vehicle queues
+			Iterator<Junction> itmap = l.iterator();
+			while (itmap.hasNext()) {
+				j.vehicles.put(itmap.next(), new LinkedList<Vehicle>());
+			}
+		}
 	}
 }

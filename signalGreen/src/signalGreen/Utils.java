@@ -41,7 +41,7 @@ public class Utils {
 			int index = rand.nextInt(l.size());
 			// we know that each edge has a source and target Junction
 			Junction j = (Junction) l.get(index).getTarget();
-			System.out.println("Random Junction: " + j.toString());
+			// System.out.println("Random Junction: " + j.toString());
 			return j;
 		}
 

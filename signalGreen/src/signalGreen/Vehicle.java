@@ -108,6 +108,11 @@ public class Vehicle {
 		
 		// set the next junction, so vehicle knows what is the next step on the route
 		this.next = this.getNextJunctionRoute();
+		
+		// register vehicle to next junction
+		System.out.println("v: " + this.toString());
+		this.next.enqueueVehicle(this.origin, this);
+		this.next.printVehiclesQueue(origin); // DEBUG
 	}
 
 	/**
@@ -184,12 +189,12 @@ public class Vehicle {
 		// and check their velocity to know if we need to stop, slowdown or accelerate
 		Vehicle vehicleAhead = getVehicleAhead(x);
 		if (vehicleAhead != null) {
-			Coordinate vac = geography.getGeometry(vehicleAhead).getCoordinate();
-			System.out.println("Found a vehicle ahead...");
-			double dist = Utils.distance(currPositionCoord, vac, geography);
-			System.out.println("Distance to vehicle ahead: " + (x - dist));
-			System.out.println("Velocity vehicle ahead: " + vehicleAhead.getVelocity());
-			System.out.println("Velocity current vehicle: " + this.getVelocity());
+//			Coordinate vac = geography.getGeometry(vehicleAhead).getCoordinate();
+//			System.out.println("Found a vehicle ahead...");
+//			double dist = Utils.distance(currPositionCoord, vac, geography);
+//			System.out.println("Distance to vehicle ahead: " + (x - dist));
+//			System.out.println("Velocity vehicle ahead: " + vehicleAhead.getVelocity());
+//			System.out.println("Velocity current vehicle: " + this.getVelocity());
 		}
 		
 		// following algorithm is for moving vehicles along
@@ -246,16 +251,25 @@ public class Vehicle {
 	}
 	
 	private void removeCurrentRoadSegmentFromRoute() {
+		// current next junction (soon the origin) thinks we are 
+		// on his road segment. Need to dequeue vehicle from vehicle list.
+		this.next.dequeueVehicle(origin, this);
+		
 		if (this.vehicleRoute.size() <= 1) { // origin == destination?
-			// System.out.println("Reinitialise route.");
+			// reset vehicle route
 			initVehicle(this.next);
 		}
-		else {
+		else {			
+			// Move to next road segment
 			this.origin = this.next;
 			// remove current road segment from current route
 			this.vehicleRoute.remove(0);
 			this.next = this.getNextJunctionRoute();
+			// tell next junction this vehicle is on his way
+			this.next.enqueueVehicle(this.origin, this);
 		}
+		// DEBUG
+		// next.printVehiclesQueue(origin);
 	}
 
 //	scheduleTriggerPriority = 15
@@ -275,7 +289,7 @@ public class Vehicle {
 		// check if Vehicle has reached destination
 		while (this.origin.equals(this.destination)) {
 			isAtDestination = true;
-			System.out.println("Origin == destination!");
+			// System.out.println("Origin == destination!");
 			// choose new random destination
 			this.destination = Utils.getRandJunction(roadNetwork);
 		}
@@ -301,7 +315,7 @@ public class Vehicle {
 		}
 		else {
 			this.next = this.getNextJunctionRoute();
-			System.out.println("New Route Computed:");
+			// System.out.println("New Route Computed:");
 			// debugRoute();
 		}		
 	}
@@ -333,69 +347,46 @@ public class Vehicle {
 	 * Usually this is the Vehicle displacement.
 	 * @see this.computeDosplacement()
 	 * @param x the vision range distance in meters
-	 * @return
+	 * @return next vehicle in the same road segment
+	 * TODO if distance to end of segment is smaller than x then 
+	 * search for the first vehicle in the next road segment
 	 */
 	private Vehicle getVehicleAhead(double x) {
-		// note: this method hasnt been tested, dunno if it works correctly
+		Vehicle v = this.getNextVehicle(); // the vehicle ahead
+		if (v == null) {
+			// no vehicles ahead
+			return null;
+		}
+		// check if next vehicle is in vision range
+		Coordinate c1 = geography.getGeometry(this).getCoordinate(); // current position
+		Coordinate c2 = geography.getGeometry(v).getCoordinate(); // current position
+		double dist = Utils.distance(c1, c2, geography);
+		if (dist < x) {
+			return v;
+		}
+		// vehicle is too far, assume there are no vehicles ahead
+		return null;
+	}
+	
+	/**
+	 * @return vehicle next in the same road segment
+	 */
+	private Vehicle getNextVehicle() {
+		boolean isNext = false;
 		Vehicle v = null;
-		Object obj = null;
 		Vehicle tmp = null;
-		Coordinate c = geography.getGeometry(this).getCoordinate(); // current position
-		double d = java.lang.Double.MAX_VALUE;
-		double dTmp = 0.0;
-
-		// ..., visionRangeDistance) means how many cells of distance to look for neighbor agents
-//		GridCellNgh<Vehicle> nghCreator = new GridCellNgh<Vehicle>(grid, currPosition, 
-//				Vehicle.class, visionRangeDistance, visionRangeDistance);
-		
-		// search in a square with: edge = 2x, centroid = c 
-		Envelope e = new Envelope(c.x + x, c.x - x, c.y + x, c.y - x);
-		Iterator<Object> it = geography.getObjectsWithin(e).iterator();
-		
-		while (it.hasNext()) {
-			obj = it.next();
-			if (obj instanceof Vehicle) {
-				tmp = (Vehicle) obj;
-				// try to find out the closest vehicle to the current vehicle
-				// on the current Vehicle path, ie. two Vehicles are on the same Road segment
-				// which means the have same origin and next junction.
-				if ((origin.equals(tmp.origin)) 
-						&& (this.getNextJunctionRoute().equals(tmp.getNextJunctionRoute()))) 
-				{
-					dTmp =Utils.distance(c, geography.getGeometry(tmp).getCoordinate(), geography);
-					if (dTmp < d) {
-						// this vehicle is closest so far
-						v = tmp;
-						d = dTmp;
-					}
-				}	
-				tmp = null;
-				obj = null;
-			}			
+		Queue q = this.next.getVehiclesQueue(this.origin);
+		for(Object o : q) {
+			tmp = (Vehicle) o;
+		    if (isNext == true) {
+		    	v = tmp;
+		    	break;
+		    }
+		    if (tmp.equals(this)) {
+		    	isNext = true;		    	
+		    }
 		}
 		return v;
-		
-//		List<GridCell<Vehicle>> gridCells = nghCreator.getNeighborhood(false);
-		
-//		for (GridCell<Vehicle> cell : gridCells) {
-//			if (cell.size() > 0) {
-//				// found a vehicle
-//				tmp = cell.items().iterator().next();
-//				if (this.origin.equals(tmp.origin) 
-//						&& this.vehicleRoute.iterator().next().getTarget()
-//							.equals(tmp.vehicleRoute.iterator().next().getTarget())
-//							) {
-//					distanceTmp = grid.getDistance(currPosition, grid.getLocation(tmp));
-//					// trying to find out the closest vehicle to the current vehicle
-//					// on the same path.
-//					if (distanceTmp < distance) {
-//						vehicleAhead = tmp;
-//						distance = distanceTmp;
-//					}
-//				}
-//			}
-//		}
-//		return vehicleAhead;
 	}
 
 	
@@ -435,7 +426,7 @@ public class Vehicle {
 		//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
 		//		t = time
 		double x = Math.ceil(velocity + 0.5 * (double) acceleration * t * t);	
-		System.out.println("Displacement is: " + x);
+		// System.out.println("Displacement is: " + x);
 
 		// conversion from meters to cells in order to get a displacement on the map
 		x = x / convRatioMeters;
@@ -466,13 +457,13 @@ public class Vehicle {
 	private void accelerate() {
 		// new velocity is:
 		// V = V0 + a * t
-		System.out.println("Old velocity is: " + this.velocity);	
+		// System.out.println("Old velocity is: " + this.velocity);	
 		this.velocity += acceleration * t;
 		// vehicle cannot go faster than its maxVelocity
 		if (this.velocity > this.maxVelocity) {
 			this.velocity = this.maxVelocity;
 		}
-		System.out.println("New velocity is: " + this.velocity);
+		// System.out.println("New velocity is: " + this.velocity);
 	}
 
 	/**
@@ -501,6 +492,10 @@ public class Vehicle {
 			jNext = it.next().getTarget();
 		}
 		return jNext;
+	}
+	
+	public int getFive() {
+		return 5;
 	}
 	
 }

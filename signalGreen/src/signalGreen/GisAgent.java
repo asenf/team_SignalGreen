@@ -10,7 +10,7 @@ import repast.simphony.util.ContextUtils;
 /**
  * A generic fixed GIS agent
  */
-public class GisAgent {
+public abstract class GisAgent {
 	public GisAgent() {  
 	}
 }

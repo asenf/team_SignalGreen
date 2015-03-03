@@ -6,13 +6,18 @@ import com.vividsolutions.jts.geom.Coordinate;
 
 import repast.simphony.space.graph.RepastEdge;
 
+/**
+ * @author Yoann
+ * Road agent is used to display the road on the GIS display.
+ *
+ */
 public class Road extends GisAgent {
 
 	public static int UniqueID = 0;
 	private int ID;
 	private String name;
-	private RepastEdge<Junction> inEdge = null;
-	private RepastEdge<Junction> outEdge = null;
+//	private RepastEdge<Junction> inEdge = null;
+//	private RepastEdge<Junction> outEdge = null;
 	private ArrayList<Junction> junctions;
 	private ArrayList<Coordinate> coordinates; // A list of coordinates between the two junctions
 	private double length = 0;
@@ -55,22 +60,6 @@ public class Road extends GisAgent {
 	public String toString() {
 		return "Road: ID: " + this.getID() + (this.getName() == null ? "" : ", Name: " + this.getName() + 
 				", Length: " + this.getLength());
-	}
-
-	public RepastEdge<Junction> getInEdge() {
-		return inEdge;
-	}
-
-	public void setInEdge(RepastEdge<Junction> edge) {
-		this.inEdge = edge;
-	}
-
-	public RepastEdge<Junction> getOutEdge() {
-		return outEdge;
-	}
-
-	public void setOutEdge(RepastEdge<Junction> edge) {
-		this.outEdge = edge;
 	}
 
 	public void addJunction(Junction j) {

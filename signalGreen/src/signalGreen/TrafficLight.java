@@ -27,13 +27,9 @@ public class TrafficLight extends Junction{
 	
 	/**
 	 * @param network
-	 * @param space
-	 * @param grid
 	 */
-	public TrafficLight(Network<Object> network, ContinuousSpace<Object> space,
-			Grid<Object> grid) {
-		super(network, space, grid);
-		
+	public TrafficLight(Network<Junction> network) {
+		super(network);
 		this.lights = new ArrayList<Light>();
 		
 	}
@@ -42,10 +38,10 @@ public class TrafficLight extends Junction{
 	 * Add traffic light for new lane to given Junction. If it is the
 	 * first light, set state to GREEN, else RED.
 	 * 
-	 * @see signalGreen.Junction#addLane(signalGreen.Junction, boolean)
+	 * @see signalGreen.Junction#addJunction(signalGreen.Junction)
 	 */
 	@Override
-	public void addLane(Junction junc, boolean out, double weight) {
+	public void addJunction(Junction junc) {
 		Light light = new Light(Signal.RED);
 		
 		if(lights.size() == 0)  {
@@ -53,7 +49,7 @@ public class TrafficLight extends Junction{
 		}
 		
 		lights.add(light);
-		super.addLane(junc, out, weight);
+		super.addJunction(junc);
 		
 		System.out.println("Added Light");
 		
@@ -124,27 +120,28 @@ public class TrafficLight extends Junction{
 		return lightsOn;
 	}
 	
-	/**
-	 * Toggle the current state of all traffic lights to GREEN.
-	 */
-	public void toggleAllLightsOn() {
-		for (Light light : lights) {
-			light.setSignal(Signal.GREEN);
-		}
-	}
-	
-	/**
-	 * Toggle the current state of all traffic lights to RED.
-	 */
-	public void toggleAllLightsOff() {
-		for (Light light : lights) {
-			light.setSignal(Signal.RED);
-		}
-	}
+//	/**
+//	 * Toggle the current state of all traffic lights to GREEN.
+//	 */
+//	public void toggleAllLightsOn() {
+//		for (Light light : lights) {
+//			light.setSignal(Signal.GREEN);
+//		}
+//	}
+//	
+//	/**
+//	 * Toggle the current state of all traffic lights to RED.
+//	 */
+//	public void toggleAllLightsOff() {
+//		for (Light light : lights) {
+//			light.setSignal(Signal.RED);
+//		}
+//	}
 	
 	/**
 	 * Toggle to the next traffic light.
 	 */
+	@ScheduledMethod(start = 1, interval = 4)
 	public void toggleNextLight() {
 		int lastGreenLightIndex = 0;
 		
@@ -161,8 +158,12 @@ public class TrafficLight extends Junction{
 			
 		} else {
 			lights.get(lastGreenLightIndex + 1).toggleSignal();
-		}	
+		}
+		
+		// TODO finally, change light color on the display
+		///////
 	}
+	
 	/**
 	 * Not working, just a try to draw a traffic light
 	 * @param gc

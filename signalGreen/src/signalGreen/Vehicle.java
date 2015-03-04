@@ -7,9 +7,11 @@ import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.query.space.grid.GridCell;
 import repast.simphony.query.space.grid.GridCellNgh;
 import repast.simphony.random.RandomHelper;
@@ -45,7 +47,10 @@ public class Vehicle {
 	private int velocity;
 	private int maxVelocity;
 	private int acceleration = 3; // m/s
-	
+	// displacement is used by other vehicles: they can compare it to their displ.
+	// and stop, slow down or accelerate accordingly.
+	private double displacement;
+
 	// arbitrary value for time to make simulation faster, it should actually be 1 tick.
 	// Used to compute velocity and displacement.
 	// TODO adjust it to an optimal value. 
@@ -110,18 +115,20 @@ public class Vehicle {
 		this.next = this.getNextJunctionRoute();
 		
 		// register vehicle to next junction
-		System.out.println("v: " + this.toString());
+//		System.out.println("v: " + this.toString());
 		this.next.enqueueVehicle(this.origin, this);
-		this.next.printVehiclesQueue(origin); // DEBUG
+//		this.next.printVehiclesQueue(origin); // DEBUG
 	}
 
 	/**
 	 * step() is called at each iteration of the 
 	 * simulation, starting from iteration 1.
-	 * Vehicles behaviour takes place here. 
+	 * Vehicle behavior takes place here. 
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
+		
+		Vehicle vehicleAhead;
 		
 		// workaround for vehicles stuck in impasse.
 		if (this.vehicleRoute.size() == 0) {
@@ -134,99 +141,98 @@ public class Vehicle {
 			
 		// get location of next Junction along the route
 		Junction nextJunction = this.next = this.getNextJunctionRoute();
-		Coordinate nextJunctionCoord = nextJunction.getCoords();
-		
-
-		// DEBUG
-//		Iterator<RepastEdge<Junction>> it = this.roadNetwork.getOutEdges(origin).iterator();
-//		while (it.hasNext()) {
-//			RepastEdge<Junction> e = it.next();
-//			System.out.println("Out Edge: " + e.getSource().toString() + " -> " + e.getTarget().toString());
-//		}		
+		Coordinate nextJunctionCoord = nextJunction.getCoords();	
 						
 		// compute how many meters we would like to move
-		double x = this.computeDisplacement(); // just need to adjust optimal acceleration parameters
+		double tmpDisplacement = this.computeDisplacement(); // just need to adjust optimal acceleration parameters
 		
-		// how far is the next junction?
-		double y = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
+		// now check if we can actually make it all the way, ie. we need to 
+		// adjust velocity and displacement
 		
-		// TODO
-//		if (x > y) {
-//			// junction is very close: we need to check the following:
-//			if (next instanceof TrafficLight) {
-//				// **note: TrafficLights should have only one inEdge at
-//				// a time with the green light. All others should be red.
-//				// Possible implementation: Junctions already have a list of roads, which
-//				// in turns have inEdges. it would be sufficient to iterate through them every 
-//				// N ticks and perform the switchLight() algorithm.
-//				if (next.getLight() == Constants.RED) {
-//					// easy case :)
-//					this.stopAndWait();
-//				}
-//			}
-//			
-//			// this can be implemented if we have time
-//			else if (next instanceof StopSign) {
-//				// ask the StopSign if there are other Vehicles approaching the stop:
-//				// it needs to tell us who is the closest.
-//				// Possible implementation: Vehicles tell the this.next junctions
-//				// they are approaching by having a reference in a queue.
-//				// ex.
-//				if (next.approachingVehicles.getNext().getID() != this.getID) {
-//					this.stopAndWait();
-//				}
-//				else {
-//					// remove current vehicle from queue because 
-//					// we are going through the junction
-//					next.ApproachingVehicles.dequeue();
-//				}
-//			}
-//			// if neither case is true then Junction is just a connection
-//			// between two consecutive roads and we do nothing.
-//		}
+		// see if there is a vehicle ahead within vision range
+		vehicleAhead = getVehicleAhead(tmpDisplacement);		
 		
-		// TODO find vehicles from current position to x position
-		// and check their velocity to know if we need to stop, slowdown or accelerate
-		Vehicle vehicleAhead = getVehicleAhead(x);
+		// check vehicle ahead's displacement to know what to do
 		if (vehicleAhead != null) {
-//			Coordinate vac = geography.getGeometry(vehicleAhead).getCoordinate();
-//			System.out.println("Found a vehicle ahead...");
-//			double dist = Utils.distance(currPositionCoord, vac, geography);
-//			System.out.println("Distance to vehicle ahead: " + (x - dist));
-//			System.out.println("Velocity vehicle ahead: " + vehicleAhead.getVelocity());
-//			System.out.println("Velocity current vehicle: " + this.getVelocity());
+			
+			Coordinate vehicleAheadCoord = geography.getGeometry(vehicleAhead).getCoordinate();
+			double vehiclesDistance = Utils.distance(currPositionCoord, vehicleAheadCoord, geography);
+			
+			// check if we need to stop: vehicle ahead is stopped
+			if (vehicleAhead.getDisplacement() == 0) {
+				this.setVelocity(0);
+				this.displacement = 0;
+				return; // no need to perform the displacement
+			}
+			
+			// adjust to optimal velocity/displacement
+			boolean mustSlowDown = ((vehicleAhead.getDisplacement() + vehiclesDistance) < tmpDisplacement + Constants.DIST_VEHICLES);
+			while ((vehicleAhead.getDisplacement() + vehiclesDistance) < tmpDisplacement + Constants.DIST_VEHICLES) {
+				if (mustSlowDown == true) {
+					this.slowDown();	
+				}
+				else {
+					this.accelerate();
+				}
+				tmpDisplacement = this.computeDisplacement();
+				
+				// manage limit cases
+				if (this.velocity == 0) {
+					this.displacement = 0;
+					return;
+				}
+				if (this.velocity == this.maxVelocity) {
+					break;
+				}
+			}
 		}
 		
+		// optimal displacement found!
+		this.displacement = tmpDisplacement;
+		
+		// how far is the next junction?
+		double juncDist = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
+		
 		// following algorithm is for moving vehicles along
-		// the road network.
+		// the road network towards the next Junction.
 		do {	
-			// DEBUG
-//			System.out.println("Displacement x: " + x + "Displacement to junction y: " + y);
 			
-			if (x < y) {
+			if (displacement < juncDist) {
 				// we cannot reach the next junction on the road network
 				// because it is too far... just move towards it.
-				moveTowards(nextJunctionCoord, x);
-				x = 0;
+				moveTowards(nextJunctionCoord, displacement);
+				displacement = 0;
 			}
-			else if (x == y) {
+			else if (displacement == juncDist) {
 				// we can reach the junction but we won't go further.
-				moveTowards(nextJunctionCoord, x);
-				x = 0;
+				moveTowards(nextJunctionCoord, displacement);
+				displacement = 0;
 				// update current position of vehicle along the route
 				removeCurrentRoadSegmentFromRoute();
 			}
-			else if (x > y) {
-				// we are going to move more than 
-				// the next junction, so we first go towards it
+			else if (displacement > juncDist) {
+				// we are going to move more than
+				// the next junction				
+				
+				// 1. Stop according to traffic policies
+				if (next instanceof TrafficLight) {
+					Light light = ((TrafficLight) next).getLights().get(origin);
+					if ((light.getSignal() == Constants.Signal.RED)) {
+						// easy case :)
+						this.setVelocity(0);
+						return;
+					}
+				}				
+
+				// 2. road is clear: go towards nex junction
 				// then we keep moving towards the next one.
-				moveTowards(nextJunctionCoord, y);
-				x = x - y;
+				moveTowards(nextJunctionCoord, juncDist);
+				displacement = displacement - juncDist;
 				removeCurrentRoadSegmentFromRoute();
 				nextJunctionCoord = next.getCoords();
 				// recompute distances
 				currPositionCoord = geography.getGeometry(this).getCoordinate();
-				y = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
+				juncDist = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
 			}
 			
 			// DEBUG
@@ -236,9 +242,10 @@ public class Vehicle {
 			// if they reached their destination, pick a new random destination
 			ifVehicleAtDestination();
 			
-		} while (x > 0); // keep iterating until the whole x distance has been covered
+		} while (displacement > 0); // keep iterating until the whole x distance has been covered
 		
-		this.accelerate();
+		// check vehicle ahead's velocity to slowDown() or accelerate()
+//		this.accelerate();
 		
 		// TODO
 		// get vehicle ahead, if any - in order to take decisions:
@@ -249,7 +256,11 @@ public class Vehicle {
 		// if vehicle ahead is stopped then stop too. Maybe should use the @Watch annotation to watch the speed instead
 		// See http://repast.sourceforge.net/docs/RepastReference.pdf		
 	}
-	
+
+	/**
+	 * Removes the last road segment that a Vehicle has just traveled
+	 * and updates the current route.
+	 */
 	private void removeCurrentRoadSegmentFromRoute() {
 		// current next junction (soon the origin) thinks we are 
 		// on his road segment. Need to dequeue vehicle from vehicle list.
@@ -271,19 +282,10 @@ public class Vehicle {
 		// DEBUG
 		// next.printVehiclesQueue(origin);
 	}
-
-//	scheduleTriggerPriority = 15
-//	@Watch (watcheeClassName = "signalGreen.Vehicle",
-//			watcheeFieldNames = "velocity",
-//			query = " within_moore 1",
-//			whenToTrigger = WatcherTriggerSchedule.IMMEDIATE
-//			//, triggerCondition = "$watchee.getVelocity() > 100"
-//			)
-//	void stopVehicleTraffic(Vehicle watchedVehicle) {
-//		System.out.println("Hey! Watchee is going at: " + watchedVehicle.getVelocity());
-//	}
-
 	
+	/**
+	 * Picks a new random destination if the vehicle has reach his current dest.
+	 */
 	private void ifVehicleAtDestination() {
 		boolean isAtDestination = false;
 		// check if Vehicle has reached destination
@@ -345,11 +347,11 @@ public class Vehicle {
 	 * Vision range distance is measured in meters, which 
 	 * should vary depending on current speed of vehicle.
 	 * Usually this is the Vehicle displacement.
-	 * @see this.computeDosplacement()
+	 * 
+	 * @see signalGreen.Vehicle#computeDisplacement()
 	 * @param x the vision range distance in meters
 	 * @return next vehicle in the same road segment
-	 * TODO if distance to end of segment is smaller than x then 
-	 * search for the first vehicle in the next road segment
+	 * 
 	 */
 	private Vehicle getVehicleAhead(double x) {
 		Vehicle v = this.getNextVehicle(); // the vehicle ahead
@@ -392,6 +394,7 @@ public class Vehicle {
 	
 	/**
 	 * Moves an agent towards a given Coordinate.
+	 * 
 	 * @param c the Coordinate to move towards
 	 * @param x the displacement in meters
 	 */
@@ -415,7 +418,7 @@ public class Vehicle {
 	 * 2. max velocity<br />
 	 * Uses standard kinematics equations for this purpose.
 	 * 
-	 * @return
+	 * @return x the displacement in meters
 	 */
 	private double computeDisplacement() {		
 		//      Equation to find displacement:
@@ -445,8 +448,13 @@ public class Vehicle {
 	/**
 	 * @param currSpeed the currSpeed to set
 	 */
-	public void setCurrSpeed(int currSpeed) {
+	public void setVelocity(int currSpeed) {
 		this.velocity = currSpeed;
+	}
+	
+	
+	public double getDisplacement() {
+		return displacement;
 	}
 	
 	/**
@@ -471,15 +479,14 @@ public class Vehicle {
 	 * Uses standard kinematics equations for this purpose. 
 	 */
 	public void slowDown() {
-		System.out.println("Old velocity is: " + this.velocity);	
+		// System.out.println("Old velocity is: " + this.velocity);	
 		this.velocity -= acceleration * t;
 		// velocity cannot be negative
 		if (this.velocity < 0) {
 			this.velocity = 0;
 		}
-		System.out.println("New velocity is: " + this.velocity);
+		// System.out.println("New velocity is: " + this.velocity);
 	}	
-	
 	
 	/**
 	 * 
@@ -492,10 +499,5 @@ public class Vehicle {
 			jNext = it.next().getTarget();
 		}
 		return jNext;
-	}
-	
-	public int getFive() {
-		return 5;
-	}
-	
+	}	
 }

@@ -10,8 +10,10 @@ import java.util.Queue;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
+import repast.simphony.context.Context;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
+import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.grid.Grid;
@@ -34,6 +36,7 @@ public class Junction extends GisAgent {
 
 	// Repast projections
 	private Network<Junction> network;
+	private Geography geography;
 	
 	private Coordinate coordinate;
 	public static int UniqueID = 0;
@@ -51,8 +54,9 @@ public class Junction extends GisAgent {
 	 * @param grid
 
 	 */
-	public Junction(Network<Junction> network) {
+	public Junction(Network<Junction> network, Geography geography) {
 		this.network = network;
+		this.geography = geography;
 		this.junctions = new ArrayList<Junction>();
 		this.ID = UniqueID++;
 		this.roads = new ArrayList<Road>();
@@ -215,4 +219,5 @@ public class Junction extends GisAgent {
 		System.out.println(q.toString());
 		System.out.println("Peek vehicle: " + this.peekVehicle(j).toString());
 	}
+	
 }

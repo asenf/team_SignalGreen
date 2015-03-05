@@ -1,12 +1,21 @@
 package signalGreen;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.awt.*;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
+
 import repast.simphony.space.continuous.ContinuousSpace;
+import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
+import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import signalGreen.Constants.Signal;
 
@@ -22,41 +31,35 @@ import signalGreen.Constants.Signal;
  */
 public class TrafficLight extends Junction{
 	
-	//List of lights for each lane linking to the Junction
-	private List<Light> lights;
+	// List of lights for each lane linking from a Junction
+	// to this Junction
+	private Map<Junction, Light> lights;
 	
 	/**
 	 * @param network
-	 * @param space
-	 * @param grid
 	 */
-	public TrafficLight(Network<Object> network, ContinuousSpace<Object> space,
-			Grid<Object> grid) {
-		super(network, space, grid);
-		
-		this.lights = new ArrayList<Light>();
-		
+	public TrafficLight(Network<Junction> network, Geography geography) {
+		super(network, geography);
+		this.lights = new HashMap<Junction, Light>();
 	}
 	
 	/**
 	 * Add traffic light for new lane to given Junction. If it is the
 	 * first light, set state to GREEN, else RED.
 	 * 
-	 * @see signalGreen.Junction#addLane(signalGreen.Junction, boolean)
+	 * @see signalGreen.Junction#addJunction(signalGreen.Junction)
 	 */
 	@Override
-	public void addLane(Junction junc, boolean out, double weight) {
+	public void addJunction(Junction junc) {
+		super.addJunction(junc);	
+		
 		Light light = new Light(Signal.RED);
 		
 		if(lights.size() == 0)  {
 			light.setSignal(Signal.GREEN);
 		}
 		
-		lights.add(light);
-		super.addLane(junc, out, weight);
-		
-		System.out.println("Added Light");
-		
+		lights.put(junc, light);		
 	}
 	
 	/**
@@ -85,26 +88,35 @@ public class TrafficLight extends Junction{
 	 * Step() method to perform light changing algorithm with the
 	 * scheduled method annotation by Repast.
 	 */
-	@ScheduledMethod(start = 1, interval = 3)
+	@ScheduledMethod(start = 1, interval = 25)
 	public void step() {
-		
-		System.out.println("Change " + lights.size() + " light(s)!");
-		
+		// TODO find optimal interval	
 		if (lights.size() != 0) {
 			toggleNextLight();
 		}
-			
-		for (int i = 0; i < lights.size(); i++) {
-			if (lights.get(i).getSignal() == Signal.GREEN)
-				System.out.println("Light " + i + " : GREEN");
-		}
+		// DEBUG
+		// debugLights();
 	}
 	
+	public void debugLights() {
+		for (Map.Entry<Junction, Light> entry : lights.entrySet()) {
+		    // System.out.println("key=" + entry.getKey() + ", value=" + entry.getValue());
+		    Light l = entry.getValue();
+		    Junction j = entry.getKey();
+		    if (l.getSignal() == Signal.GREEN)
+		    	System.out.println(l.toString() + " : GREEN");
+		    if (l.getSignal() == Signal.AMBER)
+		    	System.out.println(l.toString() + " : AMBER");
+		    if (l.getSignal() == Signal.RED)
+		    	System.out.println(l.toString() + " : RED");
+		}		
+	}
+
 	/**
 	 * Get a List of all Lights, their indexes match junctions indexes.
 	 * @return
 	 */
-	public List<Light> getLights() {
+	public Map<Junction, Light> getLights() {
 		return lights;
 	}
 	
@@ -113,63 +125,57 @@ public class TrafficLight extends Junction{
 	 * 
 	 * @return List of GREEN lights.
 	 */
-	public List<Light> getLightsOn() {
-		List<Light> lightsOn = new ArrayList<Light>();
-		for (Light light : lights) {
-			if (light.getSignal() == Signal.GREEN) {
-				lightsOn.add(light);
-			}
-		}
-		
-		return lightsOn;
-	}
+//	public List<Light> getLightsOn() {
+//		List<Light> lightsOn = new ArrayList<Light>();
+//		for (Light light : lights) {
+//			if (light.getSignal() == Signal.GREEN) {
+//				lightsOn.add(light);
+//			}
+//		}
+//		
+//		return lightsOn;
+//	}
 	
-	/**
-	 * Toggle the current state of all traffic lights to GREEN.
-	 */
-	public void toggleAllLightsOn() {
-		for (Light light : lights) {
-			light.setSignal(Signal.GREEN);
-		}
-	}
-	
-	/**
-	 * Toggle the current state of all traffic lights to RED.
-	 */
-	public void toggleAllLightsOff() {
-		for (Light light : lights) {
-			light.setSignal(Signal.RED);
-		}
-	}
+//	/**
+//	 * Toggle the current state of all traffic lights to GREEN.
+//	 */
+//	public void toggleAllLightsOn() {
+//		for (Light light : lights) {
+//			light.setSignal(Signal.GREEN);
+//		}
+//	}
+//	
+//	/**
+//	 * Toggle the current state of all traffic lights to RED.
+//	 */
+//	public void toggleAllLightsOff() {
+//		for (Light light : lights) {
+//			light.setSignal(Signal.RED);
+//		}
+//	}
 	
 	/**
 	 * Toggle to the next traffic light.
 	 */
 	public void toggleNextLight() {
 		int lastGreenLightIndex = 0;
+				
+		List<Light> l = new ArrayList<Light>(lights.values());
 		
-		for (Light light : lights) {
+		for (Light light : l) {
 			if (light.getSignal() == Signal.GREEN) {
-				lastGreenLightIndex = lights.indexOf(light);
+				lastGreenLightIndex = l.indexOf(light);
 			}
 		}
 		
-		lights.get(lastGreenLightIndex).toggleSignal();
+		l.get(lastGreenLightIndex).toggleSignal();
 		
-		if (lights.size() == lastGreenLightIndex) {
-			lights.get(0).toggleSignal();
+		if (l.size() - 1 == lastGreenLightIndex) {
+			l.get(0).toggleSignal();
 			
 		} else {
-			lights.get(lastGreenLightIndex + 1).toggleSignal();
-		}	
-	}
-	/**
-	 * Not working, just a try to draw a traffic light
-	 * @param gc
-	 */
-	public void drawTrafficLight(Graphics gc){
-		gc.setColor(Color.GREEN);
-		gc.fillOval(65,65,85,85);
+			l.get(lastGreenLightIndex + 1).toggleSignal();
+		}
 		
 	}
 

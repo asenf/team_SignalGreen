@@ -1,5 +1,9 @@
 package signalGreen;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
+import repast.simphony.context.Context;
+import repast.simphony.space.gis.Geography;
 import signalGreen.Constants.Signal;
 
 /**
@@ -46,6 +50,20 @@ public class Light {
 		} else {
 			this.signal = Signal.GREEN;
 		}
+	}
+	
+	/**
+	 * Used by the GIS display to know which color
+	 * has the traffic light at any moment.
+	 *  
+	 * @return integer representation of the current signal
+	 */
+	public int getColor() {
+		// DO NOT CHANGE VALUES
+		if (this.signal == Signal.GREEN) return 0;
+		if (this.signal == Signal.AMBER) return 5;
+		if (this.signal == Signal.RED) return 10;
+		return 15;
 	}
 	
 }

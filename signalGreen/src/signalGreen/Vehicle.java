@@ -26,6 +26,7 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 import repast.simphony.util.ContextUtils;
 import repast.simphony.util.SimUtilities;
+import signalGreen.Constants.Lane;
 
 /**
  * Generic class for vehicles of the Traffic Simulator.<br />
@@ -44,9 +45,12 @@ public class Vehicle {
 	private Geography geography;
 	private Network<Junction> roadNetwork;
 	
+	// holds mapping between repast edges and actual GIS roads
+	private Map<RepastEdge<Junction>, Road> roads;
+	
 	private int velocity;
 	private int maxVelocity;
-	private int acceleration = 3; // m/s
+	private double acceleration = 3; // m/s
 	// displacement is used by other vehicles: they can compare it to their displ.
 	// and stop, slow down or accelerate accordingly.
 	private double displacement;
@@ -57,7 +61,7 @@ public class Vehicle {
 	private final int t = 7;
 	// conversion is for now: 1 cell = 50 meters
 	private final int convRatioMeters = 50;		
-	
+		
 	// Simulation is based on Origin Destination pattern.
 	// Vehicles have an origin (x, y) starting point
 	// and a destination point which is randomly reset to another
@@ -65,6 +69,7 @@ public class Vehicle {
 	private Junction origin;
 	private Junction next;
 	private Junction destination;
+	private Lane lane;
 	
 	// holds the full path from origin to destination
 	// each edge of the route is a directed link between Junctions
@@ -78,7 +83,7 @@ public class Vehicle {
 	 * @param roadNetwork
 	 */
 	public Vehicle(Network<Junction> network, 
-			Geography geography, int maxVelocity)
+			Geography geography, Map<RepastEdge<Junction>, Road> roads, int maxVelocity)
 	{
 		this.ID = UniqueID++;
 		// repast projections
@@ -95,6 +100,15 @@ public class Vehicle {
 		return ID;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+        if (!(obj instanceof Vehicle)) {
+            return false;
+        }
+        Vehicle v = (Vehicle) obj;
+        return  (v.getID() == this.getID());
+	}
+
 	/**
 	 * Initialises Vehicle: set Origin, find random Destination
 	 * and compute best route.
@@ -103,6 +117,7 @@ public class Vehicle {
 		// set origin and destination of vehicle
 		this.origin = origin;
 		this.destination = Utils.getRandJunction(roadNetwork); // may return null!
+		this.lane = Lane.LEFT;
 
 		// check if we have't chosen same origin and destination
 		// unlikely to happen but...
@@ -130,10 +145,11 @@ public class Vehicle {
 		
 		Vehicle vehicleAhead;
 		
-		// workaround for vehicles stuck in impasse.
+		// following happens only when network topology contains more than one graph.
+		// It is the case when a vehicle tries to reach a destination on the other graph.
 		if (this.vehicleRoute.size() == 0) {
 			System.out.println("Vehicle is stuck in impasse. Cannot move...");
-			initVehicle(origin);
+			// 
 		}			
 		
 		// get current position of this Vehicle on the geography
@@ -166,14 +182,19 @@ public class Vehicle {
 			}
 			
 			// adjust to optimal velocity/displacement
-			boolean mustSlowDown = ((vehicleAhead.getDisplacement() + vehiclesDistance) < tmpDisplacement + Constants.DIST_VEHICLES);
-			while ((vehicleAhead.getDisplacement() + vehiclesDistance) < tmpDisplacement + Constants.DIST_VEHICLES) {
-				if (mustSlowDown == true) {
-					this.slowDown();	
-				}
-				else {
-					this.accelerate();
-				}
+			
+			System.out.println("((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES))");
+			System.out.println("((" + vehicleAhead.getDisplacement() + " + " 
+					+ vehiclesDistance + ") < (" + tmpDisplacement + " + " + Constants.DIST_VEHICLES + ")");
+			System.out.println("= " + (vehicleAhead.getDisplacement() + vehiclesDistance)
+					+ " < " + (tmpDisplacement + Constants.DIST_VEHICLES));
+			boolean b = ((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES));
+			System.out.println("= " + b + ((b == true) ? " -> slow down" : " -> accelerate"));
+			System.out.println("----");
+			
+			
+			while ((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES)) {
+				this.slowDown();	
 				tmpDisplacement = this.computeDisplacement();
 				
 				// manage limit cases
@@ -181,11 +202,19 @@ public class Vehicle {
 					this.displacement = 0;
 					return;
 				}
-				if (this.velocity == this.maxVelocity) {
-					break;
-				}
 			}
 		}
+		else {
+			// no vehicles, accelerate if we are allowed to
+			this.accelerate();
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		// optimal displacement found!
 		this.displacement = tmpDisplacement;
@@ -197,20 +226,20 @@ public class Vehicle {
 		// the road network towards the next Junction.
 		do {	
 			
-			if (displacement < juncDist) {
+			if (tmpDisplacement < juncDist) {
 				// we cannot reach the next junction on the road network
 				// because it is too far... just move towards it.
-				moveTowards(nextJunctionCoord, displacement);
-				displacement = 0;
+				moveTowards(nextJunctionCoord, tmpDisplacement);
+				tmpDisplacement = 0;
 			}
-			else if (displacement == juncDist) {
+			else if (tmpDisplacement == juncDist) {
 				// we can reach the junction but we won't go further.
-				moveTowards(nextJunctionCoord, displacement);
-				displacement = 0;
+				moveTowards(nextJunctionCoord, tmpDisplacement);
+				tmpDisplacement = 0;
 				// update current position of vehicle along the route
 				removeCurrentRoadSegmentFromRoute();
 			}
-			else if (displacement > juncDist) {
+			else if (tmpDisplacement > juncDist) {
 				// we are going to move more than
 				// the next junction				
 				
@@ -227,8 +256,10 @@ public class Vehicle {
 				// 2. road is clear: go towards nex junction
 				// then we keep moving towards the next one.
 				moveTowards(nextJunctionCoord, juncDist);
-				displacement = displacement - juncDist;
+				tmpDisplacement = tmpDisplacement - juncDist;
+				// this.next.printVehiclesQueue(this.origin);
 				removeCurrentRoadSegmentFromRoute();
+				// this.next.printVehiclesQueue(this.origin);
 				nextJunctionCoord = next.getCoords();
 				// recompute distances
 				currPositionCoord = geography.getGeometry(this).getCoordinate();
@@ -242,7 +273,7 @@ public class Vehicle {
 			// if they reached their destination, pick a new random destination
 			ifVehicleAtDestination();
 			
-		} while (displacement > 0); // keep iterating until the whole x distance has been covered
+		} while (tmpDisplacement > 0); // keep iterating until the whole x distance has been covered
 		
 		// check vehicle ahead's velocity to slowDown() or accelerate()
 //		this.accelerate();
@@ -355,6 +386,7 @@ public class Vehicle {
 	 */
 	private Vehicle getVehicleAhead(double x) {
 		Vehicle v = this.getNextVehicle(); // the vehicle ahead
+//		Vehicle v = next.getNextVehicle(origin, this, lane); // the vehicle ahead
 		if (v == null) {
 			// no vehicles ahead
 			return null;
@@ -428,7 +460,7 @@ public class Vehicle {
 		//		v0 = initial velocity
 		//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
 		//		t = time
-		double x = Math.ceil(velocity + 0.5 * (double) acceleration * t * t);	
+		double x = Math.ceil(velocity + 0.5 * acceleration * t * t);	
 		// System.out.println("Displacement is: " + x);
 
 		// conversion from meters to cells in order to get a displacement on the map
@@ -465,13 +497,13 @@ public class Vehicle {
 	private void accelerate() {
 		// new velocity is:
 		// V = V0 + a * t
-		// System.out.println("Old velocity is: " + this.velocity);	
-		this.velocity += acceleration * t;
+		// System.out.println("Accelerate: Old velocity is: " + this.velocity);	
+		this.velocity += Math.ceil(acceleration * t);
 		// vehicle cannot go faster than its maxVelocity
 		if (this.velocity > this.maxVelocity) {
 			this.velocity = this.maxVelocity;
 		}
-		// System.out.println("New velocity is: " + this.velocity);
+		// System.out.println("Accelerate: New velocity is: " + this.velocity);
 	}
 
 	/**
@@ -479,18 +511,18 @@ public class Vehicle {
 	 * Uses standard kinematics equations for this purpose. 
 	 */
 	public void slowDown() {
-		// System.out.println("Old velocity is: " + this.velocity);	
-		this.velocity -= acceleration * t;
+		// System.out.println("Slow down: Old velocity is: " + this.velocity);	
+		this.velocity -= acceleration * t * 2;
 		// velocity cannot be negative
 		if (this.velocity < 0) {
 			this.velocity = 0;
 		}
-		// System.out.println("New velocity is: " + this.velocity);
+		// System.out.println("Slow down: New velocity is: " + this.velocity);
 	}	
 	
 	/**
 	 * 
-	 * @return the next junction on the route we are heading to.
+	 * @return the next junction on the route we are heading to
 	 */
 	private Junction getNextJunctionRoute() {
 		Junction jNext = null;
@@ -500,4 +532,38 @@ public class Vehicle {
 		}
 		return jNext;
 	}	
+	
+	/**
+	 * 
+	 * @return RepastEdge ie. the current road segment of the vehicle
+	 */
+	public RepastEdge getNextRepastEdgeRoute() {
+		RepastEdge e = null;
+		Iterator<RepastEdge<Junction>> it = this.vehicleRoute.iterator();
+		if (it.hasNext()) {
+			e = it.next();
+		}
+		return e;
+	}
+	
+	/**
+	 * @return Road the current road segment
+	 */
+	public Road getNextRoadSegmentRoute() {
+		Road r = null;
+		RepastEdge e = getNextRepastEdgeRoute();
+		if (e != null) {
+			r = this.roads.get(e);
+		}
+		return r;
+	}
+
+	public Lane getLane() {
+		return lane;
+	}
+
+	public void setLane(Lane lane) {
+		this.lane = lane;
+	}
+	
 }

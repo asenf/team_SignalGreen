@@ -7,7 +7,7 @@
 									
 		/>
 				<parameter name="numVehicle" displayName="Number of Vehicles" type="int" 
-						defaultValue="5" 
+						defaultValue="100" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									

@@ -125,11 +125,11 @@ public class Junction extends GisAgent {
 	
     @Override
     public boolean equals(Object obj) {
-            if (!(obj instanceof Junction)) {
-                    return false;
-            }
-            Junction j = (Junction) obj;
-            return this.getCoords().equals(j.getCoords());
+        if (!(obj instanceof Junction)) {
+                return false;
+        }
+        Junction j = (Junction) obj;
+        return this.getCoords().equals(j.getCoords());
     }
 
     /**
@@ -156,6 +156,7 @@ public class Junction extends GisAgent {
 	/**
 	 * Returns a list of vehicles that are running on a road segment
 	 * from j to this junction. Assumes j is in the this.junctions list.
+	 * 
 	 * @param j the junction
 	 * @return queue of vehicles
 	 */
@@ -165,6 +166,7 @@ public class Junction extends GisAgent {
 	
 	/**
 	 * Used by the context builder class only.
+	 * 
 	 * @return all queues for initialisation purposes
 	 */
 	public Map<Junction, Queue<Vehicle>> getVehiclesMap() {
@@ -175,6 +177,7 @@ public class Junction extends GisAgent {
 	 * Every vehicle entering a new road segment should call this method.
 	 * Every junction holds a queue of vehicles running on a particular road
 	 * segment going towards this junction from junction j.
+	 * 
 	 * @param j junction at the other side of the current road segment
 	 * @param v vehicle entering a road segment
 	 */
@@ -186,10 +189,12 @@ public class Junction extends GisAgent {
 	
 	/**
 	 * Every vehicle leaving a road segment should call this method.
-	 * @see signalGreen.enqueueVehicle(Junction j, Vehicle v)
+	 * Vehicles are removed from queue.
+	 * 
+	 * @see signalGreen.Junction#enqueueVehicle(Junction j, Vehicle v)
 	 * @param j junction at the other side of the current road segment
 	 * @param v vehicle leaving a road segment
-	 * @return
+	 * @return true if success
 	 */
 	public boolean dequeueVehicle(Junction j, Vehicle v) {
 		Queue<Vehicle> q = this.vehicles.get(j);
@@ -198,7 +203,8 @@ public class Junction extends GisAgent {
 	
 	/**
 	 * Returns the closest vehicle to the current junction
-	 * from junction j.
+	 * from junction j. It does not take into account lanes.
+	 * 
 	 * @param j the junction
 	 * @return v closest vehicle from j, if any
 	 */
@@ -209,10 +215,10 @@ public class Junction extends GisAgent {
 		return v;
 	}
 	
-	
 	/**
 	 * Debug the vehicles queue for a particular junction.
-	 * @param j the current junction
+	 * 
+	 * @param j the junction
 	 */
 	public void printVehiclesQueue(Junction j) {
 		Queue<Vehicle> q = this.vehicles.get(j);
@@ -220,4 +226,45 @@ public class Junction extends GisAgent {
 		System.out.println("Peek vehicle: " + this.peekVehicle(j).toString());
 	}
 	
+	/**
+	 * Returns the next vehicle on the Queue (road segment)
+	 * in a particular lane.
+	 * 
+	 * @param j the junction from which the vehicle comes
+	 * @param v the current vehicle
+	 * @param l which lane to check
+	 * @return leader vehicle
+	 */
+	public Vehicle getNextVehicle(Junction j, Vehicle v, Constants.Lane l) {
+		Vehicle leader = null;
+		Vehicle tmp = null;
+		boolean isNext = false;
+		Queue<Vehicle> q = this.vehicles.get(j);
+
+		for(Object o : q) {
+			tmp = (Vehicle) o;
+			// check if next vehicle is on the required lane
+		    if ((isNext == true) && (tmp.getLane() == l)) { 
+		    	leader = tmp;
+		    	break;
+		    }
+		    // find current vehicle's position
+		    if (tmp.equals(v)) {
+		    	isNext = true;		    	
+		    }
+		}
+		return leader;
+	}
+	
+	/**
+	 * How many vehicles there are on this road segment.
+	 *  
+	 * @param j the origin junction
+	 * @return number of vehicles
+	 */
+	public int getNumVehicles(Junction j) {
+		Vehicle v = null;
+		Queue<Vehicle> q = this.vehicles.get(j);
+		return q.size();
+	}
 }

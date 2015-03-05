@@ -95,9 +95,10 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		
 		// Load Features from shapefiles
 		// SWITCH MAPS HERE FOR DIFFERENT SCALES
-//		loadShapefile("data/NEW_YORK_MAPS/map1.shp", context, geography, network); // custom
-		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // custom small
-//		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // custom minimal
+//		loadShapefile("data/NEW_YORK_MAPS/map1.shp", context, geography, network); // do NOT use for now, it contains separate topologies
+//		loadShapefile("data/NEW_YORK_MAPS/nyc_full.shp", context, geography, network); // nyc full map
+//		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // nyc small
+		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // nyc minimal
 		
 		// sets some default data for each junction in the topology
 		// and sets appropriate position of traffic lights if needed.
@@ -106,9 +107,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		// create a few vehicles at random Junctions
 		Random rand = new Random();
 		for (int i = 0; i < vehCount; i++) {          // user defined at runtime (aks)
-			int[] speed = {100, 160, 240, 280};
+			int[] speed = {100, 120, 140, 80};
 			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
-			Vehicle vehicle = new Vehicle(network, geography, maxSpeed);
+			Vehicle vehicle = new Vehicle(network, geography, roads, maxSpeed);
 			context.add(vehicle);
 			Junction origin = junctions.get(rand.nextInt(junctions.size()));	
 			GeometryFactory geomFac = new GeometryFactory();
@@ -247,9 +248,10 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 
 				// Get attributes and assign them to the agent
 //				String name = (String)feature.getAttribute("ROUTE"); // attribute depends on the shapefile attributes.
-//				String name = (String)feature.getAttribute("LNAME");
-				String name = "test";
-				agent = new Road(name);                                
+				String name = (String)feature.getAttribute("LNAME");
+//				String name = "test";
+				agent = new Road(name);
+				System.out.println("Name: " + name + " --> " + (int)feature.getAttribute("THRULANES"));
                 
 				// road segment start and end coordinate
 				Coordinate[] c = geom.getCoordinates();

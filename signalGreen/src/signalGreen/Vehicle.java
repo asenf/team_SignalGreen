@@ -209,13 +209,6 @@ public class Vehicle {
 			this.accelerate();
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 		// optimal displacement found!
 		this.displacement = tmpDisplacement;
 		

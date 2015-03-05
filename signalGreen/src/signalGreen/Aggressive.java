@@ -19,7 +19,9 @@ public class Aggressive extends Vehicle {
 
 	public Aggressive(Network<Junction> network, Geography geography,
 			int maxVelocity) {
+		
 		super(network, geography, 80);
+		
 		BDI brain = new BDI(new ArrayList<Belief>(){
 			{
 			add(new Belief(10,Attribute.fasterIsBetter));

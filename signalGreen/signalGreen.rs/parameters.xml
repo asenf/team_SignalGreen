@@ -6,6 +6,12 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
+		<parameter name="inputShapefile" displayName="GIS Shapefile" type="String" 
+						defaultValue="NEW_YORK_MAPS/map3.shp" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter"
+									
+		/>
 				<parameter name="numVehicle" displayName="Number of Vehicles" type="int" 
 						defaultValue="100" 
 						isReadOnly="false" 

@@ -42,8 +42,12 @@ public class Vehicle {
 	private int ID;
 	
 	// Repast projections
-	private Geography geography;
-	private Network<Junction> roadNetwork;
+	private Geography geography; // GIS
+	private Network<Junction> roadNetwork; // Road network topology
+	
+	// position of vehicle in the GIS projection
+	private Coordinate realPos; // This is the real position for display purpose only
+	private Coordinate networkPos; // logical position used to do all computations
 	
 	// holds mapping between repast edges and actual GIS roads
 	private Map<RepastEdge<Junction>, Road> roads;
@@ -89,6 +93,7 @@ public class Vehicle {
 		// repast projections
 		this.roadNetwork = network;
 		this.geography = geography;
+		this.roads = roads;
 		this.velocity = 0;
 		this.maxVelocity = maxVelocity;
 	}
@@ -117,7 +122,7 @@ public class Vehicle {
 		// set origin and destination of vehicle
 		this.origin = origin;
 		this.destination = Utils.getRandJunction(roadNetwork); // may return null!
-		this.lane = Lane.LEFT;
+		this.lane = Lane.LEFT; // always start left
 
 		// check if we have't chosen same origin and destination
 		// unlikely to happen but...
@@ -130,9 +135,11 @@ public class Vehicle {
 		this.next = this.getNextJunctionRoute();
 		
 		// register vehicle to next junction
-//		System.out.println("v: " + this.toString());
 		this.next.enqueueVehicle(this.origin, this);
-//		this.next.printVehiclesQueue(origin); // DEBUG
+		
+		// set positions of vehicle
+		this.networkPos = geography.getGeometry(this).getCoordinate();
+		this.realPos = this.getRealPosFromNetworkPos();
 	}
 
 	/**
@@ -149,8 +156,9 @@ public class Vehicle {
 		// It is the case when a vehicle tries to reach a destination on the other graph.
 		if (this.vehicleRoute.size() == 0) {
 			System.out.println("Vehicle is stuck in impasse. Cannot move...");
-			// 
 		}			
+
+		System.out.println("Traveling on: " + getNextRoadSegmentRoute().getName());
 		
 		// get current position of this Vehicle on the geography
 		Coordinate currPositionCoord = geography.getGeometry(this).getCoordinate();
@@ -183,14 +191,14 @@ public class Vehicle {
 			
 			// adjust to optimal velocity/displacement
 			
-			System.out.println("((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES))");
-			System.out.println("((" + vehicleAhead.getDisplacement() + " + " 
-					+ vehiclesDistance + ") < (" + tmpDisplacement + " + " + Constants.DIST_VEHICLES + ")");
-			System.out.println("= " + (vehicleAhead.getDisplacement() + vehiclesDistance)
-					+ " < " + (tmpDisplacement + Constants.DIST_VEHICLES));
-			boolean b = ((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES));
-			System.out.println("= " + b + ((b == true) ? " -> slow down" : " -> accelerate"));
-			System.out.println("----");
+//			System.out.println("((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES))");
+//			System.out.println("((" + vehicleAhead.getDisplacement() + " + " 
+//					+ vehiclesDistance + ") < (" + tmpDisplacement + " + " + Constants.DIST_VEHICLES + ")");
+//			System.out.println("= " + (vehicleAhead.getDisplacement() + vehiclesDistance)
+//					+ " < " + (tmpDisplacement + Constants.DIST_VEHICLES));
+//			boolean b = ((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES));
+//			System.out.println("= " + b + ((b == true) ? " -> slow down" : " -> accelerate"));
+//			System.out.println("----");
 			
 			
 			while ((vehicleAhead.getDisplacement() + vehiclesDistance) < (tmpDisplacement + Constants.DIST_VEHICLES)) {
@@ -464,6 +472,29 @@ public class Vehicle {
 	}
 
 	/**
+	 * Returns two coordinates that are perpendicular (+-90 degrees)
+	 * to a logical or real position of the current vehicle.
+	 * 
+	 * @param coordinate either real or network position of vehicle
+	 * @return array of coordinates
+	 */
+	private Coordinate[] getPosition(Coordinate c) {
+		double azimuth = Utils.getAzimuth(origin.getCoords(), next.getCoords(), geography);
+		Coordinate position[] = Utils.createCoordsFromCoordAndAngle(c, azimuth, Constants.DIST_LANE, geography);
+		return position;
+	}
+	
+	public Coordinate getRealPosFromNetworkPos() {
+		Coordinate position[] = this.getPosition(this.networkPos);
+		return position[0];
+	}
+	
+	public Coordinate getNetworkPosFromRealPos() {
+		Coordinate position[] = this.getPosition(this.realPos);
+		return position[1];
+	}
+
+	/**
 	 * @return the current velocity
 	 */
 	public int getVelocity() {
@@ -530,8 +561,8 @@ public class Vehicle {
 	 * 
 	 * @return RepastEdge ie. the current road segment of the vehicle
 	 */
-	public RepastEdge getNextRepastEdgeRoute() {
-		RepastEdge e = null;
+	public RepastEdge<Junction> getNextRepastEdgeRoute() {
+		RepastEdge<Junction> e = null;
 		Iterator<RepastEdge<Junction>> it = this.vehicleRoute.iterator();
 		if (it.hasNext()) {
 			e = it.next();
@@ -544,7 +575,8 @@ public class Vehicle {
 	 */
 	public Road getNextRoadSegmentRoute() {
 		Road r = null;
-		RepastEdge e = getNextRepastEdgeRoute();
+		RepastEdge<Junction> e = getNextRepastEdgeRoute();
+//		System.out.println("Edge: " + e.toString() + " roads size: " + this.roads.size());
 		if (e != null) {
 			r = this.roads.get(e);
 		}

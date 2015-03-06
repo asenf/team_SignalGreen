@@ -12,6 +12,8 @@ public final class Constants {
 	
 //	public static final int SCALE = 10;
 	
+	// distance between lanes in meters
+	public static final double DIST_LANE = 2.0;
 	// distance of Lights in meters from Junction for display purposes
 	public static final double DIST_LIGHTS = 10.0;
 	// minimum distance between vehicles driving in meters

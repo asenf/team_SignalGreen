@@ -7,32 +7,12 @@
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:Title&gt;signalGreen.TrafficLight.FeatureType&lt;/sld:Title&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Title&gt;signalGreen.TrafficLight.FeatureType&lt;/sld:Title&gt;&lt;sld:FeatureTypeName&gt;signalGreen.TrafficLight.FeatureType&lt;/sld:FeatureTypeName&gt;&lt;sld:Rule&gt;&lt;sld:Title&gt; &lt;/sld:Title&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:WellKnownName&gt;circle&lt;/sld:WellKnownName&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;4&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
-      <string>signalGreen.BDI</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
       <string>signalGreen.Constants$Signal</string>
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
       <string>signalGreen.Road</string>
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:Title&gt;signalGreen.Road.FeatureType&lt;/sld:Title&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Title&gt;signalGreen.Road.FeatureType&lt;/sld:Title&gt;&lt;sld:FeatureTypeName&gt;signalGreen.Road.FeatureType&lt;/sld:FeatureTypeName&gt;&lt;sld:Rule&gt;&lt;sld:Title&gt; &lt;/sld:Title&gt;&lt;sld:LineSymbolizer&gt;&lt;sld:Stroke&gt;&lt;sld:CssParameter name=&quot;stroke&quot;&gt;#FF0000&lt;/sld:CssParameter&gt;&lt;/sld:Stroke&gt;&lt;/sld:LineSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
-      <string>signalGreen.Aggressive</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
-      <string>signalGreen.Belief</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
-      <string>signalGreen.Timid</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
-      <string>signalGreen.Belief$Attribute</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
       <string>signalGreen.Light</string>
@@ -51,19 +31,11 @@
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
-      <string>signalGreen.Intention</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
       <string>signalGreen.Constants$Lane</string>
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
       <string>signalGreen.ModelInitializer</string>
-      <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
-    </entry>
-    <entry>
-      <string>signalGreen.TheFuzz</string>
       <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sld:UserStyle xmlns=&quot;http://www.opengis.net/sld&quot; xmlns:sld=&quot;http://www.opengis.net/sld&quot; xmlns:ogc=&quot;http://www.opengis.net/ogc&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot;&gt;&lt;sld:Name&gt;Default Styler&lt;/sld:Name&gt;&lt;sld:FeatureTypeStyle&gt;&lt;sld:Name&gt;name&lt;/sld:Name&gt;&lt;sld:Rule&gt;&lt;sld:PointSymbolizer&gt;&lt;sld:Graphic&gt;&lt;sld:Mark&gt;&lt;sld:Fill&gt;&lt;sld:CssParameter name=&quot;fill&quot;&gt;#0000FF&lt;/sld:CssParameter&gt;&lt;/sld:Fill&gt;&lt;sld:Stroke/&gt;&lt;/sld:Mark&gt;&lt;sld:Size&gt;10.0&lt;/sld:Size&gt;&lt;/sld:Graphic&gt;&lt;/sld:PointSymbolizer&gt;&lt;/sld:Rule&gt;&lt;/sld:FeatureTypeStyle&gt;&lt;/sld:UserStyle&gt;</string>
     </entry>
     <entry>
@@ -99,32 +71,12 @@
       <int>1</int>
     </entry>
     <entry>
-      <string>signalGreen.BDI</string>
-      <int>2</int>
-    </entry>
-    <entry>
       <string>signalGreen.Constants$Signal</string>
       <int>3</int>
     </entry>
     <entry>
       <string>signalGreen.Road</string>
       <int>18</int>
-    </entry>
-    <entry>
-      <string>signalGreen.Aggressive</string>
-      <int>5</int>
-    </entry>
-    <entry>
-      <string>signalGreen.Belief</string>
-      <int>6</int>
-    </entry>
-    <entry>
-      <string>signalGreen.Timid</string>
-      <int>7</int>
-    </entry>
-    <entry>
-      <string>signalGreen.Belief$Attribute</string>
-      <int>8</int>
     </entry>
     <entry>
       <string>signalGreen.Light</string>
@@ -143,20 +95,12 @@
       <int>11</int>
     </entry>
     <entry>
-      <string>signalGreen.Intention</string>
-      <int>12</int>
-    </entry>
-    <entry>
       <string>signalGreen.Constants$Lane</string>
       <int>13</int>
     </entry>
     <entry>
       <string>signalGreen.ModelInitializer</string>
       <int>14</int>
-    </entry>
-    <entry>
-      <string>signalGreen.TheFuzz</string>
-      <int>15</int>
     </entry>
     <entry>
       <string>signalGreen.Vehicle</string>

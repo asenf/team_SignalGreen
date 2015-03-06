@@ -18,6 +18,7 @@ import java.util.Random;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.type.AttributeType;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -66,6 +67,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	// user-defined parameters
 	private int vehCount;
 	private boolean usesTrafficLights;
+	private String inputShapefile;
 	
 	// holds mapping between repast edges and roads, used to get the individual coordinates
 	// alond the road segment.
@@ -89,16 +91,17 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 
 		// User decides the number of vehicles placed on the map at runtime (aks)
 		final Parameters params = RunEnvironment.getInstance().getParameters();
-		vehCount = ((Integer) params
-                .getValue(Constants.NUM_VEHICLES)).intValue();
+		vehCount = ((Integer) params.getValue(Constants.NUM_VEHICLES)).intValue();
 		usesTrafficLights = ((boolean) params.getValue("usesTrafficLights"));
+		inputShapefile = "data/" + ((String) params.getValue("inputShapefile"));
 		
-		// Load Features from shapefiles
-		// SWITCH MAPS HERE FOR DIFFERENT SCALES
-//		loadShapefile("data/NEW_YORK_MAPS/map1.shp", context, geography, network); // do NOT use for now, it contains separate topologies
-//		loadShapefile("data/NEW_YORK_MAPS/nyc_full.shp", context, geography, network); // nyc full map
-//		loadShapefile("data/NEW_YORK_MAPS/map2.shp", context, geography, network); // nyc small
-		loadShapefile("data/NEW_YORK_MAPS/map3.shp", context, geography, network); // nyc minimal
+		// load user defined GIS shapefile
+		File f = new File(inputShapefile);
+		if (!f.exists() && f.isDirectory()) { 
+			System.out.println("File Not Found!");
+			return null;
+		}
+		loadShapefile(inputShapefile, context, geography, network); 
 		
 		// sets some default data for each junction in the topology
 		// and sets appropriate position of traffic lights if needed.
@@ -128,7 +131,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	 * @param context the context
 	 * @param geography the road geography
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void loadShapefile(String filename, Context context, Geography geography, Network<Junction> network) {
 		// used to create junctions on the gis projection
 		GeometryFactory geomFac = new GeometryFactory();
@@ -247,16 +250,29 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				geom = (LineString) line.getGeometryN(0);
 
 				// Get attributes and assign them to the agent
-//				String name = (String)feature.getAttribute("ROUTE"); // attribute depends on the shapefile attributes.
+				// attributes depend on the shapefile attributes.
 				String name = (String)feature.getAttribute("LNAME");
 //				String name = "test";
 				agent = new Road(name);
-				System.out.println("Name: " + name + " --> " + (int)feature.getAttribute("THRULANES"));
+//				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
+//						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
+//						+ "\nFCLASS " + feature.getAttribute("FCLASS")
+//						+ "\nSTATUS " + feature.getAttribute("STATUS")
+//						+ "\nNHS " + feature.getAttribute("NHS")
+//						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
+//						+ "\n\n");
                 
 				// road segment start and end coordinate
 				Coordinate[] c = geom.getCoordinates();
 				Coordinate c1 = c[0]; // First coordinate
                 Coordinate c2 = c[geom.getNumPoints() - 1]; // Last coordinate 
+                
+        		
+        		// TEST LANES ******
+                
+                addLanes(c1, c2, geography, context);
+        						
+        		//************
 				
                 Junction j1 = cache.get(c1);
                 Junction j2 = cache.get(c2);                            
@@ -264,39 +280,89 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 // set road data
                 double weight = Utils.distance(c1, c2, geography);
 
-    			network.addEdge(j1, j2, weight);
-				network.addEdge(j2, j1, weight);
+    			RepastEdge<Junction> re1 = network.addEdge(j1, j2, weight);
+    			RepastEdge<Junction> re2 = network.addEdge(j2, j1, weight);
                 
                 j1.addJunction(j2);
                 j2.addJunction(j1);
                 
                 ((Road) agent).setLength(weight);
                 ((Road) agent).setCoordinates(new ArrayList<Coordinate>(Arrays.asList(c)));
-//                System.out.println(((Road) agent).toString()); // DEBUG
-				
+                // System.out.println(((Road) agent).toString()); // DEBUG
+
+                // Road-RepastEdge mapping for lane management use
+                this.roads.put(re1, (Road) agent);
+                this.roads.put(re2, (Road) agent);
+                
 				// put road in the GIS projection
-				if (agent != null){
-					// show the road as it is in the GIS shapefile <-- many details shown
-					// context.add(agent);
-					// geography.move(agent, geom);
-					
-					// or display a simplified version of the map
-					// in this case need to uncomment previous block of code
-					Coordinate[] coords = new Coordinate[] { c1, c2 };
-					LineString ls = geomFac.createLineString(coords);
-					geom = (LineString)ls.getGeometryN(0);
-					context.add(ls);
-					geography.move(agent, geom);
-				}
-				else{
-					System.out.println("Error creating agent.");
-				}
+				// 1. show the road as it is in the GIS shapefile <-- many details shown
+				// context.add(agent);
+				// geography.move(agent, geom);
+				
+				// 2. or display a simplified version of the map
+				// in this case need to uncomment previous block of code
+				Coordinate[] coords = new Coordinate[] { c1, c2 };
+				LineString ls = geomFac.createLineString(coords);
+				geom = (LineString)ls.getGeometryN(0);
+				context.add(ls);
+				geography.move(agent, geom);
 			}
 
 		}				
 	}
 	
 	
+	@SuppressWarnings("unchecked")
+	private void addLanes(Coordinate c1, Coordinate c2, Geography geography, Context context) {
+
+		GeometryFactory geomFac = new GeometryFactory();
+		
+        double azimuth = Utils.getAzimuth(c1, c2, geography);
+		Coordinate dest1[] = Utils.createCoordsFromCoordAndAngle(c1, azimuth, Constants.DIST_LANE, geography);
+
+		// 1
+		Junction j1Left = new Junction(network, geography);
+		context.add(j1Left);
+		Point p = geomFac.createPoint(dest1[0]);
+		geography.move(j1Left, p);
+		// 2
+		Junction j1Right = new Junction(network, geography);
+		context.add(j1Left);
+		p = geomFac.createPoint(dest1[1]);
+		geography.move(j1Right, p);
+		
+		Coordinate dest2[] = Utils.createCoordsFromCoordAndAngle(c2, azimuth, Constants.DIST_LANE, geography);
+		// 3
+		Junction j2Left = new Junction(network, geography);
+		context.add(j2Left);
+		p = geomFac.createPoint(dest2[0]);
+		geography.move(j2Left, p);
+		// 4
+		Junction j2Right = new Junction(network, geography);
+		context.add(j2Right);
+		p = geomFac.createPoint(dest2[1]);
+		geography.move(j2Right, p);
+		
+		// add lanes
+		
+		// 1
+		Coordinate[] coords = new Coordinate[] { dest1[0], dest2[0] };
+		LineString ls = geomFac.createLineString(coords);
+		Geometry geom = (LineString) ls.getGeometryN(0);
+		context.add(ls);
+		geography.move(new Road("test"), geom);
+		
+		// 2
+		coords = new Coordinate[] { dest1[1], dest2[1] };
+		ls = geomFac.createLineString(coords);
+		geom = (LineString) ls.getGeometryN(0);
+		context.add(ls);
+		geography.move(new Road("test"), geom);
+		
+//		geography.moveByVector(j1Left, Constants.DIST_LIGHTS, angle);
+		
+	}
+
 	/**
 	 * 1. Initialises queues for every junction. Each junction holds
 	 * a list of incoming vehicles for each in-edge road segment.

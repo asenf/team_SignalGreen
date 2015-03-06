@@ -1,19 +1,33 @@
 package signalGreen;
 
+import java.util.Map;
+
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
+import repast.simphony.space.graph.RepastEdge;
 
+public class EmergencyVehicle extends Vehicle {
 
-//accerelate until maxspeed acheived. Maybe have to states,
-//one flashing blues and twos, other obeying speed limits?
-
-//ignore traffic lights, tailgate vehicle ahead if there is one at there speed
-public class TheFuzz extends Vehicle {
-
-	public TheFuzz(Network<Junction> network, Geography geography,
-			int maxVelocity) {
-		super(network, geography, 140);
-		// TODO Auto-generated constructor stub
+	public EmergencyVehicle(Network<Junction> network, Geography geography,
+			Map<RepastEdge<Junction>, Road> roads, int maxVelocity) {
+		super(network, geography, roads, 140);
+		
+	}
+	
+	
+	
+	
+	public void initVehicle(Junction Origin){
+	  super.initVehicle(Origin);
+	}
+	
+	
+	//need to break yoooans methods down 
+	//then use BDI on them	
+	public void step(){
+		
+		
+		
 	}
 
 }

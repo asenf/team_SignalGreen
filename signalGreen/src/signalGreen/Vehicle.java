@@ -48,6 +48,7 @@ public class Vehicle {
 	// holds mapping between repast edges and actual GIS roads
 	private Map<RepastEdge<Junction>, Road> roads;
 	
+	public double vehiclesDistance;
 	private int velocity;
 	private int maxVelocity;
 	private double acceleration = 3; // m/s
@@ -169,17 +170,8 @@ public class Vehicle {
 		vehicleAhead = getVehicleAhead(tmpDisplacement);		
 		
 		// check vehicle ahead's displacement to know what to do
-		if (vehicleAhead != null) {
-			
-			Coordinate vehicleAheadCoord = geography.getGeometry(vehicleAhead).getCoordinate();
-			double vehiclesDistance = Utils.distance(currPositionCoord, vehicleAheadCoord, geography);
-			
-			// check if we need to stop: vehicle ahead is stopped
-			if (vehicleAhead.getDisplacement() == 0) {
-				this.setVelocity(0);
-				this.displacement = 0;
-				return; // no need to perform the displacement
-			}
+		checkVehicleAheadDisplacement(vehicleAhead,currPositionCoord);
+		
 			
 			// adjust to optimal velocity/displacement
 			
@@ -203,8 +195,7 @@ public class Vehicle {
 					return;
 				}
 			}
-		}
-		else {
+		if (vehicleAhead==null) {
 			// no vehicles, accelerate if we are allowed to
 			this.accelerate();
 		}
@@ -217,56 +208,8 @@ public class Vehicle {
 		
 		// following algorithm is for moving vehicles along
 		// the road network towards the next Junction.
-		do {	
-			
-			if (tmpDisplacement < juncDist) {
-				// we cannot reach the next junction on the road network
-				// because it is too far... just move towards it.
-				moveTowards(nextJunctionCoord, tmpDisplacement);
-				tmpDisplacement = 0;
-			}
-			else if (tmpDisplacement == juncDist) {
-				// we can reach the junction but we won't go further.
-				moveTowards(nextJunctionCoord, tmpDisplacement);
-				tmpDisplacement = 0;
-				// update current position of vehicle along the route
-				removeCurrentRoadSegmentFromRoute();
-			}
-			else if (tmpDisplacement > juncDist) {
-				// we are going to move more than
-				// the next junction				
-				
-				// 1. Stop according to traffic policies
-				if (next instanceof TrafficLight) {
-					Light light = ((TrafficLight) next).getLights().get(origin);
-					if ((light.getSignal() == Constants.Signal.RED)) {
-						// easy case :)
-						this.setVelocity(0);
-						return;
-					}
-				}				
-
-				// 2. road is clear: go towards nex junction
-				// then we keep moving towards the next one.
-				moveTowards(nextJunctionCoord, juncDist);
-				tmpDisplacement = tmpDisplacement - juncDist;
-				// this.next.printVehiclesQueue(this.origin);
-				removeCurrentRoadSegmentFromRoute();
-				// this.next.printVehiclesQueue(this.origin);
-				nextJunctionCoord = next.getCoords();
-				// recompute distances
-				currPositionCoord = geography.getGeometry(this).getCoordinate();
-				juncDist = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
-			}
-			
-			// DEBUG
-			// debugRoute();
-			
-			// This makes vehicles moving indefinitely:
-			// if they reached their destination, pick a new random destination
-			ifVehicleAtDestination();
-			
-		} while (tmpDisplacement > 0); // keep iterating until the whole x distance has been covered
+		moveVehicleToJunction( tmpDisplacement, juncDist, nextJunctionCoord, currPositionCoord);
+		
 		
 		// check vehicle ahead's velocity to slowDown() or accelerate()
 //		this.accelerate();
@@ -559,4 +502,72 @@ public class Vehicle {
 		this.lane = lane;
 	}
 	
-}
+	public void checkVehicleAheadDisplacement(Vehicle vehicleAhead,Coordinate currPositionCoord){
+		if (vehicleAhead != null) {
+			
+			Coordinate vehicleAheadCoord = geography.getGeometry(vehicleAhead).getCoordinate();
+			vehiclesDistance = Utils.distance(currPositionCoord, vehicleAheadCoord, geography);
+			
+			// check if we need to stop: vehicle ahead is stopped
+			if (vehicleAhead.getDisplacement() == 0) {
+				this.setVelocity(0);
+				this.displacement = 0;
+				return; // no need to perform the displacement
+		}}
+		}
+		
+		
+		public void moveVehicleToJunction(double tmpDisplacement, double juncDist, Coordinate nextJunctionCoord,Coordinate currPositionCoord){
+			do {	
+				
+				if (tmpDisplacement < juncDist) {
+					// we cannot reach the next junction on the road network
+					// because it is too far... just move towards it.
+					moveTowards(nextJunctionCoord, tmpDisplacement);
+					tmpDisplacement = 0;
+				}
+				else if (tmpDisplacement == juncDist) {
+					// we can reach the junction but we won't go further.
+					moveTowards(nextJunctionCoord, tmpDisplacement);
+					tmpDisplacement = 0;
+					// update current position of vehicle along the route
+					removeCurrentRoadSegmentFromRoute();
+				}
+				else if (tmpDisplacement > juncDist) {
+					// we are going to move more than
+					// the next junction				
+					
+					// 1. Stop according to traffic policies
+					if (next instanceof TrafficLight) {
+						Light light = ((TrafficLight) next).getLights().get(origin);
+						if ((light.getSignal() == Constants.Signal.RED)) {
+							// easy case :)
+							this.setVelocity(0);
+							return;
+						}
+					}				
+
+					// 2. road is clear: go towards nex junction
+					// then we keep moving towards the next one.
+					moveTowards(nextJunctionCoord, juncDist);
+					tmpDisplacement = tmpDisplacement - juncDist;
+					// this.next.printVehiclesQueue(this.origin);
+					removeCurrentRoadSegmentFromRoute();
+					// this.next.printVehiclesQueue(this.origin);
+					nextJunctionCoord = next.getCoords();
+					// recompute distances
+					currPositionCoord = geography.getGeometry(this).getCoordinate();
+					juncDist = Utils.distance(currPositionCoord, nextJunctionCoord, geography);
+				}
+				
+				// DEBUG
+				// debugRoute();
+				
+				// This makes vehicles moving indefinitely:
+				// if they reached their destination, pick a new random destination
+				ifVehicleAtDestination();
+				
+			} while (tmpDisplacement > 0); // keep iterating until the whole x distance has been covered
+			}
+	
+	}

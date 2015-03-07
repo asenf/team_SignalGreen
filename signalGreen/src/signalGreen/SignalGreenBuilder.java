@@ -254,13 +254,13 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				String name = (String)feature.getAttribute("LNAME");
 //				String name = "test";
 				agent = new Road(name);
-//				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
-//						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
-//						+ "\nFCLASS " + feature.getAttribute("FCLASS")
-//						+ "\nSTATUS " + feature.getAttribute("STATUS")
-//						+ "\nNHS " + feature.getAttribute("NHS")
-//						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
-//						+ "\n\n");
+				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
+						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
+						+ "\nFCLASS " + feature.getAttribute("FCLASS")
+						+ "\nSTATUS " + feature.getAttribute("STATUS")
+						+ "\nNHS " + feature.getAttribute("NHS")
+						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
+						+ "\n\n");
                 
 				// road segment start and end coordinate
 				Coordinate[] c = geom.getCoordinates();

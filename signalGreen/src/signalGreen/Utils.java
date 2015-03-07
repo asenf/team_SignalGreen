@@ -43,6 +43,11 @@ public class Utils {
 		System.out.println("Unable to get a random Junction.");
 		return null;
 	}
+	
+	public static void debugCoordinate(Coordinate c) {
+		System.out.println("Coordinate: " + c.toString() + ", x: " 
+				+ c.x + ", y: " + c.y);
+	}
 
     /* Distance works very well, it is in metres. */
 	public static double distance(Coordinate c1, Coordinate c2, Geography g) {	

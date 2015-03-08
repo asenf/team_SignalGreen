@@ -83,16 +83,7 @@ public class JunctionTest {
 		assertNotNull(junctions);
 	}
 
-/*	@Test
-	public final void testRemoveLane() {
-		//fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testRemoveAllLanes() {
-		//fail("Not yet implemented"); // TODO
-	}
-
+/*	
 	@Test
 	public final void testSetLocation() {
 		//fail("Not yet implemented"); // TODO

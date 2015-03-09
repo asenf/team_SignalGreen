@@ -1,8 +1,6 @@
 <context id="signalGreen" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
-  	
-  	 <projection type="continuous space" id="space"/>
-  	 <projection type="grid" id="grid"/>
-  	 <projection type="network" id="road network"/>
+  	<projection id="Geography" type="geography" />	
+  	<projection id="road network" type="network" />	
 </context>

@@ -109,6 +109,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		
 		// create a few vehicles at random Junctions
 		Random rand = new Random();
+		Vehicle vehicles[] = new Vehicle[vehCount]; 
 		for (int i = 0; i < vehCount; i++) {          // user defined at runtime (aks)
 			int[] speed = {100, 120, 140, 80};
 			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
@@ -254,14 +255,14 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				String name = (String)feature.getAttribute("LNAME");
 //				String name = "test";
 				agent = new Road(name);
-				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
-						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
-						+ "\nFCLASS " + feature.getAttribute("FCLASS")
-						+ "\nSTATUS " + feature.getAttribute("STATUS")
-						+ "\nNHS " + feature.getAttribute("NHS")
-						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
-						+ "\n\n");
-                
+//				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
+//						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
+//						+ "\nFCLASS " + feature.getAttribute("FCLASS")
+//						+ "\nSTATUS " + feature.getAttribute("STATUS")
+//						+ "\nNHS " + feature.getAttribute("NHS")
+//						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
+//						+ "\n\n");
+//                
 				// road segment start and end coordinate
 				Coordinate[] c = geom.getCoordinates();
 				Coordinate c1 = c[0]; // First coordinate
@@ -287,7 +288,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 j2.addJunction(j1);
                 
                 ((Road) agent).setLength(weight);
-                ((Road) agent).setCoordinates(new ArrayList<Coordinate>(Arrays.asList(c)));
+//                ((Road) agent).setCoordinates(new ArrayList<Coordinate>(Arrays.asList(c)));
                 // System.out.println(((Road) agent).toString()); // DEBUG
 
                 // Road-RepastEdge mapping for lane management use
@@ -316,53 +317,111 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	private void addLanes(Coordinate c1, Coordinate c2, Geography geography, Context context) {
 
 		GeometryFactory geomFac = new GeometryFactory();
-		
         double azimuth = Utils.getAzimuth(c1, c2, geography);
-		Coordinate dest1[] = Utils.createCoordsFromCoordAndAngle(c1, azimuth, Constants.DIST_LANE, geography);
 
-		// 1
-		Junction j1Left = new Junction(network, geography);
-		context.add(j1Left);
-		Point p = geomFac.createPoint(dest1[0]);
-		geography.move(j1Left, p);
-		// 2
-		Junction j1Right = new Junction(network, geography);
-		context.add(j1Left);
-		p = geomFac.createPoint(dest1[1]);
-		geography.move(j1Right, p);
-		
-		Coordinate dest2[] = Utils.createCoordsFromCoordAndAngle(c2, azimuth, Constants.DIST_LANE, geography);
-		// 3
-		Junction j2Left = new Junction(network, geography);
-		context.add(j2Left);
-		p = geomFac.createPoint(dest2[0]);
-		geography.move(j2Left, p);
-		// 4
-		Junction j2Right = new Junction(network, geography);
-		context.add(j2Right);
-		p = geomFac.createPoint(dest2[1]);
-		geography.move(j2Right, p);
-		
-		// add lanes
-		
-		// 1
-		Coordinate[] coords = new Coordinate[] { dest1[0], dest2[0] };
-		LineString ls = geomFac.createLineString(coords);
-		Geometry geom = (LineString) ls.getGeometryN(0);
-		context.add(ls);
-		geography.move(new Road("test"), geom);
-		
-		// 2
-		coords = new Coordinate[] { dest1[1], dest2[1] };
-		ls = geomFac.createLineString(coords);
-		geom = (LineString) ls.getGeometryN(0);
-		context.add(ls);
-		geography.move(new Road("test"), geom);
-		
-//		geography.moveByVector(j1Left, Constants.DIST_LIGHTS, angle);
-		
+        // generate coordinates for creating lanes
+        Coordinate dest1[] = Utils.createCoordsFromCoordAndAngle(c1, azimuth, Constants.DIST_LANE, geography);
+        Coordinate dest2[] = Utils.createCoordsFromCoordAndAngle(c2, azimuth, Constants.DIST_LANE, geography);
+
+		// create set of auxiliary lanes, two for each side of the road
+        for (int i = 0; i < 4; i++) {
+        	// Left 
+    		CoordinateAgent cLeft = new CoordinateAgent();
+    		context.add(cLeft);
+    		Point pLeft = geomFac.createPoint(dest1[i]);
+    		geography.move(cLeft, pLeft);
+    		
+    		// Right
+    		CoordinateAgent cRight = new CoordinateAgent();
+    		context.add(cRight);
+    		Point pRight = geomFac.createPoint(dest2[i]);
+    		geography.move(cRight, pRight);
+    		
+    		// Lane
+    		Coordinate[] coords = new Coordinate[] { dest1[i], dest2[i] };
+    		LineString ls = geomFac.createLineString(coords);
+    		Geometry geom = (LineString) ls.getGeometryN(0);
+    		context.add(ls);
+    		geography.move(new LaneAgent(), geom);
+        }      
+        
+		// create set of auxiliary junctions, two for each side of the road
+//        for (int i = 0; i < 4; i++) {
+//        	// Left 
+//    		Junction jLeft = new Junction(network, geography);
+//    		context.add(jLeft);
+//    		Point pLeft = geomFac.createPoint(dest1[i]);
+//    		geography.move(jLeft, pLeft);
+//    		
+//    		// Right
+//    		Junction jRight = new Junction(network, geography);
+//    		context.add(jRight);
+//    		Point pRight = geomFac.createPoint(dest2[i]);
+//    		geography.move(jRight, pRight);
+//    		
+//    		// Lane
+//    		Coordinate[] coords = new Coordinate[] { dest1[i], dest2[i] };
+//    		LineString ls = geomFac.createLineString(coords);
+//    		Geometry geom = (LineString) ls.getGeometryN(0);
+//    		context.add(ls);
+//    		geography.move(new Road("test"), geom);
+//        } 
 	}
 
+	
+//	
+//	@SuppressWarnings("unchecked")
+//	private void addLanes(Coordinate c1, Coordinate c2, Geography geography, Context context) {
+//
+//		GeometryFactory geomFac = new GeometryFactory();
+//		
+//        double azimuth = Utils.getAzimuth(c1, c2, geography);
+//		Coordinate dest1[] = Utils.createCoordsFromCoordAndAngle(c1, azimuth, Constants.DIST_LANE, geography);
+//
+//		// create set of auxiliary junctions, two for each side of the road
+//		// 1
+//		Junction j1Left = new Junction(network, geography);
+//		context.add(j1Left);
+//		Point p = geomFac.createPoint(dest1[0]);
+//		geography.move(j1Left, p);
+//		// 2
+//		Junction j1Right = new Junction(network, geography);
+//		context.add(j1Left);
+//		p = geomFac.createPoint(dest1[1]);
+//		geography.move(j1Right, p);
+//		
+//		Coordinate dest2[] = Utils.createCoordsFromCoordAndAngle(c2, azimuth, Constants.DIST_LANE, geography);
+//		// 3
+//		Junction j2Left = new Junction(network, geography);
+//		context.add(j2Left);
+//		p = geomFac.createPoint(dest2[0]);
+//		geography.move(j2Left, p);
+//		// 4
+//		Junction j2Right = new Junction(network, geography);
+//		context.add(j2Right);
+//		p = geomFac.createPoint(dest2[1]);
+//		geography.move(j2Right, p);
+//		
+//		// add lanes
+//		
+//		// 1
+//		Coordinate[] coords = new Coordinate[] { dest1[0], dest2[0] };
+//		LineString ls = geomFac.createLineString(coords);
+//		Geometry geom = (LineString) ls.getGeometryN(0);
+//		context.add(ls);
+//		geography.move(new Road("test"), geom);
+//		
+//		// 2
+//		coords = new Coordinate[] { dest1[1], dest2[1] };
+//		ls = geomFac.createLineString(coords);
+//		geom = (LineString) ls.getGeometryN(0);
+//		context.add(ls);
+//		geography.move(new Road("test"), geom);
+//				
+//	}
+
+	
+	
 	/**
 	 * 1. Initialises queues for every junction. Each junction holds
 	 * a list of incoming vehicles for each in-edge road segment.
@@ -380,7 +439,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 			// initialise vehicle queues
 			Iterator<Junction> itmap = l.iterator();
 			while (itmap.hasNext()) {
-				j.vehicles.put(itmap.next(), new LinkedList<Vehicle>());
+//				j.vehicles.put(itmap.next(), new PriorityDeque<Vehicle>());
+				j.vehicles.put(itmap.next(), new PriorityBlockingDeque<Vehicle>());
 			}			
 			
 			// position Lights of TrafficLights if needed		

@@ -1,6 +1,7 @@
 package signalGreen;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -11,12 +12,14 @@ import java.util.Queue;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.grid.Grid;
+import signalGreen.Constants.Lane;
 
 /**
  * Generic class for junctions of the Traffic Simulator.<br />
@@ -33,34 +36,26 @@ import repast.simphony.space.grid.Grid;
  *
  */
 public class Junction extends GisAgent {
-
-	// Repast projections
-	private Network<Junction> network;
-	private Geography geography;
 	
-	private Coordinate coordinate;
-	public static int UniqueID = 0;
-	private int ID;
 	private List<Road> roads;
 	//List of Junctions it has a lane between
 	private List<Junction> junctions;
 	// Map holds a queue of Vehicles for each Junction.
 	// This way we know for each incoming road segment to the current junction
 	// which vehicles are approaching.
-	public Map<Junction, Queue<Vehicle>> vehicles;
+	public Map<Junction, PriorityBlockingDeque<Vehicle>> vehicles;
 			
-	/**	 * @param network
+	/**
+	 * @param network
 	 * @param space
 	 * @param grid
 
 	 */
 	public Junction(Network<Junction> network, Geography geography) {
-		this.network = network;
-		this.geography = geography;
+		super(network, geography);
 		this.junctions = new ArrayList<Junction>();
-		this.ID = UniqueID++;
 		this.roads = new ArrayList<Road>();
-		this.vehicles = new HashMap<Junction, Queue<Vehicle>>();
+		this.vehicles = new HashMap<Junction, PriorityBlockingDeque<Vehicle>>();
 	}
 	
 	/**
@@ -95,13 +90,13 @@ public class Junction extends GisAgent {
 		RepastEdge<Junction> edge;
 		
 		if (out) {
-			edge = network.getEdge(this, junc);
+			edge = getNetwork().getEdge(this, junc);
 		} else {
-			edge = network.getEdge(junc, this);
+			edge = getNetwork().getEdge(junc, this);
 		}
 		
 		if (edge != null) 
-			network.removeEdge(edge);
+			getNetwork().removeEdge(edge);
 	}
 	
 	/**
@@ -114,10 +109,10 @@ public class Junction extends GisAgent {
 		RepastEdge<Junction> edgeOut;
 		
 		for (Junction junc : junctions) {
-			edgeIn = network.getEdge(this, junc);
-			edgeOut = network.getEdge(junc, this);
-			network.removeEdge(edgeIn);
-			network.removeEdge(edgeOut);
+			edgeIn = getNetwork().getEdge(this, junc);
+			edgeOut = getNetwork().getEdge(junc, this);
+			getNetwork().removeEdge(edgeIn);
+			getNetwork().removeEdge(edgeOut);
 		}
 		
 		this.junctions.clear();
@@ -132,22 +127,6 @@ public class Junction extends GisAgent {
         return this.getCoords().equals(j.getCoords());
     }
 
-    /**
-     * Get the coordinates of current Junction
-     */
-    public Coordinate getCoords() {
-            return coordinate;
-    }
-    
-    public void setCoords(Coordinate c) {
-            this.coordinate = c;
-            
-    }
-
-	public int getID() {
-		return ID;
-	}
-	
 	public List<Road> getRoads() {
 		return this.roads;
 	}
@@ -169,7 +148,7 @@ public class Junction extends GisAgent {
 	 * 
 	 * @return all queues for initialisation purposes
 	 */
-	public Map<Junction, Queue<Vehicle>> getVehiclesMap() {
+	public Map<Junction, PriorityBlockingDeque<Vehicle>> getVehiclesMap() {
 		return this.vehicles;
 	}
 	
@@ -183,8 +162,19 @@ public class Junction extends GisAgent {
 	 */
 	public void enqueueVehicle(Junction j, Vehicle v) {
 		// System.out.println("J: " + j.toString());
-		Queue<Vehicle> q = this.vehicles.get(j);
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		q.add(v);
+	}
+	
+	public void reorderVehicle(Junction j, Vehicle v) {
+//		System.out.println("\n\nReorder vehicle " + v.toString() + " in q");
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
+//		System.out.println("q bef: " + q.toString());
+		q.remove(v);
+//		System.out.println("q mid: " + q.toString());
+		q.add(v);
+//		System.out.println("q aft: " + q.toString());
+//		System.out.println("Peek: " + q.peek().toString());
 	}
 	
 	/**
@@ -197,7 +187,7 @@ public class Junction extends GisAgent {
 	 * @return true if success
 	 */
 	public boolean dequeueVehicle(Junction j, Vehicle v) {
-		Queue<Vehicle> q = this.vehicles.get(j);
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		return q.remove(v);
 	}
 	
@@ -210,7 +200,7 @@ public class Junction extends GisAgent {
 	 */
 	public Vehicle peekVehicle(Junction j) {
 		Vehicle v = null;
-		Queue<Vehicle> q = this.vehicles.get(j);
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		v = q.element();
 		return v;
 	}
@@ -221,7 +211,7 @@ public class Junction extends GisAgent {
 	 * @param j the junction
 	 */
 	public void printVehiclesQueue(Junction j) {
-		Queue<Vehicle> q = this.vehicles.get(j);
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		System.out.println(q.toString());
 		System.out.println("Peek vehicle: " + this.peekVehicle(j).toString());
 	}
@@ -235,25 +225,100 @@ public class Junction extends GisAgent {
 	 * @param l which lane to check
 	 * @return leader vehicle
 	 */
+//	public Vehicle getNextVehicle(Junction j, Vehicle v, Constants.Lane l) {
+//		Vehicle leader = null;
+//		Vehicle curr = null;
+//		Vehicle prev = null;
+//		boolean isPrev = false;
+//		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
+//
+//		for(Object o : q) {
+//			curr = (Vehicle) o;
+//		    // find current vehicle's position
+//		    if (curr.equals(v)) {
+//		    	isPrev = true;		    	
+//		    }
+//			
+//			// check also if next vehicle is on the required lane
+//		    //  && (prev.getLane() == l)
+//		    if ((isPrev == true)) { 
+//		    	leader = prev;
+//		    	break;
+//		    }
+//		    prev = curr;
+//		}
+//		return leader;
+//	}
+	
 	public Vehicle getNextVehicle(Junction j, Vehicle v, Constants.Lane l) {
 		Vehicle leader = null;
 		Vehicle tmp = null;
-		boolean isNext = false;
-		Queue<Vehicle> q = this.vehicles.get(j);
+		boolean found = false;
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 
-		for(Object o : q) {
-			tmp = (Vehicle) o;
-			// check if next vehicle is on the required lane
-		    if ((isNext == true) && (tmp.getLane() == l)) { 
-		    	leader = tmp;
-		    	break;
-		    }
-		    // find current vehicle's position
-		    if (tmp.equals(v)) {
-		    	isNext = true;		    	
-		    }
+		Iterator<Vehicle> it = q.descendingIterator();
+		while (it.hasNext()) {
+			tmp = it.next();
+			
+			if (found == true) {
+				leader = tmp;
+				break;
+			}
+			
+			if (tmp.equals(v)) {
+				found = true;
+			}
 		}
 		return leader;
+	}
+	/**
+	 * Returns an array with size of 2 of vehicles 
+	 * that are ahead/behind of a given vehicle as follows:<br />
+	 * v[0] => Vehicle on Lane.OUTER<br />
+	 * v[1] => Vehicle on Lane.INNER
+	 * 
+	 * @param j junction
+	 * @param v vehicle
+	 * @param checkAhead check for vehicle ahead if true
+	 * @return array of vehicles
+	 */
+	public Vehicle[] getNextVehicles(Junction j, Vehicle vehicle, boolean checkAhead) {
+		Vehicle[] v = new Vehicle[2];
+		v[0] = null; // outer lane
+		v[1] = null; // inner lane
+		Vehicle tmp = null;
+		boolean found = false;
+		boolean foundOuter = false;
+		boolean foundInner = false;
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
+
+		Iterator<Vehicle> it = null;
+		if (checkAhead == true) {
+			it = q.descendingIterator();
+		}
+		else {
+			it = q.iterator();
+		}
+		
+		while (it.hasNext()) {
+			tmp = it.next();
+			
+			if (found == true) {
+				if (foundOuter == false && tmp.getLane() == Lane.OUTER) {
+					v[0] = tmp;
+					foundOuter = true;				
+				}
+				if (foundInner == false && tmp.getLane() == Lane.INNER) {
+					v[1] = tmp;
+					foundInner = true;				
+				}
+			}
+			
+			if (tmp.equals(vehicle)) {
+				found = true;
+			}
+		}
+		return v;
 	}
 	
 	/**
@@ -264,7 +329,7 @@ public class Junction extends GisAgent {
 	 */
 	public int getNumVehicles(Junction j) {
 		Vehicle v = null;
-		Queue<Vehicle> q = this.vehicles.get(j);
+		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		return q.size();
 	}
 }

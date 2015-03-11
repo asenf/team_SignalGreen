@@ -84,13 +84,13 @@ public class Road extends GisAgent {
 		return this.length;
 	}
 	
-	public void setCoordinates(ArrayList<Coordinate> c) {
-		this.coordinates = c;
-	}
-	
-	public ArrayList<Coordinate> getCoordinates() {
-		return this.coordinates;
-	}
+//	public void setCoordinates(ArrayList<Coordinate> c) {
+//		this.coordinates = c;
+//	}
+//	
+//	public ArrayList<Coordinate> getCoordinates() {
+//		return this.coordinates;
+//	}
 	
 	
 	public int getSpeedLimit() {

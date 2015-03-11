@@ -50,9 +50,12 @@ public class Utils {
 	}
 
     /* Distance works very well, it is in metres. */
+<<<<<<< HEAD
 	public static double distance(Coordinate c1, Coordinate c2, Geography g) {	
+=======
+	public static double distance(Coordinate c1, Coordinate c2, Geography g) {
+>>>>>>> multi_lane_feature
         GeodeticCalculator calculator = new GeodeticCalculator(g.getCRS()); 
-//        System.out.println("*****CRS: " + g.getCRS().toString());
         calculator.setStartingGeographicPoint(c1.x, c1.y); 
         calculator.setDestinationGeographicPoint(c2.x, c2.y); 
         return calculator.getOrthodromicDistance(); 
@@ -118,6 +121,10 @@ public class Utils {
         double angle = Math.toRadians(azimuth);
         double a1, a2;
         
+<<<<<<< HEAD
+=======
+        // LEFT LANES in respect to road
+>>>>>>> multi_lane_feature
         // -90 degrees angle
         if (angle > 0 && angle < 0.5 * Math.PI) { // NE Quadrant
 	            a1 = angle - 0.5 * Math.PI;
@@ -129,6 +136,10 @@ public class Utils {
 	            a1 = angle + 1.5 * Math.PI;
 	    }
         
+<<<<<<< HEAD
+=======
+        // RIGHT LANES
+>>>>>>> multi_lane_feature
         // +90 degrees angle
         if (angle > 0 && angle < 0.5 * Math.PI) { // NE Quadrant
 	            a2 = angle + 0.5 * Math.PI;
@@ -146,6 +157,7 @@ public class Utils {
         
         GeodeticCalculator calculator = new GeodeticCalculator(g.getCRS());
         calculator.setStartingGeographicPoint(c.x, c.y);
+<<<<<<< HEAD
         // first coord
         calculator.setDirection(a1, distance);
 	    Point2D dest1 = calculator.getDestinationGeographicPoint();
@@ -157,6 +169,40 @@ public class Utils {
 	    Coordinate[] coords = {
 	    		new Coordinate(dest1.getX(), dest1.getY()),
 	    		new Coordinate(dest2.getX(), dest2.getY())
+=======
+        
+        /*        
+         * Generate set of coordinates as follows using either j1 or j2 as
+         * starting coordinate c:
+         * 
+         * 					j1					j2
+	     *  lft outer		o------------------->o 
+	     *  lft inner		o------------------->o 
+	     *  road topology	o<==================>o
+	     *  rgt inner		o<-------------------o
+	     *  rgt outer		o<-------------------o
+	     *  
+	     */
+        
+        // Left lanes
+        calculator.setDirection(a1, (distance * 1.5));
+	    Point2D dest1 = calculator.getDestinationGeographicPoint();
+        calculator.setDirection(a1, distance * 0.5);
+	    Point2D dest2 = calculator.getDestinationGeographicPoint();
+	    
+	    // Right lanes
+	    calculator.setDirection(a2, distance * 0.5);
+	    Point2D dest3 = calculator.getDestinationGeographicPoint();
+	    calculator.setDirection(a2, (distance * 1.5));
+	    Point2D dest4 = calculator.getDestinationGeographicPoint();
+	    	    
+	    // return coords
+	    Coordinate[] coords = {
+	    		new Coordinate(dest1.getX(), dest1.getY()),	// lft outer
+	    		new Coordinate(dest2.getX(), dest2.getY()),	// lft inner
+	    		new Coordinate(dest3.getX(), dest3.getY()),	// rgt inner
+	    		new Coordinate(dest4.getX(), dest4.getY())	// rgt outer
+>>>>>>> multi_lane_feature
 	    };
 		return coords;
 	}

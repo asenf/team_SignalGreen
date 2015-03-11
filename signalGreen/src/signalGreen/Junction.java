@@ -84,9 +84,6 @@ public class Junction extends GisAgent {
 	 * @param junc is the other Junction the lane is between.
 	 * @param out is a boolean flag for the lane direction being outward.
 	 */
-<<<<<<< HEAD
-	
-=======
 	public void removeLane(Junction junc, boolean out) {
 		this.junctions.remove(junc);
 		
@@ -101,14 +98,11 @@ public class Junction extends GisAgent {
 		if (edge != null) 
 			getNetwork().removeEdge(edge);
 	}
->>>>>>> multi_lane_feature
 	
 	/**
 	 * Remove all lanes joining toward this Junction, the Graph
 	 * will therefore have no Edges to this Node.
 	 */
-<<<<<<< HEAD
-=======
 	public void removeAllLanes() {
 		
 		RepastEdge<Junction> edgeIn;
@@ -123,7 +117,6 @@ public class Junction extends GisAgent {
 		
 		this.junctions.clear();
 	}
->>>>>>> multi_lane_feature
 	
     @Override
     public boolean equals(Object obj) {

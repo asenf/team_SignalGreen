@@ -31,7 +31,7 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 import repast.simphony.util.ContextUtils;
 import repast.simphony.util.SimUtilities;
-import signalGreen.Constants.Lane;
+import signalGreen.Constants.*;
 
 /**
  * Generic class for vehicles of the Traffic Simulator.<br />
@@ -41,14 +41,7 @@ import signalGreen.Constants.Lane;
  * @author Yoann
  *
  */
-public class Vehicle {
-	
-	public static int UniqueID = 0;
-	private int ID;
-	
-	// Repast projections
-	private Geography geography; // GIS
-	private Network<Junction> roadNetwork; // Road network topology
+public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	
 	// position of vehicle in the GIS projection
 	private Coordinate realPos; // This is the real position for display purpose only
@@ -67,7 +60,7 @@ public class Vehicle {
 	// arbitrary value for time to make simulation faster, it should actually be 1 tick.
 	// Used to compute velocity and displacement.
 	// TODO adjust it to an optimal value. 
-	private final int t = 7;
+	private final int t = 4;
 	// conversion is for now: 1 cell = 50 meters
 	private final int convRatioMeters = 50;		
 		
@@ -79,11 +72,11 @@ public class Vehicle {
 	private Junction next;
 	private Junction destination;
 	private Lane lane;
-	
+
 	// holds the full path from origin to destination
 	// each edge of the route is a directed link between Junctions
 	private List<RepastEdge<Junction>> vehicleRoute;
-
+	
 	/**
 	 * Generic Vehicle constructor.
 	 * 
@@ -94,20 +87,10 @@ public class Vehicle {
 	public Vehicle(Network<Junction> network, 
 			Geography geography, Map<RepastEdge<Junction>, Road> roads, int maxVelocity)
 	{
-		this.ID = UniqueID++;
-		// repast projections
-		this.roadNetwork = network;
-		this.geography = geography;
+		super(network, geography);
 		this.roads = roads;
 		this.velocity = 0;
 		this.maxVelocity = maxVelocity;
-	}
-	
-	/**
-	 * @return ID the unique ID of this Vehicle
-	 */
-	public int getID() {
-		return ID;
 	}
 
 	@Override
@@ -124,11 +107,11 @@ public class Vehicle {
 	 * and compute best route.
 	 */
 	public void initVehicle(Junction origin) {
-		// System.out.println("*** initVehicle");
+		// System.out.println("*** initVehicle: " + this.toString());
 		// set origin and destination of vehicle
 		this.origin = origin;
-		this.destination = Utils.getRandJunction(roadNetwork); // may return null!
-		this.lane = Lane.LEFT; // always start left
+		this.destination = Utils.getRandJunction(getNetwork()); // may return null!
+		this.lane = Lane.OUTER; // always start outer
 
 		// check if we have't chosen same origin and destination
 		// unlikely to happen but...
@@ -140,17 +123,14 @@ public class Vehicle {
 		// set the next junction, so vehicle knows what is the next step on the route
 		this.next = this.getNextJunctionRoute();
 		
+		// set positions of vehicle
+		this.networkPos = origin.getCoords();
+		this.realPos = this.getRealPosFromNetworkPos(this.lane);
+		moveTo(realPos);
+		
 		// register vehicle to next junction
 		this.next.enqueueVehicle(this.origin, this);
 		
-		// set positions of vehicle
-		this.networkPos = origin.getCoords();
-		this.realPos = this.getRealPosFromNetworkPos();
-		moveTo(realPos);
-		// this.moveTowards(realPos, Constants.DIST_LANE);
-//		System.out.println("\n\nMyPos: " + geography.getGeometry(this).getCoordinate());
-//		Utils.debugCoordinate(networkPos);
-//		Utils.debugCoordinate(this.realPos);
 	}
 
 	/**
@@ -160,9 +140,17 @@ public class Vehicle {
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
-		// System.out.println("---------\n*** Step");
+//		System.out.println("---------\n*** Step: " + this.toString());
+//		debug = 
+//				// "O: " + origin.toString() + ", N: " + next.toString()
+//				"First in q: " + next.peekVehicle(origin).toString()
+//				+ " " + next.getVehiclesQueue(origin).toString();
+//		System.out.println(debug);
+//		System.out.println(next.peekVehicle(origin));
+//		debugRoute();
 		
 		Vehicle v; // vehicle ahead
+		Lane targetLane = this.lane;
 		
 		// following happens only when network topology contains more than one graph.
 		// It is the case when a vehicle tries to reach a destination on the other graph.
@@ -171,39 +159,88 @@ public class Vehicle {
 		}			
 
 		// System.out.println("Traveling on: " + getNextRoadSegmentRoute().getName());
-		
-		// get current position of this Vehicle on the geography
-//		Coordinate currPositionCoord = geography.getGeometry(this).getCoordinate();
-//		Coordinate currPositionCoord = getNetworkPos();
 			
 		// get location of next Junction along the route
-		this.next = this.getNextJunctionRoute();
-//		Coordinate nextJunctionCoord = nextJunction.getCoords();	
+		this.next = this.getNextJunctionRoute();	
 						
 		// compute how many meters we would like to move
 		double tmpDisplacement = this.computeDisplacement(); // just need to adjust optimal acceleration parameters
 		
-		// now check if we can actually make it all the way, ie. we need to 
-		// adjust velocity and displacement
+
+		// v = getVehiclesAhead(tmpDisplacement + Constants.DIST_VEHICLES)[0];
+		
+		/**/
 		
 		// see if there is a vehicle ahead within vision range
-		v = getVehicleAhead(tmpDisplacement);		
+		Vehicle[] veh = getVehiclesAhead(tmpDisplacement + Constants.DIST_VEHICLES);
+		v = null; // reset vehicle ahead
 		
-		// check vehicle ahead's displacement to know what to do
+		// Vehicle now decides if he wants to change lane or not.
+		// case: we are on the outer lane
+		if (this.lane == Lane.OUTER) {
+			// if there is a vehicle ahead on the OUTER but none on the INNER
+			// we can overtake safely, but only if outer's lane vehicle's speed < ours
+			// and their speed != 0 --> causes horrible overtaking at traffic lights...
+			if ((veh[0] != null)  
+					&& (this.getVelocity() > veh[0].getVelocity())
+					&& (veh[0].getVelocity() != 0)) {
+				if (veh[1] == null) {
+					// move to inner lane
+					targetLane = Lane.INNER;					
+					v = veh[1]; // set next vehicle to the one on the INNER lane
+				}				
+			}
+			else {
+				// we stay on the OUTER lane
+				targetLane = Lane.OUTER;
+				v = veh[0];
+			}
+
+		}
+		// case: we are on the INNER so if there are no cars on the 
+		// OUTER lane we might want to go back to the INNER lane
+		// if it is clear
+		else {
+			// check if the outer lane is clear, meaning
+			// no vehicles behind are approaching
+			Vehicle vBehind = getVehiclesBehind(tmpDisplacement + Constants.DIST_VEHICLES)[0];
+			if ((veh[0] == null) && (vBehind == null)) {
+				targetLane = Lane.OUTER;
+				v = veh[0];
+			}
+			else {
+				targetLane = Lane.INNER;
+				v = veh[1];
+			}
+		}			
+			
+		// check vehicle ahead's displacement to know how to 
+		// adjust velocity and displacement
 		if (v != null) {
 			// distance between current vehicle and leader
-			double vDistance = Utils.distance(getNetworkPos(), v.getNetworkPos(), geography);
+			double vDistance = Utils.distance(getNetworkPos(), v.getNetworkPos(), getGeography());
 			
-			// check if we need to stop: vehicle ahead is stopped
-			if (v.getDisplacement() == 0) {
-				this.setVelocity(0);
+			// check if we need to stop: vehicle ahead is close enough and stopped
+			if ((v.getDisplacement() == 0) || v.getVelocity() == 0) {
+				this.velocity = 0;
 				this.displacement = 0;
 				return; // no need to perform the displacement
 			}
 			
+//			System.out.println(
+//					"tmpDisplacement => " + tmpDisplacement
+//					+ ", Constants.DIST_VEHICLES => " + Constants.DIST_VEHICLES
+//					+ ", v.getDisplacement() => " + v.getDisplacement()
+//					+ ", vDistance => " + vDistance
+//					+ "\n(tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() + vDistance)"
+//					+ "\n" + (tmpDisplacement + Constants.DIST_VEHICLES) + " >= " + (v.getDisplacement() + vDistance)
+//					+"\n== " + ((tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() + vDistance) ? "true" : "false")
+//					);
+			
 			// adjust to optimal velocity/displacement			
-			while ((v.getDisplacement() + vDistance) < (tmpDisplacement + Constants.DIST_VEHICLES)) {
-				this.slowDown();	
+			while ((tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() /* + vDistance */)) {
+				
+				this.slowDown();
 				tmpDisplacement = this.computeDisplacement();
 				
 				// manage limit cases
@@ -217,18 +254,29 @@ public class Vehicle {
 			// no vehicles, accelerate if we are allowed to
 			this.accelerate();
 		}
+//		debug = next.getVehiclesQueue(origin).toString()
+//				+ " First in q: " + next.peekVehicle(origin).toString()
+//				+ ", next in q: " + ((getNextVehicle() == null) ? "null" : getNextVehicle().toString());
 		
 		// optimal displacement found!
 		this.displacement = tmpDisplacement;
 		
 		// how far is the next junction?
-		double juncDist = Utils.distance(getNetworkPos(), next.getCoords(), geography);
-		
+		double juncDist = Utils.distance(getNetworkPos(), next.getCoords(), getGeography());
+				
 		// if there is a red traffic light we adjust the distance to it
 		// so that we stop before the jam
 		if (next instanceof TrafficLight) {
-			juncDist = juncDist - Constants.DIST_LANE;
+			juncDist = juncDist - Constants.DIST_LIGHTS;
 		}
+		
+		
+		// now update position of vehicle on GIS display:
+		// might have changed because of change lane algorithm
+		this.lane = targetLane;
+		this.realPos = this.getRealPosFromNetworkPos(lane);
+		this.moveTo(realPos);
+
 		
 		// following algorithm is for moving vehicles along
 		// the road network towards the next Junction.
@@ -240,14 +288,7 @@ public class Vehicle {
 				moveTowards(next.getCoords(), tmpDisplacement);
 				tmpDisplacement = 0;
 			}
-			else if (tmpDisplacement == juncDist) {
-				// we can reach the junction but we won't go further.
-				moveTowards(next.getCoords(), tmpDisplacement);
-				tmpDisplacement = 0;
-				// update current position of vehicle along the route
-				removeCurrentRoadSegmentFromRoute();
-			}
-			else if (tmpDisplacement > juncDist) {
+			else if (tmpDisplacement >= juncDist) {
 				// we are going to move more than
 				// the next junction				
 				
@@ -257,21 +298,21 @@ public class Vehicle {
 					if ((light.getSignal() == Constants.Signal.RED)) {
 						// easy case :)
 						this.setVelocity(0);
+						this.displacement = 0;
 						return;
 					}
 				}				
 
 				// *** stop sign management here.
 				
-				// 2. road is clear: go towards nex junction
+				// 2. road is clear: move to next junction
 				// then we keep moving towards the next one.
 				moveTowards(next.getCoords(), juncDist);
 				tmpDisplacement = tmpDisplacement - juncDist;
-				// this.next.printVehiclesQueue(this.origin);
+				displacement = tmpDisplacement;
 				removeCurrentRoadSegmentFromRoute();
-				// this.next.printVehiclesQueue(this.origin);
 				// recompute distance towards updated next junction		
-				juncDist = Utils.distance(getNetworkPos(), next.getCoords(), geography);
+				juncDist = Utils.distance(getNetworkPos(), next.getCoords(), getGeography());
 			}
 			
 			// DEBUG
@@ -281,19 +322,9 @@ public class Vehicle {
 			// if they reached their destination, pick a new random destination
 			ifVehicleAtDestination();
 			
-		} while (tmpDisplacement > 0); // keep iterating until the whole x distance has been covered
+		} while (tmpDisplacement > 0); // keep iterating until the whole displacement has been covered
 		
-		// check vehicle ahead's velocity to slowDown() or accelerate()
-//		this.accelerate();
-		
-		// TODO
-		// get vehicle ahead, if any - in order to take decisions:
-		// 1) avoid collisions
-		// 2) accelerate/decelerate
-		// 3) change lane
-		// use: Vehicle vehicleAhead = this.getVehicleAhead();
-		// if vehicle ahead is stopped then stop too. Maybe should use the @Watch annotation to watch the speed instead
-		// See http://repast.sourceforge.net/docs/RepastReference.pdf		
+		next.reorderVehicle(origin, this);
 	}
 
 	/**
@@ -320,12 +351,9 @@ public class Vehicle {
 			this.next.enqueueVehicle(this.origin, this);
 			// update position
 			this.networkPos = origin.getCoords();
-			this.realPos = this.getRealPosFromNetworkPos();
-			// this.moveTowards(realPos, Constants.DIST_LANE);
+			this.realPos = this.getRealPosFromNetworkPos(this.lane);
 			moveTo(realPos);
 		}
-		// DEBUG
-		// next.printVehiclesQueue(origin);
 	}
 
 	/**
@@ -336,9 +364,8 @@ public class Vehicle {
 		// check if Vehicle has reached destination
 		while (this.origin.equals(this.destination)) {
 			isAtDestination = true;
-			// System.out.println("Origin == destination!");
 			// choose new random destination
-			this.destination = Utils.getRandJunction(roadNetwork);
+			this.destination = Utils.getRandJunction(getNetwork());
 		}
 		// update best route
 		if (isAtDestination == true) {
@@ -351,7 +378,7 @@ public class Vehicle {
 	 * path, using SPF algorithm. 
 	 */
 	private synchronized void findBestRoute() {
-		ShortestPath<Junction> p = new ShortestPath<Junction>(roadNetwork);
+		ShortestPath<Junction> p = new ShortestPath<Junction>(getNetwork());
 		p.finalize();
 		this.vehicleRoute = p.getPath(this.origin, this.destination);
 		
@@ -408,7 +435,7 @@ public class Vehicle {
 		Coordinate c1 = this.getNetworkPos(); // current position
 		Coordinate c2 = v.getNetworkPos(); // current position
 		
-		double dist = Utils.distance(c1, c2, geography);
+		double dist = Utils.distance(c1, c2, getGeography());
 		if (dist < x) {
 			return v;
 		}
@@ -417,24 +444,72 @@ public class Vehicle {
 	}
 	
 	/**
+	 * Returns an array with size of 2 of vehicles ahead as follows:<br />
+	 * v[0] => Vehicle on Lane.OUTER<br />
+	 * v[1] => Vehicle on Lane.INNER
+	 * 
+	 * @param x the vision range distance in meters
+	 * @return array of vehicles
+	 */
+	private Vehicle[] getVehiclesAhead(double x) {
+
+		Vehicle v[] = next.getNextVehicles(origin, this, true);
+		double dist = 0.0;
+		
+		// check if next vehicles are in vision range		
+		Coordinate c = this.getNetworkPos(); // current position
+		// Outer lane
+		v[0] = validateVehicleWithinVisionRange(v[0], x);
+		// Inner lane
+		v[1] = validateVehicleWithinVisionRange(v[1], x);
+
+		return v;
+	}
+	
+	/**
+	 * @param x distance
+	 * @return array of vehicles
+	 * @see signalGreen.Vehicle#getVehiclesAhead(double)
+	 */
+	private Vehicle[] getVehiclesBehind(double x) {
+
+		Vehicle v[] = next.getNextVehicles(origin, this, false);
+		double dist = 0.0;
+		
+		// check if next vehicles are in vision range		
+		Coordinate c = this.getNetworkPos(); // current position
+		// Outer lane
+		v[0] = validateVehicleWithinVisionRange(v[0], x);				
+		// Inner lane
+		v[1] = validateVehicleWithinVisionRange(v[1], x);
+
+		return v;
+	}
+	
+	/**
+	 * @param v the vehicle 
+	 * @param x the vision range
+	 * @return vehicle or null
+	 */
+	private Vehicle validateVehicleWithinVisionRange(Vehicle v, double x) {
+		if (v != null) {
+			// check if next vehicles are in vision range		
+			Coordinate c = this.getNetworkPos(); // current position
+			Coordinate c1 = v.getNetworkPos();
+			double dist = Utils.distance(c, c1, getGeography());
+			if (dist >= x) {
+				v = null;
+			}			
+		}	
+		return v;
+	}
+	
+	/**
 	 * @return vehicle next in the same road segment
 	 */
 	private Vehicle getNextVehicle() {
-		boolean isNext = false;
-		Vehicle v = null;
-		Vehicle tmp = null;
-		Queue q = this.next.getVehiclesQueue(this.origin);
-		for(Object o : q) {
-			tmp = (Vehicle) o;
-		    if (isNext == true) {
-		    	v = tmp;
-		    	break;
-		    }
-		    if (tmp.equals(this)) {
-		    	isNext = true;		    	
-		    }
-		}
-		return v;
+		// method forwarding here
+		return this.next.getNextVehicle(origin, this, Lane.OUTER);
 	}
 	
 	/**
@@ -475,14 +550,20 @@ public class Vehicle {
 	public void moveTowards(Coordinate c, double x) 
 	{
 		
-		double angle = Utils.getAngle(this.networkPos, c, geography);	
-		geography.moveByVector(this, x, angle); // move agent
+		double angle = Utils.getAngle(this.networkPos, c, getGeography());	
+		try {
+			getGeography().moveByVector(this, x, angle); // move agent	
+		}
+		catch (IllegalArgumentException iae) {
+			System.out.println("Could not move vehicle for some reason.");
+			iae.printStackTrace();
+		}
+		
 		
 		// update positions
-		realPos = geography.getGeometry(this).getCoordinate();
-		this.networkPos = this.getNetworkPosFromRealPos(); // must be here BUG **
+		realPos = getGeography().getGeometry(this).getCoordinate();
+		this.networkPos = this.getNetworkPosFromRealPos(this.lane);
 	}
-	
 	
 	/**
 	 * Moves a vehicle to a give Coordinate.
@@ -492,10 +573,9 @@ public class Vehicle {
 	private void moveTo(Coordinate c) {
 		GeometryFactory geomFac = new GeometryFactory();
 		Point p = geomFac.createPoint(realPos);
-		geography.move(this, p);		
+		getGeography().move(this, p);		
 	}
-	
-	
+
 	/**
 	 * Computes the displacement distance and adjusts
 	 * the velocity according to:<br />
@@ -514,36 +594,47 @@ public class Vehicle {
 		//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
 		//		t = time
 		double x = Math.ceil(velocity + 0.5 * acceleration * t * t);	
-		// System.out.println("Displacement is: " + x);
 
 		// conversion from meters to cells in order to get a displacement on the map
 		x = x / convRatioMeters;
 				
-		// System.out.println("Will move car by: " + x + " meters.");
 		return x;
 	}
 
 	/**
-	 * Returns two coordinates that are perpendicular (+-90 degrees)
+	 * Returns four coordinates that are perpendicular (+-90 degrees)
 	 * to a logical or real position of the current vehicle.
 	 * 
+	 * @see signalGreen.Utils#createCoordsFromCoordAndAngle(Coordinate, double, double, Geography)
 	 * @param coordinate either real or network position of vehicle
 	 * @return array of coordinates
 	 */
 	private Coordinate[] getPosition(Coordinate c) {
-		double azimuth = Utils.getAzimuth(origin.getCoords(), next.getCoords(), geography);
-		Coordinate position[] = Utils.createCoordsFromCoordAndAngle(c, azimuth, Constants.DIST_LANE, geography);
+		double azimuth = Utils.getAzimuth(origin.getCoords(), next.getCoords(), getGeography());
+		Coordinate position[] = Utils.createCoordsFromCoordAndAngle(c, azimuth, Constants.DIST_LANE, getGeography());
 		return position;
 	}
 	
-	public Coordinate getRealPosFromNetworkPos() {
+	public Coordinate getRealPosFromNetworkPos(Constants.Lane lane) {
 		Coordinate position[] = this.getPosition(this.networkPos);
-		return position[0];
+		if (lane == Lane.OUTER) {
+			return position[0];			
+		}
+		if (lane == Lane.INNER) {
+			return position[1];
+		}
+		return null;
 	}
 	
-	public Coordinate getNetworkPosFromRealPos() {
+	public Coordinate getNetworkPosFromRealPos(Constants.Lane lane) {
 		Coordinate position[] = this.getPosition(this.realPos);
-		return position[1];
+		if (lane == Lane.INNER) {
+			return position[2];
+		}
+		if (lane == Lane.OUTER) {
+			return position[3];			
+		}
+		return null;
 	}
 
 	/**
@@ -571,15 +662,13 @@ public class Vehicle {
 	 * Uses standard kinematics equations for this purpose. 
 	 */
 	private void accelerate() {
-		// new velocity is:
-		// V = V0 + a * t
-		// System.out.println("Accelerate: Old velocity is: " + this.velocity);	
+		// new velocity algorithm is:
+		// V = V0 + a * t	
 		this.velocity += Math.ceil(acceleration * t);
 		// vehicle cannot go faster than its maxVelocity
 		if (this.velocity > this.maxVelocity) {
 			this.velocity = this.maxVelocity;
 		}
-		// System.out.println("Accelerate: New velocity is: " + this.velocity);
 	}
 
 	/**
@@ -587,13 +676,11 @@ public class Vehicle {
 	 * Uses standard kinematics equations for this purpose. 
 	 */
 	public void slowDown() {
-		// System.out.println("Slow down: Old velocity is: " + this.velocity);	
 		this.velocity -= acceleration * t * 2;
 		// velocity cannot be negative
 		if (this.velocity < 0) {
 			this.velocity = 0;
 		}
-		// System.out.println("Slow down: New velocity is: " + this.velocity);
 	}	
 	
 	/**
@@ -628,13 +715,19 @@ public class Vehicle {
 	public Road getNextRoadSegmentRoute() {
 		Road r = null;
 		RepastEdge<Junction> e = getNextRepastEdgeRoute();
-//		System.out.println("Edge: " + e.toString() + " roads size: " + this.roads.size());
 		if (e != null) {
 			r = this.roads.get(e);
 		}
 		return r;
 	}
 
+	/**
+	 * Simulates a vehicle using the blinker.
+	 * Ie. the vehicle tells which lane is going to 
+	 * move to/stay on.
+	 * 
+	 * @return OUTER or INNER lane
+	 */
 	public Lane getLane() {
 		return lane;
 	}
@@ -643,4 +736,20 @@ public class Vehicle {
 		this.lane = lane;
 	}
 	
+	public String getDebug() {
+		return debug;
+	}
+
+	@Override
+	public int compareTo(Vehicle v) {
+	    double thisDist = this.getDistanceToNextJunction();
+	    double otherDist = v.getDistanceToNextJunction();
+	    if (thisDist < otherDist) return -1;
+	    if (thisDist > otherDist) return 1;
+	    return 0;
+	}
+
+	private double getDistanceToNextJunction() {
+		return Utils.distance(this.getNetworkPos(), next.getCoords(), getGeography());
+	}
 }

@@ -113,7 +113,15 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		for (int i = 0; i < vehCount; i++) {          // user defined at runtime (aks)
 			int[] speed = {100, 120, 140, 80};
 			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
-			Vehicle vehicle = new Vehicle(network, geography, roads, maxSpeed);
+			Vehicle vehicle;
+			if (maxSpeed < 100) {
+				// truck
+				vehicle = new TruckVehicle(network, geography, roads, maxSpeed);
+			}
+			else {
+				vehicle = new CarVehicle(network, geography, roads, maxSpeed);
+			}
+			
 			context.add(vehicle);
 			Junction origin = junctions.get(rand.nextInt(junctions.size()));	
 			GeometryFactory geomFac = new GeometryFactory();

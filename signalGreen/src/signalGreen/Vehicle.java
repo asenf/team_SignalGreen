@@ -77,6 +77,8 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	// each edge of the route is a directed link between Junctions
 	private List<RepastEdge<Junction>> vehicleRoute;
 	
+	private double angle;
+	
 	/**
 	 * Generic Vehicle constructor.
 	 * 
@@ -130,7 +132,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		
 		// register vehicle to next junction
 		this.next.enqueueVehicle(this.origin, this);
-		
+		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());
 	}
 
 	/**
@@ -325,6 +327,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		} while (tmpDisplacement > 0); // keep iterating until the whole displacement has been covered
 		
 		next.reorderVehicle(origin, this);
+		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());
 	}
 
 	/**
@@ -651,6 +654,10 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		this.velocity = currSpeed;
 	}
 	
+	protected void setMaxVelocity(int maxVelocity) {
+		this.maxVelocity = maxVelocity;
+	}
+	
 	
 	public double getDisplacement() {
 		return displacement;
@@ -751,5 +758,15 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 
 	private double getDistanceToNextJunction() {
 		return Utils.distance(this.getNetworkPos(), next.getCoords(), getGeography());
+	}
+	
+	/**
+	 * Used to display the vehicle's icon
+	 * using the correct angle.
+	 * 
+	 * @return angle in degrees
+	 */
+	public double getAngle() {
+		return Utils.getAngleForIcons(origin.getCoords(), next.getCoords(), getGeography());
 	}
 }

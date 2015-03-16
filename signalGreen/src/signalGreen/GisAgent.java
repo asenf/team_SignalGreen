@@ -27,6 +27,8 @@ public abstract class GisAgent {
 	private Coordinate coordinate;
 	// field used in GIS display for debug purposes
 	protected String debug;
+	// gets the base url to display agent's icons
+	private String baseURL;
 	
 	/**
 	 * Default constructor. 
@@ -41,6 +43,7 @@ public abstract class GisAgent {
 		this.ID = UniqueID++;
 		this.network = network;
 		this.geography = geography;
+		this.baseURL = System.getProperty("user.dir");
 	}
 	
 	/**
@@ -65,6 +68,10 @@ public abstract class GisAgent {
 	 */
 	public int getID() {
 		return ID;
+	}
+	
+	public String getBaseURL() {
+		return baseURL;
 	}
 	
     /**

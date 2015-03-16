@@ -1,18 +1,33 @@
 package signalGreen;
 
+import gov.nasa.worldwind.geom.Angle;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import org.geotools.geometry.DirectPosition2D;
 import org.geotools.referencing.GeodeticCalculator;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 
+
+
+
+
+
+
+//import com.vividsolutions.jts.algorithm.Angle;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Point;
 
 public class Utils {
 
@@ -172,7 +187,7 @@ public class Utils {
 	    Point2D dest3 = calculator.getDestinationGeographicPoint();
 	    calculator.setDirection(a2, (distance * 1.5));
 	    Point2D dest4 = calculator.getDestinationGeographicPoint();
-	    	    
+	   
 	    // return coords
 	    Coordinate[] coords = {
 	    		new Coordinate(dest1.getX(), dest1.getY()),	// lft outer
@@ -182,5 +197,18 @@ public class Utils {
 	    };
 		return coords;
 	}
+
+	public static double getAngleDeg(Coordinate c1, Coordinate c2,
+			Geography g) {
+		return Math.toDegrees(Utils.getAngle(c1, c2, g));
+	}
 	
+	public static double getAngleForIcons(Coordinate c1, Coordinate c2, Geography g) {
+		// angle must be computed from grid north (NOT north of projection)
+		double atan = Math.atan2(c1.y - c2.y, c1.x - c2.x) * 180.0 / Math.PI;
+        double azimuth = (450.0 - atan) % 360;
+		return azimuth;		
+	}
+
+
 }

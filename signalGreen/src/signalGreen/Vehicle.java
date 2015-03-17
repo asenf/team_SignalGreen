@@ -132,7 +132,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		
 		// register vehicle to next junction
 		this.next.enqueueVehicle(this.origin, this);
-		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());
+		this.angle = getAngle();
 	}
 
 	/**
@@ -762,7 +762,9 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	
 	/**
 	 * Used to display the vehicle's icon
-	 * using the correct angle.
+	 * using the correct angle. Uses convergence angle
+	 * from grid north + azimuth.
+	 * Called by the GIS display during simulation.
 	 * 
 	 * @return angle in degrees
 	 */

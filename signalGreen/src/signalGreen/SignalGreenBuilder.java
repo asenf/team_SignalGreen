@@ -6,19 +6,15 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Random;
 
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.type.AttributeType;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -28,26 +24,15 @@ import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Point;
 
 import repast.simphony.context.Context;
-import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
-import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
 import repast.simphony.context.space.gis.GeographyFactoryFinder;
 import repast.simphony.context.space.graph.NetworkBuilder;
-import repast.simphony.context.space.grid.GridFactory;
-import repast.simphony.context.space.grid.GridFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.parameter.Parameters;
-import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.NdPoint;
-import repast.simphony.space.continuous.RandomCartesianAdder;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.gis.GeographyParameters;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
-import repast.simphony.space.grid.Grid;
-import repast.simphony.space.grid.GridBuilderParameters;
-import repast.simphony.space.grid.SimpleGridAdder;
-import repast.simphony.space.grid.WrapAroundBorders;
 
 /**
  * This is custom context builder implementation which is responsible 
@@ -73,6 +58,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	// alond the road segment.
 	private Map<RepastEdge<Junction>, Road> roads = new HashMap<RepastEdge<Junction>, Road>();
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Context build(Context context) {
 
@@ -107,28 +93,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		// and sets appropriate position of traffic lights if needed.
 		initJunctions(context);
 		
-		// create a few vehicles at random Junctions
-		Random rand = new Random();
-		Vehicle vehicles[] = new Vehicle[vehCount]; 
-		for (int i = 0; i < vehCount; i++) {          // user defined at runtime (aks)
-			int[] speed = {100, 120, 140, 80};
-			int maxSpeed = (speed[rand.nextInt(speed.length)]); // assign random speed to vehicles
-			Vehicle vehicle;
-			if (maxSpeed < 100) {
-				// truck
-				vehicle = new TruckVehicle(network, geography, roads, maxSpeed);
-			}
-			else {
-				vehicle = new CarVehicle(network, geography, roads, maxSpeed);
-			}
-			
-			context.add(vehicle);
-			Junction origin = junctions.get(rand.nextInt(junctions.size()));	
-			GeometryFactory geomFac = new GeometryFactory();
-			Point p = geomFac.createPoint(origin.getCoords());
-            geography.move(vehicle, p);
-            vehicle.initVehicle(origin);
-		}	
+		// Environment is all set up at this point.
+		// Generate some vehicles using user parameters
+		generateVehicles(context);
 		
 		return context;
 	}
@@ -261,7 +228,6 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				// Get attributes and assign them to the agent
 				// attributes depend on the shapefile attributes.
 				String name = (String)feature.getAttribute("LNAME");
-//				String name = "test";
 				agent = new Road(name);
 //				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
 //						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
@@ -275,13 +241,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				Coordinate[] c = geom.getCoordinates();
 				Coordinate c1 = c[0]; // First coordinate
                 Coordinate c2 = c[geom.getNumPoints() - 1]; // Last coordinate 
-                
-        		
-        		// TEST LANES ******
-                
+                                
                 addLanes(c1, c2, geography, context);
-        						
-        		//************
 				
                 Junction j1 = cache.get(c1);
                 Junction j2 = cache.get(c2);                            
@@ -296,7 +257,6 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 j2.addJunction(j1);
                 
                 ((Road) agent).setLength(weight);
-//                ((Road) agent).setCoordinates(new ArrayList<Coordinate>(Arrays.asList(c)));
                 // System.out.println(((Road) agent).toString()); // DEBUG
 
                 // Road-RepastEdge mapping for lane management use
@@ -316,11 +276,18 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				context.add(ls);
 				geography.move(agent, geom);
 			}
-
 		}				
 	}
 	
 	
+	/**
+	 * Creates two lanes each side of a road.
+	 * 
+	 * @param c1 start of lane
+	 * @param c2 end of lane
+	 * @param geography
+	 * @param context
+	 */
 	@SuppressWarnings("unchecked")
 	private void addLanes(Coordinate c1, Coordinate c2, Geography geography, Context context) {
 
@@ -352,83 +319,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
     		context.add(ls);
     		geography.move(new LaneAgent(), geom);
         }      
-        
-		// create set of auxiliary junctions, two for each side of the road
-//        for (int i = 0; i < 4; i++) {
-//        	// Left 
-//    		Junction jLeft = new Junction(network, geography);
-//    		context.add(jLeft);
-//    		Point pLeft = geomFac.createPoint(dest1[i]);
-//    		geography.move(jLeft, pLeft);
-//    		
-//    		// Right
-//    		Junction jRight = new Junction(network, geography);
-//    		context.add(jRight);
-//    		Point pRight = geomFac.createPoint(dest2[i]);
-//    		geography.move(jRight, pRight);
-//    		
-//    		// Lane
-//    		Coordinate[] coords = new Coordinate[] { dest1[i], dest2[i] };
-//    		LineString ls = geomFac.createLineString(coords);
-//    		Geometry geom = (LineString) ls.getGeometryN(0);
-//    		context.add(ls);
-//    		geography.move(new Road("test"), geom);
-//        } 
+      
 	}
-
-	
-//	
-//	@SuppressWarnings("unchecked")
-//	private void addLanes(Coordinate c1, Coordinate c2, Geography geography, Context context) {
-//
-//		GeometryFactory geomFac = new GeometryFactory();
-//		
-//        double azimuth = Utils.getAzimuth(c1, c2, geography);
-//		Coordinate dest1[] = Utils.createCoordsFromCoordAndAngle(c1, azimuth, Constants.DIST_LANE, geography);
-//
-//		// create set of auxiliary junctions, two for each side of the road
-//		// 1
-//		Junction j1Left = new Junction(network, geography);
-//		context.add(j1Left);
-//		Point p = geomFac.createPoint(dest1[0]);
-//		geography.move(j1Left, p);
-//		// 2
-//		Junction j1Right = new Junction(network, geography);
-//		context.add(j1Left);
-//		p = geomFac.createPoint(dest1[1]);
-//		geography.move(j1Right, p);
-//		
-//		Coordinate dest2[] = Utils.createCoordsFromCoordAndAngle(c2, azimuth, Constants.DIST_LANE, geography);
-//		// 3
-//		Junction j2Left = new Junction(network, geography);
-//		context.add(j2Left);
-//		p = geomFac.createPoint(dest2[0]);
-//		geography.move(j2Left, p);
-//		// 4
-//		Junction j2Right = new Junction(network, geography);
-//		context.add(j2Right);
-//		p = geomFac.createPoint(dest2[1]);
-//		geography.move(j2Right, p);
-//		
-//		// add lanes
-//		
-//		// 1
-//		Coordinate[] coords = new Coordinate[] { dest1[0], dest2[0] };
-//		LineString ls = geomFac.createLineString(coords);
-//		Geometry geom = (LineString) ls.getGeometryN(0);
-//		context.add(ls);
-//		geography.move(new Road("test"), geom);
-//		
-//		// 2
-//		coords = new Coordinate[] { dest1[1], dest2[1] };
-//		ls = geomFac.createLineString(coords);
-//		geom = (LineString) ls.getGeometryN(0);
-//		context.add(ls);
-//		geography.move(new Road("test"), geom);
-//				
-//	}
-
-	
 	
 	/**
 	 * 1. Initialises queues for every junction. Each junction holds
@@ -468,5 +360,35 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				
 			}
 		}
+	}
+	
+	/**
+	 * Generates vehicles using user defined params.
+	 * Vehicles are added to the context at random Junctions.
+	 * 
+	 * @param context
+	 */
+	private void generateVehicles(Context context) {
+		Random rand = new Random();
+		Vehicle vehicles[] = new Vehicle[vehCount]; 
+		for (int i = 0; i < vehCount; i++) {
+			// assign random speed to vehicles
+			int maxSpeed = (Constants.speed[rand.nextInt(Constants.speed.length)]); 
+			Vehicle vehicle;
+			if (maxSpeed < 100) {
+				// truck
+				vehicle = new TruckVehicle(network, geography, roads, maxSpeed);
+			}
+			else {
+				vehicle = new CarVehicle(network, geography, roads, maxSpeed);
+			}
+			
+			context.add(vehicle);
+			Junction origin = junctions.get(rand.nextInt(junctions.size()));	
+			GeometryFactory geomFac = new GeometryFactory();
+			Point p = geomFac.createPoint(origin.getCoords());
+            geography.move(vehicle, p);
+            vehicle.initVehicle(origin);
+		}			
 	}
 }

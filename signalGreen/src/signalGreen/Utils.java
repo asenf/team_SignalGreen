@@ -1,34 +1,26 @@
 package signalGreen;
 
-import gov.nasa.worldwind.geom.Angle;
-
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.geotools.geometry.DirectPosition2D;
 import org.geotools.referencing.GeodeticCalculator;
-import org.opengis.referencing.cs.AxisDirection;
-import org.opengis.referencing.cs.CoordinateSystemAxis;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 
-
-
-
-
-
-
-//import com.vividsolutions.jts.algorithm.Angle;
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.Point;
 
+/**
+ * Most utility functions are used for geographic
+ * calculations, such as distance between coordinates
+ * or azimuth of a road segment. 
+ * 
+ * @author signalGreen team
+ *
+ */
 public class Utils {
 
 	/**
@@ -53,9 +45,6 @@ public class Utils {
 			// System.out.println("Random Junction: " + j.toString());
 			return j;
 		}
-
-		// maybe use exception instead
-		System.out.println("Unable to get a random Junction.");
 		return null;
 	}
 	
@@ -64,7 +53,13 @@ public class Utils {
 				+ c.x + ", y: " + c.y);
 	}
 
-    /* Distance works very well, it is in metres. */
+    /**
+     * Distance between two coordinates in metres
+     * 
+     * @param coordinate1
+     * @param coordinate2
+     * @param geography 
+     */
 	public static double distance(Coordinate c1, Coordinate c2, Geography g) {
         GeodeticCalculator calculator = new GeodeticCalculator(g.getCRS()); 
         calculator.setStartingGeographicPoint(c1.x, c1.y); 
@@ -72,7 +67,6 @@ public class Utils {
         return calculator.getOrthodromicDistance(); 
 	} 
 
- 
 	/**
 	 * Returns the angle in radians given two coordinates.
 	 * Radians to degrees conversion = angle * 2 * PI
@@ -203,8 +197,20 @@ public class Utils {
 		return Math.toDegrees(Utils.getAngle(c1, c2, g));
 	}
 	
+	/**
+	 * Returns a correct angle for displaying graphics
+	 * correctly on the GIS projection. Angle of orientation
+	 * of graphics must be computed from grid north as 
+	 * opposed to true north, which may not point to the
+	 * top of the display.
+	 * 
+	 * @param c1
+	 * @param c2
+	 * @param geography
+	 * @return
+	 */
 	public static double getAngleForIcons(Coordinate c1, Coordinate c2, Geography g) {
-		// angle must be computed from grid north (NOT north of projection)
+		// angle must be computed from grid north (NOT true north of projection)
 		double atan = Math.atan2(c1.y - c2.y, c1.x - c2.x) * 180.0 / Math.PI;
         double azimuth = (450.0 - atan) % 360;
 		return azimuth;		

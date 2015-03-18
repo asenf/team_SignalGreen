@@ -16,7 +16,7 @@
               <ExternalGraphic>
                 <OnlineResource
                   xlink:type="simple"
-                  xlink:href="file:///${baseURL}/signalGreen.rs/styles/car_simple.png" />
+                  xlink:href="file:///${baseURL}/signalGreen.rs/styles/${carIcon}" />
                 <Format>image/png</Format>
               </ExternalGraphic>
               <Size>20</Size>

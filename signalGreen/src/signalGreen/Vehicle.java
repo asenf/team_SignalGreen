@@ -1,36 +1,16 @@
 package signalGreen;
 
-import java.awt.geom.Point2D;
 import java.util.*;
 
-import org.geotools.referencing.GeodeticCalculator;
-
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 
-import repast.simphony.context.Context;
-import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ScheduledMethod;
-import repast.simphony.engine.watcher.Watch;
-import repast.simphony.engine.watcher.WatcherTriggerSchedule;
-import repast.simphony.parameter.Parameters;
-import repast.simphony.query.space.grid.GridCell;
-import repast.simphony.query.space.grid.GridCellNgh;
-import repast.simphony.random.RandomHelper;
-import repast.simphony.space.SpatialMath;
-import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.graph.ShortestPath;
-import repast.simphony.space.grid.Grid;
-import repast.simphony.space.grid.GridPoint;
-import repast.simphony.util.ContextUtils;
-import repast.simphony.util.SimUtilities;
 import signalGreen.Constants.*;
 
 /**
@@ -52,17 +32,9 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	
 	private int velocity;
 	private int maxVelocity;
-	private double acceleration = 3; // m/s
 	// displacement is used by other vehicles: they can compare it to their displ.
 	// and stop, slow down or accelerate accordingly.
-	private double displacement;
-
-	// arbitrary value for time to make simulation faster, it should actually be 1 tick.
-	// Used to compute velocity and displacement.
-	// TODO adjust it to an optimal value. 
-	private final int t = 4;
-	// conversion is for now: 1 cell = 50 meters
-	private final int convRatioMeters = 50;		
+	private double displacement;		
 		
 	// Simulation is based on Origin Destination pattern.
 	// Vehicles have an origin (x, y) starting point
@@ -159,19 +131,12 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		if (this.vehicleRoute.size() == 0) {
 			System.out.println("Vehicle is stuck in impasse. Cannot move...");
 		}			
-
-		// System.out.println("Traveling on: " + getNextRoadSegmentRoute().getName());
 			
 		// get location of next Junction along the route
 		this.next = this.getNextJunctionRoute();	
 						
 		// compute how many meters we would like to move
 		double tmpDisplacement = this.computeDisplacement(); // just need to adjust optimal acceleration parameters
-		
-
-		// v = getVehiclesAhead(tmpDisplacement + Constants.DIST_VEHICLES)[0];
-		
-		/**/
 		
 		// see if there is a vehicle ahead within vision range
 		Vehicle[] veh = getVehiclesAhead(tmpDisplacement + Constants.DIST_VEHICLES);
@@ -200,7 +165,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 
 		}
 		// case: we are on the INNER so if there are no cars on the 
-		// OUTER lane we might want to go back to the INNER lane
+		// OUTER lane we might want to go back to the OUTER lane
 		// if it is clear
 		else {
 			// check if the outer lane is clear, meaning
@@ -229,16 +194,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 				return; // no need to perform the displacement
 			}
 			
-//			System.out.println(
-//					"tmpDisplacement => " + tmpDisplacement
-//					+ ", Constants.DIST_VEHICLES => " + Constants.DIST_VEHICLES
-//					+ ", v.getDisplacement() => " + v.getDisplacement()
-//					+ ", vDistance => " + vDistance
-//					+ "\n(tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() + vDistance)"
-//					+ "\n" + (tmpDisplacement + Constants.DIST_VEHICLES) + " >= " + (v.getDisplacement() + vDistance)
-//					+"\n== " + ((tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() + vDistance) ? "true" : "false")
-//					);
-			
 			// adjust to optimal velocity/displacement			
 			while ((tmpDisplacement + Constants.DIST_VEHICLES) >= (v.getDisplacement() /* + vDistance */)) {
 				
@@ -256,9 +211,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 			// no vehicles, accelerate if we are allowed to
 			this.accelerate();
 		}
-//		debug = next.getVehiclesQueue(origin).toString()
-//				+ " First in q: " + next.peekVehicle(origin).toString()
-//				+ ", next in q: " + ((getNextVehicle() == null) ? "null" : getNextVehicle().toString());
 		
 		// optimal displacement found!
 		this.displacement = tmpDisplacement;
@@ -335,7 +287,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	 * and updates the current route.
 	 */
 	private void removeCurrentRoadSegmentFromRoute() {
-		// System.out.println("*** removeCurrentRoadSegmentFromRoute");
 		// current next junction (soon the origin) thinks we are 
 		// on his road segment. Need to dequeue vehicle from vehicle list.
 		this.next.dequeueVehicle(origin, this);
@@ -392,7 +343,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		}
 		else {
 			this.next = this.getNextJunctionRoute();
-			// System.out.println("New Route Computed:");
 			// debugRoute();
 		}		
 	}
@@ -415,52 +365,26 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		}
 		System.out.println("\n***\n");	
 	}
-
+	
 	/**
-	 * getVehicleAhead() returns the closest vehicle in vision range 
+	 * Method finds the closest vehicle in vision range 
 	 * ahead of the current vehicle, if any.<br />
 	 * Vision range distance is measured in meters, which 
 	 * should vary depending on current speed of vehicle.
-	 * Usually this is the Vehicle displacement.
+	 * Usually this is the Vehicle displacement.<br />
+	 * Returns an array with size of 2 of vehicles ahead as follows:<br />
+	 * <code>v[0]</code> => Vehicle on <code>Lane.OUTER</code><br />
+	 * <code>v[1]</code> => Vehicle on <code>Lane.INNER</code>
 	 * 
 	 * @see signalGreen.Vehicle#computeDisplacement()
-	 * @param x the vision range distance in meters
-	 * @return next vehicle in the same road segment
-	 * 
-	 */
-	private Vehicle getVehicleAhead(double x) {
-		Vehicle v = this.getNextVehicle(); // the vehicle ahead
-		if (v == null) {
-			// no vehicles ahead
-			return null;
-		}
-		// check if next vehicle is in vision range		
-		Coordinate c1 = this.getNetworkPos(); // current position
-		Coordinate c2 = v.getNetworkPos(); // current position
-		
-		double dist = Utils.distance(c1, c2, getGeography());
-		if (dist < x) {
-			return v;
-		}
-		// vehicle is too far, assume there are no vehicles ahead
-		return null;
-	}
-	
-	/**
-	 * Returns an array with size of 2 of vehicles ahead as follows:<br />
-	 * v[0] => Vehicle on Lane.OUTER<br />
-	 * v[1] => Vehicle on Lane.INNER
-	 * 
 	 * @param x the vision range distance in meters
 	 * @return array of vehicles
 	 */
 	private Vehicle[] getVehiclesAhead(double x) {
-
+		
 		Vehicle v[] = next.getNextVehicles(origin, this, true);
-		double dist = 0.0;
 		
 		// check if next vehicles are in vision range		
-		Coordinate c = this.getNetworkPos(); // current position
 		// Outer lane
 		v[0] = validateVehicleWithinVisionRange(v[0], x);
 		// Inner lane
@@ -470,6 +394,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	}
 	
 	/**
+	 * Methods returns closest vehicles behind current vehicle.
 	 * @param x distance
 	 * @return array of vehicles
 	 * @see signalGreen.Vehicle#getVehiclesAhead(double)
@@ -477,10 +402,8 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	private Vehicle[] getVehiclesBehind(double x) {
 
 		Vehicle v[] = next.getNextVehicles(origin, this, false);
-		double dist = 0.0;
 		
-		// check if next vehicles are in vision range		
-		Coordinate c = this.getNetworkPos(); // current position
+		// check if prev vehicles are in vision range		
 		// Outer lane
 		v[0] = validateVehicleWithinVisionRange(v[0], x);				
 		// Inner lane
@@ -490,6 +413,10 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	}
 	
 	/**
+	 * If vehicle is within vision range retuns a
+	 * reference to it, otherwise it is too far from
+	 * the current vehicle so we return null.
+	 * 
 	 * @param v the vehicle 
 	 * @param x the vision range
 	 * @return vehicle or null
@@ -508,14 +435,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	}
 	
 	/**
-	 * @return vehicle next in the same road segment
-	 */
-	private Vehicle getNextVehicle() {
-		// method forwarding here
-		return this.next.getNextVehicle(origin, this, Lane.OUTER);
-	}
-	
-	/**
 	 * Returns the real position on a vehicle on the GIS projection
 	 * 
 	 * @return coordinate 
@@ -524,6 +443,12 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		return realPos;
 	}
 
+	/**
+	 * Real position refers to the position
+	 * of a vehicle on a particular lane.
+	 * 
+	 * @param real position of vehicle
+	 */
 	public void setRealPos(Coordinate realPos) {
 		this.realPos = realPos;
 	}
@@ -543,13 +468,14 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	}
 
 	/**
-	 * Moves a vehicle towards a give Coordinate.
+	 * Moves a vehicle towards a given Coordinate.
 	 * Uses network position and then moves on the 
 	 * real GIS projection.
 	 * 
-	 * @param c the Coordinate to move towards
-	 * @param x the displacement in meters
+	 * @param c Coordinate to move towards
+	 * @param x displacement in meters
 	 */
+	@SuppressWarnings("unchecked")
 	public void moveTowards(Coordinate c, double x) 
 	{
 		
@@ -569,10 +495,11 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	}
 	
 	/**
-	 * Moves a vehicle to a give Coordinate.
+	 * Moves a vehicle to a given Coordinate.
 	 * 
 	 * @param coordinate
 	 */
+	@SuppressWarnings("unchecked")
 	private void moveTo(Coordinate c) {
 		GeometryFactory geomFac = new GeometryFactory();
 		Point p = geomFac.createPoint(realPos);
@@ -596,12 +523,27 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		//		v0 = initial velocity
 		//		a = acceleration <-- add some constant values, the more acceleration, the more powerful. ex. trucks have smaller accel.
 		//		t = time
-		double x = Math.ceil(velocity + 0.5 * acceleration * t * t);	
+		double accFactor = getAccelerationFactor();
+		double x = Math.ceil(velocity + 0.5 * accFactor 
+				* Constants.ACCELERATION * Math.pow(Constants.t, 2));	
 
-		// conversion from meters to cells in order to get a displacement on the map
-		x = x / convRatioMeters;
+		// adjust displacement for more realistic simulation
+		x = x / Constants.CONV_RATIO_METERS;
 				
 		return x;
+	}
+	
+	private double getAccelerationFactor() {
+		if ((this instanceof CarVehicle) && (this.velocity <= Constants.SLOW)) {
+			return Constants.CAR_SLOW_ACC;
+		}
+		else if (this instanceof CarVehicle) {
+			return Constants.CAR_FAST_ACC;
+		}
+		else if (this instanceof TruckVehicle) {
+			return Constants.TRUCK_ACC;
+		}
+		return Constants.CAR_SLOW_ACC;
 	}
 
 	/**
@@ -671,7 +613,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	private void accelerate() {
 		// new velocity algorithm is:
 		// V = V0 + a * t	
-		this.velocity += Math.ceil(acceleration * t);
+		this.velocity += Math.ceil(Constants.ACCELERATION * Constants.t);
 		// vehicle cannot go faster than its maxVelocity
 		if (this.velocity > this.maxVelocity) {
 			this.velocity = this.maxVelocity;
@@ -683,7 +625,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	 * Uses standard kinematics equations for this purpose. 
 	 */
 	public void slowDown() {
-		this.velocity -= acceleration * t * 2;
+		this.velocity -= Constants.ACCELERATION * Constants.t * 2;
 		// velocity cannot be negative
 		if (this.velocity < 0) {
 			this.velocity = 0;
@@ -747,6 +689,11 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		return debug;
 	}
 
+	/**
+	 * Method compares two vehicles based on their distance to the next junction.
+	 * Used to keep vehicles in a priority queue, in order
+	 * to perform overtaking logic.
+	 */
 	@Override
 	public int compareTo(Vehicle v) {
 	    double thisDist = this.getDistanceToNextJunction();

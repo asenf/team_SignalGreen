@@ -1,9 +1,5 @@
 package signalGreen;
 
-import com.vividsolutions.jts.geom.Coordinate;
-
-import repast.simphony.context.Context;
-import repast.simphony.space.gis.Geography;
 import signalGreen.Constants.Signal;
 
 /**

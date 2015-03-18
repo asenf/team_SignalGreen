@@ -2,13 +2,8 @@ package signalGreen;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
-import repast.simphony.context.Context;
-import repast.simphony.engine.schedule.ScheduleParameters;
-import repast.simphony.engine.schedule.ScheduledMethod;
-import repast.simphony.random.RandomHelper;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
-import repast.simphony.util.ContextUtils;
 
 /**
  * A generic GIS agent.
@@ -70,6 +65,12 @@ public abstract class GisAgent {
 		return ID;
 	}
 	
+	/**
+	 * Returns the url where the raphics are located.
+	 * Used by sld stylesheets for display purposes.
+	 * 
+	 * @return url
+	 */
 	public String getBaseURL() {
 		return baseURL;
 	}
@@ -87,9 +88,5 @@ public abstract class GisAgent {
 	
 	public String getDebug() {
 		return debug;
-	}
-	
-	public void setDebug(String debug) {
-		this.debug = debug;
 	}
 }

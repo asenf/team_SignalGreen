@@ -1,24 +1,15 @@
 package signalGreen;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-import com.vividsolutions.jts.geom.Coordinate;
-
-import repast.simphony.context.Context;
-import repast.simphony.engine.schedule.ScheduledMethod;
-import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
-import repast.simphony.space.grid.Grid;
 import signalGreen.Constants.Lane;
 
 /**
@@ -139,7 +130,7 @@ public class Junction extends GisAgent {
 	 * @param j the junction
 	 * @return queue of vehicles
 	 */
-	public Queue getVehiclesQueue(Junction j) {
+	public PriorityBlockingDeque<Vehicle> getVehiclesQueue(Junction j) {
 		return this.vehicles.get(j);
 	}
 	
@@ -161,20 +152,14 @@ public class Junction extends GisAgent {
 	 * @param v vehicle entering a road segment
 	 */
 	public void enqueueVehicle(Junction j, Vehicle v) {
-		// System.out.println("J: " + j.toString());
 		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		q.add(v);
 	}
 	
 	public void reorderVehicle(Junction j, Vehicle v) {
-//		System.out.println("\n\nReorder vehicle " + v.toString() + " in q");
 		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
-//		System.out.println("q bef: " + q.toString());
 		q.remove(v);
-//		System.out.println("q mid: " + q.toString());
 		q.add(v);
-//		System.out.println("q aft: " + q.toString());
-//		System.out.println("Peek: " + q.peek().toString());
 	}
 	
 	/**
@@ -216,61 +201,6 @@ public class Junction extends GisAgent {
 		System.out.println("Peek vehicle: " + this.peekVehicle(j).toString());
 	}
 	
-	/**
-	 * Returns the next vehicle on the Queue (road segment)
-	 * in a particular lane.
-	 * 
-	 * @param j the junction from which the vehicle comes
-	 * @param v the current vehicle
-	 * @param l which lane to check
-	 * @return leader vehicle
-	 */
-//	public Vehicle getNextVehicle(Junction j, Vehicle v, Constants.Lane l) {
-//		Vehicle leader = null;
-//		Vehicle curr = null;
-//		Vehicle prev = null;
-//		boolean isPrev = false;
-//		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
-//
-//		for(Object o : q) {
-//			curr = (Vehicle) o;
-//		    // find current vehicle's position
-//		    if (curr.equals(v)) {
-//		    	isPrev = true;		    	
-//		    }
-//			
-//			// check also if next vehicle is on the required lane
-//		    //  && (prev.getLane() == l)
-//		    if ((isPrev == true)) { 
-//		    	leader = prev;
-//		    	break;
-//		    }
-//		    prev = curr;
-//		}
-//		return leader;
-//	}
-	
-	public Vehicle getNextVehicle(Junction j, Vehicle v, Constants.Lane l) {
-		Vehicle leader = null;
-		Vehicle tmp = null;
-		boolean found = false;
-		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
-
-		Iterator<Vehicle> it = q.descendingIterator();
-		while (it.hasNext()) {
-			tmp = it.next();
-			
-			if (found == true) {
-				leader = tmp;
-				break;
-			}
-			
-			if (tmp.equals(v)) {
-				found = true;
-			}
-		}
-		return leader;
-	}
 	/**
 	 * Returns an array with size of 2 of vehicles 
 	 * that are ahead/behind of a given vehicle as follows:<br />
@@ -328,7 +258,6 @@ public class Junction extends GisAgent {
 	 * @return number of vehicles
 	 */
 	public int getNumVehicles(Junction j) {
-		Vehicle v = null;
 		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		return q.size();
 	}

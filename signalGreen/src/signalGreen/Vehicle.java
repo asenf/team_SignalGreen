@@ -13,7 +13,7 @@ import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.space.graph.ShortestPath;
 import signalGreen.Constants.*;
 
-/**
+/***
  * Generic class for vehicles of the Traffic Simulator.<br />
  * Cars, ambulances, trucks are subclasses of Vehicle, and have special behaviour such as 
  * cars having reckless or cautious drivers.

@@ -64,24 +64,20 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 
 		junctions = new ArrayList<Junction>();
 
-		// To store GIS roads
-		GeographyParameters geoParams = new GeographyParameters();
-		geography = GeographyFactoryFinder.createGeographyFactory(null)
-				.createGeography("Geography", context, geoParams);
-		
-		// Road network
-		// network.addEdge(this, junc, weight);
-		NetworkBuilder<Object> roadBuilder = new NetworkBuilder<Object>("road network", context, true);
-		roadBuilder.buildNetwork();
-		network = (Network<Junction>) context.getProjection("road network");
-
-		// User decides the number of vehicles placed on the map at runtime (aks)
+		// User defined parameters
 		final Parameters params = RunEnvironment.getInstance().getParameters();
 		vehCount = ((Integer) params.getValue(Constants.NUM_VEHICLES)).intValue();
 		usesTrafficLights = ((boolean) params.getValue("usesTrafficLights"));
 		inputShapefile = "data/" + ((String) params.getValue("inputShapefile"));
 		
-		// load user defined GIS shapefile
+		// GIS projection holds real position of vehicles
+		createGISGeography(context);
+		
+		// Road network topology holds logical position of vehicles
+		createRoadNetwork(context);
+		
+		// load user defined GIS shapefile to populate 
+		// both GIS and road network projections
 		File f = new File(inputShapefile);
 		if (!f.exists() && f.isDirectory()) { 
 			System.out.println("File Not Found!");
@@ -89,8 +85,8 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		}
 		loadShapefile(inputShapefile, context, geography, network); 
 		
-		// sets some default data for each junction in the topology
-		// and sets appropriate position of traffic lights if needed.
+		// set some default data for each junction in the topology
+		// and appropriate position of traffic lights if needed.
 		initJunctions(context);
 		
 		// Environment is all set up at this point.
@@ -98,6 +94,21 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		generateVehicles(context);
 		
 		return context;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void createGISGeography(Context context) {
+		// To store GIS roads
+		GeographyParameters geoParams = new GeographyParameters();
+		geography = GeographyFactoryFinder.createGeographyFactory(null)
+				.createGeography("Geography", context, geoParams);		
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void createRoadNetwork(Context context) {
+		NetworkBuilder<Object> roadBuilder = new NetworkBuilder<Object>("road network", context, true);
+		roadBuilder.buildNetwork();
+		network = (Network<Junction>) context.getProjection("road network");		
 	}
 
 	/**
@@ -249,6 +260,9 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 
                 // set road data
                 double weight = Utils.distance(c1, c2, geography);
+                ((Road) agent).setLength(weight);
+                // weight is adjusted based on the type of road
+                weight = weight / ((int) feature.getAttribute("THRULANES") + 1);
 
     			RepastEdge<Junction> re1 = network.addEdge(j1, j2, weight);
     			RepastEdge<Junction> re2 = network.addEdge(j2, j1, weight);
@@ -256,9 +270,6 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
                 j1.addJunction(j2);
                 j2.addJunction(j1);
                 
-                ((Road) agent).setLength(weight);
-                // System.out.println(((Road) agent).toString()); // DEBUG
-
                 // Road-RepastEdge mapping for lane management use
                 this.roads.put(re1, (Road) agent);
                 this.roads.put(re2, (Road) agent);

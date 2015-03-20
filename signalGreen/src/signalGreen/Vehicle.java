@@ -113,18 +113,9 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	 * Vehicle behavior takes place here. 
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
-	public void step() {
-//		System.out.println("---------\n*** Step: " + this.toString());
-//		debug = 
-//				// "O: " + origin.toString() + ", N: " + next.toString()
-//				"First in q: " + next.peekVehicle(origin).toString()
-//				+ " " + next.getVehiclesQueue(origin).toString();
-//		System.out.println(debug);
-//		System.out.println(next.peekVehicle(origin));
-//		debugRoute();
-		
+	public void step() {		
 		Vehicle v; // vehicle ahead
-		Lane targetLane = this.lane;
+		double tmpDisplacement;
 		
 		// following happens only when network topology contains more than one graph.
 		// It is the case when a vehicle tries to reach a destination on the other graph.
@@ -136,8 +127,25 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		this.next = this.getNextJunctionRoute();	
 						
 		// compute how many meters we would like to move
-		double tmpDisplacement = this.computeDisplacement(); // just need to adjust optimal acceleration parameters
+		tmpDisplacement = this.computeDisplacement();
 		
+		// selects the lane this vehicle wants to go to
+		v = laneSelection(tmpDisplacement);
+
+		// find optimal displacement checking the gap between vehicles
+		this.displacement = gapAcceptance(v, tmpDisplacement);
+		if (this.displacement == 0) {
+			return; // no need to perform displacement
+		}
+		
+		// move the vehicle on the GIS geography on the selected
+		// lane using optimal displacement
+		executeDisplacement(this.displacement);
+	}
+	
+	private Vehicle laneSelection(double tmpDisplacement) {
+		Vehicle v = null;
+		Lane targetLane = this.lane;
 		// see if there is a vehicle ahead within vision range
 		Vehicle[] veh = getVehiclesAhead(tmpDisplacement + Constants.DIST_VEHICLES);
 		v = null; // reset vehicle ahead
@@ -179,19 +187,22 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 				targetLane = Lane.INNER;
 				v = veh[1];
 			}
-		}			
-			
+		}		
+		this.lane = targetLane;
+		return v;
+	}
+
+	private double gapAcceptance(Vehicle v, double tmpDisplacement) {
 		// check vehicle ahead's displacement to know how to 
 		// adjust velocity and displacement
 		if (v != null) {
 			// distance between current vehicle and leader
-			double vDistance = Utils.distance(getNetworkPos(), v.getNetworkPos(), getGeography());
+			// double vDistance = Utils.distance(getNetworkPos(), v.getNetworkPos(), getGeography());
 			
 			// check if we need to stop: vehicle ahead is close enough and stopped
 			if ((v.getDisplacement() == 0) || v.getVelocity() == 0) {
 				this.velocity = 0;
-				this.displacement = 0;
-				return; // no need to perform the displacement
+				return 0; // no need to perform the displacement
 			}
 			
 			// adjust to optimal velocity/displacement			
@@ -202,8 +213,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 				
 				// manage limit cases
 				if (this.velocity == 0) {
-					this.displacement = 0;
-					return;
+					return 0;
 				}
 			}
 		}
@@ -211,10 +221,11 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 			// no vehicles, accelerate if we are allowed to
 			this.accelerate();
 		}
-		
-		// optimal displacement found!
-		this.displacement = tmpDisplacement;
-		
+		return tmpDisplacement;
+	}
+
+	private void executeDisplacement(double tmpDisplacement) {
+		boolean mustStopVehicle = false;
 		// how far is the next junction?
 		double juncDist = Utils.distance(getNetworkPos(), next.getCoords(), getGeography());
 				
@@ -222,12 +233,10 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		// so that we stop before the jam
 		if (next instanceof TrafficLight) {
 			juncDist = juncDist - Constants.DIST_LIGHTS;
-		}
-		
+		}		
 		
 		// now update position of vehicle on GIS display:
 		// might have changed because of change lane algorithm
-		this.lane = targetLane;
 		this.realPos = this.getRealPosFromNetworkPos(lane);
 		this.moveTo(realPos);
 
@@ -235,31 +244,22 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		// following algorithm is for moving vehicles along
 		// the road network towards the next Junction.
 		do {	
-			
+			// we cannot reach the next junction on the road network
+			// because it is too far... just move towards it.
 			if (tmpDisplacement < juncDist) {
-				// we cannot reach the next junction on the road network
-				// because it is too far... just move towards it.
 				moveTowards(next.getCoords(), tmpDisplacement);
 				tmpDisplacement = 0;
 			}
+			// we are going to move more than
+			// the next junction
 			else if (tmpDisplacement >= juncDist) {
-				// we are going to move more than
-				// the next junction				
+				// check traffic policies
+				mustStopVehicle = evaluateTrafficManagementPolicies();
+				if (mustStopVehicle == true) {
+					return;
+				}
 				
-				// 1. Stop according to traffic policies
-				if (next instanceof TrafficLight) {
-					Light light = ((TrafficLight) next).getLights().get(origin);
-					if ((light.getSignal() == Constants.Signal.RED)) {
-						// easy case :)
-						this.setVelocity(0);
-						this.displacement = 0;
-						return;
-					}
-				}				
-
-				// *** stop sign management here.
-				
-				// 2. road is clear: move to next junction
+				// road is clear: move to next junction
 				// then we keep moving towards the next one.
 				moveTowards(next.getCoords(), juncDist);
 				tmpDisplacement = tmpDisplacement - juncDist;
@@ -278,8 +278,27 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 			
 		} while (tmpDisplacement > 0); // keep iterating until the whole displacement has been covered
 		
+		// update queue held by junction to know order of vehicles on current road segment
 		next.reorderVehicle(origin, this);
-		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());
+		// update graphic's angle to match with road's horizontal axis
+		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());		
+	}
+
+	private boolean evaluateTrafficManagementPolicies() {
+		// 1. Stop according to traffic policies
+		if (next instanceof TrafficLight) {
+			Light light = ((TrafficLight) next).getLights().get(origin);
+			if ((light.getSignal() == Constants.Signal.RED)) {
+				// easy case :)
+				this.setVelocity(0);
+				this.displacement = 0;
+				return true; // red t. light, must stop
+			}
+		}				
+
+		// *** stop sign management here.
+		
+		return false; // vehicle can keep moving
 	}
 
 	/**

@@ -13,7 +13,7 @@ public final class Constants {
 	// distance of Lights in meters from Junction for display purposes
 	public static final double DIST_LIGHTS = (DIST_LANE * 2); // should be eq. 2 * DIST_LANE
 	// minimum distance between vehicles driving in meters
-	public static final double DIST_VEHICLES = 1.5;
+	public static final double DIST_VEHICLES = 1.8;
 	// minimum distance between vehicles stopped in meters
 	public static final double DIST_VEHICLES_STOPPED = 1.0;
 	
@@ -47,7 +47,12 @@ public final class Constants {
 	public static enum Signal {
 		GREEN, AMBER, RED
 	}
-
+		
+	// 
+	public static enum RoadType {
+		SINGLE_LANE, TWO_LANES
+	}
+	
 	// roads have two lanes per side
 	public static enum Lane {
 		INNER, OUTER

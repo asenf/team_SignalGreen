@@ -19,7 +19,7 @@
 This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system.
 \section{Objectives and Tasks}
 \subsection{Objectives}
-The objective of testing our system is to provide adequate testing of functional requirements, validation and behaviour of system under simulated condition. Exhaustive testing of system is not possible but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Some automation testing will be used with manual testing to find bugs are errors in the system.
+The objective of testing our system is to provide adequate testing of functional requirements, validation and behaviour of system under simulated condition. Exhaustive testing of system is not possible but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible because most of the methods needs objects to be passed as parameters and their behaviour is changed on every tick of simulation. Testing will be done by running the simulation, observing the agents' behaviour and comparing it with expected behaviour. Debug methods are written to eliminate bugs in the code and exceptions are handled to avoid the crashes.
 \subsection{Tasks}
 \begin{itemize}
 \item Identifying functional requirements and writing the tests cases.
@@ -30,21 +30,29 @@ The objective of testing our system is to provide adequate testing of functional
 \section{Scope}
 In context to our system, which is implemented using agent-based model it will be tested at three different levels of functionality.
 \begin{itemize}
-\item Agent behaviour: \hfill \\
+\item \textbf{Agent behaviour: }\hfill \\
 Can be checked by changing environment variables around agents.
 This forms functional requirements of the system as well. We have two agents in our system. \begin{enumerate}
-\item Vehicles\hfill \\
-Following function requirements will be tested in Vehicle class
-
+\item \textbf{Vehicles}\hfill \\
+step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
 \begin{itemize}
-	\item Accelerate
-	\item Move towards
+\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
+\textit{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle should be stuck in impasse.\hfill \\
+\textit{Actual Output:} Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
+\textit{Result:} Passed\hfill \\
+
+	\item \textbf{Test Case 2:}Move towards\hfill \\
+	\textit{Input:}Coordinate and displacment\hfill \\
+	\textit{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.".\hfill \\
+	 \textit{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
+	 \textit{Result:}Passed
+	\item Accelerate: 
 	\item Get vehicle ahead
 	\item Find best route
 	\item Slow down
 \end{itemize}
 
-\item Traffic Lights
+\item \textbf{Traffic Lights}
 \begin{itemize}
 \item \textbf{Test Case 1:} Traffic Light Green \hfill \\
 Expected Output:
@@ -66,7 +74,7 @@ Passed.
 \end{itemize}
 
  \end{enumerate}
-\item Runtime Parameters: \hfill \\
+\item \textbf{Runtime Parameters:} \hfill \\
 Elements and data which loads at run time will form part of runtime testing. It will be tested, giving all valid and invalid inputs and check results. Following elements will be tested at run time:
 \begin{itemize}
 \item \textbf{Test Case 1:} SignalGreenBuilder Implements ContextBuilder\hfill \\
@@ -88,7 +96,7 @@ Result: Passed
 Expected Output: Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
 Actual Output: No traffic lights and cars carry on moving on roads.
 \end{itemize}
-\item Overall behaviour of system: \hfill \\
+\item \textbf{Overall behaviour of system: }\hfill \\
 Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
 \textbf{Test Case 1:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
 Expected Output of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\

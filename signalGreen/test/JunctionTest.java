@@ -14,11 +14,14 @@ import org.junit.Test;
 
 
 
+
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.grid.Grid;
 import signalGreen.Junction;
+import signalGreen.PriorityBlockingDeque;
+import signalGreen.Vehicle;
 
 /**
  * @author adeelasaalim
@@ -30,32 +33,14 @@ public class JunctionTest {
 	private Network<Junction> network;
 	private Geography geography;
 	private ContinuousSpace<Object> space;
-	private Grid<Object> grid;
+	Junction jc = new Junction(network,geography);
 	// List to store Junctions
 	private List<Junction> junctions = new ArrayList<Junction>();
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-		
-		
-
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	
 /*Test passed
  */
 	@Test
 	public final void testToString() {
-		Junction jc = new Junction(network,geography );
 		String expectedOutput =jc.toString();
 		String actualOutput =  jc.toString();
 		assertEquals(expectedOutput,actualOutput);
@@ -65,22 +50,21 @@ public class JunctionTest {
 	@Test
 	public final void testGetJunctions() {
 		 // TODO
-		Junction jc = new Junction(network,geography);
 		assertNotNull(jc.getJunctions());
-		/*Iterator<Junction> it = this.junctions.iterator();
-		while (it.hasNext()) {
-			Junction j = it.next();
-			List<Junction> l = j.getJunctions();
-			assertEquals(l , jc.getJunctions());
-			}*/
+		
 	}
 //Passed as junctions List is not empty.
 	@Test
 	public final void testAddLane() {
 	// TODO
-		Junction jc = new Junction(network,geography);
 		this.junctions.add(jc);
 		assertNotNull(junctions);
+	}
+	
+	@Test
+	public final void testGetNumVehicles(){
+		jc.getNumVehicles(junction);
+		
 	}
 
 /*	

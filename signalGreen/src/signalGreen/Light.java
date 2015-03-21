@@ -1,5 +1,10 @@
 package signalGreen;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
+import repast.simphony.context.Context;
+import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.space.gis.Geography;
 import signalGreen.Constants.Signal;
 
 /**
@@ -11,6 +16,7 @@ import signalGreen.Constants.Signal;
 public class Light {
 
 	private Signal signal;
+	private Signal nextSignal;
 	
 	/**
 	 * Initialize light with user-defined condition.
@@ -20,6 +26,7 @@ public class Light {
 	public Light(Signal signal) {
 		
 		this.signal = signal;
+		this.nextSignal = signal;
 	}
 	
 	/**
@@ -42,9 +49,26 @@ public class Light {
 	
 	public void toggleSignal() {
 		if (this.signal == Signal.GREEN) {
-			this.signal = Signal.RED;
+			this.nextSignal = Signal.RED;
+			this.signal = Signal.AMBER;
 		} else {
-			this.signal = Signal.GREEN;
+			this.nextSignal = Signal.GREEN;
+			this.signal = Signal.AMBER;
+		}
+	}
+	
+	public void setNextSignal(Signal signal) {
+		this.signal = signal;
+	}
+	
+	public Signal getNextSignal() {
+		return nextSignal;
+	}
+	
+	@ScheduledMethod(start = 1, interval = 3)
+	public void step() {
+		if (this.signal == Signal.AMBER) {
+			this.signal = nextSignal;
 		}
 	}
 	

@@ -79,18 +79,17 @@ Elements and data which loads at run time will form part of runtime testing. It 
 \begin{itemize}
 \item \textbf{Test Case 1:} SignalGreenBuilder Implements ContextBuilder\hfill \\
 This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
-Input: Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.
-Expected Output: Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.
-Actual Output: Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.
-Result: Passed
+\textit{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
+\textit{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
+\textit{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
+\textit{Result:} Passed
 \item\textbf{Test Case 2:} Number of vehicles\hfill \\
-Input: Enter a number in "Number of vehicles" field on parameters tab.\hfill \\
-4, 0 , -1 and a character given as input.
-
-Expected Output: Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
-Actual Output:  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
-
-Result: Passed
+\textit{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\
+4, 0 , -1 and a character given as input.\hfill \\
+\textit{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
+\textit{Actual Output:}  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
+\textit{Result:} Passed
+\includegraphics{4cars}\hfill \\
 \item \textbf{Test Case 3:} No Traffic Lights\hfill \\
 "Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
 Expected Output: Cars should travel on road without stopping at traffic lights as there are none.\hfill \\

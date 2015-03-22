@@ -31,7 +31,6 @@
 
 
 
-
 1. Introduction Describe the context for the work and the problem you are addressing. Briefly summarise what you achieved in the project.
 
 This work was first and foremost an opportunity for working in a group. Employers want engineers who are not only skilled in their craft, but also persons who are able to collaborate, work well as part of a team, and invest in project aims and those working to achieve them. Our team was able to develop a simulation that involved each member in the process. In spite of differing abilities and communication styles, each person was able to contribute in important ways.
@@ -89,8 +88,6 @@ Selected Bibliography [do not renumber, these are throughout the paper]:
  [13n] https://dspace.mit.edu/bitstream/handle/1721.1/34607/71301166.pdf
 
 
-
-
 3. Requirements and design Describe the requirements you set for your project at the beginning and the design you have taken for your project. Focus on why you decided to tackle the problem in the way you did, and what effects that had on the design. You may also wish to mention the impact of team-working on your requirements and design.
 
 The traffic simulator object of this report – the SignalGreen Traffic Simulator – is an agent-based, non-deterministic, discrete-time simulator for microscopic traffic modelling which allows to test different traffic policies on user-defined Geographic Information System (GIS) maps. 
@@ -125,6 +122,7 @@ Possible Traffic Policy Implementations:
 - all give way junctions
 - mix lights/give way junctions
 - variable speed limits
+- lights vs signals with varying levels of congestion
 
 Language and Framework:
 The team began by choosing a programming language for development. We quickly settled on Java as our language, as everyone on the team was familiar with it and Java is commonly used in industry. Java is fast enough to simulate hundreds of agents, is entirely object oriented which makes it ideal for an agent paradigm, and currently the most popular Agent Based Modelling framework is in Java. C++ was considered, but the team preferred Java for its ease of coding. A scripting language like python would have enabled fast development, but team members were unfamiliar with it, it is computationally slow, and so not a good choice for modelling with many objects.
@@ -155,7 +153,7 @@ Geographic Information system (GIS) maps were simplified by removing the road co
 Any GIS map shapefile (.shp) representing road networks can be loaded into our simulator. The simulator uses some GIS attributes for modelling vehicle’s behaviour (ex. road type, max speed, etc.) and could easily be extended to take into account any other relevant attribute.
 The vehicle.java class determines the behaviour of vehicles so they follow roads. This required special coding, as GIS images point true north and use azimuth coordinates for its 3D mapping, while the UI points to grid north and uses simple X,Y coordinates for the grid. Azimuth coordinates allow one to measure distances and plot locations in a spherical coordinate system, and our code utilized this form of measurement in moving the vehicles along the maps. We referenced [9i] to see how one could compute the correct angle for displaying graphics on the UI. This further required the use of kinematics equations for plotting the direction of vehicles in several methods. Kinematics is the study of objects moving through space. Because we used GIS maps, all calculations along the map involve real distances.
 Context Builder
-No main method is required; class SignalGreenBuilder.java implements the ContextBuilder for the program, which it initializes the simulation.
+In Simphony no Main() method is required; instead a ContextBuilder is used to initialize the simulation. Class SignalGreenBuilder.java implements the ContextBuilder for the program.
 Path Abstraction
 At the highest level of abstraction, the program contains a graph of vertices connected by paths. Agents are initialised with random source and destination vertices, the shortest path is calculated, and the agent travels there along the paths. When the destination is reached, new random values are chosen and the process repeats. 
 For performance reasons we did not find it feasible to recalculate the best path at each vertex; instead the entire path is chosen at initialisation using the highly optimised shortest path algorithm provided by Repast Simphony. The path is shortened as each junction is reached on the way to the destination. 
@@ -163,6 +161,15 @@ Vehicle Behaviour
 A vehicle’s vision is the distance around which a vehicle is aware of its environment and is calculated based on constant values DIST_VEHICLES and DIST_VEHICLES_STOPPED.
 If a vehicle observes a slower moving vehicle in its path, it makes the decision to change lanes. The vehicle then checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If no other vehicles are in its vision it will accelerate to its maxVelocity. The vehicle then checks for approaching junctions. If it views a red light then the vehicle decelerates to a stopped position before the light. 
 When a vehicle reaches a junction, the reference of the junction is removed from its path and the vehicle moves along the next road segment towards the next junction on its path. Once a vehicle reaches its destination, a new random destination and shortest route are calculated and the process repeats.
+Step Method: Diagram
+[figure step_diagram]
+Assume the current vehicle V is heading towards a junction J[i]. J[i] is the next node on the road network topology J[n], where n is the number of nodes, and i is the ith iteration of the simulation. 
+V needs to first decide which lane it wants to go to (lane selection decision model, step 1.2) and check that the road is clear (gap acceptance decision model, step 2). 
+In steps 3 and 4, V tries to either accelerate or slow down, depending on the outcome of the previous steps. 
+Next, if V is close enough to J[i], traffic management policies are evaluated (step 8): for example, if J[i] uses traffic jams, then V asks J[i] if it has to wait (Light.RED signal detected, step 8.1.1). Finally, displacement is executed, meaning V’s position is updated both in the road network topology and in the GIS projection (step 9).
+V checks what is the J[i] on the route J[n], because it knows which vehicles are approaching. This is done by holding a priority queue of incoming Vehicles for each road segment, where weights are the distance from V to J[i]. This is an efficient solution as insertion is done in O(log n), while removal is done in constant time.
+From Repast’s point of view, Step() method is executed every iteration of the simulation, using the Java annotation: @ScheduledMethod(start = 1, interval = 1) meaning that it starts from tick one, and gets executed every tick.
+
 The Vehicle Class
 Class Vehicle.java is a very important class which initializes vehicles, assigns vehicles their individual behaviour, type, source, and interactions, and contains vehicle behaviours. This class contains the generic vehicle constructor. The class contains a list of junctions that create paths along the road graph. 
 Classes CarVehicle.java and TruckVehicle.java extend the Vehicle.java class and override the constructor to create three new types of vehicles: slow cars, fast cars, and trucks. Each type has its own adjusted maxVelocity and visual icon. 
@@ -177,13 +184,13 @@ The only class which is not our team’s work is class PriorityBlockingDequeue.j
 
 5. Testing Explain how you tested your software (e.g. unit testing) and the extent to which you tested it. If relevant to your project, explain performance issues and how you tackled them.
 
-Testing will be done to confirm that our system conforms to functional requirements and expected behaviours. Exhaustive testing of the system is naturally not realistically possible in the given time, but we will perform basic unit, functional, error, cross-platform, and system testing. 
-Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
+Testing will be done to confirm that our system conforms to functional requirements and expected behaviours. Exhaustive testing of the system is naturally not realistically possible in the time given, but we will perform basic unit, functional, error, cross-platform, and system testing. 
 ABM testing will be done by running the simulation, observing the agents' behaviour and comparing it with expected behaviour. We will be test our code at three diﬀerent levels of functionality:
 1)  Agent behaviour: Verified by checking the changing environment variables around agents. This tests functional requirements of the system as well.
 2)  Runtime Parameters: Elements and data which load at runtime will be tested using valid and invalid inputs and checking for correct results. 
 3)  Overall system behaviour: Checks that all agents of the system produce expected results for a given scenario.
 This will include testing of agents interaction with other components of environment (roads, traﬃc lights) when programme will be executed at run time.
+Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
 
 6. Team work Describe how you worked together, including the tools and processes you used to facilitate group work.
 
@@ -210,40 +217,41 @@ Approximately every week the group coordinator would remind the team to post Wha
 Team Challenges:
 Our team faced several challenges in working together and with our chosen tools. [Note: all members are here referred to as ‘he’.] 
 - Our team struggled to coordinate regarding GitHub the first part of the project, as several members focused on coding on their own machines rather than branching from GitHub in the weeks prior to the initial report date. Initial code was uploaded to GitHub the day before the initial report was due. The members leading in coding later created a full GitHub project for everyone to access. 
-- A team member missed two meetings where decisions were made, so his preferences were not implemented. As he had strong feelings about these decisions it was difficult for the person to accept and caused some friction.
+- A member missed two meetings where decisions were made, so his preferences were not implemented. As he had strong feelings about these decisions it was difficult for the person to accept and caused some friction.
 - A member found he did not have the ability to run Simphony and so did not have a way to code his part of the project; the group was notified of this after the initial report presentation. He found a way to partially resolve this so he could code from the last week of February, although still without full Eclipse functionality. 
+- A member had difficulty prioritizing his code at the end, putting off resolving a key issue for several days. This resulted in our final Milestone deadline being pushed back almost a week and added stress to other team members.
 - After difficulty getting team members to follow through with attending agreed meetings, we voted to modify our practice so that absence to agreed full group meetings would result in a point for that person being deducted.
 
 7. Evaluation Critically evaluate your project: what worked well, and what didn’t? How did you do relative to your plan? What changes were the result of improved thinking and what changes were forced upon you? Note that you need to show that you understand the weaknesses in your work as well as its strengths. You may wish to identify relevant future work that could be done on your project.
-
+Group Project
+University group projects can be tricky to make work well; professional teams generally have the benefits of prior working relationships and clearly understood authority and accountability structures. SignalGreen team members were generally unfamiliar with each other before forming the group; four of our team formed based on where we were sitting in the introductory lecture, and the fifth was a person who we heard was looking for a group. 
+Distributing points is generally difficult to manage well, as giving too much power to democratic vote can be seen as unfair and hurtful by some members, and not allowing enough flexibility can result in members not feeling impressed to participate or work in a timely fashion. 
+In general, as masters students we are committed to doing good work, as our work for the project is part of our training for our careers. On this basis our team decided to share points evenly, and points lost due to agreed criteria would be distributed by vote. Some members did more work than our points can reflect, and we trust their hard work will pay off in personal dividends in the future.
+Ultimately, the goal of the team was for everyone to get through the module with a pass (preferably much better). To this end, we are not group critiquing each other, nor are we calculating what we ourselves did for comparison to others. As we believe our team has been successful in the project we feel it would be better to end with a feeling of satisfaction for having completed the project successfully.
+Milestone Results
 Milestone 1 was completed in its entirety by the deadline set by the team. At that time we extended the deadlines of the Milestones to have all coding finished by 16 March, and then turn to cleaning the code and final commenting while testing was finishing and traffic policies were compared during the week of 16 March.
 All Milestone 2 goals were completed except for implementing roundabouts. The give way implementation took longer than anticipated to complete, and was finally finished on 20 March.
 Milestone 3 optional criteria were all completed by 16 March. 
-[insert Instagantt charts] We completed tasks very much on schedule with what we planned at the beginning. In the interest of better code, we extended the Milestone 2 deadline to March 16; this allowed some desired behaviours to be completed. All coding was originally scheduled to stop 16 March to leave time for continued testing, commenting and code cleaning, and documentation. 
-One person had issues with his code that put the team a week behind at the end. This was disappointing, but team members pulled together to complete the rest of the tasks on schedule.
+[insert Instagantt charts] 
+We completed tasks very much on schedule with what we planned at the beginning. In the interest of better code, we extended the Milestone 2 deadline to March 16; this allowed some desired behaviours to be completed. All coding was originally scheduled to stop 16 March to leave time for continued testing, commenting and code cleaning, and documentation. 
+One member had issues with his code that put the team a week behind at the end. This was disappointing, but team members pulled together to complete the rest of the tasks on schedule and bring out our traffic simulation by the deadline.
 
-Milestone 1 – all aspects implemented
-- deadline: 23 February 
-- code compiles and runs simple simulation
+Final Characteristics 
 - vehicles run on a map
+- multiple maps in GIS standard
 - variable number of vehicles
 - vehicles make decisions to reach a goal
-Milestone 2:
-- deadline: 16 March
-- implement basic vehicle type: car – implemented 
-- traffic flows bi-directionally – implemented 
-- junctions: signals, give way, roundabouts – signals and give way implemented
-- multiple maps in GIS standard – implemented 
-- cars have different behaviours: timid, aggressive, patient – implemented
-- multiple lanes on some roads – implemented 
-Milestone 3 (optional):
-- deadline: 16 March 
-- vehicles appear visually different by some criteria (type, behaviour, congestion) – implemented
-- speed limits on roads – implemented 
-- implement vehicle types: lorry, emergency, motorcycles – lorry implemented
-- vehicles exhibit passing behaviours – implemented
+- vehicles exhibit passing behaviours 
+- implement basic vehicle types: car, lorry
+- cars have different behaviours: aggressive, patient
+- vehicles appear visually different by type
+- traffic flows bi-directionally
+- junctions: signals, give way 
+- multiple lanes on some/all roads
+- speed limits on roads
 
-Repast Simphony:
+
+Repast Simphony
 Overall we think our use of Repast Simphony was successful for our project. It provided a foundation API and Eclipse configuration that was not directly involved with agents or behaviours. It allowed us to create attractive visuals in the simulation and analysis graphing. We spent little time debugging, and were able to focus on simulating traffic. Simphony provided many extras (XML persistent storage, installers, etc) that we did not use due to lack of need or lack of implementation time.
 An unforseen disadvantage of Simphony arose in that it cannot be installed or used on KCL lab computers. One member of our group did not have access to Simphony at home or on campus (the group did not know this until after the initial presentation), and he was not able to find a way to use Simphony until almost March, and then not effectively. This greatly reduced his ability to be useful to the team in coding and held up work on a major segment of the code.
 Originally we considered using a belief-desire-intention (BDI) model to code the agents’ behaviour, but as the member intending to code this was unable to use Simphony, behaviours were instead coded into the agents themselves.

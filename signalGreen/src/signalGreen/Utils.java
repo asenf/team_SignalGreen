@@ -54,7 +54,7 @@ public class Utils {
 	 * @param List of junctions
 	 * @return Popular junction
 	 */
-	public Junction getPopularJunction(List<Junction> junctions)
+	public static Junction getPopularJunction(List<Junction> junctions)
 	{
 		if (junctions == null) return null;
 		

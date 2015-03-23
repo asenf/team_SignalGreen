@@ -52,6 +52,26 @@ public class Utils {
 		System.out.println("Coordinate: " + c.toString() + ", x: " 
 				+ c.x + ", y: " + c.y);
 	}
+	
+	/**
+	 * Method iterates though a List of Junctions to find most popular one.
+	 * This is the Junction with the most number of cars.
+	 * @param List of junctions
+	 * @return Popular junction
+	 */
+	public Junction getPopularJunction(List<Junction> junctions)
+	{
+		if (junctions == null) return null;
+		
+		Junction popularJunc = junctions.get(0);
+		
+		for (int i = 0; i < junctions.size(); i++) {
+			if(junctions.get(i).vehicles.size() > popularJunc.vehicles.size()) {
+				popularJunc = junctions.get(i);
+			}
+		}
+	  return popularJunc;
+	}
 
     /**
      * Distance between two coordinates in metres

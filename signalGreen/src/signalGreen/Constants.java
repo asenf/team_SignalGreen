@@ -22,7 +22,7 @@ public final class Constants {
 	public static final int t = 4;
 	// arbitary value used to adjust GIS projection meters
 	// because vehicle graphics are bigger than real scale
-	public final static int CONV_RATIO_METERS = 35;
+	public final static int CONV_RATIO_METERS = 70;
 	
 	// maximum velocity of cars when initialised
 	public final static int[] speed = {100, 120, 140, 80};
@@ -33,7 +33,7 @@ public final class Constants {
 	public static final int VERY_FAST = 160;
 
 	// arbitrary value for vehicle acceleration
-	public static final double ACCELERATION = 2.6; // m/s
+	public static final double ACCELERATION = 1.6; // m/s
 	// acceleration factor: trucks have smaller accel. than cars
 	public static final double CAR_SLOW_ACC = 1.0;
 	public static final double CAR_FAST_ACC = 1.2;

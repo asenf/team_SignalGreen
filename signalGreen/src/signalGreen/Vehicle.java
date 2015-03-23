@@ -15,7 +15,8 @@ import signalGreen.Constants.*;
 
 /***
  * Generic class for vehicles of the Traffic Simulator.<br />
- * Cars, ambulances, trucks are subclasses of Vehicle, and have special behaviour such as 
+ * Cars, ambulances, trucks are subclasses of Vehicle, 
+ * and have special behaviour such as 
  * cars having reckless or cautious drivers.
  * 
  * @author Yoann
@@ -143,6 +144,16 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		executeDisplacement(this.displacement);
 	}
 	
+	/**
+	 * Method selects the best lane (incentive) by checking
+	 * for vehicles ahead of current vehicle V
+	 * on both INNER and OUTER lanes. It then checks if
+	 * there are no vehicles approaching on that lane 
+	 * with speed greater than V's speed.
+	 * 
+	 * @param displacement
+	 * @return vehicle ahead on selected lane
+	 */
 	private Vehicle laneSelection(double tmpDisplacement) {
 		Vehicle v = null;
 		Lane targetLane = this.lane;
@@ -192,13 +203,24 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		return v;
 	}
 
+	/**
+	 * Method checks if there is enough space
+	 * between the current vehicle and the 
+	 * vehicle ahead (road is safe), in order 
+	 * to execute a displacement.
+	 * Vehicle tries to accelerate or slow down
+	 * according to the outcome of the gap acceptance.
+	 * In that case displacement is recomputed.
+	 *  
+	 * @param v the vehicle
+	 * @param tmpDisplacement
+	 * @return optimal displacement
+	 */
 	private double gapAcceptance(Vehicle v, double tmpDisplacement) {
 		// check vehicle ahead's displacement to know how to 
 		// adjust velocity and displacement
 		if (v != null) {
 			// distance between current vehicle and leader
-			// double vDistance = Utils.distance(getNetworkPos(), v.getNetworkPos(), getGeography());
-			
 			// check if we need to stop: vehicle ahead is close enough and stopped
 			if ((v.getDisplacement() == 0) || v.getVelocity() == 0) {
 				this.velocity = 0;
@@ -224,14 +246,27 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		return tmpDisplacement;
 	}
 
+	/**
+	 * Moves a vehicle on the GIS geography
+	 * towards the next junction. If the vehicle
+	 * can make it all to way to it, it drives
+	 * the remaining displacement towards the new
+	 * next junction. Traffic management policies
+	 * are evaluated if the vehicle is in proximity
+	 * to special types of junctions. 
+	 * 
+	 * @param displacement in meters
+	 */
 	private void executeDisplacement(double tmpDisplacement) {
 		boolean mustStopVehicle = false;
 		// how far is the next junction?
 		double juncDist = Utils.distance(getNetworkPos(), next.getCoords(), getGeography());
 				
-		// if there is a red traffic light we adjust the distance to it
+		// if there is a junction that needs traffic
+		// management policies we adjust the distance to it
 		// so that we stop before the jam
-		if (next instanceof TrafficLight) {
+		if ((next instanceof TrafficLight)
+				|| (next instanceof GiveWaySign)){
 			juncDist = juncDist - Constants.DIST_LIGHTS;
 		}		
 		
@@ -284,8 +319,15 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		this.angle = Utils.getAngleDeg(origin.getCoords(), next.getCoords(), getGeography());		
 	}
 
+	/**
+	 * Evaluates traffic management policies and
+	 * decides if a vehicle must stop or continue
+	 * in proximity of a special instance of junction.
+	 * 
+	 * @return true if vehicle must stop
+	 */
 	private boolean evaluateTrafficManagementPolicies() {
-		// 1. Stop according to traffic policies
+		// Traffic Lights
 		if (next instanceof TrafficLight) {
 			Light light = ((TrafficLight) next).getLights().get(origin);
 			if ((light.getSignal() == Constants.Signal.RED)) {
@@ -296,7 +338,27 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 			}
 		}				
 
-		// *** stop sign management here.
+		// Give Way Signs
+		if (next instanceof GiveWaySign) {
+			Vehicle closest = this;
+			// iterate through each queue of incoming vehicles
+			// and figure out if we are the closest vehicle to it 
+			for (Map.Entry<Junction, PriorityBlockingDeque<Vehicle>> entry 
+					: next.vehicles.entrySet())
+			{
+				Vehicle v = entry.getValue().peek();
+				if ((v != null) && (v.getDistanceToNextJunction() <= closest.getDistanceToNextJunction())) {
+					closest = v;
+				}
+				// check if we are NOT the closest, meaning
+				// we have to wait at the intersection
+				if ( ! closest.equals(this)) {
+					this.setVelocity(0);
+					this.displacement = 0;
+					return true;
+				}
+			}
+		}
 		
 		return false; // vehicle can keep moving
 	}

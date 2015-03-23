@@ -207,7 +207,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		    		j = new TrafficLight(this.network, this.geography);
 		    	}
 		    	else { // implement here all policies
-		    		j = new Junction(this.network, this.geography);
+		    		j = new GiveWaySign(this.network, this.geography);
 		    	}
 		    }
 		    else {

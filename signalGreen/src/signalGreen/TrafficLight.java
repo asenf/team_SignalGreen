@@ -1,182 +1,89 @@
 package signalGreen;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.awt.*;
-
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
 
-import repast.simphony.space.continuous.ContinuousSpace;
-import repast.simphony.space.gis.Geography;
-import repast.simphony.space.graph.Network;
-import repast.simphony.space.grid.Grid;
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.space.gis.Geography;
 import signalGreen.Constants.Signal;
 
 /**
- * TrafficLight object is a subclass of the Junction object. It has
- * a traffic light dedicated to each lane linked to the Junction.
+ * Light object for Traffic Light Junctions.
  * 
- * It contains the Step() method that performs the light changing
- * algorithm.
- * 
- * @author Waqar, Adeela
- * 
+ * @author Waqar
+ *
  */
-public class TrafficLight extends Junction{
-	
-	// List of lights for each lane linking from a Junction
-	// to this Junction
-	private Map<Junction, Light> lights;
-	
-	/**
-	 * @param network
-	 */
-	public TrafficLight(Network<Junction> network, Geography geography) {
-		super(network, geography);
-		this.lights = new HashMap<Junction, Light>();
-	}
+public class Light {
+
+	private Signal signal;
+	private Signal nextSignal;
 	
 	/**
-	 * Add traffic light for new lane to given Junction. If it is the
-	 * first light, set state to GREEN, else RED.
+	 * Initialize light with user-defined condition.
 	 * 
-	 * @see signalGreen.Junction#addJunction(signalGreen.Junction)
+	 * @param signal to start with.
 	 */
-	@Override
-	public void addJunction(Junction junc) {
-		super.addJunction(junc);	
+	public Light(Signal signal) {
 		
-		Light light = new Light(Signal.RED);
-		
-		if(lights.size() == 0)  {
-			light.setSignal(Signal.GREEN);
-		}
-		
-		lights.put(junc, light);		
+		this.signal = signal;
+		this.nextSignal = signal;
 	}
 	
 	/**
-	 * Remove traffic light for lane to given Junction.
+	 * Get the current signal.
 	 * 
-	 * @see signalGreen.Junction#removeLane(signalGreen.Junction, boolean)
+	 * @return the signal
 	 */
-	@Override
-	public void removeLane(Junction junc, boolean out) {
-		lights.remove(getJunctions().indexOf(junc));
-		super.removeLane(junc, out);
-	}
-	
-	/**
-	 * Remove all traffic lights.
-	 * 
-	 * @see signalGreen.Junction#removeAllLanes()
-	 */
-	@Override
-	public void removeAllLanes() {
-		lights.clear();
-		super.removeAllLanes();
-	}
-	
-	/**
-	 * Step() method to perform light changing algorithm with the
-	 * scheduled method annotation by Repast.
-	 */
-	@ScheduledMethod(start = 1, interval = 25)
-	public void step() {
-		// TODO find optimal interval	
-		if (lights.size() != 0) {
-			toggleNextLight();
-		}
-		// DEBUG
-		// debugLights();
-	}
-	
-	public void debugLights() {
-		for (Map.Entry<Junction, Light> entry : lights.entrySet()) {
-		    // System.out.println("key=" + entry.getKey() + ", value=" + entry.getValue());
-		    Light l = entry.getValue();
-		    Junction j = entry.getKey();
-		    if (l.getSignal() == Signal.GREEN)
-		    	System.out.println(l.toString() + " : GREEN");
-		    if (l.getSignal() == Signal.AMBER)
-		    	System.out.println(l.toString() + " : AMBER");
-		    if (l.getSignal() == Signal.RED)
-		    	System.out.println(l.toString() + " : RED");
-		}		
+	public Signal getSignal() {
+		return signal;
 	}
 
 	/**
-	 * Get a List of all Lights, their indexes match junctions indexes.
-	 * @return
+	 * Set the current signal.
+	 * 
+	 * @param signal the signal to set
 	 */
-	public Map<Junction, Light> getLights() {
-		return lights;
+	public void setSignal(Signal signal) {
+		this.signal = signal;
 	}
 	
-	/**
-	 * Get a List of all Lights currently in GREEN state.
-	 * 
-	 * @return List of GREEN lights.
-	 */
-//	public List<Light> getLightsOn() {
-//		List<Light> lightsOn = new ArrayList<Light>();
-//		for (Light light : lights) {
-//			if (light.getSignal() == Signal.GREEN) {
-//				lightsOn.add(light);
-//			}
-//		}
-//		
-//		return lightsOn;
-//	}
-	
-//	/**
-//	 * Toggle the current state of all traffic lights to GREEN.
-//	 */
-//	public void toggleAllLightsOn() {
-//		for (Light light : lights) {
-//			light.setSignal(Signal.GREEN);
-//		}
-//	}
-//	
-//	/**
-//	 * Toggle the current state of all traffic lights to RED.
-//	 */
-//	public void toggleAllLightsOff() {
-//		for (Light light : lights) {
-//			light.setSignal(Signal.RED);
-//		}
-//	}
-	
-	/**
-	 * Toggle to the next traffic light.
-	 */
-	public void toggleNextLight() {
-		int lastGreenLightIndex = 0;
-				
-		List<Light> l = new ArrayList<Light>(lights.values());
-		
-		for (Light light : l) {
-			if (light.getSignal() == Signal.GREEN) {
-				lastGreenLightIndex = l.indexOf(light);
-			}
-		}
-		
-		l.get(lastGreenLightIndex).toggleSignal();
-		
-		if (l.size() - 1 == lastGreenLightIndex) {
-			l.get(0).toggleSignal();
-			
+	public void toggleSignal() {
+		if (this.signal == Signal.GREEN) {
+			this.nextSignal = Signal.RED;
+			this.signal = Signal.AMBER;
 		} else {
-			l.get(lastGreenLightIndex + 1).toggleSignal();
+			this.nextSignal = Signal.GREEN;
+			this.signal = Signal.AMBER;
 		}
-		
 	}
-
+	
+	public void setNextSignal(Signal signal) {
+		this.signal = signal;
+	}
+	
+	public Signal getNextSignal() {
+		return nextSignal;
+	}
+	
+	@ScheduledMethod(start = 1, interval = 3)
+	public void step() {
+		if (this.signal == Signal.AMBER) {
+			this.signal = nextSignal;
+		}
+	}
+	
+	/**
+	 * Used by the GIS display to know which color
+	 * has the traffic light at any moment.
+	 *  
+	 * @return integer representation of the current signal
+	 */
+	public int getColor() {
+		// DO NOT CHANGE VALUES
+		if (this.signal == Signal.GREEN) return 0;
+		if (this.signal == Signal.AMBER) return 5;
+		if (this.signal == Signal.RED) return 10;
+		return 15;
+	}
+	
 }

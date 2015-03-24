@@ -7,7 +7,7 @@
 									
 		/>
 		<parameter name="inputShapefile" displayName="GIS Shapefile" type="String" 
-						defaultValue="NEW_YORK_MAPS/map3.shp" 
+						defaultValue="nyc_small.shp" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter"
 									

@@ -18,7 +18,7 @@ import com.vividsolutions.jts.geom.Coordinate;
  * calculations, such as distance between coordinates
  * or azimuth of a road segment. 
  * 
- * @author signalGreen team
+ * @author Signal Green team
  *
  */
 public class Utils {
@@ -27,7 +27,7 @@ public class Utils {
 	 * Method selects a random Junction from the road network.
 	 * Vehicles call this method every time they need a new destination.
 	 * @param roadNetwork
-	 * @return
+	 * @return junction
 	 */
 	public static Junction getRandJunction(Network<Junction> roadNetwork) {
 		// get all edges and put them into list for random access 
@@ -56,7 +56,7 @@ public class Utils {
 	/**
 	 * Method iterates though a List of Junctions to find most popular one.
 	 * This is the Junction with the most number of cars.
-	 * @param List of junctions
+	 * @param junctions List of junctions
 	 * @return Popular junction
 	 */
 	public static Junction getPopularJunction(List<Junction> junctions)
@@ -70,15 +70,15 @@ public class Utils {
 				popularJunc = junctions.get(i);
 			}
 		}
-	  return popularJunc;
+		return popularJunc;
 	}
 
     /**
      * Distance between two coordinates in metres
      * 
-     * @param coordinate1
-     * @param coordinate2
-     * @param geography 
+     * @param c1 coordinate1
+     * @param c2 coordinate2
+     * @param g geography 
      */
 	public static double distance(Coordinate c1, Coordinate c2, Geography g) {
         GeodeticCalculator calculator = new GeodeticCalculator(g.getCRS()); 
@@ -91,10 +91,10 @@ public class Utils {
 	 * Returns the angle in radians given two coordinates.
 	 * Radians to degrees conversion = angle * 2 * PI
 	 * 
-	 * @param c1
-	 * @param c2
-	 * @param g
-	 * @return
+	 * @param c1 first coord
+	 * @param c2 second coord
+	 * @param g geography
+	 * @return angle in radians
 	 */
 	public static double getAngle(Coordinate c1, Coordinate c2, Geography g) {	
         double angle = Math.toRadians(Utils.getAzimuth(c1, c2, g)); // Angle in range -PI to PI
@@ -119,7 +119,7 @@ public class Utils {
 	 * 
 	 * @param c1 coordinate
 	 * @param c2 coordinate
-	 * @param g the geography
+	 * @param g  geography
 	 * @return azimuth in double precision
 	 */
 	public static double getAzimuth(Coordinate c1, Coordinate c2, Geography g) {
@@ -138,7 +138,7 @@ public class Utils {
 	 * @param azimuth
 	 * @param distance
 	 * @param g the geography
-	 * @return
+	 * @return array of coordinates
 	 */
 	public static Coordinate[] createCoordsFromCoordAndAngle(Coordinate c, double azimuth, double distance, Geography g) {	
         // on the GIS display the do not look 90 degrees because
@@ -212,6 +212,14 @@ public class Utils {
 		return coords;
 	}
 
+	/**
+	 * Returns the angle in degrees
+	 * 
+	 * @param c1
+	 * @param c2
+	 * @param g
+	 * @return angle
+	 */
 	public static double getAngleDeg(Coordinate c1, Coordinate c2,
 			Geography g) {
 		return Math.toDegrees(Utils.getAngle(c1, c2, g));
@@ -227,7 +235,7 @@ public class Utils {
 	 * @param c1
 	 * @param c2
 	 * @param geography
-	 * @return
+	 * @return azimuth
 	 */
 	public static double getAngleForIcons(Coordinate c1, Coordinate c2, Geography g) {
 		// angle must be computed from grid north (NOT true north of projection)

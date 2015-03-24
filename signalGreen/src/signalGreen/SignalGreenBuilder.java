@@ -68,7 +68,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		final Parameters params = RunEnvironment.getInstance().getParameters();
 		vehCount = ((Integer) params.getValue(Constants.NUM_VEHICLES)).intValue();
 		usesTrafficLights = ((boolean) params.getValue("usesTrafficLights"));
-		inputShapefile = "data/" + ((String) params.getValue("inputShapefile"));
+		inputShapefile = Constants.MAPS_FOLDER + ((String) params.getValue("inputShapefile"));
 		
 		// GIS projection holds real position of vehicles
 		createGISGeography(context);
@@ -99,6 +99,12 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		return context;
 	}
 
+	/**
+	 * Methods uses GeographyFactory to create 
+	 * the GIS geography projection, where all agents are displayed
+	 * 
+	 * @param context
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void createGISGeography(Context context) {
 		// To store GIS roads
@@ -107,6 +113,13 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				.createGeography("Geography", context, geoParams);		
 	}
 	
+	/**
+	 * Creates the road network projection which will hold 
+	 * the road network topology. Used by vehicles to select
+	 * routes, and to know their direction of travel.
+	 * 
+	 * @param context
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void createRoadNetwork(Context context) {
 		NetworkBuilder<Object> roadBuilder = new NetworkBuilder<Object>("road network", context, true);
@@ -115,11 +128,13 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 	}
 
 	/**
-	 * Loads features from the specified shapefile.
+	 * Loads roads and junctions for a shapefile in both the 
+	 * GIS geograohy and road network. Finally, it
+	 * adds them as agents to the Signal Green's context.
 	 * 
-	 * @param filename relative path of the ESRI shapefile
-	 * @param context the context
-	 * @param geography the road geography
+	 * @param filename relative path of shapefile
+	 * @param context
+	 * @param geography the GIS geography
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
 	private void loadShapefile(String filename, Context context, Geography geography, Network<Junction> network) {
@@ -243,14 +258,7 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 				// attributes depend on the shapefile attributes.
 				String name = (String)feature.getAttribute("LNAME");
 				agent = new Road(name);
-//				System.out.println("Name: " + name + " --> " + feature.getAttribute("THRULANES")
-//						+ "\nTHRULANES " + feature.getAttribute("THRULANES")
-//						+ "\nFCLASS " + feature.getAttribute("FCLASS")
-//						+ "\nSTATUS " + feature.getAttribute("STATUS")
-//						+ "\nNHS " + feature.getAttribute("NHS")
-//						+ "\nRECTYPE " + feature.getAttribute("RECTYPE")
-//						+ "\n\n");
-//                
+
 				// road segment start and end coordinate
 				Coordinate[] c = geom.getCoordinates();
 				Coordinate c1 = c[0]; // First coordinate

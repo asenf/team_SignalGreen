@@ -1,26 +1,14 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-
-
-
-
-
 
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.graph.Network;
-import repast.simphony.space.grid.Grid;
 import signalGreen.Junction;
 import signalGreen.PriorityBlockingDeque;
 import signalGreen.Vehicle;
@@ -40,8 +28,6 @@ public class JunctionTest {
 	private List<Junction> junctions = new ArrayList<Junction>();
 	public Map<Junction, PriorityBlockingDeque<Vehicle>> vehicles;
 	
-/*Test passed
- */
 	@Test
 	public final void testToString() {
 		String expectedOutput =jc.toString();
@@ -49,39 +35,24 @@ public class JunctionTest {
 		assertEquals(expectedOutput,actualOutput);
 		
 	}
-//Passed as function returns a list and not null
+	//Passed as function returns a list and not null
 	@Test
 	public final void testGetJunctions() {
 		 // TODO
 		assertNotNull(jc.getJunctions());
 		
 	}
-//Passed as junctions List is not empty.
+
+	//Passed as junctions List is not empty.
 	@Test
 	public final void testAddLane() {
-	// TODO
 		this.junctions.add(jc);
 		assertNotNull(junctions);
 	}
 	
 	@Test
 	public final void testGetNumVehicles(){
-		//int expectedCarNum = jc.getNumVehicles(jc);
-		//PriorityBlockingDeque<Vehicle> q = this.vehicles.get(jc);
-		//int actualCarNum = q.size();
 		assertEquals(0,0);
 		
 	}
-
-/*	
-	@Test
-	public final void testSetLocation() {
-		//fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetLocation() {
-		//fail("Not yet implemented"); // TODO
-	}*/
-
 }

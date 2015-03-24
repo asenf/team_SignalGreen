@@ -9,6 +9,12 @@ package signalGreen;
  */
 public class LaneAgent extends GisAgent {
 
+	/**
+	 * Uses defauls constructor.
+	 * Lane is used for display purposes only, so it
+	 * doesn't need references to geography or network.
+	 * 
+	 */
 	public LaneAgent() {
 		super();
 	}	

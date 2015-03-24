@@ -16,8 +16,11 @@ import signalGreen.Constants.*;
 /***
  * Generic class for vehicles of the Traffic Simulator.<br />
  * Cars, ambulances, trucks are subclasses of Vehicle, 
- * and have special behaviour such as 
- * cars having reckless or cautious drivers.
+ * and have special behaviour such as cars having reckless or cautious drivers.
+ * Vehicle implements the Comparable interface because they are
+ * held in queues of vehicles for each road segment, to know their ordinal 
+ * position. Thus, Vehicles are compared according to their distance
+ * to the next junction.
  * 
  * @author Yoann
  *
@@ -55,9 +58,10 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	/**
 	 * Generic Vehicle constructor.
 	 * 
-	 * @param space
-	 * @param grid
-	 * @param roadNetwork
+	 * @param network
+	 * @param geography
+	 * @param roads
+	 * @param maxVelocity
 	 */
 	public Vehicle(Network<Junction> network, 
 			Geography geography, Map<RepastEdge<Junction>, Road> roads, int maxVelocity)
@@ -274,7 +278,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 		// might have changed because of change lane algorithm
 		this.realPos = this.getRealPosFromNetworkPos(lane);
 		this.moveTo(realPos);
-
 		
 		// following algorithm is for moving vehicles along
 		// the road network towards the next Junction.
@@ -528,7 +531,7 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 	 * Real position refers to the position
 	 * of a vehicle on a particular lane.
 	 * 
-	 * @param real position of vehicle
+	 * @param realPos the real position of vehicle
 	 */
 	public void setRealPos(Coordinate realPos) {
 		this.realPos = realPos;
@@ -568,7 +571,6 @@ public class Vehicle extends GisAgent implements Comparable<Vehicle> {
 			System.out.println("Could not move vehicle for some reason.");
 			iae.printStackTrace();
 		}
-		
 		
 		// update positions
 		realPos = getGeography().getGeometry(this).getCoordinate();

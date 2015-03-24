@@ -37,10 +37,10 @@ public class Junction extends GisAgent {
 	public Map<Junction, PriorityBlockingDeque<Vehicle>> vehicles;
 			
 	/**
+	 * Generic Junction constructor.
+	 * 
 	 * @param network
-	 * @param space
-	 * @param grid
-
+	 * @param geography
 	 */
 	public Junction(Network<Junction> network, Geography geography) {
 		super(network, geography);
@@ -60,7 +60,7 @@ public class Junction extends GisAgent {
 	 * Tells the Junction about its adjacent Junctions. The given Junction 
 	 * is added to the List of Junctions that it now has a lane between. 
 	 * 
-	 * @param junc is the other Junction the lane will be between.
+	 * @param j is the other Junction the lane will be between.
 	 */
 	public void addJunction(Junction j) {
 		this.junctions.add(j);
@@ -109,6 +109,11 @@ public class Junction extends GisAgent {
 		this.junctions.clear();
 	}
 	
+	/**
+	 * Two junctions with same coordinates are 
+	 * equivalent.
+	 * @return true if junctions have the same coordinates
+	 */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Junction)) {
@@ -156,6 +161,16 @@ public class Junction extends GisAgent {
 		q.add(v);
 	}
 	
+	/**
+	 * Once a vehicle has overtaken another vehicle
+	 * it must tell the next junction its new position.
+	 * This is done by re-adding the vehicle in the 
+	 * priority queue with its updated weight, the distance
+	 * to the next junction.
+	 * 
+	 * @param j previous junction
+	 * @param v vehicle
+	 */
 	public void reorderVehicle(Junction j, Vehicle v) {
 		PriorityBlockingDeque<Vehicle> q = this.vehicles.get(j);
 		q.remove(v);
@@ -208,7 +223,7 @@ public class Junction extends GisAgent {
 	 * v[1] => Vehicle on Lane.INNER
 	 * 
 	 * @param j junction
-	 * @param v vehicle
+	 * @param vehicle
 	 * @param checkAhead check for vehicle ahead if true
 	 * @return array of vehicles
 	 */

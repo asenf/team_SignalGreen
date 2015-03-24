@@ -8,7 +8,7 @@ import signalGreen.Constants.Signal;
  * @author Waqar
  *
  */
-public class Light {
+public class Light extends GisAgent {
 
 	private Signal signal;
 	
@@ -40,6 +40,9 @@ public class Light {
 		this.signal = signal;
 	}
 	
+	/**
+	 * Switches signal from GREEN to RED or AMBER.
+	 */
 	public void toggleSignal() {
 		if (this.signal == Signal.GREEN) {
 			this.signal = Signal.RED;

@@ -1,11 +1,20 @@
 package signalGreen;
 
+/**
+ * Constant class holds all arbitrary calibration parameters
+ * derived from manual testing of Signal Green.
+ * 
+ * @author Signal Green Team*
+ */
 public final class Constants {
 	
 	public static final String NETWORK = "road network";
 	public static final String ID = "signalGreen";
 	
-	// user parameter for creating number at runtime (aks)
+	// put all GIS maps in the following folder
+	public static final String MAPS_FOLDER = "data/maps/";
+	
+	// user-defined parameter
 	public static final String NUM_VEHICLES = "numVehicle";
 	
 	// distance between lanes in meters
@@ -24,6 +33,8 @@ public final class Constants {
 	// because vehicle graphics are bigger than real scale
 	public final static int CONV_RATIO_METERS = 70;
 	
+	// default speed limit for roads
+	public static final int DEFAULT_SPEEDLIMIT = 80;
 	// maximum velocity of cars when initialised
 	public final static int[] speed = {100, 120, 140, 80};
 	// boundaries what is fast and slow, in km/h
@@ -38,6 +49,7 @@ public final class Constants {
 	public static final double CAR_SLOW_ACC = 1.0;
 	public static final double CAR_FAST_ACC = 1.2;
 	public static final double TRUCK_ACC = 0.8;
+	public static final int TRUCK_DEFAULT_MAX_VELOCITY = 80;
 	
 	// car graphics
 	public static String ICON_SLOW_CAR = "car_simple.png";

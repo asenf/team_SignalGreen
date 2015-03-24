@@ -26,7 +26,8 @@ public abstract class GisAgent {
 	private String baseURL;
 	
 	/**
-	 * Default constructor. 
+	 * Default constructor.
+	 * This constructor should not be used. 
 	 */
 	public GisAgent() {  
 		this.ID = UniqueID++;
@@ -34,6 +35,13 @@ public abstract class GisAgent {
 		geography = null;
 	}
 	
+	/**
+	 * Constructs a generic GIS agent with its unique ID
+	 * and references to the road network and GIS geography.
+	 * 
+	 * @param network
+	 * @param geography
+	 */
 	public GisAgent(Network<Junction> network, Geography geography) {  
 		this.ID = UniqueID++;
 		this.network = network;
@@ -76,7 +84,8 @@ public abstract class GisAgent {
 	}
 	
     /**
-     * Get the coordinates on GIS projection
+     * Get the coordinates on GIS projection.
+     * @return coordinate
      */
     public Coordinate getCoords() {
             return coordinate;

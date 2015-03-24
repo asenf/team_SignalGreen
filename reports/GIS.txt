@@ -1,0 +1,44 @@
+
+
+
+Use of GIS
+
+	In the final version of our software vehicle’s movement is coordinated by using the Geographic Information System. This allows for the program to use real maps with real data in them, from any country in the world. It uses a more realistic coordinate system, with azimuth angles, that take into account the fact that the maps are projected onto a sphere, not a flat plane as is the case with the Cartesian system the UI uses. This allows for more realistic simulation but adds another layer of complexity to the code base. A further complication is the fact that GIS uses true north, and the UI uses grid north. However the use of GIS means that both the topology and the actual distance in metres is real, creating more meaningful data in our traffic analysis. 
+
+
+	GIS is a system that captures the geographical data of the real world, 
+and allows access to it in the form of standardised shape files.
+The GIS module is the most accurate representation of the real world that Repast Simphony provides. However, there is a mismatch between the Cartesian system of coordinates the UI uses and the spherical coordinates GIS uses. Polar coordinates are needed, because using real maps are projections on sphere (The Earth). This means all of the angles take into account the distance to north, and means calculations involving coordinates and angles are different. Of particular importance is the azimuth, an angle in degrees that takes into account this projection and refers to north. This was done using an external library geotools, [1]. The calculations are quite in depth due to GIS using true north, and the UI using grid north. Image of grid perhaps in [1]? 
+
+	GIS data is stored in the form of shape files (.shp). These files store both the geometry of the road networks, as well as attributes such as the name of the road, and speed limit of each road. This is all accessible in the UI so it is possible to see exactly what road seems congested in a simulation, for example. Again, this gives significance to our results; it is not arbitrary roads that become busy or quiet, but actual existing roads that are being tested upon.   By using shape files and GIS, the extensibility of our software is increased. Currently it cannot handle all of the roads in the world, but can run on a significant portion of them and the foundation is there so that it would relatively trivial to add some more functionality, such as one way roads, that would enable more road networks to be utilised. In addition, every country in the world has road maps freely available[2].
+
+
+
+In code
+
+
+	The additional overhead of using GIS takes up a significant portion of the codebase, mostly in the Vehicle, Utils  and SignalGreenBuilder classes. SignalgreenBuilder is the class responsible for creating the context that the simulation runs in, and this includes the road network. The shapefile is loaded in the constructor using a static path plus user input for the specific file. The features in the shapefile, which in our case are always roads, are iteratered over and put into an ArrayList. Next, the features are iterated over again and used to create a map, containing the coordinates of each potential junction, and the degree of its roads. Duplicate coordinates are skipped.  This map is then iterated over and used to create the junctions, as well as determine what traffic policy a junction needs based on the number of connecting roads and whether traffic lights or give way signs are being used. Finally, once the junctions are created, the roads in the shapefile can be iterated over, turned into Repast network edges, to conclude building the topology. 
+
+ Every vehicle instance has two sets of coordinates; realPos for the UI, networkPos for calculations. In addition to the calculations required for polar coordinates, there are further calculations required for converting between the two different types. As well as extra instance variables, there are a number of methods involved, some of the most important are: (maybe put in latex table)
+
+Utils.distance – uses geodetic calculator to get distance in metres between two GIS coordinates. This is from the external library geotools. 
+
+Vehicle.moveTowards – takes in a coordinate and distance, converts it to GIS coordinates, and updates positions in the real GIS geography as well as the UI.
+
+getPosition takes in a single coordinate and returns an array of perpendicular coordinates, two logical and two real. 
+
+Two methods getNetworkPosFromRealPos and getRealPosFromNetworkPos both wrap the method getPosition,  and based on the vehicles current lane returns a coordinate from the array. 
+
+getPosition further calls two methods in Utils, getAzimuth and createCoordsFromAngle.
+
+Utils.getAzimuth – takes in two coordinates and geography, returns the azimuth as a double. This is very complex as so uses the geodetic calculator found in the external library geotools. 
+
+Utils.createCoordsFromCoordAndAngle – This method requires the azimuth angle, coordinate, distance, and geography. The azimuth is converted to radians to make the calculations easier, and then based on the whether the angle is +90 or -90 degrees, it is adjusted to place in one of the four quadrants. The two angles are then converted back to degrees. A geodetic calculator instance from geotools is again used, and is initialised with the two coordinates. The left and right lanes, including inner and outer for each, are created with the angle and distance in the form of the Java AWT library Point2D class. Finally an array is used to return the four new coordinates of all the lanes. 
+
+
+	GIS  allows for any map all over the world to be used, therefore making the traffic simulation much more realistic – as it is based on real data rather than fake maps we made ourselves. It also means the program is more extendible – future work can easily be adapted to use any road map for any country in the world. It did create lots of extra overhead, but this was mitigated partly by external library, and the disadvantages were outweighed by the advantages of  
+meaningful results and flexibility in input data. 
+
+1) https://github.com/geotools/geotools/blob/master/modules/unsupported/process-raster/src/main/java/org/geotools/process/raster/GridConvergenceAngleCalc.java
+
+2)www.diva-gis.org/gdata

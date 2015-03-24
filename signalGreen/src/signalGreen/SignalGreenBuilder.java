@@ -93,9 +93,6 @@ public class SignalGreenBuilder implements ContextBuilder<Object> {
 		// Generate some vehicles using user parameters
 		generateVehicles(context);
 		
-		//Test for most popular inital junction function.
-		System.out.println("Most popular inital junction: " + Utils.getPopularJunction(junctions).getID());
-		
 		return context;
 	}
 

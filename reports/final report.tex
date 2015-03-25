@@ -295,7 +295,7 @@ Method computeDisplacement() is used to determine exactly how far in metres the 
 \subsubsection{Method Step()}
 
 
-A vehicle\textquoteright s vision is the distance around which a vehicle is aware of its environment and is calculated based on constant values DIST{\_}VEHICLES and DIST{\_}VEHICLES{\_}STOPPED. Method step() determines individual vehicle behaviours, including interaction with junctions and other vehicles, increasing/decreasing speed, changing lanes, and moving the vehicle along the map.
+A vehicle\textquoteright s vision is the distance around which a vehicle is aware of its environment and is calculated based on the sum of the displacement and the constant values DIST{\_}VEHICLES or DIST{\_}VEHICLES{\_}STOPPED. Method step() determines individual vehicle behaviours, including interaction with junctions and other vehicles, increasing/decreasing speed, changing lanes, and moving the vehicle along the map.
 
 The vehicle checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If a vehicle observes a slower moving vehicle in its path, it makes a decision whether or not to change lanes. The vehicle also checks for approaching junctions, decelerating to a stopped position before the light if a red light is in view. If no other vehicles or junctions are in its vision it will accelerate to its maxVelocity. 
 \\

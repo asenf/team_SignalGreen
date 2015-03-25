@@ -53,8 +53,11 @@ data being extrapolated to analyse change is the speed of the vehicles.
 
 Small New York map (nyc_small.shp) covers an area of approximately 20km^2. 
 This model does not account for alleys, smaller streets but only avenues. It 
-simulates 10,000 vehicles to account for peak hours and 1,000 to simulate 
+is set at 10,000 vehicles to account for peak hours and 1,000 to simulate 
 late night.
+
+Figure xx. Legend displaying palette used to visualise speed of individual
+vehicle agents in the simulation.
 
 Traffic lights policy was simulated on this map with parameters set as
 10,000 vehicles and 1000 ticks. The data shows a gradual increment of 
@@ -76,7 +79,6 @@ density to the traffic lights policy with the same number of vehicles.
 Figure xx.
 Figure xx.
 
-
 10,000 vehicles and 1000 ticks was not carried out as the simulation 
 would not accurately cope with such a high density of vehicles. 
 Furthemore, vehicles could potentially suffer accidents that have yet to be modelled. 
@@ -96,6 +98,28 @@ A mix of the two is then the best trade-off between a higher speed and
 security of population and drivers. Moreover, the difference in distribution 
 between give way and traffic light policies when using a 1,000 vehicles has 
 no significant difference.
+
+New Jersey map (new_jersey.shp) covers a much more complex infastructure. 
+Below it is set at 2,000 vehicles with 1000 ticks to analyse the give way 
+and traffic light policies.
+
+Traffic lights policy was simulated on the model where the data shows a 
+steep climb to the maximum average speed of 110 and then remaining around 105.
+Although the traffic light junctions are congested with queues.
+Figure xx.
+Figure xx.
+
+The give way policy was run using the same parameters and the result was a 
+constant average speed of 110. Furthermore, vehicles were scattered evenly with 
+only a small number of queues present.
+Figure xx.
+Figure xx.
+
+The following is a summary in tabular form for policies tested on this map:
+Policy          No. of Vehicles      Ticks      Average Speed
+Traffic Light   2,000               1,000      105  
+Give Way        2,000               1,000      100
+
 
 POTENTIAL FUTURE COMPARISONS
 In future, there are alternative ways that can be used to analyse 

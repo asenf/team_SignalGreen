@@ -1,21 +1,23 @@
-\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
-\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+
+\documentclass[11pt]{article}
+
+\usepackage{geometry}
+\geometry{a4paper,margin=3cm}
+
 \usepackage{graphicx}
-\graphicspath{ {/Users/adeelasaalim/Pictures/} }				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
-\usepackage{amssymb}
+\graphicspath{ {/Users/adeelasaalim/Pictures/} }	
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+
+											
 
 \title{Test Plan}
 \author{}
-%\date{}							% Activate to display a given date or no date
+%\date{}						
 
 \begin{document}
 \maketitle
 \section{Introduction}
-%\subsection{}
 This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of system is not possible but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible because most of the methods needs objects to be passed as parameters and their behaviour is changed on every tick of simulation. 
 
 \section{Objectives and Tasks}
@@ -113,39 +115,57 @@ Elements and data which loads at run time will form part of runtime testing. It 
 		4, 0 , -1 and a character given as input.\hfill \\
 		\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
 		\underline{Actual Output:}  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
-		\underline{Result:} Passed
-	
-		\includegraphics[scale=0.5]{4cars}\hfill \\
-		
+		\underline{Result:} Passed\hfil \\
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.8]{4cars}
+		\caption{Number of cars}
+		\end{center}
+		\end{figure}
 		
 		\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
 		"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
 		\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
 		\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
 		\underline{Result:}Passed.
-		\end{itemize}
+		
+		
+		\item \textbf{Test Case 11:}Multiple Maps\hfill \\
+		\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input.  \hfill \\
+		\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
+		\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
+		\underline{Result:}Passed
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.3]{manhattan_section}
+		\caption{Map of Manhattan}\hfill \\
+		\end{center}
+		\end{figure}
+		
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.3]{nyc_full}
+		\caption{Map of New York}
+		\end{center}
+		\end{figure}
+		
+		
+	\end{itemize}
 
 \item \textbf{Overall behaviour of system: }\hfill \\
 		Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed 		at run time.\hfill \\
 	\begin{itemize}
-	\item	\textbf{Test Case 11:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
+	\item	\textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
 		\underline{Expected Output} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
 		\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
 		There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
-		\underline{Result: }Passed
-		\begin{figure}[h!]
-		\centering
-		\includegraphics{RoadNetwork}\hfill \\
-		\caption{Probe Selection}
-		\end{figure}
-
-		\begin{figure}[h!]
-		\centering
+		\includegraphics[scale=0.7]{RoadNetwork}
 		\includegraphics{Sim}\hfill \\
-		\caption{Vehicle IDs}\hfill \\
-		\end{figure}
+			
+		\underline{Result: }Passed
+			
 	\end{itemize}
 \end{itemize}
 \section{Conclusion}
-
+This test plan covers all major requirements of traffic simulation we have developed which verifies the functional requirements established at the beginning of the project. Test cases were developed to test the expected behaviour of the system using different parameters at run time.
 \end{document}  

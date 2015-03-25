@@ -5,6 +5,7 @@
 \geometry{a4paper,margin=3cm}
 
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
@@ -33,6 +34,7 @@
 
 \maketitle 
 
+\listoftables
 
 \section{INTRODUCTION}
 
@@ -61,6 +63,7 @@ Analysis of complex urban networks and traffic flow models is the groundwork for
 
 
 Consequently, causes and effects of traffic congestion have been studied extensively in order to face the increasing road network saturation. Several factors that have significant impact on traffic flow have been identified, including the following: 
+\begin{singlespace}
 \begin{itemize}\itemsep0pt
 \item Road/Traffic policy approaches
 \item Timing/Cost of journeys
@@ -72,6 +75,8 @@ Consequently, causes and effects of traffic congestion have been studied extensi
 \item Rush hours
 \item Occasional factors such as car accidents, road works or bad weather
 \end{itemize}
+\end{singlespace}
+
 
 The model we implemented has been designed with acceptable trade-off between accuracy and computational complexity. We have therefore selected the following set of urban traffic factors:
 \begin{itemize}\itemsep0pt
@@ -231,7 +236,7 @@ Any GIS map shapefile (.shp) representing road networks can be loaded into our s
 GIS maps were simplified by removing the road coordinates between the Junctions to make it more efficient; creating road agents with only the endpoint coordinates specified prevents very complex urban street maps from becoming too computationally expensive.[see figure XXX] 
 \\
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{creating_road_segments_from_shapefile}
 \caption{creating road segments from shapefile}
@@ -242,9 +247,9 @@ GIS maps were simplified by removing the road coordinates between the Junctions 
 Each Road agent is added to both the Context and the GIS geography, along with two Lane agents for each side of the Road (used only for displaying vehicle graphics on the UI). A Repast edge is then added to the road network, and the Repast edges are then linked together to create the road network topology. This is done by keeping a cache of all previously created Junctions, so every time a new Road agent is created the cache is checked to see if there already exists Junctions for its end point coordinates. If there is, then we know all roads linked to those Junctions are also linked to the Road agent being created, and we do not need to create any more new Junctions. [3c for more detail] 
 \\
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.4]{creating_new_roads}
+\includegraphics[scale=0.3]{creating_new_roads}
 \caption{How to create new roads}
 \end{center}
 \end{figure}
@@ -291,7 +296,7 @@ A vehicle\textquoteright s vision is the distance around which a vehicle is awar
 The vehicle checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If a vehicle observes a slower moving vehicle in its path, it makes a decision whether or not to change lanes. The vehicle also checks for approaching junctions, decelerating to a stopped position before the light if a red light is in view. If no other vehicles or junctions are in its vision it will accelerate to its maxVelocity. 
 \\
 
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 \includegraphics[scale=0.45]{step_method_seq_diagram}
 \caption{Sequence diagram}
@@ -310,7 +315,7 @@ Next, if V is close enough to J[i], traffic management policies are evaluated (s
 V checks what is the J[i] on the route J[n]. It knows which vehicles are approaching because it holds a priority queue of incoming Vehicles for each road segment, where weights are the distance from V to J[i]. This is an efficient solution as insertion is done in O(log n), while removal is done in constant time.
 \\
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{overtaking}
 \caption{Faster vehicle overtakes slower truck and merges back on the outer lane.}
@@ -347,7 +352,7 @@ Azimuth coordinates allow one to measure distances and plot locations in a spher
 This further required the use of kinematics equations for plotting the direction of vehicles in several methods. Kinematics is the study of objects moving through space. Because we used GIS maps, all calculations along the map involve real distances.
 \\
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.3]{moving_vehicles}
 \caption{Vehicle V moving on its planned route.}
@@ -377,25 +382,25 @@ Class TrafficLight.java extends Junction.java and schedules traffic light manage
 In order to implement traffic management policies, some junctions need to embed special behaviour. Signal Green supports traffic light logic or give way signs, however the model can easily be expanded by extending the Junction class. We assume that junctions with more than two road segments need some traffic management logic, so they will be either instances of TrafficLight or GiveWaySign.
 
 Traffic lights have one instance of Light for each road adjacent to that junction, each light has a signal attribute which can be either RED, GREEN or AMBER. Lights change their state every 25 ticks, at any time only one Light for that junction can be in GREEN state. Vehicles that are exiting a road segment check if the Junction is an instance of TrafficLight, in which case they inspect the signal to know if they must stop.
+\\
 
-\begin{figure}[b]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{traffic_light_junction}
 \caption{Junction of type TrafficLight.}
 \end{center}
 \end{figure}
 
-
+\\
 In proximity of give way intersections, on the other hand, vehicles check for each road segment which vehicle is closest to that intersection, to know who has precedence. (See Figure .)
-
-\begin{figure}[h]
+\\
+\begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.2]{give_way_junction}
+\includegraphics[scale=0.3]{give_way_junction}
 \caption{Junction of type GiveWaySign.}
 \end{center}
 \end{figure}
-
-
+\\
 
 
 \subsection{Other Work}
@@ -497,7 +502,7 @@ All objectives set for Milestone 1 were completed in its entirety by the deadlin
 \\
 
 
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 \includegraphics[scale=1.0]{gantt8Feb}
 \caption{Gantt Chart from 8 Feb}
@@ -506,7 +511,7 @@ All objectives set for Milestone 1 were completed in its entirety by the deadlin
 
 \\
 
-\begin{figure}[h]
+\begin{figure}
 \begin{center}
 \includegraphics[scale=0.8]{gantt26Mar}
 \caption{Gantt Chart from 26 March}
@@ -536,10 +541,47 @@ Final Characteristics
 - multiple lanes on some/all roads
 - speed limits on roads
 
+
+
+
+
+
+
+
+
 Functional Requirements
-- multiple maps in GIS standard
-Vehicles run on map
-Variable number of vehicles 
+
+- Maps
+	Multiple maps can be used
+	Use GIS standard
+	
+
+- Roads 
+	Can have multiple lanes
+	Traffic flows bi-directionally	
+	Vehicles appear to run along roads
+
+- Vehicles
+	Variable number of vehicles 
+	Accelerate and decelerate
+	Appear visually different by type
+	Type car with unique behaviour
+	Type truck with unique behaviour
+	Exhibit passing behaviours
+	Journey calculated by road length and speed limit
+
+- Junctions 
+	Connect roads
+	Type give way
+	Type signal
+		Signals change between red, amber, green
+		Vehicles stop at red and go at green
+	Source at junctions
+	Stop/wait before junctions
+	
+- Simulation 
+	User controlled variables
+	Runs on different machines
 
 
 \subsection{Repast Simphony}
@@ -588,5 +630,6 @@ Yoann: 21.5
 
 
 \end{document}
+
 
 

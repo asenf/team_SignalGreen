@@ -410,23 +410,11 @@ The only class which is not our team\textquoteright s work is class PriorityBloc
 
 
 \section{TESTING}
-
-
-Testing will be done to confirm that our system conforms to functional requirements and expected behaviours. Exhaustive testing of the system is naturally not realistically possible in the time given, but we will perform basic unit, functional, error, cross-platform, and system testing. 
-
-ABM testing will be done by running the simulation, observing the agents\textquoteright  behaviour and comparing it with expected behaviour. We will be test our code at three diï¬€erent levels of functionality:
-
-\begin{enumerate}\itemsep0pt
-\item Agent behaviour: Verified by checking the changing environment variables around agents. This tests functional requirements of the system as well.
-\item Runtime Parameters: Elements and data which load at runtime will be tested using valid and invalid inputs and checking for correct results. 
-\item Overall system behaviour: Checks that all agents of the system produce expected results for a given scenario.
-\end{enumerate}
-
-This will include testing of agents interaction with other components of environment (roads, traï¬ƒc lights) when programme will be executed at run time.
-
-Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
 \subsection{Introduction}
-This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of system is not possible but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible because most of the methods needs objects to be passed as parameters and their behaviour is changed on every tick of simulation. 
+This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of the system is naturally not realistically possible in the time given but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
+
+ABM testing will be done by running the simulation, observing the agents \textquoteright  behaviour and comparing it with expected behaviour. We will  test our code at three diff€erent levels of functionality:
+This will include testing of agents interaction with other components of environment (roads, traffiƒc lights) when programme will be executed at run time.
 
 \subsection{Objectives and Tasks}
 \subsubsection{Objectives}
@@ -446,9 +434,15 @@ This test plan has been created to check if our system conforms to all functiona
 \subsection{Scope}
 	In context to our system, which is implemented using agent-based model it will be tested at three different levels of functionality.
 		\begin{itemize}
-			\item Agents' behaviour
-			\item Runtime Parameters
-			\item	 Overall behaviour of system
+			\item Agents' behaviour\hfill \\
+			Verified by checking the changing environment variables around agents. This tests functional requirements of the system as well.\hfill \\
+
+			\item Runtime Parameters\hfill \\
+			Elements and data which load at runtime will be tested using valid and invalid inputs and checking for correct results. \hfill \\
+
+			\item	 Overall behaviour of system\hfill \\
+	Checks that all agents of the system produce expected results for a given scenario.\hfill \\
+
 		\end{itemize} 
 
 \begin{itemize}

@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.22)  25 MAR 2015 19:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  25 MAR 2015 21:13
 entering extended mode
-**final*report.tex
-("C:\Users\NX900\git\team_SignalGreen\reports\final report.tex"
+**D:/GitRepo/reports/final*report.tex
+("D:/GitRepo/reports/final report.tex"
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -13,9 +13,9 @@ german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -30,22 +30,22 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+("D:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count87
@@ -61,28 +61,28 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks15
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+("D:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+("D:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count90
@@ -90,7 +90,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count91
 \float@exts=\toks16
@@ -98,7 +98,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks17
 \@floatcapt=\box27
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip43
 \enit@outerparindent=\dimen113
@@ -106,31 +106,43 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box28
 \enitdp@description=\count92
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
 LaTeX Info: Redefining \cite on input line 302.
-LaTeX Info: Redefining \nocite on input line 373.
-Package: cite 2010/09/10  v 5.3
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+("D:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+
+
+Package natbib Warning: The `cite' package should not be used
+(natbib)                with natbib. Use option `sort' instead.
+
+\bibhang=\skip44
+\bibsep=\skip45
+LaTeX Info: Redefining \cite on input line 694.
+LaTeX Info: Redefining \citenum on input line 708.
+\c@NAT@ctr=\count93
+) ("D:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
-("C:\Users\NX900\git\team_SignalGreen\reports\final report.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
+("D:\GitRepo\reports\final report.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -166,42 +178,42 @@ LaTeX Font Info:    ... okay on input line 30.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count93
+\scratchcounter=\count94
 \scratchdimen=\dimen114
 \scratchbox=\box29
-\nofMPsegments=\count94
-\nofMParguments=\count95
+\nofMPsegments=\count95
+\nofMParguments=\count96
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count96
+\MPscratchCnt=\count97
 \MPscratchDim=\dimen115
-\MPnumerator=\count97
-\makeMPintoPDFobject=\count98
+\MPnumerator=\count98
+\makeMPintoPDFobject=\count99
 \everyMPtoPDFconversion=\toks20
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 36.
+(Font)              <12> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 36.
+(Font)              <8> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 36.
- ("C:\Users\NX900\git\team_SignalGreen\reports\final report.lot")
+(Font)              <6> on input line 39.
+ ("D:\GitRepo\reports\final report.lot")
 \tf@lot=\write3
 
-Overfull \hbox (1.90916pt too wide) in paragraph at lines 49--50
+Overfull \hbox (1.90916pt too wide) in paragraph at lines 52--53
 \T1/cmr/m/n/10.95 (ABM) through us-ing Repast Sim-phony, and gained ex-pe-ri-en
 ce with ver-sion con-trol through
  []
 
 
-LaTeX Warning: Citation `10j' on page 1 undefined on input line 55.
+Package natbib Warning: Citation `10j' on page 1 undefined on input line 58.
 
 <england_traffic.jpg, id=1, 414.04688pt x 294.34969pt>
 File: england_traffic.jpg Graphic file (type jpg)
 
 <use england_traffic.jpg>
-Package pdftex.def Info: england_traffic.jpg used on input line 60.
+Package pdftex.def Info: england_traffic.jpg used on input line 63.
 (pdftex.def)             Requested size: 289.83083pt x 206.04337pt.
 
 
@@ -214,18 +226,16 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.67 \begin{singlespace}
+l.70 \begin{singlespace}
                         
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+? r
+OK, entering \nonstopmode...
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 72.
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 72.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
@@ -236,48 +246,48 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.79 \end{singlespace}
+l.82 \end{singlespace}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-LaTeX Warning: Citation `1a' on page 2 undefined on input line 97.
+Package natbib Warning: Citation `1a' on page 2 undefined on input line 100.
 
 
-LaTeX Warning: Citation `2b' on page 2 undefined on input line 98.
+Package natbib Warning: Citation `2b' on page 2 undefined on input line 101.
 
 
-LaTeX Warning: Citation `3c' on page 2 undefined on input line 99.
+Package natbib Warning: Citation `3c' on page 2 undefined on input line 102.
 
 
-LaTeX Warning: Citation `4d' on page 2 undefined on input line 100.
+Package natbib Warning: Citation `4d' on page 2 undefined on input line 103.
 
 
-LaTeX Warning: Citation `5e' on page 2 undefined on input line 101.
+Package natbib Warning: Citation `5e' on page 2 undefined on input line 104.
 
 
-LaTeX Warning: Citation `5e' on page 2 undefined on input line 101.
+Package natbib Warning: Citation `5e' on page 2 undefined on input line 104.
 
 
-LaTeX Warning: Citation `5e' on page 2 undefined on input line 101.
+Package natbib Warning: Citation `5e' on page 2 undefined on input line 104.
 
 
-LaTeX Warning: Citation `6f' on page 2 undefined on input line 102.
+Package natbib Warning: Citation `6f' on page 2 undefined on input line 105.
 
 
-LaTeX Warning: Citation `7g' on page 2 undefined on input line 103.
+Package natbib Warning: Citation `7g' on page 2 undefined on input line 106.
 
 
-LaTeX Warning: Citation `8h' on page 2 undefined on input line 104.
+Package natbib Warning: Citation `8h' on page 2 undefined on input line 107.
 
-[2 <C:/Users/NX900/git/team_SignalGreen/reports/england_traffic.jpg>]
+[2 <D:/GitRepo/reports/england_traffic.jpg>]
 
-LaTeX Warning: Citation `5e' on page 3 undefined on input line 126.
+Package natbib Warning: Citation `5e' on page 3 undefined on input line 129.
 
 
-LaTeX Warning: Citation `8h' on page 3 undefined on input line 132.
+Package natbib Warning: Citation `8h' on page 3 undefined on input line 135.
 
 [3]
 
@@ -287,8 +297,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.149 M
-       ilestone 2:
+l.152 M
+       ilestone 2 (Required):
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -300,8 +310,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.161 M
-       ilestone 3:
+l.164 M
+       ilestone 3 (Optional):
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -313,8 +323,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.170 P
-       ossible Traffic Policy Implementations:
+l.173 P
+       ossible Traffic Policy Implementations for Simulation:
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -326,7 +336,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.179 
+l.182 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -334,30 +344,30 @@ or  <return>  to continue without it.
 
 [4]
 
-LaTeX Warning: Citation `5e' on page 5 undefined on input line 189.
+Package natbib Warning: Citation `5e' on page 5 undefined on input line 192.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 192--194
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--196
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--200
+Underfull \hbox (badness 10000) in paragraph at lines 199--201
 
  []
 
 
-LaTeX Warning: Citation `4d' on page 5 undefined on input line 203.
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
+
+ []
+
+
+Package natbib Warning: Citation `4d' on page 5 undefined on input line 206.
 
 [5]
 
@@ -367,14 +377,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.206 
+l.209 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 236--239
+Underfull \hbox (badness 10000) in paragraph at lines 239--242
 
  []
 
@@ -383,7 +393,7 @@ File: creating_road_segments_from_shapefile.jpg Graphic file (type jpg)
 
 <use creating_road_segments_from_shapefile.jpg>
 Package pdftex.def Info: creating_road_segments_from_shapefile.jpg used on inpu
-t line 242.
+t line 245.
 (pdftex.def)             Requested size: 287.87039pt x 167.42252pt.
 
 
@@ -393,7 +403,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.248 E
+l.251 E
        ach Road agent is added to both the Context and the GIS geography, al...
 
 Your command was ignored.
@@ -401,10 +411,10 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-LaTeX Warning: Citation `3c' on page 7 undefined on input line 248.
+Package natbib Warning: Citation `3c' on page 7 undefined on input line 251.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--250
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
 
  []
 
@@ -412,10 +422,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 248--250
 File: creating_new_roads.jpg Graphic file (type jpg)
 
 <use creating_new_roads.jpg>
-Package pdftex.def Info: creating_new_roads.jpg used on input line 253.
+Package pdftex.def Info: creating_new_roads.jpg used on input line 256.
 (pdftex.def)             Requested size: 223.13535pt x 160.80199pt.
- [7 <C:/Users/NX900/git/team_SignalGreen/reports/creating_road_segments_from_sh
-apefile.jpg>]
+ [7 <D:/GitRepo/reports/creating_road_segments_from_shapefile.jpg>]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -423,14 +432,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.259 A
+l.262 A
        s an example, consider figure [concrete example].
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--273
+Underfull \hbox (badness 10000) in paragraph at lines 274--276
 
  []
 
@@ -439,7 +448,7 @@ File: GIS_display_manhattan_loaded.jpg Graphic file (type jpg)
 
 <use GIS_display_manhattan_loaded.jpg>
 Package pdftex.def Info: GIS_display_manhattan_loaded.jpg used on input line 27
-6.
+9.
 (pdftex.def)             Requested size: 405.50783pt x 223.63153pt.
 
 
@@ -449,21 +458,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.281 
+l.284 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[8 <C:/Users/NX900/git/team_SignalGreen/reports/creating_new_roads.jpg> <C:/Use
-rs/NX900/git/team_SignalGreen/reports/GIS_display_manhattan_loaded.jpg>]
-Overfull \hbox (7.9399pt too wide) in paragraph at lines 295--296
+[8 <D:/GitRepo/reports/creating_new_roads.jpg> <D:/GitRepo/reports/GIS_display_
+manhattan_loaded.jpg>]
+Overfull \hbox (7.9399pt too wide) in paragraph at lines 298--299
 \T1/cmr/m/n/10.95 cal-cu-lated based on con-stant val-ues DIST_VEHICLES and DIS
 T_VEHICLES_STOPPED.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--299
+Underfull \hbox (badness 10000) in paragraph at lines 300--302
 
  []
 
@@ -471,10 +480,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 297--299
 File: step_method_seq_diagram.jpg Graphic file (type jpg)
 
 <use step_method_seq_diagram.jpg>
-Package pdftex.def Info: step_method_seq_diagram.jpg used on input line 302.
+Package pdftex.def Info: step_method_seq_diagram.jpg used on input line 305.
 (pdftex.def)             Requested size: 451.68333pt x 591.70517pt.
 
-Overfull \hbox (24.89198pt too wide) in paragraph at lines 302--303
+Overfull \hbox (24.89198pt too wide) in paragraph at lines 305--306
  [] 
  []
 
@@ -485,7 +494,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.308 T
+l.311 T
        he method step() works as follows. (See Figure .) Assume the current ...
 
 Your command was ignored.
@@ -493,17 +502,17 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--318
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
 
  []
 
 <overtaking.jpg, id=39, 875.27pt x 250.9375pt>
 File: overtaking.jpg Graphic file (type jpg)
  <use overtaking.jpg>
-Package pdftex.def Info: overtaking.jpg used on input line 321.
+Package pdftex.def Info: overtaking.jpg used on input line 324.
 (pdftex.def)             Requested size: 350.10179pt x 100.37321pt.
  [9]
-[10 <C:/Users/NX900/git/team_SignalGreen/reports/step_method_seq_diagram.jpg>]
+[10 <D:/GitRepo/reports/step_method_seq_diagram.jpg>]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -511,7 +520,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.327 F
+l.330 F
        rom Repast\textquoteright s point of view, Step() method is executed ...
 
 Your command was ignored.
@@ -519,10 +528,10 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-LaTeX Warning: Citation `9i' on page 11 undefined on input line 351.
+Package natbib Warning: Citation `9i' on page 11 undefined on input line 354.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 353--355
+Underfull \hbox (badness 10000) in paragraph at lines 356--358
 
  []
 
@@ -530,7 +539,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 353--355
 File: moving_vehicles.jpg Graphic file (type jpg)
 
 <use moving_vehicles.jpg>
-Package pdftex.def Info: moving_vehicles.jpg used on input line 358.
+Package pdftex.def Info: moving_vehicles.jpg used on input line 361.
 (pdftex.def)             Requested size: 263.18527pt x 191.21585pt.
 
 
@@ -540,37 +549,37 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.363 
+l.366 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[11 <C:/Users/NX900/git/team_SignalGreen/reports/overtaking.jpg>]
+[11 <D:/GitRepo/reports/overtaking.jpg>]
 
-! LaTeX Error: \begin{enumerate} on input line 365 ended by \end{enumeration}.
+! LaTeX Error: \begin{enumerate} on input line 368 ended by \end{enumeration}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.373 \end{enumeration}
+l.376 \end{enumeration}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--387
+Underfull \hbox (badness 10000) in paragraph at lines 388--390
 
  []
 
-[12 <C:/Users/NX900/git/team_SignalGreen/reports/moving_vehicles.jpg>]
+[12 <D:/GitRepo/reports/moving_vehicles.jpg>]
 <traffic_light_junction.jpg, id=53, 402.50375pt x 263.98625pt>
 File: traffic_light_junction.jpg Graphic file (type jpg)
 
 <use traffic_light_junction.jpg>
-Package pdftex.def Info: traffic_light_junction.jpg used on input line 390.
+Package pdftex.def Info: traffic_light_junction.jpg used on input line 393.
 (pdftex.def)             Requested size: 160.99864pt x 105.59262pt.
 
 
@@ -580,7 +589,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.396 I
+l.399 I
        n proximity of give way intersections, on the other hand, vehicles ch...
 
 Your command was ignored.
@@ -591,10 +600,10 @@ or  <return>  to continue without it.
 File: give_way_junction.jpg Graphic file (type jpg)
 
 <use give_way_junction.jpg>
-Package pdftex.def Info: give_way_junction.jpg used on input line 400.
+Package pdftex.def Info: give_way_junction.jpg used on input line 403.
 (pdftex.def)             Requested size: 220.72632pt x 88.2303pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 396--403
+Underfull \hbox (badness 10000) in paragraph at lines 399--406
 
  []
 
@@ -605,19 +614,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.405 
+l.408 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[13 <C:/Users/NX900/git/team_SignalGreen/reports/traffic_light_junction.jpg> <C
-:/Users/NX900/git/team_SignalGreen/reports/give_way_junction.jpg>] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 471--473
-
- []
-
-
+[13 <D:/GitRepo/reports/traffic_light_junction.jpg> <D:/GitRepo/reports/give_wa
+y_junction.jpg>] [14]
 Underfull \hbox (badness 10000) in paragraph at lines 474--476
 
  []
@@ -628,52 +632,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 477--479
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 487--489
+Underfull \hbox (badness 10000) in paragraph at lines 480--482
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--492
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 492.
+(Font)              <10.95> on input line 495.
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--495
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 502--507
+Underfull \hbox (badness 10000) in paragraph at lines 494--498
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--513
+Underfull \hbox (badness 10000) in paragraph at lines 504--509
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--515
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 527--532
+Underfull \hbox (badness 10000) in paragraph at lines 528--533
 
  []
 
 <junction.jpg, id=65, 144.54pt x 124.21407pt>
 File: junction.jpg Graphic file (type jpg)
  <use junction.jpg>
-Package pdftex.def Info: junction.jpg used on input line 535.
+Package pdftex.def Info: junction.jpg used on input line 536.
 (pdftex.def)             Requested size: 144.53963pt x 124.21375pt.
- [16 <C:/Users/NX900/git/team_SignalGreen/reports/junction.jpg>]
-<4cars.jpeg, id=69, 171.64125pt x 317.185pt>
+ [16 <D:/GitRepo/reports/junction.jpg>] <4cars.jpeg, id=69, 171.64125pt x 317.1
+85pt>
 File: 4cars.jpeg Graphic file (type jpg)
- <use 4cars.jpeg>
-Package pdftex.def Info: 4cars.jpeg used on input line 562.
-(pdftex.def)             Requested size: 137.31316pt x 253.74832pt.
 
-<manhattan_section.jpg, id=70, 750.805pt x 715.67375pt>
+<use 4cars.jpeg>
+Package pdftex.def Info: 4cars.jpeg used on input line 561.
+(pdftex.def)             Requested size: 137.31316pt x 253.74832pt.
+ <manhattan_section.jpg, id=70, 750.805pt x 715.67375pt>
 File: manhattan_section.jpg Graphic file (type jpg)
 
 <use manhattan_section.jpg>
-Package pdftex.def Info: manhattan_section.jpg used on input line 581.
+Package pdftex.def Info: manhattan_section.jpg used on input line 577.
 (pdftex.def)             Requested size: 225.24323pt x 214.70378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--585
+Underfull \hbox (badness 10000) in paragraph at lines 570--581
 
  []
 
@@ -681,60 +690,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 574--585
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 589--592
+Underfull \hbox (badness 10000) in paragraph at lines 583--586
 
  []
 
-[17 <C:/Users/NX900/git/team_SignalGreen/reports/4cars.jpeg>]
+[17 <D:/GitRepo/reports/4cars.jpeg>]
 <RoadNetwork.png, id=74, 246.1697pt x 140.02313pt>
 File: RoadNetwork.png Graphic file (type png)
  <use RoadNetwork.png>
-Package pdftex.def Info: RoadNetwork.png used on input line 596.
+Package pdftex.def Info: RoadNetwork.png used on input line 590.
 (pdftex.def)             Requested size: 172.3176pt x 98.01552pt.
 
 <Sim.png, id=76, 238.64156pt x 225.84375pt>
 File: Sim.png Graphic file (type png)
  <use Sim.png>
-Package pdftex.def Info: Sim.png used on input line 597.
+Package pdftex.def Info: Sim.png used on input line 591.
 (pdftex.def)             Requested size: 238.64096pt x 225.84319pt.
 
-Overfull \hbox (19.48111pt too wide) in paragraph at lines 592--598
+Overfull \hbox (19.48111pt too wide) in paragraph at lines 586--593
 $[]$ \T1/cmr/m/n/10.95 of next.printVehiclesQueue(origin):[signalGreen.Vehicle@
 54008645,
  []
 
 
-Overfull \hbox (31.15533pt too wide) in paragraph at lines 592--598
+Overfull \hbox (31.15533pt too wide) in paragraph at lines 586--593
 [] [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 592--598
-
- []
-
-[18 <C:/Users/NX900/git/team_SignalGreen/reports/manhattan_section.jpg> <C:/Use
-rs/NX900/git/team_SignalGreen/reports/RoadNetwork.png> <C:/Users/NX900/git/team
-_SignalGreen/reports/Sim.png>] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 649--651
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 651--653
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 653--655
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 655--657
-
- []
-
+[18 <D:/GitRepo/reports/manhattan_section.jpg> <D:/GitRepo/reports/RoadNetwork.
+png> <D:/GitRepo/reports/Sim.png>] [19]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -742,26 +726,41 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.660 
+l.648 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 678--680
+Underfull \hbox (badness 10000) in paragraph at lines 670--672
 
  []
 
-<gantt8Feb.jpg, id=89, 478.78876pt x 385.44pt>
+[21]
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.729 	\end{itemize}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+<gantt8Feb.jpg, id=92, 478.78876pt x 385.44pt>
 File: gantt8Feb.jpg Graphic file (type jpg)
  <use gantt8Feb.jpg>
-Package pdftex.def Info: gantt8Feb.jpg used on input line 684.
-(pdftex.def)             Requested size: 478.78758pt x 385.43906pt.
+Package pdftex.def Info: gantt8Feb.jpg used on input line 738.
+(pdftex.def)             Requested size: 383.03152pt x 308.35242pt.
 
-Overfull \hbox (51.99623pt too wide) in paragraph at lines 684--685
- [] 
- []
+<gantt26Mar.jpg, id=93, 478.78876pt x 379.4175pt>
+File: gantt26Mar.jpg Graphic file (type jpg)
+ <use gantt26Mar.jpg>
+Package pdftex.def Info: gantt26Mar.jpg used on input line 745.
+(pdftex.def)             Requested size: 287.27547pt x 227.65225pt.
 
 
 ! LaTeX Error: There's no line here to end.
@@ -770,72 +769,149 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.690 
+l.750 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<gantt26Mar.jpg, id=90, 478.78876pt x 379.4175pt>
-File: gantt26Mar.jpg Graphic file (type jpg)
- <use gantt26Mar.jpg>
-Package pdftex.def Info: gantt26Mar.jpg used on input line 693.
-(pdftex.def)             Requested size: 383.03152pt x 303.53441pt.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.700 W
-       e completed tasks very much on schedule with what we planned at the b...
-
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[21 <C:/Users/NX900/git/team_SignalGreen/reports/gantt8Feb.jpg>] [22 <C:/Users/
-NX900/git/team_SignalGreen/reports/gantt26Mar.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 702--704
+[22 <D:/GitRepo/reports/gantt8Feb.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 760--762
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 772--774
+Package natbib Warning: Citation `4d' on page 23 undefined on input line 765.
 
+[23 <D:/GitRepo/reports/gantt26Mar.jpg>] ("D:\GitRepo\reports\final report.bbl"
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+[]\T1/cmr/m/n/10.95 Karima Ben-hamza, Salah El-lagoune, Hamid Seridi, and Her-
  []
 
 
-LaTeX Warning: Citation `4d' on page 23 undefined on input line 777.
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+\T1/cmr/m/n/10.95 man Akdag.  Agent-based mod-el-ing for traf-fic sim-u-la-tion
+.
+ []
 
-[23]
-No file final*report.bbl.
-[24] ("C:\Users\NX900\git\team_SignalGreen\reports\final report.aux")
 
-LaTeX Warning: There were undefined references.
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+\T1/cmr/m/n/10.95 http://www.umc.edu.dz/vf/images/misc/session4A/34-4A-paper2-B
+enhamza-
+ []
 
- ) 
+
+Underfull \hbox (badness 5607) in paragraph at lines 10--15
+[]\T1/cmr/m/n/10.95 Department for Trans-port British Gov-er-ment.  Road trans-
+port fore-casts
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
+[]\T1/cmr/m/n/10.95 Nick Col-lier and Michael North.  Repast java get-ting star
+ted.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--21
+\T1/cmr/m/n/10.95 http://repast.sourceforge.net/docs/RepastJavaGettingStarted.p
+df.  A tu-to-rial,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+[]\T1/cmr/m/n/10.95 Simone Gi-an-nec-chini.  Grid-con-ver-gencean-gle-calc.java
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+\T1/cmr/m/n/10.95 https://github.com/geotools/geotools/blob/master/modules/unsu
+pported/process-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+\T1/cmr/m/n/10.95 raster/src/main/java/org/geotools/process/raster/GridConverge
+nceAngleCalc.java,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
+[]\T1/cmr/m/n/10.95 Andrew Lans-downe.  Traf-fic sim-u-la-tion us-ing agent-bas
+ed mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
+\T1/cmr/m/n/10.95 elling.  Un-der-grad-u-ate bach-e-lor hon-ours the-sis. avail
+-able at
+ []
+
+
+Underfull \hbox (badness 3872) in paragraph at lines 31--36
+\T1/cmr/m/n/10.95 http://www.myhomezone.co.uk/project/report.htm, Uni-ver-sity 
+of the West of
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 38--43
+[]\T1/cmr/m/n/10.95 Guwoo Lee.  Mod-el-ing gap ac-cep-tance at free-way merges.
+  Mas-
+ []
+
+
+Underfull \hbox (badness 6157) in paragraph at lines 38--43
+\T1/cmr/m/n/10.95 ter's the-sis, Mas-sachusetts In-sti-tute of Tech-nol-ogy, 20
+06.  avail-able at
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 51--57
+\T1/cmr/m/n/10.95 net-work.  http://crimesim.blogspot.it/2008/05/using-repast-t
+o-move-agents-along-
+ []
+
+! Undefined control sequence.
+l.65   \url
+           {http://rjwagner49.com/Robotics/Software/Applet/Traffic/Traffic.j...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[25] ("D:\GitRepo\reports\final report.aux"
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) ) 
 Here is how much of TeX's memory you used:
- 2400 strings out of 493921
- 33063 string characters out of 3147282
- 91870 words of memory out of 3000000
- 5675 multiletter control sequences out of 15000+200000
- 12695 words of font info for 33 fonts, out of 3000000 for 9000
+ 2746 strings out of 493921
+ 37069 string characters out of 3147279
+ 97649 words of memory out of 3000000
+ 6014 multiletter control sequences out of 15000+200000
+ 13384 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,29p,935b,527s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1095.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/cm-super/sfbx1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/cm-super/sfrm1095.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-
-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfr
-m1728.pfb>
-Output written on "final report.pdf" (24 pages, 1142595 bytes).
+ 27i,7n,29p,954b,527s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
+0\ecti1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
+en\ec\dpi600\ecbx1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\lj
+four\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\
+fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\aasenf\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\aasenf\App
+Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users
+\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk
+><D:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on "final report.pdf" (25 pages, 1129796 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
+ 435 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

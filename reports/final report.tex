@@ -4,25 +4,28 @@
 \usepackage{geometry}
 \geometry{a4paper,margin=3cm}
 
+
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{cite}
+\usepackage{natbib}
 \usepackage[T1]{fontenc}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
 
 
 
-%  SPECIAL CHARACTERS
-%  \textquoteright      - apostrophe (â€˜)
-%  \textquotedblleft     - quote(â€œ)
-%  {\_}                      - underscore (_)
-%   \%                             - percent (%)
+
+% SPECIAL CHARACTERS
+% \textquoteright - apostrophe 
+% \textquotedblleft - quote
+% {\_} - underscore
+% \% - percent
 
 % \begin{itemize}\itemsep0pt
-%  \item The first item
-%  \item The second item
-%  \item The third etc \ldots
+% \item The first item
+% \item The second item
+% \item The third etc \ldots
 % \end{itemize}
 
 
@@ -135,9 +138,9 @@ Lastly, GIS integration allows real maps to be loaded into the system. GIS is th
 
 \subsection{Milestones}
 
-For the purposes of planning, our team set Milestones to measure what we wanted to accomplish. This is our plan as it stood at the beginning of February: 
+For the purposes of planning, our team set Milestones to measure what we wanted to accomplish. This were our requirements as they stood at the beginning of February: 
 \\
-Milestone 1:
+Milestone 1 (Required):
 \begin{itemize}\itemsep0pt
 \item deadline: 23 February
 \item code compiles and runs simple simulation
@@ -146,7 +149,7 @@ Milestone 1:
 \item vehicles make decisions to reach a goal
 \end{itemize}
 \\
-Milestone 2:
+Milestone 2 (Required):
 \begin{itemize}\itemsep0pt
 \item deadline: 8 March
 \item implement basic vehicle type: car
@@ -158,22 +161,22 @@ Milestone 2:
 \item multiple lanes on some roads
 \end{itemize}
 \\
-Milestone 3:
+Milestone 3 (Optional):
 \begin{itemize}\itemsep0pt
 \item deadline: 16 March
-\item  vehicles appear visually different by some criteria (type/behaviour, speed, congestion)
-\item  speed limits on roads
-\item  implement vehicle types: lorry, emergency, motorcycles
-\item  vehicles exhibit passing behaviours
+\item vehicles appear visually different by some criteria (type/behaviour, speed, congestion)
+\item speed limits on roads
+\item implement vehicle types: lorry, emergency, motorcycles
+\item vehicles exhibit passing behaviours
 \end{itemize}
 \\
-Possible Traffic Policy Implementations:
+Possible Traffic Policy Implementations for Simulation:
 \begin{itemize}\itemsep0pt
 \item all light junctions
-\item  all roundabout/give way junctions
-\item  mix lights/roundabout junctions
-\item  variable speed limits
-\item  same junction policy with varying levels of congestion
+\item all roundabout/give way junctions
+\item mix lights/roundabout junctions
+\item variable speed limits
+\item same junction policy with varying levels of congestion
 \end{itemize}
 \\
 
@@ -339,7 +342,7 @@ Simulation parameters and relevant measures are summarised as follows:
 \item Minimum distance between vehicles to avoid collisions = 1.8 meters
 \item Arbitrary acceleration factor of vehicles = 1.6
 \item Real vehicle displacement in meters = displacement * 70
-\item Displacement equation:  x = v0 * t + 1/2 a * t * t, where x is the displacement, v0 the initial velocity, a the acceleration, t the time â€“ which is arbitrarily set to 4.
+\item Displacement equation: x = v0 * t + 1/2 a * t * t, where x is the displacement, v0 the initial velocity, a the acceleration, t the time â€“ which is arbitrarily set to 4.
 \item Truck maximum speed = 80 Km/h
 \end{itemize}
 
@@ -361,7 +364,7 @@ This further required the use of kinematics equations for plotting the direction
 \end{figure}
 \\
 
-For example, consider Figure .  The following are the main steps:
+For example, consider Figure . The following are the main steps:
 \begin{enumerate}
 \item V is heading towards J3 so it needs to compute the distance to it. 
 \item V computes its current displacement. Displacement is computed using a standard kinematics equation which takes into account velocity and acceleration.
@@ -447,158 +450,147 @@ The only class which is not our team\textquoteright s work is class PriorityBloc
 \subsection{Introduction}
 This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of the system is naturally not realistically possible in the time given but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
 
-ABM testing will be done by running the simulation, observing the agents \textquoteright  behaviour and comparing it with expected behaviour. We will  test our code at three diff€erent levels of functionality:
+ABM testing will be done by running the simulation, observing the agents \textquoteright behaviour and comparing it with expected behaviour. We will test our code at three diff€erent levels of functionality:
 This will include testing of agents interaction with other components of environment (roads, traffiƒc lights) when programme will be executed at run time.
 
 \subsection{Objectives and Tasks}
 \subsubsection{Objectives}
-    The objective of testing our system is to provide adequate testing of functional requirements, validation and behaviour of system under simulated condition. Testing will be done by running the simulation, observing the agents' behaviour and comparing it with expected behaviour. Debug methods are written to eliminate bugs in the code and exceptions are handled to avoid the crashes. Simulation is run atleast more than 3 times in order to test the expected behaviour of agents during simulation run.
+The objective of testing our system is to provide adequate testing of functional requirements, validation and behaviour of system under simulated condition. Testing will be done by running the simulation, observing the agents' behaviour and comparing it with expected behaviour. Debug methods are written to eliminate bugs in the code and exceptions are handled to avoid the crashes. Simulation is run atleast more than 3 times in order to test the expected behaviour of agents during simulation run.
 
 \subsubsection{Tasks}
 \begin{itemize}
-	\item Identifying functional requirements and writing the tests cases.
+\item Identifying functional requirements and writing the tests cases.
 
-	\item Executing tests.
+\item Executing tests.
 
-	\item Record the failed test cases and reporting them to team.
+\item Record the failed test cases and reporting them to team.
 
-	\item Performing the re-test on failed test cases one bugs are fixed.
+\item Performing the re-test on failed test cases one bugs are fixed.
 \end{itemize}
 
 \subsection{Scope}
-	In context to our system, which is implemented using agent-based model it will be tested at three different levels of functionality.
-		\begin{itemize}
-			\item Agents' behaviour\hfill \\
-			Verified by checking the changing environment variables around agents. This tests functional requirements of the system as well.\hfill \\
+In context to our system, which is implemented using agent-based model it will be tested at three different levels of functionality.
+\begin{itemize}
+\item Agents' behaviour\hfill \\
+Verified by checking the changing environment variables around agents. This tests functional requirements of the system as well.\hfill \\
 
-			\item Runtime Parameters\hfill \\
-			Elements and data which load at runtime will be tested using valid and invalid inputs and checking for correct results. \hfill \\
+\item Runtime Parameters\hfill \\
+Elements and data which load at runtime will be tested using valid and invalid inputs and checking for correct results. \hfill \\
 
-			\item	 Overall behaviour of system\hfill \\
-	Checks that all agents of the system produce expected results for a given scenario.\hfill \\
+\item Overall behaviour of system\hfill \\
+Checks that all agents of the system produce expected results for a given scenario.\hfill \\
 
-		\end{itemize} 
+\end{itemize} 
 
 \begin{itemize}
-	\subsubsection{Levels of Functionalities}
-	\item \textbf{Agents' behaviour: }\hfill \\
-	Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. \begin{enumerate}
+\subsubsection{Levels of Functionalities}
+\item \textbf{Agents' behaviour: }\hfill \\
+Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. \begin{enumerate}
 
-	\item \textbf{Vehicles}\hfill \\
-	step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
+\item \textbf{Vehicles}\hfill \\
+step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
 
-	\begin{itemize}
-	\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
-		\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle 	should be stuck in impasse.\hfill \\
-		\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in 		impasse. Cannot move...". "if condition" remains false.\hfill \\
-		\underline{Result:} Passed\hfill \\
+\begin{itemize}
+\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
+\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle should be stuck in impasse.\hfill \\
+\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
+\underline{Result:} Passed\hfill \\
 
-	\item \textbf{Test Case 2:}moveTowards()\hfill \\
-		\underline{Input:}Coordinate and displacement\hfill \\
-		\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.".	\hfill \\
-		 \underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
-		\underline{Result:}Passed
-	
-	\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
-		\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
-		\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
-		\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
-		\underline{Result:}Passed\hfill \\
+\item \textbf{Test Case 2:}moveTowards()\hfill \\
+\underline{Input:}Coordinate and displacement\hfill \\
+\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.". \hfill \\
+\underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
+\underline{Result:}Passed
+\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
+\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
+\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
+\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
+\underline{Result:}Passed\hfill \\
 
-	\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
-		\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
-		\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
-		\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
-		\underline{Result:}Passed\hfill \\
-	\end{itemize}
+\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
+\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
+\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
+\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
+\underline{Result:}Passed\hfill \\
+\end{itemize}
 
 \item \textbf{Traffic Lights}
-	\begin{itemize}
-		\item \textbf{Test Case 5:} Traffic Light Green \hfill \\
-		\underline {Expected Output:}Cars should keep moving if traffic light is green.\hfill \\
-		\underline{ Actual Output:}Cars did not stop.\hfil \\
-		\underline{ Result:}Passed.
+\begin{itemize}
+\item \textbf{Test Case 5:} Traffic Light Green \hfill \\
+\underline {Expected Output:}Cars should keep moving if traffic light is green.\hfill \\
+\underline{ Actual Output:}Cars did not stop.\hfil \\
+\underline{ Result:}Passed.
 
-		\item \textbf{Test Case 6:} Traffic Light Red\hfill \\
-		 \underline{Expected Output:} Cars should stop if traffic light is red.\hfill \\
-		\underline{ Actual Output: }Cars stops when traffic light is red.\hfill \\
-		 \underline{Result:} Passed
- 
-		 \item \textbf{Test Case 7:} Traffic Lights On More Than 2 Roads Junction\hfill \\
- 		Traffic lights should only be displayed on junctions that contain more than two roads.\hfill \\
- 		\underline{Expected Output:} Only junctions with more than two roads display traffic lights.\hfill \\
-		\underline{Actual Output:} Traffic lights are displayed only on more than two road junctions.\hfill \\
-		\underline{Result:} Passed\hfill \\
+\item \textbf{Test Case 6:} Traffic Light Red\hfill \\
+\underline{Expected Output:} Cars should stop if traffic light is red.\hfill \\
+\underline{ Actual Output: }Cars stops when traffic light is red.\hfill \\
+\underline{Result:} Passed
+\item \textbf{Test Case 7:} Traffic Lights On More Than 2 Roads Junction\hfill \\
+Traffic lights should only be displayed on junctions that contain more than two roads.\hfill \\
+\underline{Expected Output:} Only junctions with more than two roads display traffic lights.\hfill \\
+\underline{Actual Output:} Traffic lights are displayed only on more than two road junctions.\hfill \\
+\underline{Result:} Passed\hfill \\
 
-		\begin{figure}[h!]
-		 \centering
-		\includegraphics{junction}\hfill \\
- 		\caption{Network with traffic lights.}
-		\end{figure}
-	\end{itemize}
+\begin{figure}[h!]
+\centering
+\includegraphics{junction}\hfill \\
+\caption{Network with traffic lights.}
+\end{figure}
+\end{itemize}
 
- \end{enumerate}
+\end{enumerate}
 
 \item \textbf{Runtime Parameters:} \hfill \\
 Elements and data which loads at run time will form part of runtime testing. It will be tested, giving all valid and invalid inputs and check results. Following elements will be tested at run time:
 
-	\begin{itemize}
-		\item \textbf{Test Case 8:} SignalGreenBuilder Implements ContextBuilder\hfill \\
-		This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
-		\underline{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
-		\underline{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
-		\underline{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
-		\underline{Result:} Passed
-		
-		
-		\item\textbf{Test Case 9:} Number of vehicles\hfill \\
-		\underline{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\
-		4, 0 , -1 and a character given as input.\hfill \\
-		\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
-		\underline{Actual Output:}  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
-		\underline{Result:} Passed\hfil \\
-		\begin{figure}[h]
-		\begin{center}
-		\includegraphics[scale=0.8]{4cars}
-		\caption{Number of cars}
-		\end{center}
-		\end{figure}
-		
-		\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
-		"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
-		\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
-		\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
-		\underline{Result:}Passed.
-		
-		
-		\item \textbf{Test Case 11:}Multiple Maps\hfill \\
-		\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input.  \hfill \\
-		\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
-		\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
-		\underline{Result:}Passed
-		\begin{figure}[h]
-		\begin{center}
-		\includegraphics[scale=0.3]{manhattan_section}
-		\caption{Map of Manhattan}\hfill \\
-		\end{center}
-		\end{figure}\hfill \\
-		
-		
-	\end{itemize}
+\begin{itemize}
+\item \textbf{Test Case 8:} SignalGreenBuilder Implements ContextBuilder\hfill \\
+This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
+\underline{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
+\underline{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
+\underline{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
+\underline{Result:} Passed
+\item\textbf{Test Case 9:} Number of vehicles\hfill \\
+\underline{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\
+4, 0 , -1 and a character given as input.\hfill \\
+\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
+\underline{Actual Output:} Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
+\underline{Result:} Passed\hfil \\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.8]{4cars}
+\caption{Number of cars}
+\end{center}
+\end{figure}
+\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
+"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
+\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
+\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
+\underline{Result:}Passed.
+\item \textbf{Test Case 11:}Multiple Maps\hfill \\
+\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input. \hfill \\
+\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
+\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
+\underline{Result:}Passed
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{manhattan_section}
+\caption{Map of Manhattan}\hfill \\
+\end{center}
+\end{figure}\hfill \\
+\end{itemize}
 
 \item \textbf{Overall behaviour of system: }\hfill \\
-		Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
-	\begin{itemize}
-	\item	\textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
-		\underline{Expected Output} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
-		\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
-		There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
-		\includegraphics[scale=0.7]{RoadNetwork}
-		\includegraphics{Sim}\hfill \\
-			
-		\underline{Result: }Passed
-			
-	\end{itemize}
+Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
+\begin{itemize}
+\item \textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
+\underline{Expected Output} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
+\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
+There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
+\includegraphics[scale=0.7]{RoadNetwork}
+\includegraphics{Sim}\hfill \\
+\underline{Result: }Passed
+\end{itemize}
 \end{itemize}
 \subsection{Conclusion}
 This test plan covers all major requirements of traffic simulation we have developed which verifies the functional requirements established at the beginning of the project. Test cases were developed to test the expected behaviour of the system using different parameters at run time.
@@ -611,19 +603,18 @@ Our approach to the project was to set down ideas, goals, and tools in the first
 
 \subsection{Roles and Task Division}
 
-
-Yoann Strigini: Design Architect, Developer One 
-Design SignalGreen model, integration with GIS, develop Vehicle class, presentation layer, documentation (architecture and technical details)
-Adeela Saalim: Testing Specialist
-Develop test cases, run test cases, document testing
-James Kerr: Documentation Specialist Two, LaTeX Specialist
-Writing technical documentation for report
-Waqar Aziz: Developer Two, Head Policy Comparison and Reporting 
-Develop reporting functionality; primary traffic policy testing and reporting
-Andrea Senf: Team Coordinator, Tech Doc Specialist
-Coordinate team activities, Scrum Master, Lead documentation and reporting
-
-
+\begin{description}
+\item [Waqar Aziz] \hspace{16 mm} Developer Two, Head Policy Comparison and Reporting \\
+	Develop reporting functionality; primary traffic policy testing and reporting; design Junction class
+\item[James Kerr] \hspace{16 mm}  Documentation Specialist Two, LaTeX Specialist \\
+	Writing technical documentation for report
+\item[Adeela Saalim] \hspace{11 mm} Testing Specialist \\
+	Develop test cases, run test cases, document testing
+\item[Andrea Senf] \hspace{15 mm} Team Coordinator, Tech Doc Specialist \\
+	Coordinate team activity, Scrum Master, Lead documentation and reporting
+\item[Yoann Strigini] \hspace{11 mm}  Design Architect, Developer One \\
+	Design SignalGreen model, integration with GIS, develop Vehicle class, presentation layer
+\end{description}
 
 \subsection{Tools}
 
@@ -632,6 +623,7 @@ Coordinate team activities, Scrum Master, Lead documentation and reporting
 \item Communication. For communication outside coding, the most used tool by far was WhatsApp; this was practical for team chat, answering basic questions, and coordinating meetings. Longer reports for the group were written on asana or sent by email. Asana was used consistently by team members and was helpful for the documentation of the final report and for automatically generated Gantt charts through Instagantt.
 \item Meetings. When one or more group members believed a whole group meeting was needed to further the project, this was communicated on WhatsApp and a time and place of meeting was arranged using input from all members. These meetings were in person. Other times two or three members met together using Skype or in person as needed to work on parts of the project pertaining only to them.
 \end{itemize}
+
 
 
 \subsection{Development and Reporting}
@@ -647,13 +639,9 @@ Our team faced several challenges in working together and with our chosen tools.
 
 \begin{itemize}\itemsep0pt
 \item Our team struggled to coordinate regarding GitHub the first part of the project, as several members focused on coding on their own machines rather than branching from GitHub in the weeks prior to the initial report date. Initial code was uploaded to GitHub the day before the initial report was due. The members leading in coding later created a full GitHub project for everyone to access. 
-\\
 \item A member missed two meetings where decisions were made, so his preferences were not implemented. As he had strong feelings about these decisions it was difficult for the person to accept and caused some friction.
-\\
 \item A member found he did not have the ability to run Simphony and so did not have a way to code his part of the project; the group was notified of this after the initial report presentation. He found a way to partially resolve this so he could code from the last week of February, although still without full Eclipse functionality. 
-\\
 \item A member had difficulty prioritizing his code at the end, putting off resolving a key issue for several days. This resulted in our final Milestone deadline being pushed back almost a week and added stress to other team members.
-\\
 \item After difficulty getting team members to follow through with attending agreed meetings, we voted to modify our practice so that absence to agreed full group meetings would result in a point for that person being deducted.
 \end{itemize}
 \\
@@ -677,34 +665,12 @@ Ultimately, the goal of the team was for everyone to get through the module with
 
 All objectives set for Milestone 1 were completed in its entirety by the deadline set by the team. At that time we extended the deadlines of the Milestones to have all coding finished by 16 March, and then turn to cleaning the code and final commenting while testing was finishing and traffic policies were compared during the week of 16 March.
 \\
+We completed tasks very close to the schedule we set out at the beginning. In the interest of better code, we extended the Milestone 2 deadline to March 16; this allowed some desired behaviours to be completed. All coding was originally scheduled to stop 16 March to leave time for continued testing, commenting and code cleaning, and documentation. 
 
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=1.0]{gantt8Feb}
-\caption{Gantt Chart from 8 Feb}
-\end{center}
-\end{figure}
-
+A team member had issues with his code that put the team a week behind at the end. This was disappointing, but team members pulled together to complete the rest of the tasks on schedule and bring out our traffic simulation by the deadline.
 \\
 
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.8]{gantt26Mar}
-\caption{Gantt Chart from 26 March}
-\end{center}
-\end{figure}
-
-
-\\
-We completed tasks very much on schedule with what we planned at the beginning. In the interest of better code, we extended the Milestone 2 deadline to March 16; this allowed some desired behaviours to be completed. All coding was originally scheduled to stop 16 March to leave time for continued testing, commenting and code cleaning, and documentation. 
-
-One member had issues with his code that put the team a week behind at the end. This was disappointing, but team members pulled together to complete the rest of the tasks on schedule and bring out our traffic simulation by the deadline.
-\\
-
-\subsection{Functional Requirements}
-
-Final Characteristics 
+Final Characteristics from Milestone Requirements
 - vehicles run on a map
 - multiple maps in GIS standard
 - variable number of vehicles
@@ -719,53 +685,75 @@ Final Characteristics
 - speed limits on roads
 
 
+\subsection{Functional Requirements}
 
+We set out the following functional requirements:
 
-
-
-
-
-
-Functional Requirements
-
-- Maps
-	Multiple maps can be used
-	Use GIS standard
-	
-
-- Roads 
-	Can have multiple lanes
-	Traffic flows bi-directionally	
-	Vehicles appear to run along roads
-
-- Vehicles
-	Variable number of vehicles 
-	Accelerate and decelerate
-	Appear visually different by type
-	Type car with unique behaviour
-	Type truck with unique behaviour
-	Exhibit passing behaviours
-	Journey calculated by road length and speed limit
-
-- Junctions 
-	Connect roads
-	Type give way
-	Type signal
-		Signals change between red, amber, green
-		Vehicles stop at red and go at green
-	Source at junctions
-	Stop/wait before junctions
-	
-- Simulation 
+\begin{itemize}\itemsep0pt
+\item Maps
+	\begin{itemize}
+	\item Multiple maps can be used
+	\item Use GIS standard
+	\end{itemize}
+\item Roads 
+	\begin{itemize}
+	\item Can have multiple lanes
+	\item Traffic flows bi-directionally 
+	\item Vehicles appear to run along roads
+	\end{itemize}
+\item Vehicles
+	\begin{itemize}
+	\item Variable number of vehicles 
+	\item Accelerate and decelerate
+	\item Appear visually different by type
+	\item Type car with unique behaviour
+	\item Type truck with unique behaviour
+	\item Exhibit passing behaviours
+	\item Journey calculated by road length and speed limit
+	\end{itemize}
+\item Junctions 
+	\begin{itemize}
+	\item Connect roads
+	\item Type give way
+	\item Type signal
+	\item Type roundabout
+	\item Signals change between red, orange, green
+	\item Vehicles stop at red and go at green
+	\item Source at junctions
+	\item Stop/wait before junctions
+	\end{itemize}
+\item Simulation 
+	\begin{itemize}
 	User controlled variables
 	Runs on different machines
+	\end{itemize}
+\end{itemize}
+
+Of these, we did not compete Junction roundabout functionality and orange signal functionality. The give way and signal code took longer to implement than we originally thought. Orange light functionality was partially completed, but it was dropped by the team because it was an optional functionality and the simulation did not require it.
+
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.8]{gantt8Feb}
+\caption{Gantt Chart from 8 Feb}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{gantt26Mar}
+\caption{Gantt Chart from 26 March}
+\end{center}
+\end{figure}
+\\
 
 
 \subsection{Repast Simphony}
 
 Overall we think our use of Repast Simphony was successful for our project. It provided a foundation API and Eclipse configuration that was not directly involved with agents or behaviours. It allowed us to create attractive visuals in the simulation and analysis graphing. We spent little time debugging, and were able to focus on simulating traffic. Simphony provided many extras (XML persistent storage, installers, etc) that we did not use due to lack of need or lack of implementation time.
 
-An unforseen disadvantage of Simphony arose in that it cannot be installed or used on KCL lab computers. One member of our group did not have access to Simphony at home or on campus (the group did not know this until after the initial presentation), and he was not able to find a way to use Simphony until almost March, and then not effectively. This greatly reduced his ability to be useful to the team in coding and held up work on a major segment of the code.
+An unforeseen disadvantage of Simphony arose in that it cannot be installed or used on KCL lab computers. One member of our group did not have access to Simphony at home or on campus (the group did not know this until after the initial presentation), and he was not able to find a way to use Simphony until almost March, and then not effectively. This greatly reduced his ability to be useful to the team in coding and held up work on a major segment of the code.
 
 Originally we considered using a belief-desire-intention (BDI) model to code the agents\textquoteright\ behaviour, but as the member intending to code this was unable to use Simphony, behaviours were instead coded into the agents themselves.
 
@@ -779,9 +767,9 @@ We originally intended to implement both signal and roundabout junctions, but th
 \begin{itemize}\itemsep0pt
 \item If we had more time we would have liked to download a road map from a town in England where we know road data/statistics and compare our model to the actual traffic flow for the same road. This would be a big step in validating our logic and making the code useful to others wishing to model traffic.
 
-\item  Creating roundabouts was the next goal for our code, and this would make the code work for modelling most UK towns and cities. (Roundabouts are not generally used in the USA.)
+\item Creating roundabouts was the next goal for our code, and this would make the code work for modelling most UK towns and cities. (Roundabouts are not generally used in the USA.)
 
-\item  Further development can be done in displaying road closures for modelling construction or traffic accidents. This would make the model more realistic and useful in determining maintenance disruption.
+\item Further development can be done in displaying road closures for modelling construction or traffic accidents. This would make the model more realistic and useful in determining maintenance disruption.
 
 \item Implement source/sinks for allowing traffic to come on/off the map in a more natural location than at junctions; perhaps from the edges of the map would be more optimal visually. This would allow traffic congestion to increase as more cars are fed into the simulation than are going out (and vice versa), and would allow modelling of road conditions created by end of workday, post-sport competition, etc. 
 
@@ -796,13 +784,16 @@ We originally intended to implement both signal and roundabout junctions, but th
 
 Waqar: 20
 
-James: 18.5
+James: 19
 
 Adeela: 20
 
 Andrea: 20
 
-Yoann: 21.5
+Yoann: 21
+
+
+
 
 \bibliographystyle{plain}
 \bibliography{bibliography}

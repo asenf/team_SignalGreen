@@ -43,13 +43,15 @@
 \section{INTRODUCTION}
 
 
-This work was first and foremost an opportunity for working in a group. Employers want engineers who are not only skilled in their craft, but also persons who are able to collaborate, work well as part of a team, and invest in project aims and those working to achieve them. Our team was able to develop a simulation that involved each member in the process. In spite of differing abilities and communication styles, each person was able to contribute in important ways.
+This work was first and foremost an opportunity for working in a group. Employers want engineers who are not only skilled in their craft, but also persons who are able to collaborate, work well as part of a team, and invest in project aims and those working to achieve them. Our team was able to develop a simulation that involved each member in the process. In spite of differing abilities and communication styles, each person was able to contribute in important ways. Together we accomplished more than any one of us could have created on our own.
 
 The software engineering part of this project focused on creating a traffic simulation software where we can test various traffic management strategies. We wanted to create a simulation that would be visually interesting with user modifiable variables, and that would have potential for further expansion and use.
 
 We were able to create a simulation that is interesting, flexible, and allows different layouts and road policies to be tested and visually represented. Any geographic information system (GIS) map shapefile representing road networks can be loaded into our simulator and could easily be extended to take into account any other relevant attributes.
 
 Our team further gained a more practical understanding of agent based modelling (ABM) through using Repast Simphony, and gained experience with version control through using GitHub.
+
+
 
 \section{BACKGROUND}
 
@@ -70,7 +72,7 @@ Consequently, causes and effects of traffic congestion have been studied extensi
 \begin{singlespace}
 \begin{itemize}\itemsep0pt
 \item Road/Traffic policy approaches
-\item Timing/Cost of journeys
+\item Timing and cost of journeys
 \item Types of vehicles and speed
 \item Junctions and bottlenecks
 \item Lane splitting and joining
@@ -91,34 +93,26 @@ The model we implemented has been designed with acceptable trade-off between acc
 \item Different traffic management policies, including traffic lights and/or give way signs
 \end{itemize}
 
-The ultimate goal of traffic simulation is to create space for people to move along their journeys in a safe manner with consistent progress. 
+The ultimate goal of traffic simulation is to create space for people to move along their journeys in a safe manner with consistent progress. Data extracted from simulations will be evaluated later in this report to demonstrate that our simulation is useful for developing practical policies for the future.
 
-Data extracted from simulations will be evaluated at the end of this report, in order to analyse different traffic policies highlighting their pros and cons.
 
-Our team began by researching various traffic simulation models and code available online. Some of the more significant included. 
 
-\cite{1a} gave us a picture of what an interesting simulation and its code might look like. 
-\cite{2b} offered a good description of what coding with cellular automata involves for those on the team unfamiliar with the concept. In the early stages of the project we thought coding using cellular automata might be an approach we would utilize; this was later decided against in favour of ABM.
-\cite{3c} show one way to conceptualize moving cars along a road from origin to destination. 
-\cite{4d} Detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. Well written and fairly comprehensive.
-\cite{5e} argues that \textquotedblleft only agent-based models can explicitly incorporate the complexity arising from individual behaviors and interactions that exist in the real-world. \textquotedblright [5e 1458] Shows the wide uses of Repast in various fields\cite{5e} [ 1457 Table 1]. The article notes that agent modelling using desktop environments like Repast Simphony is a good way to explore the potential of ABM in a brief space of time and with minimal training investment \cite{5e}[1464] and this is a benefit our team hoped to gain through this project.
-\cite{6f} provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling.
-\cite{7g} The entire team went through a very good tutorial to learn Simphony basics. This tutorial was an excellent introduction to Simphony and had clear parallels to our simulation. 
-\cite{8h} used as reference for coding lane changing and gap acceptance logic.
+\subsection{Selected Bibliography}
 
-Selected Bibliography [do not renumber, these are throughout the paper]:
-%[1a] https://optalk2011.wordpress.com/traffic-simulator1/
-%[2b] http://natureofcode.com/book/chapter-7-cellular-automata/
-%[3c] http://crimesim.blogspot.it/2008/05/using-Repast-to-move-agents-along-road.html
-%[4d] http://www.myhomezone.co.uk/project/Report.htm
-%[5e] http://www.informs-sim.org/wsc11papers/130.pdf
-%[6f] http://www.umc.edu.dz/vf/images/misc/session4A/34-4A-paper2-Benhamza-SERIDI%20Hamid.pdf
-%[7g] http://repast.sourceforge.net/docs/RepastJavaGettingStarted.pdf
-%[8h] https://dspace.mit.edu/bitstream/handle/1721.1/34607/71301166.pdf?sequence=1
-%[9i] https://github.com/geotools/geotools/blob/master/modules/unsupported/process-raster/src/main/java/org/geotools/process/raster/GridConvergenceAngleCalc.java
-%[10j] https://www.gov.uk/government/publications/road-transport-forecasts-2013
-%[11k] https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/230433/an-introduction-to-dft-congestion-statistics.pdf
-% [13n] https://dspace.mit.edu/bitstream/handle/1721.1/34607/71301166.pdf
+Our team began by researching various traffic simulation models and code available online. Some of the more significant included the following:
+
+The entire team went through a very good tutorial to learn Simphony basics [Collier and North\cite{7g}]. This tutorial was an excellent introduction to Simphony and had clear parallels to our simulation. 
+
+Macal and North\cite{5e} offered an important document that argues that \textquotedblleft only agent-based models can explicitly incorporate the complexity arising from individual behaviors and interactions that exist in the real-world. \textquotedblright [1458] It further shows the wide uses of Repast in various fields\cite{5e} [1457 Table 1]. The article notes that agent modelling using desktop environments like Repast Simphony is a good way to explore the potential of ABM in a brief space of time and with minimal training investment \cite{5e}[1464] and this is a benefit our team hoped to gain through this project. 
+
+One excellent resource [Lansdowne\cite{4d} ] offered a detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. This was well written and fairly comprehensive. 
+
+Team programmers referenced Lee’s\cite{8h} work for coding lane changing and gap acceptance logic. Benhamza et al\cite{6f} also provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling. 
+
+Early documents team members considered included Wagner\cite{1a} simulation, which gave us a picture of what an interesting simulation and its code might look like, and Malleson and Addis\cite{3c} demonstrated one way to conceptualize moving cars along a road from origin to destination. [Note: This link has since been removed.] 
+
+Shiffman \cite{2b} offered a very good piece on what coding with cellular automata involves for those on the team unfamiliar with the concept. In the early stages of the project we thought coding using cellular automata might be an approach we would utilize; this was later decided against in favour of ABM. 
+
 
 
 \section{REQUIREMENTS AND DESIGN}
@@ -231,6 +225,7 @@ We used Styled Layer Descriptor (SDL) files to create the presentation; SDL is a
 
 
 \subsubsection{The SignalGreenBuilder Class}
+
 
 Class SignalGreenBuilder.java builds the road network and the GIS geography for our simulation and initialises the agents. It is the only ContextBuilder class for the program. At the highest level of abstraction, the program Context contains a graph (Road Network) of vertices (Junctions) connected by paths (edges). The Road Network is a directed graph representing the road topology, and the GIS geography is used to display the simulation. 
 
@@ -596,6 +591,16 @@ There are indeed two vehicles running on W 34th St, and their object ID match.\h
 This test plan covers all major requirements of traffic simulation we have developed which verifies the functional requirements established at the beginning of the project. Test cases were developed to test the expected behaviour of the system using different parameters at run time.
 
 
+\section{TRAFFIC POLICY COMPARISON}
+
+
+
+
+
+
+
+
+
 \section{TEAM WORK}
 
 Our approach to the project was to set down ideas, goals, and tools in the first two weeks, then jump into the coding and get as far along as we could until the initial report came due. This worked well in many ways. Important decisions about implementation were decided very quickly so coding was able to start in January. The milestones were itemized early in the project, with Milestone 1 set early and items assigned to Milestones 2 and 3 differentiated closer to the deadline of the Initial Report.
@@ -724,18 +729,17 @@ We set out the following functional requirements:
 	\end{itemize}
 \item Simulation 
 	\begin{itemize}
-	User controlled variables
-	Runs on different machines
+	\item User controlled variables
+	\item Runs on different machines
 	\end{itemize}
 \end{itemize}
 
-Of these, we did not compete Junction roundabout functionality and orange signal functionality. The give way and signal code took longer to implement than we originally thought. Orange light functionality was partially completed, but it was dropped by the team because it was an optional functionality and the simulation did not require it.
-
+Out of these requirements we did not compete 1) junction roundabout functionality and 2) orange signal functionality. The give way and signal code took longer to implement than we originally thought, so we did not continue on to roundabouts; this will be something interesting to add at a future time. Orange light functionality was partially completed, but it was dropped by the team because it was an optional functionality and the simulation did not require it.
 
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.8]{gantt8Feb}
+\includegraphics[scale=0.7]{gantt8Feb}
 \caption{Gantt Chart from 8 Feb}
 \end{center}
 \end{figure}
@@ -755,10 +759,9 @@ Overall we think our use of Repast Simphony was successful for our project. It p
 
 An unforeseen disadvantage of Simphony arose in that it cannot be installed or used on KCL lab computers. One member of our group did not have access to Simphony at home or on campus (the group did not know this until after the initial presentation), and he was not able to find a way to use Simphony until almost March, and then not effectively. This greatly reduced his ability to be useful to the team in coding and held up work on a major segment of the code.
 
-Originally we considered using a belief-desire-intention (BDI) model to code the agents\textquoteright\ behaviour, but as the member intending to code this was unable to use Simphony, behaviours were instead coded into the agents themselves.
-
-We originally intended to implement both signal and roundabout junctions, but the code for the signals and give way took much more work than anticipated, and so we decided not to implement roundabouts in this version of our code.
+Originally we planned to use a belief-desire-intention (BDI) model to code the agents\textquoteright\ behaviour, but as the member intending to code this was unable to use Simphony, behaviours were instead coded into the agents themselves.
 \\
+
 
 \subsection{Further Work}
 

@@ -7,14 +7,15 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{cite}
 \usepackage[T1]{fontenc}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
 
 
 
 %  SPECIAL CHARACTERS
-%  \textquoteright      - apostrophe (‘)
-%  \textquotedblleft     - quote(“)
+%  \textquoteright      - apostrophe (â€˜)
+%  \textquotedblleft     - quote(â€œ)
 %  {\_}                      - underscore (_)
 %   \%                             - percent (%)
 
@@ -51,7 +52,7 @@ Our team further gained a more practical understanding of agent based modelling 
 
 \subsection{TRAFFIC FLOW FORECASTS}
 
-Analysis of complex urban networks and traffic flow models is the groundwork for reliable traffic flow forecasts, which are widely used to avoid traffic congestion and maximise road network capability in metropolitan areas.[11k] Predictions of traffic growth published by the UK Department of Transport in 2013 show that despite a slowdown in the past decade mainly due to economic recession and high oil prices, traffic on all roads in England are expected to grow by about 45\% by 2040 [10j]. 
+Analysis of complex urban networks and traffic flow models is the groundwork for reliable traffic flow forecasts, which are widely used to avoid traffic congestion and maximise road network capability in metropolitan areas.[11k] Predictions of traffic growth published by the UK Department of Transport in 2013 show that despite a slowdown in the past decade mainly due to economic recession and high oil prices, traffic on all roads in England are expected to grow by about 45\% by 2040 \cite{10j}. 
 
 
 \begin{figure}[h]
@@ -93,14 +94,14 @@ Data extracted from simulations will be evaluated at the end of this report, in 
 
 Our team began by researching various traffic simulation models and code available online. Some of the more significant included. 
 
-[1a] gave us a picture of what an interesting simulation and its code might look like. 
-[2b] offered a good description of what coding with cellular automata involves for those on the team unfamiliar with the concept. In the early stages of the project we thought coding using cellular automata might be an approach we would utilize; this was later decided against in favour of ABM.
-[3c] show one way to conceptualize moving cars along a road from origin to destination. 
-[4d] Detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. Well written and fairly comprehensive.
-[5e] argues that \textquotedblleft only agent-based models can explicitly incorporate the complexity arising from individual behaviors and interactions that exist in the real-world. \textquotedblright [5e 1458] Shows the wide uses of Repast in various fields [5e 1457 Table 1]. The article notes that agent modelling using desktop environments like Repast Simphony is a good way to explore the potential of ABM in a brief space of time and with minimal training investment [5e 1464] and this is a benefit our team hoped to gain through this project.
-[6f] provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling.
-[7g] The entire team went through a very good tutorial to learn Simphony basics. This tutorial was an excellent introduction to Simphony and had clear parallels to our simulation. 
-[8h] used as reference for coding lane changing and gap acceptance logic.
+\cite{1a} gave us a picture of what an interesting simulation and its code might look like. 
+\cite{2b} offered a good description of what coding with cellular automata involves for those on the team unfamiliar with the concept. In the early stages of the project we thought coding using cellular automata might be an approach we would utilize; this was later decided against in favour of ABM.
+\cite{3c} show one way to conceptualize moving cars along a road from origin to destination. 
+\cite{4d} Detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. Well written and fairly comprehensive.
+\cite{5e} argues that \textquotedblleft only agent-based models can explicitly incorporate the complexity arising from individual behaviors and interactions that exist in the real-world. \textquotedblright [5e 1458] Shows the wide uses of Repast in various fields\cite{5e} [ 1457 Table 1]. The article notes that agent modelling using desktop environments like Repast Simphony is a good way to explore the potential of ABM in a brief space of time and with minimal training investment \cite{5e}[1464] and this is a benefit our team hoped to gain through this project.
+\cite{6f} provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling.
+\cite{7g} The entire team went through a very good tutorial to learn Simphony basics. This tutorial was an excellent introduction to Simphony and had clear parallels to our simulation. 
+\cite{8h} used as reference for coding lane changing and gap acceptance logic.
 
 Selected Bibliography [do not renumber, these are throughout the paper]:
 %[1a] https://optalk2011.wordpress.com/traffic-simulator1/
@@ -122,13 +123,13 @@ Selected Bibliography [do not renumber, these are throughout the paper]:
 
 Our traffic simulator is an agent-based, non-deterministic, discrete-time simulator for microscopic traffic modelling which allows different traffic policies on user-defined Geographic Information System (GIS) maps to be tested. 
 
-An Agent-Based modelling (ABM) simulation seemed most appropriate for a traffic simulation[5e, see 1465]. ABM uses entities (agents) to embed certain behaviours and they exist in a certain environment. Agents are autonomous, have objectives and goals, and can interact with other agents. ABM is particularly suitable for traffic simulation because agents, such as vehicles and traffic lights, can adapt to the evolving environment and accommodate changes, e.g. a vehicle needs to accelerate when a traffic light turns green.
+An Agent-Based modelling (ABM) simulation seemed most appropriate for a traffic simulation\cite{5e} [see 1465]. ABM uses entities (agents) to embed certain behaviours and they exist in a certain environment. Agents are autonomous, have objectives and goals, and can interact with other agents. ABM is particularly suitable for traffic simulation because agents, such as vehicles and traffic lights, can adapt to the evolving environment and accommodate changes, e.g. a vehicle needs to accelerate when a traffic light turns green.
 
 The system is non-deterministic, with future states of traffic flow depending on unpredictable events, just as real-life traffic phenomena always have a degree of unpredictability. Randomness is added by the use of a random seed which changes during each run: with same input, output is always different. 
 
 A discrete time model, given its iterative nature, is convenient for traffic simulations. Every tick the current state of the agents is evaluated, algorithms are recomputed, and the overall state of the system is updated. For example, traffic lights change light every n ticks, and each vehicle\textquoteright s velocity is updated accordingly. Our simulation updates state every tick of the clock.
 
-Microscopic traffic models typically simulate the behaviour of single vehicles using microscopic properties such as the vehicle\textquoteright s position and velocity. Our simulation uses the following common decision models[13n]: Car-following model, Lane-selection model, and Gap-acceptance model.
+Microscopic traffic models typically simulate the behaviour of single vehicles using microscopic properties such as the vehicle\textquoteright s position and velocity. Our simulation uses the following common decision models\cite{8h}: Car-following model, Lane-selection model, and Gap-acceptance model.
 
 Lastly, GIS integration allows real maps to be loaded into the system. GIS is the de-facto standard for most professional traffic simulators, and governments regularly publish GIS maps about road networks, which are freely available for download. Virtually any GIS map can be loaded into our system.
 
@@ -185,7 +186,7 @@ For a framework we considered several options. We could code an entire agent bas
 
 \subsection{Repast Simphony}
 
-We settled on Repast Simphony, a general application programming interface (API) providing us tools, libraries, and plug-ins to create a simulation while allowing us to code and implement appropriate logic for the desired simulation. Repast comes with a BSD software license and is widely used in many fields of academia. [5e, table 1, 1457] Repast Simphony provided the following benefits that made it a good fit for our group project:
+We settled on Repast Simphony, a general application programming interface (API) providing us tools, libraries, and plug-ins to create a simulation while allowing us to code and implement appropriate logic for the desired simulation. Repast comes with a BSD software license and is widely used in many fields of academia.\cite{5e} [table 1, 1457] Repast Simphony provided the following benefits that made it a good fit for our group project:
 
 \begin{itemize}\itemsep0pt
 \item As a framework for Java, it is fully object oriented and everything is created as a Plain Old Java Object. It includes Java libraries and .jar utilities, and all objects are rewritable.
@@ -199,7 +200,7 @@ We settled on Repast Simphony, a general application programming interface (API)
 \item It provides an attractive display graphical user interface (GUI) we can modify to suit our needs and make a more interesting simulation, including user defined options at runtime and 2D and 3D visualisation and GIS plugins. One can create new or rewrite existing plug-ins if one wishes.
 \end {itemize}
 
-The benefits of Simphony come at the flipside cost of there being more opportunities for our team to display skill in modelling concepts and logic rather than a mastery of Java programming skill. When our team chose ABM as our design platform this meant behaviour and goals became more central than designing passive functions [4d], and we trust our ability to create an interesting system shows in our project and does credit to our ability. The team spent some time learning the framework, but this was considered a good investment for the benefits.
+The benefits of Simphony come at the flipside cost of there being more opportunities for our team to display skill in modelling concepts and logic rather than a mastery of Java programming skill. When our team chose ABM as our design platform this meant behaviour and goals became more central than designing passive functions \cite{4d}, and we trust our ability to create an interesting system shows in our project and does credit to our ability. The team spent some time learning the framework, but this was considered a good investment for the benefits.
 
 \\ 
 
@@ -244,7 +245,7 @@ GIS maps were simplified by removing the road coordinates between the Junctions 
 \end{figure}
 
 \\
-Each Road agent is added to both the Context and the GIS geography, along with two Lane agents for each side of the Road (used only for displaying vehicle graphics on the UI). A Repast edge is then added to the road network, and the Repast edges are then linked together to create the road network topology. This is done by keeping a cache of all previously created Junctions, so every time a new Road agent is created the cache is checked to see if there already exists Junctions for its end point coordinates. If there is, then we know all roads linked to those Junctions are also linked to the Road agent being created, and we do not need to create any more new Junctions. [3c for more detail] 
+Each Road agent is added to both the Context and the GIS geography, along with two Lane agents for each side of the Road (used only for displaying vehicle graphics on the UI). A Repast edge is then added to the road network, and the Repast edges are then linked together to create the road network topology. This is done by keeping a cache of all previously created Junctions, so every time a new Road agent is created the cache is checked to see if there already exists Junctions for its end point coordinates. If there is, then we know all roads linked to those Junctions are also linked to the Road agent being created, and we do not need to create any more new Junctions. see \cite{3c} for more detail. 
 \\
 
 \begin{figure}[H]
@@ -338,7 +339,7 @@ Simulation parameters and relevant measures are summarised as follows:
 \item Minimum distance between vehicles to avoid collisions = 1.8 meters
 \item Arbitrary acceleration factor of vehicles = 1.6
 \item Real vehicle displacement in meters = displacement * 70
-\item Displacement equation:  x = v0 * t + 1/2 a * t * t, where x is the displacement, v0 the initial velocity, a the acceleration, t the time – which is arbitrarily set to 4.
+\item Displacement equation:  x = v0 * t + 1/2 a * t * t, where x is the displacement, v0 the initial velocity, a the acceleration, t the time â€“ which is arbitrarily set to 4.
 \item Truck maximum speed = 80 Km/h
 \end{itemize}
 
@@ -347,7 +348,7 @@ Simulation parameters and relevant measures are summarised as follows:
 
 The vehicle.java class determines the behaviour of vehicles so they follow roads. This required special coding, as GIS images point true north and use azimuth coordinates for its 3D mapping, while the UI points to grid north and uses simple (X,Y) coordinates for the grid. 
 
-Azimuth coordinates allow one to measure distances and plot locations in a spherical coordinate system, and our code utilized this form of measurement in moving the vehicles along the maps. We referenced [9i] to see how one could compute the correct angle for displaying graphics on the UI. 
+Azimuth coordinates allow one to measure distances and plot locations in a spherical coordinate system, and our code utilized this form of measurement in moving the vehicles along the maps. We referenced \cite{9i} to see how one could compute the correct angle for displaying graphics on the UI. 
 
 This further required the use of kinematics equations for plotting the direction of vehicles in several methods. Kinematics is the study of objects moving through space. Because we used GIS maps, all calculations along the map involve real distances.
 \\
@@ -413,8 +414,8 @@ The only class which is not our team\textquoteright s work is class PriorityBloc
 \subsection{Introduction}
 This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of the system is naturally not realistically possible in the time given but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
 
-ABM testing will be done by running the simulation, observing the agents \textquoteright  behaviour and comparing it with expected behaviour. We will  test our code at three diff�erent levels of functionality:
-This will include testing of agents interaction with other components of environment (roads, traffi�c lights) when programme will be executed at run time.
+ABM testing will be done by running the simulation, observing the agents \textquoteright  behaviour and comparing it with expected behaviour. We will  test our code at three diff€erent levels of functionality:
+This will include testing of agents interaction with other components of environment (roads, traffiƒc lights) when programme will be executed at run time.
 
 \subsection{Objectives and Tasks}
 \subsubsection{Objectives}
@@ -740,7 +741,7 @@ We originally intended to implement both signal and roundabout junctions, but th
 
 \subsection{Further Work}
 
-\textquotedblleft Validation data is usually macroscopic statistics such as flow rate, speeds and queue time, which can easily be compared with data from real traffic experiments. \textquotedblright [4d] 
+\textquotedblleft Validation data is usually macroscopic statistics such as flow rate, speeds and queue time, which can easily be compared with data from real traffic experiments. \textquotedblright \cite{4d} 
 
 \begin{itemize}\itemsep0pt
 \item If we had more time we would have liked to download a road map from a town in England where we know road data/statistics and compare our model to the actual traffic flow for the same road. This would be a big step in validating our logic and making the code useful to others wishing to model traffic.
@@ -770,6 +771,8 @@ Andrea: 20
 
 Yoann: 21.5
 
+\bibliographystyle{plain}
+\bibliography{bibliography}
 
 
 \end{document}

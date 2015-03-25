@@ -47,7 +47,7 @@ POLICY COMPARISONS
 The simulation was used with several parameters and maps to allow for 
 road network and policy comparisons. Three maps was being used presently,
 large New York, small New York and New Jersey. What is being examined 
-presently is the change in behavior when the following paramters are 
+presently is the change in behavior when the following parameters are 
 adjusted; number of vehicles, traffic lights and give way signs. The
 data being extrapolated to analyse change is the speed of the vehicles.
 

@@ -53,34 +53,49 @@ data being extrapolated to analyse change is the speed of the vehicles.
 
 Small New York map (nyc_small.shp) covers an area of approximately 20km^2. 
 This model does not account for alleys, smaller streets but only avenues. It 
-simulates 10,000 vehicles during peak hour and 1,000 to simulate late night.
+simulates 10,000 vehicles to account for peak hours and 1,000 to simulate 
+late night.
 
 Traffic lights policy was simulated on this map with parameters set as
-10,000 vehicles and 1000 ticks.
-- Add image
+10,000 vehicles and 1000 ticks. The data shows a gradual increment of 
+average speed to a maximum of 41. It also shows very heavy concentration 
+is being built up at junctions.
+Figure xx.
+Figure xx.
 
-1,000 vehicles and 1000 ticks.
-- Add image
+1,000 vehicles and 1000 ticks. With these parameters the data shows a 
+sharp increase in average speed to a maximum of 95. The data shows dense 
+concentration across popular routes and junctions.
+Figure xx.
+Figure xx.
 
 Give way policy was simulated on this map with parameters set as
-10,000 vehicles and 1000 ticks.
-- Add image
+1,000 vehicles and 1000 ticks. This led to one of the fastest average
+speed recorded with it being a maximum of 110. The data shows similar 
+density to the traffic lights policy with the same number of vehicles.
+Figure xx.
+Figure xx.
 
-1,000 vehicles and 1000 ticks.
-- Add image
+
+10,000 vehicles and 1000 ticks was not carried out as the simulation 
+would not accurately cope with such a high density of vehicles. 
+Furthemore, vehicles could potentially suffer accidents that have yet to be modelled. 
 
 The following is a summary in tabular form for policies tested on this map:
 Policy          No. of Vehicles      Ticks      Average Speed
-Traffic Light   10,000               1,000      
-Give Way        10,000               1,000
-Traffic Light   1,000                1,000
-Give Way        1,000                1,000
+Traffic Light   10,000               1,000      40  
+Give Way        10,000               1,000      -
+Traffic Light   1,000                1,000      88
+Give Way        1,000                1,000      105.7
 
-
-
-
-
-- Add brief conclusion on the above findings from screenshots.
+SignalGreen shows us that average speed with give way policies is higher 
+because cars need to stop less frequently than when with traffic lights. 
+The data shows tht give way policies would be more desirable in non-metropolitan 
+areas, but it would be too risky in more densily populated areas such Manhattan.
+A mix of the two is then the best trade-off between a higher speed and 
+security of population and drivers. Moreover, the difference in distribution 
+between give way and traffic light policies when using a 1,000 vehicles has 
+no significant difference.
 
 POTENTIAL FUTURE COMPARISONS
 In future, there are alternative ways that can be used to analyse 

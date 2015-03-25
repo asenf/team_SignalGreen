@@ -1,0 +1,45 @@
+DATA EXTRAPOLATION
+Data extrapolation was implemented into the simulation. This allowed for 
+comparisons of difference and efficiency between various maps that the 
+simulation emulates. The implementation starts with recording data from 
+data sources. These are predefined and, aggregate or non-aggregate. 
+
+They are in the form of linked hash maps and levy Repast’s integrated 
+ability to pass agents and objects towards the correct data source. For 
+instance, the simulation model records an aggregate data source for average 
+speed. This data source calls the getVelocity() method of all vehicle 
+agents in the simulation at each time step. The aggregate operation 
+carried out on the results of getVelocity() is attaining the mean. 
+
+To assist in this, Repast has a data set descriptor 
+repast.simphony.data2.engine.DataSetDescriptor to define the datasets 
+that are being created and is in XML.
+
+To visualize the extrapolated data being collected from the data sources, 
+the data is plotted against tick count on a time series type chart. Repast 
+has an integrated ability to create various charts from the data sources 
+defined. For instance, in the case of the average speed of vehicles, the 
+descriptor below was used to define attributes of a time series chart, 
+where the x-axis has the tick count and y-axis has the mean speed. This 
+is shown in figure xx. The descriptor is defined in XML and is 
+repast.simphony.chart2.engine.TimeSeriesChartDescriptor.
+
+ 
+
+Figure xx. Time series chart for average speed calculated at tick count.
+
+The simulation stores data collected from the data sources and writes 
+the data into a sink text file. This makes use of Repast’s ability to 
+write data to both file and console. Each data source is assigned a data 
+set ID which helps separate the data and write each ID in a set column. 
+The follow shows resultant data stored for average speed. As seen in the 
+output, the sink file structures the data collected from each data 
+source in a tabular format. 
+
+"AverageSpeed","tick"
+1.1900000000000002,1.0
+2.3800000000000003,2.0
+3.5699999999999985,3.0
+
+Listing xx. Signal Green simulation output.
+

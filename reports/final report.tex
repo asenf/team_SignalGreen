@@ -145,7 +145,7 @@ Milestone 1:
 \item vehicles make decisions to reach a goal
 \end{itemize}
 \\
-ztone 2:
+Milestone 2:
 \begin{itemize}\itemsep0pt
 \item deadline: 8 March
 \item implement basic vehicle type: car
@@ -425,6 +425,155 @@ ABM testing will be done by running the simulation, observing the agents\textquo
 This will include testing of agents interaction with other components of environment (roads, traﬃc lights) when programme will be executed at run time.
 
 Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible. 
+\subsection{Introduction}
+This test plan has been created to check if our system conforms to all functional requirements and also to specify the types of testing which will be used to validate the functional requirements, action required on failed tests and time line to perform testing of the system. Exhaustive testing of system is not possible but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible because most of the methods needs objects to be passed as parameters and their behaviour is changed on every tick of simulation. 
+
+\subsection{Objectives and Tasks}
+\subsubsection{Objectives}
+    The objective of testing our system is to provide adequate testing of functional requirements, validation and behaviour of system under simulated condition. Testing will be done by running the simulation, observing the agents' behaviour and comparing it with expected behaviour. Debug methods are written to eliminate bugs in the code and exceptions are handled to avoid the crashes. Simulation is run atleast more than 3 times in order to test the expected behaviour of agents during simulation run.
+
+\subsubsection{Tasks}
+\begin{itemize}
+	\item Identifying functional requirements and writing the tests cases.
+
+	\item Executing tests.
+
+	\item Record the failed test cases and reporting them to team.
+
+	\item Performing the re-test on failed test cases one bugs are fixed.
+\end{itemize}
+
+\subsection{Scope}
+	In context to our system, which is implemented using agent-based model it will be tested at three different levels of functionality.
+		\begin{itemize}
+			\item Agents' behaviour
+			\item Runtime Parameters
+			\item	 Overall behaviour of system
+		\end{itemize} 
+
+\begin{itemize}
+	\subsubsection{Levels of Functionalities}
+	\item \textbf{Agents' behaviour: }\hfill \\
+	Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. \begin{enumerate}
+
+	\item \textbf{Vehicles}\hfill \\
+	step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
+
+	\begin{itemize}
+	\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
+		\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle 	should be stuck in impasse.\hfill \\
+		\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in 		impasse. Cannot move...". "if condition" remains false.\hfill \\
+		\underline{Result:} Passed\hfill \\
+
+	\item \textbf{Test Case 2:}moveTowards()\hfill \\
+		\underline{Input:}Coordinate and displacement\hfill \\
+		\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.".	\hfill \\
+		 \underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
+		\underline{Result:}Passed
+	
+	\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
+		\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
+		\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
+		\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
+		\underline{Result:}Passed\hfill \\
+
+	\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
+		\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
+		\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
+		\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
+		\underline{Result:}Passed\hfill \\
+	\end{itemize}
+
+\item \textbf{Traffic Lights}
+	\begin{itemize}
+		\item \textbf{Test Case 5:} Traffic Light Green \hfill \\
+		\underline {Expected Output:}Cars should keep moving if traffic light is green.\hfill \\
+		\underline{ Actual Output:}Cars did not stop.\hfil \\
+		\underline{ Result:}Passed.
+
+		\item \textbf{Test Case 6:} Traffic Light Red\hfill \\
+		 \underline{Expected Output:} Cars should stop if traffic light is red.\hfill \\
+		\underline{ Actual Output: }Cars stops when traffic light is red.\hfill \\
+		 \underline{Result:} Passed
+ 
+		 \item \textbf{Test Case 7:} Traffic Lights On More Than 2 Roads Junction\hfill \\
+ 		Traffic lights should only be displayed on junctions that contain more than two roads.\hfill \\
+ 		\underline{Expected Output:} Only junctions with more than two roads display traffic lights.\hfill \\
+		\underline{Actual Output:} Traffic lights are displayed only on more than two road junctions.\hfill \\
+		\underline{Result:} Passed\hfill \\
+
+		\begin{figure}[h!]
+		 \centering
+		\includegraphics{junction}\hfill \\
+ 		\caption{Network with traffic lights.}
+		\end{figure}
+	\end{itemize}
+
+ \end{enumerate}
+
+\item \textbf{Runtime Parameters:} \hfill \\
+Elements and data which loads at run time will form part of runtime testing. It will be tested, giving all valid and invalid inputs and check results. Following elements will be tested at run time:
+
+	\begin{itemize}
+		\item \textbf{Test Case 8:} SignalGreenBuilder Implements ContextBuilder\hfill \\
+		This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
+		\underline{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
+		\underline{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
+		\underline{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
+		\underline{Result:} Passed
+		
+		
+		\item\textbf{Test Case 9:} Number of vehicles\hfill \\
+		\underline{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\
+		4, 0 , -1 and a character given as input.\hfill \\
+		\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
+		\underline{Actual Output:}  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
+		\underline{Result:} Passed\hfil \\
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.8]{4cars}
+		\caption{Number of cars}
+		\end{center}
+		\end{figure}
+		
+		\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
+		"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
+		\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
+		\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
+		\underline{Result:}Passed.
+		
+		
+		\item \textbf{Test Case 11:}Multiple Maps\hfill \\
+		\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input.  \hfill \\
+		\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
+		\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
+		\underline{Result:}Passed
+		\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.3]{manhattan_section}
+		\caption{Map of Manhattan}\hfill \\
+		\end{center}
+		\end{figure}\hfill \\
+		
+		
+	\end{itemize}
+
+\item \textbf{Overall behaviour of system: }\hfill \\
+		Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
+	\begin{itemize}
+	\item	\textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
+		\underline{Expected Output} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
+		\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
+		There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
+		\includegraphics[scale=0.7]{RoadNetwork}
+		\includegraphics{Sim}\hfill \\
+			
+		\underline{Result: }Passed
+			
+	\end{itemize}
+\end{itemize}
+\subsection{Conclusion}
+This test plan covers all major requirements of traffic simulation we have developed which verifies the functional requirements established at the beginning of the project. Test cases were developed to test the expected behaviour of the system using different parameters at run time.
 
 
 \section{TEAM WORK}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.15)  25 MAR 2015 01:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.15)  25 MAR 2015 13:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -245,24 +245,504 @@ Type  H <return>  for immediate help.
                                                   
 l.143 M
        ilestone 2:
-? 
-./final report.tex:143: Emergency stop.
+? r
+OK, entering \nonstopmode...
+
+./final report.tex:155: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.143 M
-       ilestone 2:
+l.155 M
+       ilestone 3:
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
- 
+
+./final report.tex:164: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 P
+       ossible Traffic Policy Implementations:
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./final report.tex:173: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.173 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 186--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--190
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--194
+
+ []
+
+
+./final report.tex:200: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.200 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 230--233
+
+ []
+
+<creating_road_segments_from_shapefile.jpg, id=29, 719.68875pt x 418.56375pt>
+File: creating_road_segments_from_shapefile.jpg Graphic file (type jpg)
+
+<use creating_road_segments_from_shapefile.jpg>
+Package pdftex.def Info: creating_road_segments_from_shapefile.jpg used on inpu
+t line 236.
+(pdftex.def)             Requested size: 287.87039pt x 167.42252pt.
+
+
+./final report.tex:242: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.242 E
+       ach Road agent is added to both the Context and the GIS geography, al...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--244
+
+ []
+
+<creating_new_roads.jpg, id=30, 743.77875pt x 536.0025pt>
+File: creating_new_roads.jpg Graphic file (type jpg)
+
+<use creating_new_roads.jpg>
+Package pdftex.def Info: creating_new_roads.jpg used on input line 247.
+(pdftex.def)             Requested size: 297.50623pt x 214.3972pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:253: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.253 A
+       s an example, consider figure [concrete example].
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--267
+
+ []
+
+<GIS_display_manhattan_loaded.jpg, id=31, 1013.7875pt x 559.08875pt>
+File: GIS_display_manhattan_loaded.jpg Graphic file (type jpg)
+
+<use GIS_display_manhattan_loaded.jpg>
+Package pdftex.def Info: GIS_display_manhattan_loaded.jpg used on input line 27
+0.
+(pdftex.def)             Requested size: 405.50783pt x 223.63153pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:275: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.275 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[7 <./creating_road_segments_from_shapefile.jpg>]
+Overfull \hbox (7.9399pt too wide) in paragraph at lines 289--290
+\T1/cmr/m/n/10.95 cal-cu-lated based on con-stant val-ues DIST_VEHICLES and DIS
+T_VEHICLES_STOPPED.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--293
+
+ []
+
+<step_method_seq_diagram.jpg, id=36, 1003.75pt x 1314.9125pt>
+File: step_method_seq_diagram.jpg Graphic file (type jpg)
+
+<use step_method_seq_diagram.jpg>
+Package pdftex.def Info: step_method_seq_diagram.jpg used on input line 296.
+(pdftex.def)             Requested size: 451.68333pt x 591.70517pt.
+
+Overfull \hbox (24.89198pt too wide) in paragraph at lines 296--297
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:302: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.302 T
+       he method step() works as follows. (See Figure .) Assume the current ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[8 <./creating_new_roads.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 310--312
+
+ []
+
+<overtaking.jpg, id=40, 875.27pt x 250.9375pt>
+File: overtaking.jpg Graphic file (type jpg)
+ <use overtaking.jpg>
+Package pdftex.def Info: overtaking.jpg used on input line 315.
+(pdftex.def)             Requested size: 350.10179pt x 100.37321pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:321: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.321 F
+       rom Repast\textquoteright s point of view, Step() method is executed ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[9 <./GIS_display_manhattan_loaded.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 347--349
+
+ []
+
+<moving_vehicles.jpg, id=44, 877.2775pt x 637.38126pt>
+File: moving_vehicles.jpg Graphic file (type jpg)
+
+<use moving_vehicles.jpg>
+Package pdftex.def Info: moving_vehicles.jpg used on input line 352.
+(pdftex.def)             Requested size: 263.18527pt x 191.21585pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:357: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.357 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./final report.tex:367: LaTeX Error: \begin{enumerate} on input line 359 ended 
+by \end{enumeration}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.367 \end{enumeration}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[10] <traffic_light_junction.jpg, id=48, 402.50375pt x 263.98625pt>
+File: traffic_light_junction.jpg Graphic file (type jpg)
+
+<use traffic_light_junction.jpg>
+Package pdftex.def Info: traffic_light_junction.jpg used on input line 383.
+(pdftex.def)             Requested size: 160.99864pt x 105.59262pt.
+
+<give_way_junction.jpg, id=49, 735.74875pt x 294.09875pt>
+File: give_way_junction.jpg Graphic file (type jpg)
+
+<use give_way_junction.jpg>
+Package pdftex.def Info: give_way_junction.jpg used on input line 393.
+(pdftex.def)             Requested size: 147.14714pt x 58.8187pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 454--456
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 459.
+
+Underfull \hbox (badness 10000) in paragraph at lines 458--462
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 469--474
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 475--480
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 494--499
+
+ []
+
+<junction.jpg, id=56, 144.54pt x 124.21407pt>
+File: junction.jpg Graphic file (type jpg)
+ <use junction.jpg>
+Package pdftex.def Info: junction.jpg used on input line 502.
+(pdftex.def)             Requested size: 144.53963pt x 124.21375pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13] <4cars.jpeg, id=61, 171.64125pt x 317.185pt>
+File: 4cars.jpeg Graphic file (type jpg)
+ <use 4cars.jpeg>
+Package pdftex.def Info: 4cars.jpeg used on input line 529.
+(pdftex.def)             Requested size: 137.31316pt x 253.74832pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<manhattan_section.jpg, id=62, 750.805pt x 715.67375pt>
+File: manhattan_section.jpg Graphic file (type jpg)
+
+<use manhattan_section.jpg>
+Package pdftex.def Info: manhattan_section.jpg used on input line 548.
+(pdftex.def)             Requested size: 225.24323pt x 214.70378pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 541--552
+
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--559
+
+ []
+
+<RoadNetwork.png, id=63, 246.1697pt x 140.02313pt>
+File: RoadNetwork.png Graphic file (type png)
+ <use RoadNetwork.png>
+Package pdftex.def Info: RoadNetwork.png used on input line 563.
+(pdftex.def)             Requested size: 172.3176pt x 98.01552pt.
+
+<Sim.png, id=65, 238.64156pt x 225.84375pt>
+File: Sim.png Graphic file (type png)
+ <use Sim.png>
+Package pdftex.def Info: Sim.png used on input line 564.
+(pdftex.def)             Requested size: 238.64096pt x 225.84319pt.
+
+Overfull \hbox (19.48111pt too wide) in paragraph at lines 559--565
+[]$ \T1/cmr/m/n/10.95 of next.printVehiclesQueue(origin):[signalGreen.Vehicle@5
+4008645,
+ []
+
+
+Overfull \hbox (31.15533pt too wide) in paragraph at lines 559--565
+[] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--565
+
+ []
+
+[14] [15 <./RoadNetwork.png> <./Sim.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 616--618
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--620
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 620--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 622--624
+
+ []
+
+[16]
+
+./final report.tex:627: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.627 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
+
+ []
+
+<gantt8Feb.jpg, id=77, 478.78876pt x 385.44pt>
+File: gantt8Feb.jpg Graphic file (type jpg)
+ <use gantt8Feb.jpg>
+Package pdftex.def Info: gantt8Feb.jpg used on input line 651.
+(pdftex.def)             Requested size: 478.78758pt x 385.43906pt.
+
+Overfull \hbox (51.99623pt too wide) in paragraph at lines 651--652
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:657: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.657 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<gantt26Mar.jpg, id=78, 478.78876pt x 379.4175pt>
+File: gantt26Mar.jpg Graphic file (type jpg)
+ <use gantt26Mar.jpg>
+Package pdftex.def Info: gantt26Mar.jpg used on input line 660.
+(pdftex.def)             Requested size: 383.03152pt x 303.53441pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+./final report.tex:667: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.667 W
+       e completed tasks very much on schedule with what we planned at the b...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 669--671
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 702--704
+
+ []
+
+[18] [19] [20 <./step_method_seq_diagram.jpg>] [21 <./overtaking.jpg> <./moving
+_vehicles.jpg> <./traffic_light_junction.jpg> <./give_way_junction.jpg>]
+[22 <./junction.jpg> <./4cars.jpeg>] [23 <./manhattan_section.jpg>] [24 <./gant
+t8Feb.jpg>] [25 <./gantt26Mar.jpg>] (./final report.aux) ) 
 Here is how much of TeX's memory you used:
- 2474 strings out of 493117
- 35313 string characters out of 6135433
- 101971 words of memory out of 5000000
- 5922 multiletter control sequences out of 15000+600000
- 11553 words of font info for 31 fonts, out of 8000000 for 9000
+ 2568 strings out of 493117
+ 37205 string characters out of 6135433
+ 104971 words of memory out of 5000000
+ 5998 multiletter control sequences out of 15000+600000
+ 12695 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,29p,570b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
-./final report.tex:143:  ==> Fatal error occurred, no output PDF file produced!
+ 37i,7n,29p,733b,525s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2
+014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/201
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014
+/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2014/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2014/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dis
+t/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on "final report.pdf" (25 pages, 1124329 bytes).
+PDF statistics:
+ 133 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

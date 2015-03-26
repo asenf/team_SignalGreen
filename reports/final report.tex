@@ -43,9 +43,9 @@
 \section{INTRODUCTION}
 
 
-This work was first and foremost an opportunity for working in a group. Employers want engineers who are not only skilled in their craft, but also persons who are able to collaborate, work well as part of a team, and invest in project aims and those working to achieve them. Our team was able to develop a simulation that involved each member in the process. In spite of differing abilities and communication styles, each person was able to contribute in important ways. Together we accomplished more than any one of us could have created on our own.
+This work was first and foremost an opportunity for working in a group. Employers want engineers who are not only skilled in their craft, but also persons who are able to collaborate, work well as part of a team, and invest in project aims and those working to achieve them. Our team was able to develop a simulation that involved each member in the process. In spite of differing abilities and communication styles, each person was able to contribute in important ways. Together we accomplished much more than any one of us could have created on our own in the time provided.
 
-The software engineering part of this project focused on creating a traffic simulation software where we can test various traffic management strategies. We wanted to create a simulation that would be visually interesting with user modifiable variables, and that would have potential for further expansion and use.
+The software engineering part of this project focused on creating a traffic simulation software where we can test various traffic management strategies. We wanted to create a simulation that would be visually interesting with user modifiable variables and that would have potential for further expansion and use.
 
 We were able to create a simulation that is interesting, flexible, and allows different layouts and road policies to be tested and visually represented. Any geographic information system (GIS) map shapefile representing road networks can be loaded into our simulator and could easily be extended to take into account any other relevant attributes.
 
@@ -181,6 +181,7 @@ The team began by choosing a programming language for development. We quickly se
 For a framework we considered several options. We could code an entire agent based traffic simulation ourselves; this was not selected due to the enormous coding task this would involve, and we were concerned we would not meet all the requirements for the assignment in the time allocated. We considered NetLogo, but decided it did too much work for us; we would do almost no coding ourselves, and very little logic to create. We wanted to show our own ability to code and create our own logic.
 
 
+
 \subsection{Repast Simphony}
 
 We settled on Repast Simphony, a general application programming interface (API) providing us tools, libraries, and plug-ins to create a simulation while allowing us to code and implement appropriate logic for the desired simulation. Repast comes with a BSD software license and is widely used in many fields of academia.\cite{5e} [table 1, 1457] Repast Simphony provided the following benefits that made it a good fit for our group project:
@@ -212,12 +213,40 @@ While Simphony provided a very useful API, our team determined how each agent an
 Simphony provided nice helper features and many tools to increase the speed at which we could code. Our code uses its background foundation required for ABM, including multi-threading, the Clock/Watcher, having objects automatically drawn on the screen, and agents being aware of their environment. While our team wanted to especially take advantage of Simphony\textquoteright s visualisation benefits, our core requirements are based around the logic of the agents, not their appearance.
 
 
+
+\subsection{GIS maps}
+
+Geographic Information System (GIS) maps capture geographical data from the real world and saves this data in standardised shapefiles (.shp). By using GIS maps our simulation can use maps and physical data from every country on the Earth \cite{12m}. 
+
+Shapefiles store the geometry of the road networks along with attributes such as road name, speed limits, etc. These are accessible through the UI so one can see pertinent information (eg. which road is experiencing congestion) while running a simulation. 
+
+Using GIS files gives our simulation the relevance of being able to run various policies on actual existing roads. Our simulation is easily extensible to include other factors relevant to particular roads that our simulation does not handle. Adding additional road features will enable full utilisation of the GIS maps.
+
+GIS overhead makes up a significant portion of our codebase. The shapefile is loaded in the constructor using a static path plus user input for the specific file. 
+
+Every vehicle instance has two sets of coordinates: realPos for the UI, and networkPos for calculations. There are calculations required for converting between the polar and grid north coordinates. 
+
+Method Utils.distance - uses geoditic calculator to get distance in metres between two GIS coordinates. This uses the external library geotools.
+
+Vehicle.moveTowards - takes in a coordinate and distance, converts it ot GIS coordinates, and updates positions in the real GIS geography as well as the UI.
+
+getPosition - takes a single coordinate and returns an array of perpendicular coordinates, two logical and two real.
+
+getNetworkPosFromRealPos and getRealPosFromNetworkPos both wrap the method getPosition, and based on the vehicles' current lane returns a coordinate from the array.
+
+getPosition further calls two methods in Utils: getAzimuth and createCoordsFromAngle.
+
+Utils.getAzimuth - takkes in two coordinates and geography, returning the azimuth as a double. This is very complex and so uses the geodetic calculator found in the extrenal libraary geotools.
+
+utils.createCoordsFromCoordAndAngle - This meethod requires the azimuth angle, coordinate, distance, and geograhy. the azimuth is converted to radians to make the calculations easier, and then based on whether the angle is +90 or -90 degrees adjusts it to place it in one of the four quadrants. The two angles are then converted into degrees.
+
+
 \subsection{Agents and Environment}
 
 
 The architecture for our simulation engine is a hierarchy of Java classes, where each class is either an agent or an environment. Agents are objects that exhibit behaviours and can either be of fixed geography (eg: junction, road) or they can move on the GIS projection (eg: vehicles and their subclasses). Agent behaviour can be embedded through the agents reacting to the environment themselves, by using the watcher component which listens for events and triggers actions, or by globally scheduling events to happen.
 
-An environment forms a container for agents and includes the Road Network Topology (the network), and GIS Geography (the geography). These are loaded from standard GIS shapefiles (.shp extension). The environment is coded in continuous space with (X,Y) coordinates on a directed graph network, with the Network being the topological relationship between each road segment. At any time each agent knows its position on the Geography; vehicle agents can ask the Network for their route and then follow this course along each road segment. Continuous space also allows the user interface to display agents in detail during the simulation.
+An environment forms a container for agents and includes the Road Network Topology (the network), and GIS Geography (the geography). The environment is coded in continuous space with (X,Y) coordinates on a directed graph network, with the Network being the topological relationship between each road segment. At any time each agent knows its position on the Geography; vehicle agents can ask the Network for their route and then follow this course along each road segment. Continuous space also allows the user interface to display agents in detail during the simulation.
 
 Repast offers a ContextBuilder component containing a framework for creating agents and environments. The team used the framework to model entities and features including (but not limited to): vehicles, roads, junctions, road network topology, and GIS geography. We also coded all behaviour logic (direction, volition, velocity, etc) for the agents.
 
@@ -290,7 +319,7 @@ Method computeDisplacement() is used to determine exactly how far in metres the 
 \subsubsection{Method Step()}
 
 
-A vehicle\textquoteright s vision is the distance around which a vehicle is aware of its environment and is calculated based on the sum of the displacement and the constant values DIST{\_}VEHICLES or DIST{\_}VEHICLES{\_}STOPPED. Method step() determines individual vehicle behaviours, including interaction with junctions and other vehicles, increasing/decreasing speed, changing lanes, and moving the vehicle along the map.
+A vehicle\textquoteright s vision is the distance around which a vehicle is aware of its environment and is calculated based on constant values DIST{\_}VEHICLES and DIST{\_}VEHICLES{\_}STOPPED. Method step() determines individual vehicle behaviours, including interaction with junctions and other vehicles, increasing/decreasing speed, changing lanes, and moving the vehicle along the map.
 
 The vehicle checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If a vehicle observes a slower moving vehicle in its path, it makes a decision whether or not to change lanes. The vehicle also checks for approaching junctions, decelerating to a stopped position before the light if a red light is in view. If no other vehicles or junctions are in its vision it will accelerate to its maxVelocity. 
 \\
@@ -342,7 +371,13 @@ Simulation parameters and relevant measures are summarised as follows:
 \end{itemize}
 
 
+
 \subsubsection{Moving on GIS Geography}
+
+
+GIS maps use an azimuth angle system to map coordinates on to spherical maps of the Earth. These allow for more accurate and realistic simulations, where the topology and actual distances in metres are true, and the maps are based on true North. Using GIS maps adds a layer of complexity to our code, as the UI uses a flat Cartesian system with simple (X,Y) coordinates and is based on grid north. So our simulation needs to translate GIS data for the UI.
+
+
 
 The vehicle.java class determines the behaviour of vehicles so they follow roads. This required special coding, as GIS images point true north and use azimuth coordinates for its 3D mapping, while the UI points to grid north and uses simple (X,Y) coordinates for the grid. 
 
@@ -442,6 +477,9 @@ The only class which is not our team\textquoteright s work is class PriorityBloc
 
 
 \section{TESTING}
+
+
+
 \subsection{Introduction}
 This test plan has been created to check if our system conforms to all functional requirements and also to specify the testing techniques which will be used to validate the requirements of the system. Exhaustive testing of the system is naturally not realistically possible in the time given but we will use a diverse range of tests to find bugs and errors in the system including unit, functional, error and system testing. System is implemented using java therefore cross platform testing will be performed too. Automation testing will not be possible due to the nature of agent-based modelling simulations. Agents are non-deterministic and there is no set predictability of where objects will be at a given time. There is not a set result that can be expected for each vehicle, so automated testing for agents is not generally possible.
 
@@ -481,60 +519,57 @@ Checks that all agents of the system produce expected results for a given scenar
 \subsubsection{Levels of Functionalities}
 \begin{itemize}%begin itemize for 3 levels
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	\item \textbf{Agents' behaviour: }\hfill \\ %Item 1
-	Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. 
+\item \textbf{Agents' behaviour: }\hfill \\ %Item 1
+Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. 
 
 \begin{enumerate}%begin enumerate
-	\item\textbf {Vehicles}
-	step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
+\item\textbf {Vehicles}
+step() method of Vehicle class is the entry point of control into simulation. All methods related to vehicle behaviour are invoked inside this method.\hfill \\
 
 
 
-	\begin{itemize} %Itemize for test cases
-	\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
-		\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle 	should be stuck in impasse.\hfill \\
-		\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
-		\underline{Result:} Passed\hfill \\
+\begin{itemize} %Itemize for test cases
+\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
+\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle should be stuck in impasse.\hfill \\
+\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
+\underline{Result:} Passed\hfill \\
 
 
 
-	\item \textbf{Test Case 2:}moveTowards()\hfill \\
-		\underline{Input:}Coordinate and displacement\hfill \\
-		\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.".	\hfill \\
-		 \underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
-		\underline{Result:}Passed\hfill \\
-	
-	\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
-		\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
-		\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
-		\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
-		\underline{Result:}Passed\hfill \\
+\item \textbf{Test Case 2:}moveTowards()\hfill \\
+\underline{Input:}Coordinate and displacement\hfill \\
+\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.". \hfill \\
+\underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
+\underline{Result:}Passed\hfill \\
+\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
+\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
+\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
+\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
+\underline{Result:}Passed\hfill \\
 
-	\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
-		\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
-		\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
-		\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
-		\underline{Result:}Passed\hfill \\
-	\end{itemize}%end itemize
-	\item\textbf{Traffic Lights}
-	\begin{itemize} %itemize for test cases
-		\item \textbf{Test Case 5:} Traffic Light Green \hfill \\
-		\underline {Expected Output:}Cars should keep moving if traffic light is green.\hfill \\
-		\underline{ Actual Output:}Cars did not stop.\hfil \\
-		\underline{ Result:}Passed.
+\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
+\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
+\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
+\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
+\underline{Result:}Passed\hfill \\
+\end{itemize}%end itemize
+\item\textbf{Traffic Lights}
+\begin{itemize} %itemize for test cases
+\item \textbf{Test Case 5:} Traffic Light Green \hfill \\
+\underline {Expected Output:}Cars should keep moving if traffic light is green.\hfill \\
+\underline{ Actual Output:}Cars did not stop.\hfil \\
+\underline{ Result:}Passed.
 
-		\item \textbf{Test Case 6:} Traffic Light Red\hfill \\
-		 \underline{Expected Output:} Cars should stop if traffic light is red.\hfill \\
-		\underline{ Actual Output: }Cars stops when traffic light is red.\hfill \\
-		 \underline{Result:} Passed
- 
-		 \item \textbf{Test Case 7:} Traffic Lights On More Than 2 Roads Junction\hfill \\
- 		Traffic lights should only be displayed on junctions that contain more than two roads.\hfill \\
- 		\underline{Expected Output:} Only junctions with more than two roads display traffic lights.\hfill \\
-		\underline{Actual Output:} Traffic lights are displayed only on more than two road junctions.\hfill \\
-		\underline{Result:} Passed\hfill \\
-	
- \end{enumerate}
+\item \textbf{Test Case 6:} Traffic Light Red\hfill \\
+\underline{Expected Output:} Cars should stop if traffic light is red.\hfill \\
+\underline{ Actual Output: }Cars stops when traffic light is red.\hfill \\
+\underline{Result:} Passed
+\item \textbf{Test Case 7:} Traffic Lights On More Than 2 Roads Junction\hfill \\
+Traffic lights should only be displayed on junctions that contain more than two roads.\hfill \\
+\underline{Expected Output:} Only junctions with more than two roads display traffic lights.\hfill \\
+\underline{Actual Output:} Traffic lights are displayed only on more than two road junctions.\hfill \\
+\underline{Result:} Passed\hfill \\
+\end{enumerate}
 
 \begin{figure}[h!]
 \centering
@@ -549,80 +584,75 @@ Network with traffic lights.
 Elements and data which loads at run time will form part of runtime testing. It will be tested, giving all valid and invalid inputs and check results. Following elements will be tested at run time:
 
 
-	\begin{itemize}%Test cases itemize
-		\item \textbf{Test Case 8:} SignalGreenBuilder Implements ContextBuilder\hfill \\
-		This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
-		\underline{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
-		\underline{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
-		\underline{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
-		\underline{Result:} Passed\hfill \\
+\begin{itemize}%Test cases itemize
+\item \textbf{Test Case 8:} SignalGreenBuilder Implements ContextBuilder\hfill \\
+This class contains methods to build the context and initialise all variables required during the simulation execution.\hfil \\
+\underline{Input:} Run signalGreen Model, to load user GUI which contains GIS map, Vehicle agents and TrafflicLight Agents.\hfill \\
+\underline{Expected Output:} Map should be loaded and displayed along with three different types of vehicles and traffic lights on all junctions that have more than two edges.\hfill \\
+\underline{Actual Output:} Map loaded with 100 vehicles which is default value and traffic lights on junctions with more than two edges only.\hfill \\
+\underline{Result:} Passed\hfill \\
 
-		\item\textbf{Test Case 9:} Number of vehicles\hfill \\
-		\underline{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\4, 0 , -1 and a character given as input.\hfill \\
-		\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
-		\underline{Actual Output:}  Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
-		\underline{Result:} Passed\hfill \\
-		\begin{table}[H]
-		\begin{center}
-		\includegraphics[scale=0.8]{4Cars}\hfill \\
-		4 Vehicles on the road
-		\end{center}
-		\end{table}
-		\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
-		"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
-		\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
-		\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
-		\underline{Result:}Passed.\hfill \\	
-		
-		\item \textbf{Test Case 11:}Multiple Maps\hfill \\
-		\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input.  \hfill \\
-		\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
-		\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
-		\underline{Result:}Passed\hfill \\
-		\begin{table}[H]
-		\begin{center}
-		\includegraphics[scale=0.4]{manhattan_section}\hfil \\
-		GIS Map for Manhattan
-		\end{center}
-		\end{table}
-		\begin{table}[H]
-		\begin{center}
-		\includegraphics[scale=0.4]{nyc_full}\hfill \\
-		GIS Map for New York
-		\end{center}
-	
-		\end{table}
-	\end{itemize}%Test cases itemize
-	
+\item\textbf{Test Case 9:} Number of vehicles\hfill \\
+\underline{Input:} Enter a number in "Number of vehicles" field on parameters tab.\hfill \\4, 0 , -1 and a character given as input.\hfill \\
+\underline{Expected Output:} Only entered number of vehicles should appear on road network. No vehicles should appear for negative numbers and characters. \hfill \\
+\underline{Actual Output:} Vehicles are equal to number entered. No vehicles for negative and character input.\hfil \\
+\underline{Result:} Passed\hfill \\
+\begin{table}[H]
+\begin{center}
+\includegraphics[scale=0.8]{4Cars}\hfill \\
+4 Vehicles on the road
+\end{center}
+\end{table}
+\item \textbf{Test Case 10:} No Traffic Lights\hfill \\
+"Traffic Lights" on parameters tab, if unchecked traffic lights should not appear on display and cars should not consider traffic lights.\hfill \\
+\underline{Expected Output:} Cars should travel on road without stopping at traffic lights as there are none.\hfill \\
+\underline{Actual Output:} No traffic lights are displayed and cars carry on moving on roads.
+\underline{Result:}Passed.\hfill \\ 
+\item \textbf{Test Case 11:}Multiple Maps\hfill \\
+\underline{Input:}In parameters tab, user should be able to select different maps. Manhattan and New York maps given as input. \hfill \\
+\underline{Expected Output:} Maps should be loaded at run time and simulation should run.\hfill \\
+\underline{Actual Output:}Two different maps loaded and simulation executed successfully.\hfill \\
+\underline{Result:}Passed\hfill \\
+\begin{table}[H]
+\begin{center}
+\includegraphics[scale=0.4]{manhattan_section}\hfil \\
+GIS Map for Manhattan
+\end{center}
+\end{table}
+\begin{table}[H]
+\begin{center}
+\includegraphics[scale=0.4]{nyc_full}\hfill \\
+GIS Map for New York
+\end{center}
+\end{table}
+\end{itemize}%Test cases itemize
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 \item \textbf{Overall behaviour of system: }%Item 3
-		Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
-	\begin{itemize}%Test case itemize
-	\item	\textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
-		\underline{Expected Output:} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
-		\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
-		There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
-		\underline{Result: }Passed\hfill \\
-		\begin{figure}[h]
-		\begin{center}
-		\includegraphics[scale=0.7]{RoadNetwork}\hfill \\
-		Two vehicles using select tool.
-		\end{center}
-		\end{figure}
-		\begin{table}[H]
-		\begin{center}
-		\includegraphics{Sim}\hfill \\
-		Vehicles' IDs
-		\end{center}
-		\end{table}
-		\item	\textbf{Test Case 13:} Multilanes and Bi-directional Roads\hfill \\
-		\underline{Expected Output:}Each road should have two lanes in each direction and vehicles should be able to change lanes.\hfill \\
-		\underline{Actual Output:}Multilane roads loaded and fast vehicles took over slow ones by changing lanes.\hfill \\
-		\underline{Result:}Passed
-		
-	\end{itemize}%Test case itemize
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
+Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
+\begin{itemize}%Test case itemize
+\item \textbf{Test Case 12:} Every junction holds a queue of vehicles running on a particular outward road.\hfill \\
+\underline{Expected Output:} of next.printVehiclesQueue(origin):[signalGreen.Vehicle@54008645, signalGreen.Vehicle@1a43b86b] Peek vehicle: signalGreen.Vehicle@54008645\hfill \\
+\underline{Actual Output: }Using probe tool, selecting the area which we want to inspect:\hfill \\
+There are indeed two vehicles running on W 34th St, and their object ID match.\hfill \\
+\underline{Result: }Passed\hfill \\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.7]{RoadNetwork}\hfill \\
+Two vehicles using select tool.
+\end{center}
+\end{figure}
+\begin{table}[H]
+\begin{center}
+\includegraphics{Sim}\hfill \\
+Vehicles' IDs
+\end{center}
+\end{table}
+\item \textbf{Test Case 13:} Multilanes and Bi-directional Roads\hfill \\
+\underline{Expected Output:}Each road should have two lanes in each direction and vehicles should be able to change lanes.\hfill \\
+\underline{Actual Output:}Multilane roads loaded and fast vehicles took over slow ones by changing lanes.\hfill \\
+\underline{Result:}Passed
+\end{itemize}%Test case itemize
+%////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 \end{itemize}%End itemize for 3 functionalities.
 \subsection{Performance Requirements}
 System has been tested on two operating systems, Windows7 and MAC OX(Yosemite).All three machines have 8GB RAM and i3 and i5 and i7 processors. System responded in acceptable time but simulation takes longer time to be processed by CPU when number of vehicles are increased.\hfil\\
@@ -631,7 +661,14 @@ In general, execution speed of simulation will depend on processor and RAM of th
 This test plan covers all major requirements of traffic simulation we have developed which verifies the functional requirements established at the beginning of the project. Test cases were developed to test the expected behaviour of the system using different parameters at run time.
 
 
+
+
 \section{TRAFFIC POLICY COMPARISON}
+
+
+
+
+
 
 
 
@@ -835,7 +872,7 @@ Yoann: 21
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
-\nocite{*}
+
 
 \end{document}
 

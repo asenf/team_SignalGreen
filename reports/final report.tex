@@ -726,11 +726,16 @@ Data extrapolation was implemented into the simulation allowing for comparisons 
 To assist in creating reporting, Repast has an XML data set descriptors. Descriptor repast.simphony.data2.engine.DataSetDescriptor defines the datasets being created, and it has an integrated ability to create charts from these defined data sources using descriptor repast.simphony.chart2.engine.TimeSeriesChartDescriptor.
 
 To visualize the extrapolated data being collected from the data sources, the data is plotted against tick count on a time series chart. For example, to view the average speed of vehicles the Simphony descriptor was used to define attributes on a time series chart, where the x-axis has the tick count and y-axis has the mean speed. (See Figure 1XXXXX.) The descriptor is defined in XML and is repast.simphony.chart2.engine.TimeSeriesChartDescriptor.
+// 
 
- 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{Avg_Speed}
+\caption{Time series chart for average speed calculated at tick count.}
+\end{center}
+\end{figure}
 
-Figure 1xxxxx. Time series chart for average speed calculated at tick count.
-
+//
 The simulation stores data collected from the data sources and writes the data into a sink text file. This makes use of Repast’s ability to write data to both file and console. Each data source is assigned a data set ID which helps separate out the data and write each ID in a set column. 
 
 The follow shows resultant data stored for average speed. As seen in the output, the sink file structures the data collected from each data source in a tabular format. 
@@ -745,8 +750,6 @@ Average Speed & Tick \\
 \hline
 \end{tabular}
 \end{center}
-
-Figure 2xxx. Signal Green simulation output.
 
 
 
@@ -764,19 +767,65 @@ Small New York map (nyc\_small.shp) covers an area of approximately 20 sq km. Ou
 10,000 vehicles to account for peak hours and 1,000 to simulate late night.
 
 
-Figure 3xx. Legend displaying palette used to visualise speed of individual vehicle agents in the simulation.
+\begin{figure}[h]
+\begin{center}
+\includegraphics{legend}
+\caption[scale=0.2]{Legend displaying palette used to visualise speed of individual
+vehicle agents in the simulation.}
+\end{center}
+\end{figure}
+\\
+
 
 Traffic lights policy was simulated on this map with parameters set as 10,000 vehicles and 1000 ticks. The data shows a gradual increment of average speed to a maximum of 41. It also shows very heavy concentration is being built up at junctions.
-Figure xx.
-Figure xx.
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.2]{nyc_small_traffic_light_10_000_veh_1000_ticks_SCREENSHOT}
+\caption{}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.2]{nyc_small_traffic_light_10_000_veh_1000_ticks_AVG_speed}
+\caption{}
+\end{center}
+\end{figure}
+
+\\
 1,000 vehicles and 1000 ticks. With these parameters the data shows a sharp increase in average speed to a maximum of 95. The data shows dense concentration across popular routes and junctions.
-Figure xx.
-Figure xx.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.4]{AVG_speed}
+\caption{}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.2]{screenshot}
+\caption{}
+\end{center}
+\end{figure}\hfill \\
+\hfill \\
 
 Give way policy was simulated on this map with parameters set as 1,000 vehicles and 1000 ticks. This led to one of the fastest average speed recorded with it being a maximum of 110. The data shows similar density to the traffic lights policy with the same number of vehicles.
-Figure xx.
-Figure xx.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.4]{AVG speed}
+\caption{}
+\end{center}
+\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.2]{screen_shot}
+\caption{}
+\end{center}
+\end{figure}\hfill \\
+\hfill \\
 
 10,000 vehicles and 1000 ticks was not carried out as the simulation would not accurately cope with such a high density of vehicles. In actuality vehicles could potentially suffer accidents that have yet to be modelled. 
 
@@ -803,14 +852,10 @@ Our data shows that give way policies would be more desirable for traffic flow. 
 
 New Jersey map (new\_jersey.shp)  covers a much more complex infrastructure. Below it is set at 2,000 vehicles with 1000 ticks to analyse the give way and traffic light policies.
 
-Traffic lights policy was simulated on the model where the data shows a steep climb to the maximum average speed of 110 and then remaining around 105. Traffic lights do become congested with queues
+Traffic lights policy was simulated on the model where the data shows a steep climb to the maximum average speed of 110 and then remaining around 105. Traffic lights do become congested with queues.
 
-Figure xx.
-Figure xx.
 
-The give way policy was then run using the same parameters and the result was a constant average speed of 110. Vehicles were scattered evenly with only a small number of queues. present.
-Figure xx.
-Figure xx.
+The give way policy was then run using the same parameters and the result was a constant average speed of 110. Vehicles were scattered evenly with only a small number of queues.
 
 The following is a summary in tabular form for policies tested on this map:
 \begin{center}
@@ -998,13 +1043,13 @@ Originally we planned to use a belief-desire-intention (BDI) model to code the a
 
 Waqar: 19.5
 
-James: 19.5
+James: 19
 
 Adeela: 20
 
 Andrea: 20
 
-Yoann: 21
+Yoann: 21.5
 
 
 \newpage

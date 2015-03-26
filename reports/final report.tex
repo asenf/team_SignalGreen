@@ -11,22 +11,11 @@
 \usepackage{cite}
 \usepackage{natbib}
 \usepackage[T1]{fontenc}
-\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\usepackage[titledoc]{appendix}
 
+\usepackage{pdfpages}
 
-
-
-% SPECIAL CHARACTERS
-% \textquoteright - apostrophe 
-% \textquotedblleft - quote
-% {\_} - underscore
-% \% - percent
-
-% \begin{itemize}\itemsep0pt
-% \item The first item
-% \item The second item
-% \item The third etc \ldots
-% \end{itemize}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.ps}
 
 
 
@@ -579,7 +568,7 @@ Checks that all agents of the system produce expected results for a given scenar
 
 \subsubsection{Levels of Functionalities}
 \begin{itemize}%begin itemize for 3 levels
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 \item \textbf{Agents' behaviour: } \hspace \\ %Item 1
 Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. 
 
@@ -687,7 +676,8 @@ GIS Map for New York
 \end{center}
 \end{table}
 \end{itemize}%Test cases itemize
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 \item \textbf{Overall behaviour of system: }%Item 3
 Checks that all agents of the system produce expected results in a given scenario. This will include testing of agents interaction with other components of environment (roads, traffic lights) when programme will be executed at run time.\hfill \\
 \begin{itemize}%Test case itemize
@@ -713,7 +703,8 @@ Vehicles' IDs
 \underline{Actual Output:}Multilane roads loaded and fast vehicles took over slow ones by changing lanes.\hfill \\
 \underline{Result:}Passed
 \end{itemize}%Test case itemize
-%////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+
 \end{itemize}%End itemize for 3 functionalities.
 \subsection{Performance Requirements}
 System has been tested on two operating systems, Windows7 and MAC OX(Yosemite).All three machines have 8GB RAM and i3 and i5 and i7 processors. System responded in acceptable time but simulation takes longer time to be processed by CPU when number of vehicles are increased.\hfil\\
@@ -977,8 +968,7 @@ Originally we planned to use a belief-desire-intention (BDI) model to code the a
 
 \item Implement source/sinks for allowing traffic to come on/off the map in a more natural location than at junctions; perhaps from the edges of the map would be more optimal visually. This would allow traffic congestion to increase as more cars are fed into the simulation than are going out (and vice versa), and would allow modelling of road conditions created by end of workday, post-sport competition, etc. 
 
-\item We did not make progress on the BDI as plannedr
-, so this was left out of the code. The code could be restructured to more neatly implement this if desired.
+\item We did not make progress on the BDI as planned, so this was left out of the code. The code could be restructured to more neatly implement this if desired.
 
 \item Adding other vehicle types such as motorbikes or road features such as pedestrian crossings or high occupancy vehicle (HOV) lanes to model their effect on congestion and traffic flow.
 \end{itemize}
@@ -987,9 +977,9 @@ Originally we planned to use a belief-desire-intention (BDI) model to code the a
 \section{PEER ASSESSMENT}
 
 
-Waqar: 20
+Waqar: 19.5
 
-James: 19
+James: 19.5
 
 Adeela: 20
 
@@ -1009,11 +999,28 @@ Yoann: 21
 
 \newpage
 
+\begin{appendices}
 
-\includegraphics{sourcecode.pdf}
+
+\appendix{Appendix A: GitLog}
+%\chapter{Appendix A: Gitlog}
+
+\include{gitlog}
+
+%\end{appendices}
+
 
 \newpage
 
+
+
+\appendix{Appendix B: SourceCode}
+%\chapter{Appendix B: SourceCode}
+
+\includepdf[pages={1-}]{sourcecode.pdf}
+
+
+\end{appendices}
 
 
 

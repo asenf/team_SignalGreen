@@ -44,7 +44,87 @@ source in a tabular format.
 Listing xx. Signal Green simulation output.
 
 POLICY COMPARISONS
+The simulation was used with several parameters and maps to allow for 
+road network and policy comparisons. Three maps was being used presently,
+large New York, small New York and New Jersey. What is being examined 
+presently is the change in behavior when the following parameters are 
+adjusted; number of vehicles, traffic lights and give way signs. The
+data being extrapolated to analyse change is the speed of the vehicles.
 
-POTENTIAL COMPARISONS
+Small New York map (nyc_small.shp) covers an area of approximately 20km^2. 
+This model does not account for alleys, smaller streets but only avenues. It 
+is set at 10,000 vehicles to account for peak hours and 1,000 to simulate 
+late night.
+
+Figure xx. Legend displaying palette used to visualise speed of individual
+vehicle agents in the simulation.
+
+Traffic lights policy was simulated on this map with parameters set as
+10,000 vehicles and 1000 ticks. The data shows a gradual increment of 
+average speed to a maximum of 41. It also shows very heavy concentration 
+is being built up at junctions.
+Figure xx.
+Figure xx.
+
+1,000 vehicles and 1000 ticks. With these parameters the data shows a 
+sharp increase in average speed to a maximum of 95. The data shows dense 
+concentration across popular routes and junctions.
+Figure xx.
+Figure xx.
+
+Give way policy was simulated on this map with parameters set as
+1,000 vehicles and 1000 ticks. This led to one of the fastest average
+speed recorded with it being a maximum of 110. The data shows similar 
+density to the traffic lights policy with the same number of vehicles.
+Figure xx.
+Figure xx.
+
+10,000 vehicles and 1000 ticks was not carried out as the simulation 
+would not accurately cope with such a high density of vehicles. 
+Furthemore, vehicles could potentially suffer accidents that have yet to be modelled. 
+
+The following is a summary in tabular form for policies tested on this map:
+Policy          No. of Vehicles      Ticks      Average Speed
+Traffic Light   10,000               1,000      40  
+Give Way        10,000               1,000      -
+Traffic Light   1,000                1,000      88
+Give Way        1,000                1,000      105.7
+
+SignalGreen shows us that average speed with give way policies is higher 
+because cars need to stop less frequently than when with traffic lights. 
+The data shows tht give way policies would be more desirable in non-metropolitan 
+areas, but it would be too risky in more densily populated areas such Manhattan.
+A mix of the two is then the best trade-off between a higher speed and 
+security of population and drivers. Moreover, the difference in distribution 
+between give way and traffic light policies when using a 1,000 vehicles has 
+no significant difference.
+
+New Jersey map (new_jersey.shp) covers a much more complex infastructure. 
+Below it is set at 2,000 vehicles with 1000 ticks to analyse the give way 
+and traffic light policies.
+
+Traffic lights policy was simulated on the model where the data shows a 
+steep climb to the maximum average speed of 110 and then remaining around 105.
+Although the traffic light junctions are congested with queues.
+Figure xx.
+Figure xx.
+
+The give way policy was run using the same parameters and the result was a 
+constant average speed of 110. Furthermore, vehicles were scattered evenly with 
+only a small number of queues present.
+Figure xx.
+Figure xx.
+
+The following is a summary in tabular form for policies tested on this map:
+Policy          No. of Vehicles      Ticks      Average Speed
+Traffic Light   2,000               1,000      105  
+Give Way        2,000               1,000      100
 
 
+POTENTIAL FUTURE COMPARISONS
+In future, there are alternative ways that can be used to analyse 
+traffic policies. For instance, computing routes or segments that are 
+most popularly travelled by vehicles. Also, busiest intersections that 
+lie between those very routes. It is also important to facilitate a 
+combination of these policies such as traffic lights and give way 
+signs to truely find tuned policies and routes.

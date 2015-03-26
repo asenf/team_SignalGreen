@@ -38,7 +38,7 @@
 
 \maketitle 
 
-\listoftables
+%\listoftables
 
 \section{INTRODUCTION}
 
@@ -57,13 +57,12 @@ Our team further gained a more practical understanding of agent based modelling 
 
 \subsection{TRAFFIC FLOW FORECASTS}
 
-Analysis of complex urban networks and traffic flow models is the groundwork for reliable traffic flow forecasts, which are widely used to avoid traffic congestion and maximise road network capability in metropolitan areas.[11k] Predictions of traffic growth published by the UK Department of Transport in 2013 show that despite a slowdown in the past decade mainly due to economic recession and high oil prices, traffic on all roads in England are expected to grow by about 45\% by 2040 \cite{10j}. 
-
+Analysis of complex urban networks and traffic flow models is the groundwork for reliable traffic flow forecasts, which are widely used to avoid traffic congestion and maximise road network capability in metropolitan areas.[11k] Predictions of traffic growth published by the UK Department of Transport in 2013 show that despite a slowdown in the past decade mainly due to economic recession and high oil prices, traffic on all roads in England are expected to grow by about 45\% by 2040 \cite{10j}. (See Figure 1.)
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.7]{england_traffic}
-\caption{England traffic, actual and predicted}
+\caption{England traffic growth}
 \end{center}
 \end{figure}
 
@@ -105,9 +104,9 @@ The entire team went through a very good tutorial to learn Simphony basics [Coll
 
 Macal and North\cite{5e} offered an important document that argues that \textquotedblleft only agent-based models can explicitly incorporate the complexity arising from individual behaviors and interactions that exist in the real-world. \textquotedblright [1458] It further shows the wide uses of Repast in various fields\cite{5e} [1457 Table 1]. The article notes that agent modelling using desktop environments like Repast Simphony is a good way to explore the potential of ABM in a brief space of time and with minimal training investment \cite{5e}[1464] and this is a benefit our team hoped to gain through this project. 
 
-One excellent resource [Lansdowne\cite{4d} ] offered a detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. This was well written and fairly comprehensive. 
+One excellent resource [Lansdowne\cite{4d}] offered a detailed example of an agent-based traffic simulation; referenced for approach and features often considered when creating an agent based model. This was well written and fairly comprehensive. 
 
-Team programmers referenced Lee’s\cite{8h} work for coding lane changing and gap acceptance logic. Benhamza et al\cite{6f} also provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling. 
+Team programmers referenced Lee\textquoteright s\cite{8h} work for coding lane changing and gap acceptance logic. Benhamza et al\cite{6f} also provided many ideas regarding behaviour rules that was useful, as was the brief but descriptive discussion of modelling. 
 
 Early documents team members considered included Wagner\cite{1a} simulation, which gave us a picture of what an interesting simulation and its code might look like, and Malleson and Addis\cite{3c} demonstrated one way to conceptualize moving cars along a road from origin to destination. [Note: This link has since been removed.] 
 
@@ -135,12 +134,9 @@ Lastly, GIS integration allows real maps to be loaded into the system. GIS is th
 For the purposes of planning, our team set Milestones to measure what we wanted to accomplish. This were our requirements as they stood at the beginning of February: 
 \\
 Milestone 1 (Required):
-\begin{itemize}\itemsep0pt
-\item deadline: 23 February
-\item code compiles and runs simple simulation
-\item vehicles run on a map
-\item variable number of vehicles
-\item vehicles make decisions to reach a goal
+%\begin{itemize}\itemsep0pt
+\begin{itemize}
+\item deadline: 23 February  \item code compiles and runs simple simulation \item vehicles run on a map  \item variable number of vehicles \item vehicles make decisions to reach a goal
 \end{itemize}
 \\
 Milestone 2 (Required):
@@ -188,13 +184,9 @@ We settled on Repast Simphony, a general application programming interface (API)
 
 \begin{itemize}\itemsep0pt
 \item As a framework for Java, it is fully object oriented and everything is created as a Plain Old Java Object. It includes Java libraries and .jar utilities, and all objects are rewritable.
-\\
 \item It provides an ABM environment with a practical skeleton of agents and their contexts, and includes features such as behaviour activation, a discrete event scheduler and Watcher component, and space and grid management.
-\\
 \item It provides a flexible plug-in framework, allowing the developers to use, modify, or write plug-ins. It provides the ability to integrate advanced elements into our code such as importing GIS maps, multi-threading, XML configuration files, and other advanced features.
-\\
 \item It includes charting and data collection functions, so we can focus on deciding on traffic policies and changing these parameters rather than spending time finding ways to display and record the results. The probe function is particularly useful for ABM testing.
-\\
 \item It provides an attractive display graphical user interface (GUI) we can modify to suit our needs and make a more interesting simulation, including user defined options at runtime and 2D and 3D visualisation and GIS plugins. One can create new or rewrite existing plug-ins if one wishes.
 \end {itemize}
 
@@ -261,13 +253,13 @@ Class SignalGreenBuilder.java builds the road network and the GIS geography for 
 Repast has built-in GIS integration, so reading in spatial data is done by iterating over each Feature object of the ShapefileDataStore file (shapefile). Every feature of type \textquotedblleft MultiLaneString\textquotedblright represents a road object with its spatial location and other attributes. Creating a road network is achieved by linking edges together, and the road network topology is built with pairs of connecting junctions.
 
 Any GIS map shapefile (.shp) representing road networks can be loaded into our simulator. The simulator uses some GIS attributes for modelling vehicle\textquoteright s behaviour (ex. road type, max speed, etc.) and could easily be extended to take into account any other relevant attribute.
-GIS maps were simplified by removing the road coordinates between the Junctions to make it more efficient; creating road agents with only the endpoint coordinates specified prevents very complex urban street maps from becoming too computationally expensive.[see figure XXX] 
+GIS maps were simplified by removing the road coordinates between the Junctions to make it more efficient; creating road agents with only the endpoint coordinates specified prevents very complex urban street maps from becoming too computationally expensive. (See Figure 2.)
 \\
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{creating_road_segments_from_shapefile}
-\caption{creating road segments from shapefile}
+\caption{creating road segments using only endpoints}
 \end{center}
 \end{figure}
 
@@ -278,12 +270,12 @@ Each Road agent is added to both the Context and the GIS geography, along with t
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.3]{creating_new_roads}
-\caption{How to create new roads}
+\caption{Creating new roads}
 \end{center}
 \end{figure}
 
 \\
-As an example, consider figure [concrete example].
+As an example, consider Figure 3.
 
 Before R3 is added:
 Cache of Junctions = (J1, J2, J3)
@@ -295,13 +287,13 @@ Cache of Junctions = (J1, J2, J3, J4)
 Road network = (R1, R2, R3)
 Road network topology = (<J1, J2>, <J2, J3>, <J2, J4>)
 
-Once the whole shapefile has been read, the GIS geography is displayed on the UI, as shown on [figure Display Manhattan]. In this example we have loaded a map of the main avenues of New York City and clicked on a Road agent to show its attributes: name = Madison Av, speedLimit = 65 Km/h, length = 4,805 meters. Virtually any urban street map can be loaded into Signal Green.
+Once the whole shapefile has been read, the GIS geography is displayed on the UI, as shown on (see Figure 4). In this example we have loaded a map of the main avenues of New York City and clicked on a Road agent to show its attributes: name = Madison Av, speedLimit = 65 Km/h, length = 4,805 meters. Virtually any urban street map can be loaded into Signal Green.
 \\
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.4]{GIS_display_manhattan_loaded}
-\caption{Manhattan!!}
+\caption{Manhattan in our simulator}
 \end{center}
 \end{figure}
 \\
@@ -321,18 +313,18 @@ Method computeDisplacement() is used to determine exactly how far in metres the 
 
 A vehicle\textquoteright s vision is the distance around which a vehicle is aware of its environment and is calculated based on constant values DIST{\_}VEHICLES and DIST{\_}VEHICLES{\_}STOPPED. Method step() determines individual vehicle behaviours, including interaction with junctions and other vehicles, increasing/decreasing speed, changing lanes, and moving the vehicle along the map.
 
-The vehicle checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If a vehicle observes a slower moving vehicle in its path, it makes a decision whether or not to change lanes. The vehicle also checks for approaching junctions, decelerating to a stopped position before the light if a red light is in view. If no other vehicles or junctions are in its vision it will accelerate to its maxVelocity. 
+The vehicle checks the speed and distance of any vehicles in its path, slowing if needed to an optimal velocity. If a vehicle observes a slower moving vehicle in its path, it makes a decision whether or not to change lanes. The vehicle also checks for approaching junctions, decelerating to a stopped position before the light if a red light is in view. If no other vehicles or junctions are in its vision it will accelerate to its maxVelocity (see Figure 5).
 \\
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.45]{step_method_seq_diagram}
-\caption{Sequence diagram}
+\includegraphics[scale=0.4]{overtaking}
+\caption{Faster vehicle overtakes slower truck}
 \end{center}
 \end{figure}
 
 \\
-The method step() works as follows. (See Figure .) Assume the current vehicle V is heading towards a junction J[i]. J[i] is the next node on its route, J[1..n], where n is the number of nodes, J[1] and J[n] are V\textquoteright s origin and destination. 
+The method step() works as follows. (See diagram in Figure 6.) Assume the current vehicle V is heading towards a junction J[i]. J[i] is the next node on its route, J[1..n], where n is the number of nodes, J[1] and J[n] are V\textquoteright s origin and destination. 
 
 V needs to first decide which lane it wants to go to (lane selection decision model, step 1.2) and check that the road is clear (gap acceptance decision model, step 2). 
 
@@ -343,10 +335,10 @@ Next, if V is close enough to J[i], traffic management policies are evaluated (s
 V checks what is the J[i] on the route J[n]. It knows which vehicles are approaching because it holds a priority queue of incoming Vehicles for each road segment, where weights are the distance from V to J[i]. This is an efficient solution as insertion is done in O(log n), while removal is done in constant time.
 \\
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
-\includegraphics[scale=0.4]{overtaking}
-\caption{Faster vehicle overtakes slower truck and merges back on the outer lane.}
+\includegraphics[scale=0.45]{step_method_seq_diagram}
+\caption{Sequence diagram for step() method}
 \end{center}
 \end{figure}
 
@@ -394,7 +386,7 @@ This further required the use of kinematics equations for plotting the direction
 \end{figure}
 \\
 
-For example, consider Figure . The following are the main steps:
+For example, consider Figure 7. The following are the main steps:
 \begin{enumerate}
 \item V is heading towards J3 so it needs to compute the distance to it. 
 \item V computes its current displacement. Displacement is computed using a standard kinematics equation which takes into account velocity and acceleration.
@@ -413,9 +405,9 @@ Class Junction.java creates junction objects that are nodes on the road network.
 
 Class TrafficLight.java extends Junction.java and schedules traffic light management. It has its own step method to iterate through lights, using class Light.java which encapsulates and toggles between the three light states.
 
-In order to implement traffic management policies, some junctions need to embed special behaviour. Signal Green supports traffic light logic or give way signs, however the model can easily be expanded by extending the Junction class. We assume that junctions with more than two road segments need some traffic management logic, so they will be either instances of TrafficLight or GiveWaySign.
+In order to implement traffic management policies, some junctions need to embed special behaviour. Signal Green supports traffic light logic or give way signs, however the model can easily be expanded by extending the Junction class. We assume that junctions with more than two road segments need some traffic management logic, so they will be either instances of TrafficLight or GiveWaySign. (See Figures 8 and 9.)
 
-Traffic lights have one instance of Light for each road adjacent to that junction, each light has a signal attribute which can be either RED, GREEN or AMBER. Lights change their state every 25 ticks, at any time only one Light for that junction can be in GREEN state. Vehicles that are exiting a road segment check if the Junction is an instance of TrafficLight, in which case they inspect the signal to know if they must stop.
+Traffic lights have one instance of Light for each road adjacent to that junction, each light has a signal attribute which can be either RED or GREEN. Lights change their state every 25 ticks, at any time only one Light for that junction can be in GREEN state. Vehicles that are exiting a road segment check if the Junction is an instance of TrafficLight, in which case they inspect the signal to know if they must stop.
 \\
 
 \begin{figure}[H]
@@ -426,7 +418,7 @@ Traffic lights have one instance of Light for each road adjacent to that junctio
 \end{figure}
 
 \\
-In proximity of give way intersections, on the other hand, vehicles check for each road segment which vehicle is closest to that intersection, to know who has precedence. (See Figure .)
+In proximity of give way intersections, on the other hand, vehicles check for each road segment which vehicle is closest to that intersection, to know who has precedence.
 \\
 \begin{figure}[H]
 \begin{center}
@@ -491,13 +483,13 @@ Simulation is run atleast more than 3 times in order to test the expected behavi
 
 \subsubsection{Tasks}
 \begin{itemize}
-\item Identifying functional requirements and writing the tests cases.
+\item Identifying functional requirements and writing the tests cases
 
-\item Executing tests.
+\item Executing tests
 
-\item Record the failed test cases and reporting them to team.
+\item Record the failed test cases and reporting them to team
 
-\item Performing the re-test on failed test cases one bugs are fixed.
+\item Performing the re-test on failed test cases one bugs are fixed
 \end{itemize}
 
 \subsection{Scope}
@@ -519,7 +511,7 @@ Checks that all agents of the system produce expected results for a given scenar
 \subsubsection{Levels of Functionalities}
 \begin{itemize}%begin itemize for 3 levels
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\item \textbf{Agents' behaviour: }\hfill \\ %Item 1
+\item \textbf{Agents' behaviour: } \hspace \\ %Item 1
 Can be checked by changing environment variables around agents. These behaviours of agents also forms the functional requirements of the system as well. We have two agents in our system. 
 
 \begin{enumerate}%begin enumerate
@@ -529,29 +521,29 @@ step() method of Vehicle class is the entry point of control into simulation. Al
 
 
 \begin{itemize} %Itemize for test cases
-\item \textbf{Test Case1:} Vehicle Impasse\hfill \\
-\underline{Expected Output: }This "if condition" in step() method should not be true i.e. no Vehicle should be stuck in impasse.\hfill \\
-\underline{Actual Output:} Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
+\item \textbf{Test Case1:} \hspace{6 mm} Vehicle Impasse\hfill \\
+\underline{Expected Output: }\hspace{6 mm}This "if condition" in step() method should not be true i.e. no Vehicle should be stuck in impasse.\hfill \\
+\underline{Actual Output:} \hspace{6 mm}Console output does not print the statement "Vehicle is stuck in impasse. Cannot move...". "if condition" remains false.\hfill \\
 \underline{Result:} Passed\hfill \\
 
 
 
-\item \textbf{Test Case 2:}moveTowards()\hfill \\
-\underline{Input:}Coordinate and displacement\hfill \\
-\underline{Expected Output:}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.". \hfill \\
-\underline{Actual Output:}Vehicle moved. No exception thrown.\hfill \\
-\underline{Result:}Passed\hfill \\
-\item \textbf{Test Case 3:}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
-\underline{input:}Takes ACCELERATION and time t to calculate velocity.\hfill \\
-\underline{Expected Output:}Vehicles should be moving not more than maximum velocity.\hfill \\
-\underline{Actual Output:}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
+\item \textbf{Test Case 2:} \hspace{6 mm}moveTowards()\hfill \\
+\underline{Input:} \hspace{6 mm}Coordinate and displacement\hfill \\
+\underline{Expected Output:} \hspace{6 mm}Every vehicle on the network should move to a new coordinate and exception should not be thrown printing on console "Could not move vehicle for some reason.". \hfill \\
+\underline{Actual Output:} \hspace{6 mm}Vehicle moved. No exception thrown.\hfill \\
+\underline{Result:} \hspace{6 mm}Passed\hfill \\
+\item \textbf{Test Case 3:} \hspace{6 mm}Accelerate() Every vehicle must accelerate in order to move.\hfill \\
+\underline{input:} \hspace{6 mm}Takes ACCELERATION and time t to calculate velocity.\hfill \\
+\underline{Expected Output:} \hspace{6 mm}Vehicles should be moving not more than maximum velocity.\hfill \\
+\underline{Actual Output:} \hspace{6 mm}No vehicle colliding and no vehicle static if car ahead is not stopping.\hfill \\
 \underline{Result:}Passed\hfill \\
 
-\item \textbf{Test Case 4:} slowDown()Every vehicle must slow down in order to stop.\hfill \\
-\underline{Input:}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
-\underline{Expected Output:}If velocity is less than zero then vehicles must stop.\hfill \\
-\underline{Actual Output:}Vehicles stopped when velocity is less than zero.\hfill \\
-\underline{Result:}Passed\hfill \\
+\item \textbf{Test Case 4:} \hspace{6 mm}slowDown()Every vehicle must slow down in order to stop.\hfill \\
+\underline{Input:} \hspace{6 mm}Takes ACCELERATION and t*2 to calculate velocity.\hfill \\
+\underline{Expected Output:} \hspace{6 mm}If velocity is less than zero then vehicles must stop.\hfill \\
+\underline{Actual Output:} \hspace{6 mm}Vehicles stopped when velocity is less than zero.\hfill \\
+\underline{Result:} \hspace{6 mm}Passed\hfill \\
 \end{itemize}%end itemize
 \item\textbf{Traffic Lights}
 \begin{itemize} %itemize for test cases
@@ -666,7 +658,116 @@ This test plan covers all major requirements of traffic simulation we have devel
 \section{TRAFFIC POLICY COMPARISON}
 
 
+\subsection{Data Extrapolation}
 
+
+Data extrapolation was implemented into the simulation allowing for comparisons of difference and efficiency between various maps that the simulation emulates. The implementation begins by recording data from data sources. These are predefined as aggregate or non-aggregate. They have been created with linked hash maps that use Repast’s integrated ability to pass agents and objects towards the correct data source. For example, the simulation model records an aggregate data source for average speed by calling the getVelocity() method of all vehicle agents in the simulation at each time step. The aggregate operation attains the mean value from the results of getVelocity(). 
+
+To assist in creating reporting, Repast has an XML data set descriptors. Descriptor repast.simphony.data2.engine.DataSetDescriptor defines the datasets being created, and it has an integrated ability to create charts from these defined data sources using descriptor repast.simphony.chart2.engine.TimeSeriesChartDescriptor.
+
+To visualize the extrapolated data being collected from the data sources, the data is plotted against tick count on a time series chart. For example, to view the average speed of vehicles the Simphony descriptor was used to define attributes on a time series chart, where the x-axis has the tick count and y-axis has the mean speed. (See Figure 1XXXXX.) The descriptor is defined in XML and is repast.simphony.chart2.engine.TimeSeriesChartDescriptor.
+
+ 
+
+Figure 1xxxxx. Time series chart for average speed calculated at tick count.
+
+The simulation stores data collected from the data sources and writes the data into a sink text file. This makes use of Repast’s ability to write data to both file and console. Each data source is assigned a data set ID which helps separate out the data and write each ID in a set column. 
+
+The follow shows resultant data stored for average speed. As seen in the output, the sink file structures the data collected from each data source in a tabular format. 
+
+\begin{center}
+\begin{tabular}{ l | r  }
+\hline
+Average Speed & Tick \\
+1.1900000000000002 & 1.0 \\
+2.380000000000003  &  2.0 \\
+3.5699999999999985 & 3.0 \\
+\hline
+\end{tabular}
+\end{center}
+
+Figure 2xxx. Signal Green simulation output.
+
+
+
+
+\subsection{Policy Comparisons}
+
+The simulation was used with several parameters and maps to allow for road network and policy comparisons. Three maps was being used presently, large New York, small New York and New Jersey. What is being examined presently is the change in behaviour when the following parameters are adjusted; number of vehicles, traffic lights and give way signs. The data being extrapolated to analyse change is the speed of the vehicles.
+
+
+\subsubsection{New York map}
+
+
+Small New York map (nyc_small.shp) covers an area of approximately 20km^2. Our simulation models only main roads. 
+
+10,000 vehicles to account for peak hours and 1,000 to simulate late night.
+
+
+Figure 3xx. Legend displaying palette used to visualise speed of individual vehicle agents in the simulation.
+
+Traffic lights policy was simulated on this map with parameters set as 10,000 vehicles and 1000 ticks. The data shows a gradual increment of average speed to a maximum of 41. It also shows very heavy concentration is being built up at junctions.
+Figure xx.
+Figure xx.
+
+1,000 vehicles and 1000 ticks. With these parameters the data shows a sharp increase in average speed to a maximum of 95. The data shows dense concentration across popular routes and junctions.
+Figure xx.
+Figure xx.
+
+Give way policy was simulated on this map with parameters set as 1,000 vehicles and 1000 ticks. This led to one of the fastest average speed recorded with it being a maximum of 110. The data shows similar density to the traffic lights policy with the same number of vehicles.
+Figure xx.
+Figure xx.
+
+10,000 vehicles and 1000 ticks was not carried out as the simulation would not accurately cope with such a high density of vehicles. In actuality vehicles could potentially suffer accidents that have yet to be modelled. 
+
+The following is a summary in tabular form for policies tested on this map:
+
+
+\begin{center}
+\begin{tabular}{ l | c | c | c }
+\hline
+Policy & No. of Vehicles & Ticks & Average Speed \\
+Traffic Light & 10,000 & 1,000 & 40 \\
+Give Way & 10,000 & 1,000 & - \\
+Traffic Light & 1,000 & 1,000 & 88 \\
+Give Way & 1,000 & 1,000 & 105.7 \\
+\hline
+\end{tabular}
+\end{center}
+
+SignalGreen shows us that average speed with give way policies is higher because cars need to stop less frequently than when with traffic lights. Moreover, the difference in distribution between give way and traffic light policies when using a 1,000 vehicles has no significant difference.
+
+Our data shows that give way policies would be more desirable for traffic flow. While officials might think it would be perhaps too risky in more densely populated areas such Manhattan, perhaps this is an area that city planner should consider in future development.
+
+\subsubsection{New Jersey map}
+
+New Jersey map (new\_jersey.shp)  covers a much more complex infrastructure. Below it is set at 2,000 vehicles with 1000 ticks to analyse the give way and traffic light policies.
+
+Traffic lights policy was simulated on the model where the data shows a steep climb to the maximum average speed of 110 and then remaining around 105. Traffic lights do become congested with queues
+
+Figure xx.
+Figure xx.
+
+The give way policy was then run using the same parameters and the result was a constant average speed of 110. Vehicles were scattered evenly with only a small number of queues. present.
+Figure xx.
+Figure xx.
+
+The following is a summary in tabular form for policies tested on this map:
+\begin{center}
+\begin{tabular}{ l | c | c | c }
+\hline
+Policy & No. of Vehicles & Ticks & Average Speed \\
+Traffic Light   & 2,000     &          1,000 &     105  
+Give Way     &   2,000  &             1,000    &  100
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Policy Comparison: Conclusion}
+
+Our simulation implemented different traffic policies and measured the difference between them, both with numerical data and graphically. Our simulation indicates that give way policies may be a useful policy to consider implementing for smoother traffic flow and overall better travel time for drivers.
+
+In future, there are alternative ways that can be used to analyse traffic policies. For instance, computing routes or segments that are most popularly travelled by vehicles. Also, busiest intersections that lie between those very routes. It is also important to simulation using a combination of these policies such as traffic lights and give way signs to look into the further potential of these policies.
 
 
 
@@ -747,19 +848,22 @@ We completed tasks very close to the schedule we set out at the beginning. In th
 A team member had issues with his code that put the team a week behind at the end. This was disappointing, but team members pulled together to complete the rest of the tasks on schedule and bring out our traffic simulation by the deadline.
 \\
 
-Final Characteristics from Milestone Requirements
-- vehicles run on a map
-- multiple maps in GIS standard
-- variable number of vehicles
-- vehicles make decisions to reach a goal
-- vehicles exhibit passing behaviours 
-- implement basic vehicle types: car, lorry
-- cars have different behaviours: aggressive, patient
-- vehicles appear visually different by type
-- traffic flows bi-directionally
-- junctions, signals, give way 
-- multiple lanes on some/all roads
-- speed limits on roads
+\subsection{Final Characteristics from Milestone Requirements}
+\begin{itemize}
+\item vehicles run on a map
+\item multiple maps in GIS standard
+\item  variable number of vehicles
+\item vehicles make decisions to reach a goal
+\item vehicles exhibit passing behaviours 
+\item implement basic vehicle types: car, lorry
+\item cars have different behaviours: aggressive, patient
+\item vehicles appear visually different by type
+\item traffic flows bi-directionally
+\item junctions, signals, give way 
+\item multiple lanes on some/all roads
+\item speed limits on roads
+\end{itemize}
+
 
 
 \subsection{Functional Requirements}
@@ -811,7 +915,7 @@ Out of these requirements we did not compete 1) junction roundabout functionalit
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.7]{gantt8Feb}
+\includegraphics[scale=0.65]{gantt8Feb}
 \caption{Gantt Chart from 8 Feb}
 \end{center}
 \end{figure}
@@ -848,7 +952,8 @@ Originally we planned to use a belief-desire-intention (BDI) model to code the a
 
 \item Implement source/sinks for allowing traffic to come on/off the map in a more natural location than at junctions; perhaps from the edges of the map would be more optimal visually. This would allow traffic congestion to increase as more cars are fed into the simulation than are going out (and vice versa), and would allow modelling of road conditions created by end of workday, post-sport competition, etc. 
 
-\item We did not make progress on the BDI as planned, so this was left out of the code. The code could be restructured to more neatly implement this if desired.
+\item We did not make progress on the BDI as plannedr
+, so this was left out of the code. The code could be restructured to more neatly implement this if desired.
 
 \item Adding other vehicle types such as motorbikes or road features such as pedestrian crossings or high occupancy vehicle (HOV) lanes to model their effect on congestion and traffic flow.
 \end{itemize}

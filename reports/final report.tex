@@ -129,6 +129,61 @@ Microscopic traffic models typically simulate the behaviour of single vehicles u
 
 Lastly, GIS integration allows real maps to be loaded into the system. GIS is the de-facto standard for most professional traffic simulators, and governments regularly publish GIS maps about road networks, which are freely available for download. Virtually any GIS map can be loaded into our system.
 
+\subsection{Functional Requirements}
+
+We set out the following functional requirements:
+
+\begin{itemize}\itemsep0pt
+\item \textbf{FR1: Maps} 
+	\begin{itemize}
+	\item FR1.1: Multiple maps can be used
+	\item FR1.2: Use GIS standard
+	\end{itemize}
+\item \textbf{FR2: Roads}
+	\begin{itemize}
+	\item FR2.1: Can have multiple lanes
+	\item FR2.2: Traffic flows bi-directionally 
+	\item FR2.3: Vehicles appear to run along roads
+	\item FR2.4: Vehicle follow speed limits of road
+	\end{itemize}
+\item \textbf{FR3: Vehicles}
+	\begin{itemize}
+	\item FR3.1: Variable number of vehicles 
+	\item FR3.2: Accelerate and decelerate
+	\item FR3.3: Appear visually different by type
+	\item FR3.4: Type car with unique behaviour
+	\item FR3.5: Type truck with unique behaviour
+	\item FR3.6: Exhibit passing behaviours
+	\item FR3.7: Journey calculated by road length and speed limit
+	\end{itemize}
+\item \textbf{FR4: Junctions}
+	\begin{itemize}
+	\item FR4.1: Connect roads
+	\item FR4.2: Type give way
+	\item FR4.3: Type signal
+	\item FR4.4: Type roundabout
+	\item FR4.5: Signals change between red, green
+	\item FR4.6: Signals supports orange
+	\item FR4.7: Vehicles stop at red and go at green
+	\item FR4.8: Source at junctions
+	\item FR4.9: Stop/wait before special junctions
+	\end{itemize}
+\item \textbf{FR5: Simulation}
+	\begin{itemize}
+	\item FR5.1: User controlled variables
+	\item FR5.2: Show statistics report feature
+	\item FR5.3: Runs on different machines
+	\end{itemize}
+\end{itemize}
+
+Functional requirements are divided into High Priority, Low Priority, and Optional Requirements, and were released iteratively.
+\\ \\
+High Priority (SG V1.0): FR1.2, FR2.2, FR2.3, FR3.1, FR3.7, FR4.1, FR4.2, FR4.5, FR 4.7, FR4.8, FR4.9, FR5.2
+\\ \\
+Low Priority (SG V2.0): FR2.1, FR3.2, FR3.3, FR3.4, FR3.5, FR3.6, FR4.3, FR4.4
+\\ \\
+Optional (SG V3.0): FR1.1, FR2.4, FR4.6, FR5.1, FR5.3
+
 \subsection{Milestones}
 
 For the purposes of planning, our team set Milestones to measure what we wanted to accomplish. This were our requirements as they stood at the beginning of February: 
@@ -194,7 +249,7 @@ The benefits of Simphony come at the flipside cost of there being more opportuni
 
 \\ 
 
-\section{IMPLEMENTATION}
+\section{Implementation}
 
 \subsection{Simphony and Our Code}
 
@@ -852,7 +907,7 @@ A team member had issues with his code that put the team a week behind at the en
 \begin{itemize}
 \item vehicles run on a map
 \item multiple maps in GIS standard
-\item  variable number of vehicles
+\item variable number of vehicles
 \item vehicles make decisions to reach a goal
 \item vehicles exhibit passing behaviours 
 \item implement basic vehicle types: car, lorry
@@ -866,51 +921,9 @@ A team member had issues with his code that put the team a week behind at the en
 
 
 
-\subsection{Functional Requirements}
+\subsection{Functional Requirements Coverage}
 
-We set out the following functional requirements:
-
-\begin{itemize}\itemsep0pt
-\item Maps
-	\begin{itemize}
-	\item Multiple maps can be used
-	\item Use GIS standard
-	\end{itemize}
-\item Roads 
-	\begin{itemize}
-	\item Can have multiple lanes
-	\item Traffic flows bi-directionally 
-	\item Vehicles appear to run along roads
-	\end{itemize}
-\item Vehicles
-	\begin{itemize}
-	\item Variable number of vehicles 
-	\item Accelerate and decelerate
-	\item Appear visually different by type
-	\item Type car with unique behaviour
-	\item Type truck with unique behaviour
-	\item Exhibit passing behaviours
-	\item Journey calculated by road length and speed limit
-	\end{itemize}
-\item Junctions 
-	\begin{itemize}
-	\item Connect roads
-	\item Type give way
-	\item Type signal
-	\item Type roundabout
-	\item Signals change between red, orange, green
-	\item Vehicles stop at red and go at green
-	\item Source at junctions
-	\item Stop/wait before junctions
-	\end{itemize}
-\item Simulation 
-	\begin{itemize}
-	\item User controlled variables
-	\item Runs on different machines
-	\end{itemize}
-\end{itemize}
-
-Out of these requirements we did not compete 1) junction roundabout functionality and 2) orange signal functionality. The give way and signal code took longer to implement than we originally thought, so we did not continue on to roundabouts; this will be something interesting to add at a future time. Orange light functionality was partially completed, but it was dropped by the team because it was an optional functionality and the simulation did not require it.
+Out of these requirements we did not compete 1) FR4.4 junction roundabout functionality, 2) FR4.6 orange signal functionality, and 3) FR2.4 Vehicles follow speed limit of roads. The give way and signal code took longer to implement than we originally thought, so we did not continue on to roundabouts; this will be something interesting to add at a future time. Orange light functionality was partially completed, but it was dropped by the team because it was an optional functionality and the simulation did not require it. Speed limits functionality was partially implemented, as the GIS maps we used did not have such attribute to use, so currently it arbitrarily defaults to the maxVelocity of vehicles.
 
 
 \begin{figure}

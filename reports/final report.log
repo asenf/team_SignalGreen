@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  26 MAR 2015 16:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  26 MAR 2015 16:23
 entering extended mode
 **D:/GitRepo/reports/final*report.tex
 ("D:/GitRepo/reports/final report.tex"
@@ -197,7 +197,7 @@ File: pppdftex.def 2013/08/25 v0.4v Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count100
 \AM@templatesizebox=\box30
 )
-No file final*report.aux.
+("D:\GitRepo\reports\final report.aux" (D:\GitRepo\reports\gitlog.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
@@ -210,6 +210,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
 LaTeX Font Info:    ... okay on input line 22.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -268,8 +269,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-No file final*report.toc.
+("D:\GitRepo\reports\final report.toc"
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 3.
+ [2])
 \tf@toc=\write3
+
 Runaway argument?
 ! Paragraph ended before \addcontentsline was complete.
 <to be read again> 
@@ -280,16 +285,13 @@ I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-[2]
+[3]
 Overfull \hbox (1.90916pt too wide) in paragraph at lines 55--56
 \T1/cmr/m/n/10.95 (ABM) through us-ing Repast Sim-phony, and gained ex-pe-ri-en
 ce with ver-sion con-trol through
  []
 
-
-Package natbib Warning: Citation `10j' on page 3 undefined on input line 63.
-
-<england_traffic.jpg, id=12, 414.04688pt x 294.34969pt>
+<england_traffic.jpg, id=16, 414.04688pt x 294.34969pt>
 File: england_traffic.jpg Graphic file (type jpg)
 
 <use england_traffic.jpg>
@@ -309,7 +311,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[3 <D:/GitRepo/reports/england_traffic.jpg>]
+[4 <D:/GitRepo/reports/england_traffic.jpg>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 76.
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
@@ -331,44 +333,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-Package natbib Warning: Citation `7g' on page 4 undefined on input line 106.
-
-
-Package natbib Warning: Citation `5e' on page 4 undefined on input line 108.
-
-
-Package natbib Warning: Citation `5e' on page 4 undefined on input line 108.
-
-
-Package natbib Warning: Citation `5e' on page 4 undefined on input line 108.
-
-
-Package natbib Warning: Citation `4d' on page 4 undefined on input line 110.
-
-
-Package natbib Warning: Citation `8h' on page 4 undefined on input line 112.
-
-
-Package natbib Warning: Citation `6f' on page 4 undefined on input line 112.
-
-[4]
-
-Package natbib Warning: Citation `1a' on page 5 undefined on input line 114.
-
-
-Package natbib Warning: Citation `3c' on page 5 undefined on input line 114.
-
-
-Package natbib Warning: Citation `2b' on page 5 undefined on input line 116.
-
-
-Package natbib Warning: Citation `5e' on page 5 undefined on input line 125.
-
-
-Package natbib Warning: Citation `8h' on page 5 undefined on input line 131.
-
-[5]
+[5] [6]
 Underfull \hbox (badness 10000) in paragraph at lines 182--189
 
  []
@@ -383,7 +348,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 182--189
 
  []
 
-[6]
+[7]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -436,13 +401,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[7]
-
-Package natbib Warning: Citation `5e' on page 8 undefined on input line 241.
-
-
-Package natbib Warning: Citation `4d' on page 8 undefined on input line 251.
-
+[8]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -456,17 +415,13 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[8]
-
-Package natbib Warning: Citation `12m' on page 9 undefined on input line 269.
-
-[9]
+[9] [10]
 Underfull \hbox (badness 10000) in paragraph at lines 313--316
 
  []
 
-[10]
-<creating_road_segments_from_shapefile.jpg, id=41, 719.68875pt x 418.56375pt>
+[11]
+<creating_road_segments_from_shapefile.jpg, id=44, 719.68875pt x 418.56375pt>
 File: creating_road_segments_from_shapefile.jpg Graphic file (type jpg)
 
 <use creating_road_segments_from_shapefile.jpg>
@@ -489,14 +444,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Package natbib Warning: Citation `3c' on page 11 undefined on input line 325.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
-<creating_new_roads.jpg, id=42, 743.77875pt x 536.0025pt>
+<creating_new_roads.jpg, id=45, 743.77875pt x 536.0025pt>
 File: creating_new_roads.jpg Graphic file (type jpg)
 
 <use creating_new_roads.jpg>
@@ -516,13 +468,13 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[11 <D:/GitRepo/reports/creating_road_segments_from_shapefile.jpg> <D:/GitRepo/
+[12 <D:/GitRepo/reports/creating_road_segments_from_shapefile.jpg> <D:/GitRepo/
 reports/creating_new_roads.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 348--350
 
  []
 
-<GIS_display_manhattan_loaded.jpg, id=46, 1013.7875pt x 559.08875pt>
+<GIS_display_manhattan_loaded.jpg, id=49, 1013.7875pt x 559.08875pt>
 File: GIS_display_manhattan_loaded.jpg Graphic file (type jpg)
 
 <use GIS_display_manhattan_loaded.jpg>
@@ -549,12 +501,12 @@ Overfull \hbox (7.9399pt too wide) in paragraph at lines 372--373
 T_VEHICLES_STOPPED.
  []
 
-[12 <D:/GitRepo/reports/GIS_display_manhattan_loaded.jpg>]
+[13 <D:/GitRepo/reports/GIS_display_manhattan_loaded.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 374--376
 
  []
 
-<overtaking.jpg, id=50, 875.27pt x 250.9375pt>
+<overtaking.jpg, id=54, 875.27pt x 250.9375pt>
 File: overtaking.jpg Graphic file (type jpg)
  <use overtaking.jpg>
 Package pdftex.def Info: overtaking.jpg used on input line 379.
@@ -579,7 +531,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 393--395
 
  []
 
-<step_method_seq_diagram.jpg, id=51, 1003.75pt x 1314.9125pt>
+<step_method_seq_diagram.jpg, id=55, 1003.75pt x 1314.9125pt>
 File: step_method_seq_diagram.jpg Graphic file (type jpg)
 
 <use step_method_seq_diagram.jpg>
@@ -604,17 +556,13 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[13 <D:/GitRepo/reports/overtaking.jpg>] [14 <D:/GitRepo/reports/step_method_se
+[14 <D:/GitRepo/reports/overtaking.jpg>] [15 <D:/GitRepo/reports/step_method_se
 q_diagram.jpg>]
-
-Package natbib Warning: Citation `9i' on page 15 undefined on input line 434.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 436--438
 
  []
 
-<moving_vehicles.jpg, id=59, 877.2775pt x 637.38126pt>
+<moving_vehicles.jpg, id=62, 877.2775pt x 637.38126pt>
 File: moving_vehicles.jpg Graphic file (type jpg)
 
 <use moving_vehicles.jpg>
@@ -634,7 +582,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[15]
+[16]
 
 ! LaTeX Error: \begin{enumerate} on input line 448 ended by \end{enumeration}.
 
@@ -653,8 +601,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 468--470
 
  []
 
-[16 <D:/GitRepo/reports/moving_vehicles.jpg>]
-<traffic_light_junction.jpg, id=66, 402.50375pt x 263.98625pt>
+[17 <D:/GitRepo/reports/moving_vehicles.jpg>]
+<traffic_light_junction.jpg, id=69, 402.50375pt x 263.98625pt>
 File: traffic_light_junction.jpg Graphic file (type jpg)
 
 <use traffic_light_junction.jpg>
@@ -675,7 +623,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<give_way_junction.jpg, id=67, 735.74875pt x 294.09875pt>
+<give_way_junction.jpg, id=70, 735.74875pt x 294.09875pt>
 File: give_way_junction.jpg Graphic file (type jpg)
 
 <use give_way_junction.jpg>
@@ -699,8 +647,8 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[17 <D:/GitRepo/reports/traffic_light_junction.jpg> <D:/GitRepo/reports/give_wa
-y_junction.jpg>] [18]
+[18 <D:/GitRepo/reports/traffic_light_junction.jpg> <D:/GitRepo/reports/give_wa
+y_junction.jpg>] [19]
 Underfull \hbox (badness 10000) in paragraph at lines 556--558
 
  []
@@ -741,8 +689,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 576--578
 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 583.
 
 Underfull \hbox (badness 10000) in paragraph at lines 582--586
 
@@ -763,7 +709,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 600--605
 
  []
 
-[19]
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 617--622
 
  []
@@ -781,7 +727,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<junction.jpg, id=78, 144.54pt x 124.21407pt>
+<junction.jpg, id=81, 144.54pt x 124.21407pt>
 File: junction.jpg Graphic file (type jpg)
  <use junction.jpg>
 Package pdftex.def Info: junction.jpg used on input line 626.
@@ -805,8 +751,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 638--644
 
  []
 
-[20 <D:/GitRepo/reports/junction.jpg>]
-<4Cars.jpeg, id=82, 171.64125pt x 317.185pt>
+[21 <D:/GitRepo/reports/junction.jpg>]
+<4Cars.jpeg, id=85, 171.64125pt x 317.185pt>
 File: 4Cars.jpeg Graphic file (type jpg)
  <use 4Cars.jpeg>
 Package pdftex.def Info: 4Cars.jpeg used on input line 652.
@@ -821,7 +767,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 656--661
 
  []
 
-<manhattan_section.jpg, id=83, 750.805pt x 715.67375pt>
+<manhattan_section.jpg, id=86, 750.805pt x 715.67375pt>
 File: manhattan_section.jpg Graphic file (type jpg)
 
 <use manhattan_section.jpg>
@@ -832,24 +778,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 661--671
 
  []
 
-<nyc_full.jpg, id=84, 771.88374pt x 739.76375pt>
+<nyc_full.jpg, id=87, 771.88374pt x 739.76375pt>
 File: nyc_full.jpg Graphic file (type jpg)
  <use nyc_full.jpg>
 Package pdftex.def Info: nyc_full.jpg used on input line 674.
 (pdftex.def)             Requested size: 308.74802pt x 295.90025pt.
- [21 <D:/GitRepo/reports/4Cars.jpeg>]
+ [22 <D:/GitRepo/reports/4Cars.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 681--684
 
  []
 
-[22 <D:/GitRepo/reports/manhattan_section.jpg> <D:/GitRepo/reports/nyc_full.jpg
->] <RoadNetwork.png, id=91, 246.1697pt x 140.02313pt>
+[23 <D:/GitRepo/reports/manhattan_section.jpg> <D:/GitRepo/reports/nyc_full.jpg
+>] <RoadNetwork.png, id=94, 246.1697pt x 140.02313pt>
 File: RoadNetwork.png Graphic file (type png)
  <use RoadNetwork.png>
 Package pdftex.def Info: RoadNetwork.png used on input line 691.
 (pdftex.def)             Requested size: 172.3176pt x 98.01552pt.
 
-<Sim.png, id=93, 238.64156pt x 225.84375pt>
+<Sim.png, id=96, 238.64156pt x 225.84375pt>
 File: Sim.png Graphic file (type png)
  <use Sim.png>
 Package pdftex.def Info: Sim.png used on input line 697.
@@ -860,7 +806,7 @@ $[]$ \T1/cmr/m/n/10.95 of next.printVehiclesQueue(origin):[signalGreen.Vehicle@
 54008645,
  []
 
-[23 <D:/GitRepo/reports/RoadNetwork.png> <D:/GitRepo/reports/Sim.png>]
+[24 <D:/GitRepo/reports/RoadNetwork.png> <D:/GitRepo/reports/Sim.png>]
 Overfull \hbox (15.83089pt too wide) in paragraph at lines 728--730
 \T1/cmr/m/n/10.95 de-scrip-tor is de-fined in XML and is repast.simphony.chart2
 .engine.TimeSeriesChartDescriptor.
@@ -880,7 +826,7 @@ I could not locate the file with any of these extensions:
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[24]
+[25]
 
 ! LaTeX Error: File `legend' not found.
 
@@ -990,7 +936,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 811--813
 
  []
 
-[25]
+[26]
 
 ! LaTeX Error: File `AVG speed' not found.
 
@@ -1029,7 +975,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 827--829
 
  []
 
-[26] [27]
+[27] [28]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -1043,21 +989,21 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[28]
+[29]
 Underfull \hbox (badness 10000) in paragraph at lines 951--953
 
  []
 
-[29] <gantt8Feb.jpg, id=118, 478.78876pt x 385.44pt>
+[30] <gantt8Feb.jpg, id=121, 478.78876pt x 385.44pt>
 File: gantt8Feb.jpg Graphic file (type jpg)
  <use gantt8Feb.jpg>
-Package pdftex.def Info: gantt8Feb.jpg used on input line 998.
+Package pdftex.def Info: gantt8Feb.jpg used on input line 979.
 (pdftex.def)             Requested size: 311.209pt x 250.53302pt.
 
-<gantt26Mar.jpg, id=119, 478.78876pt x 379.4175pt>
+<gantt26Mar.jpg, id=122, 478.78876pt x 379.4175pt>
 File: gantt26Mar.jpg Graphic file (type jpg)
  <use gantt26Mar.jpg>
-Package pdftex.def Info: gantt26Mar.jpg used on input line 1005.
+Package pdftex.def Info: gantt26Mar.jpg used on input line 986.
 (pdftex.def)             Requested size: 287.27547pt x 227.65225pt.
 
 
@@ -1067,23 +1013,123 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1010 
-       
+l.991 
+      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[30 <D:/GitRepo/reports/gantt8Feb.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1018--1020
+
+Underfull \hbox (badness 10000) in paragraph at lines 999--1001
 
  []
 
+[31 <D:/GitRepo/reports/gantt8Feb.jpg>] [32 <D:/GitRepo/reports/gantt26Mar.jpg>
+] [33] ("D:\GitRepo\reports\final report.bbl"
+Underfull \hbox (badness 10000) in paragraph at lines 9--13
+[]\T1/cmr/m/n/10.95 Karima Ben-hamza, Salah El-lagoune, Hamid Seridi, and Her-
+ []
 
-Package natbib Warning: Citation `4d' on page 31 undefined on input line 1024.
 
-[31 <D:/GitRepo/reports/gantt26Mar.jpg>] [32]
-No file final*report.bbl.
-[33] (D:\GitRepo\reports\gitlog.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--13
+\T1/cmr/m/n/10.95 man Akdag.  Agent-based mod-el-ing for traf-fic sim-u-la-tion
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--13
+\T1/cmr/m/n/10.95 http://www.umc.edu.dz/vf/images/misc/session4A/34-4A-paper2-B
+enhamza-
+ []
+
+
+Underfull \hbox (badness 5607) in paragraph at lines 15--20
+[]\T1/cmr/m/n/10.95 Department for Trans-port British Gov-er-ment.  Road trans-
+port fore-casts
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--28
+[]\T1/cmr/m/n/10.95 Nick Col-lier and Michael North.  Repast java get-ting star
+ted.
+ []
+
+
+Underfull \hbox (badness 2351) in paragraph at lines 22--28
+\T1/cmr/m/n/10.95 http://repast.sourceforge.net/docs/RepastJavaGettingStarted.p
+df, jun 2014.  A
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 22--28
+\T1/cmr/m/n/10.95 tu-to-rial, from Repast Sim-phony Doc-u-men-ta-tion. Date is 
+from the re-lease of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--36
+[]\T1/cmr/m/n/10.95 Simone Gi-an-nec-chini.  Grid-con-ver-gencean-gle-calc.java
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--36
+\T1/cmr/m/n/10.95 https://github.com/geotools/geotools/blob/master/modules/unsu
+pported/process-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--36
+\T1/cmr/m/n/10.95 raster/src/main/java/org/geotools/process/raster/GridConverge
+nceAngleCalc.java,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--43
+[]\T1/cmr/m/n/10.95 Andrew Lans-downe.  Traf-fic sim-u-la-tion us-ing agent-bas
+ed mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--43
+\T1/cmr/m/n/10.95 elling.  Un-der-grad-u-ate bach-e-lor hon-ours the-sis. avail
+-able at
+ []
+
+
+Underfull \hbox (badness 3872) in paragraph at lines 38--43
+\T1/cmr/m/n/10.95 http://www.myhomezone.co.uk/project/report.htm, Uni-ver-sity 
+of the West of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--50
+[]\T1/cmr/m/n/10.95 Guwoo Lee.  Mod-el-ing gap ac-cep-tance at free-way merges.
+  Mas-
+ []
+
+
+Underfull \hbox (badness 6157) in paragraph at lines 45--50
+\T1/cmr/m/n/10.95 ter's the-sis, Mas-sachusetts In-sti-tute of Tech-nol-ogy, 20
+06.  avail-able at
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 58--64
+\T1/cmr/m/n/10.95 net-work.  http://crimesim.blogspot.it/2008/05/using-repast-t
+o-move-agents-along-
+ []
+
+! Undefined control sequence.
+l.72   \url
+           {http://rjwagner49.com/Robotics/Software/Applet/Traffic/Traffic.j...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) [34] [35] (D:\GitRepo\reports\gitlog.tex
 
 ! LaTeX Error: Environment longtabu undefined.
 
@@ -2800,10 +2846,10 @@ might try typing `S' now just to see what is salvageable.
 
 
 Overfull \hbox (10.88788pt too wide) has occurred while \output is active
- \T1/cmr/m/n/10.95 34 
+ \T1/cmr/m/n/10.95 36 
  []
 
-[34
+[36
 
 ]
 ! Misplaced \noalign.
@@ -3880,10 +3926,10 @@ an alignment. Proceed, and I'll ignore this case.
 
 
 Overfull \hbox (10.88788pt too wide) has occurred while \output is active
- \T1/cmr/m/n/10.95 35 
+ \T1/cmr/m/n/10.95 37 
  []
 
-[35]
+[37]
 ! Misplaced alignment tab character &.
 l.105 waqaraaziz &
                    2015-02-18 & Added multilane implementation with comments...
@@ -5510,10 +5556,10 @@ an alignment. Proceed, and I'll ignore this case.
 
 
 Overfull \hbox (10.88788pt too wide) has occurred while \output is active
- \T1/cmr/m/n/10.95 36 
+ \T1/cmr/m/n/10.95 38 
  []
 
-[36]
+[38]
 ! Misplaced alignment tab character &.
 l.163 yo-stri &
                 2015-03-11 & Delete Repast.settings \\ \hline
@@ -7160,10 +7206,10 @@ might try typing `S' now just to see what is salvageable.
 
 
 Overfull \hbox (10.88788pt too wide) has occurred while \output is active
- \T1/cmr/m/n/10.95 37 
+ \T1/cmr/m/n/10.95 39 
  []
 
-[37]
+[39]
 ! Misplaced \noalign.
 \hline ->\noalign 
                   {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
@@ -8361,484 +8407,483 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-) [38] <sourcecode.pdf, id=149, 794.97pt x 614.295pt>
+) [40] <sourcecode.pdf, id=156, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf>
-Package pdftex.def Info: sourcecode.pdf used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf used on input line 1068.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf>
-Package pdftex.def Info: sourcecode.pdf used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf used on input line 1068.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
- [39
+ [41
 
 ]
-<sourcecode.pdf, id=155, page=1, 794.97pt x 614.295pt>
+<sourcecode.pdf, id=162, page=1, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 1>
-Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1068.
 (pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 1>
-Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 1>
-Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 1>
-Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 1>
-Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page1 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [40 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=170, page=2, 794.97pt x 614.295pt>
+ [42 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=177, page=2, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 2>
-Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 2>
-Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 2>
-Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page2 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [41 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=176, page=3, 794.97pt x 614.295pt>
+ [43 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=184, page=3, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 3>
-Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 3>
-Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 3>
-Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page3 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [42 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=180, page=4, 794.97pt x 614.295pt>
+ [44 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=188, page=4, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 4>
-Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 4>
-Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 4>
-Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page4 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [43 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=185, page=5, 794.97pt x 614.295pt>
+ [45 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=192, page=5, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 5>
-Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 5>
-Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 5>
-Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page5 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [44 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=189, page=6, 794.97pt x 614.295pt>
+ [46 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=196, page=6, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 6>
-Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 6>
-Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 6>
-Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page6 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [45 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=193, page=7, 794.97pt x 614.295pt>
+ [47 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=200, page=7, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 7>
-Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 7>
-Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 7>
-Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page7 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [46 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=197, page=8, 794.97pt x 614.295pt>
+ [48 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=204, page=8, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 8>
-Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 8>
-Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 8>
-Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page8 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [47 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=201, page=9, 794.97pt x 614.295pt>
+ [49 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=209, page=9, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 9>
-Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 9>
-Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 9>
-Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page9 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [48 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=205, page=10, 794.97pt x 614.295pt>
+ [50 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=213, page=10, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 10>
-Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 10>
-Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 10>
-Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page10 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [49 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=210, page=11, 794.97pt x 614.295pt>
+ [51 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=217, page=11, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 11>
-Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 11>
-Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 11>
-Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page11 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [50 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=214, page=12, 794.97pt x 614.295pt>
+ [52 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=221, page=12, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 12>
-Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 12>
-Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 12>
-Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page12 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [51 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=218, page=13, 794.97pt x 614.295pt>
+ [53 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=225, page=13, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 13>
-Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 13>
-Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 13>
-Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page13 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [52 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=222, page=14, 794.97pt x 614.295pt>
+ [54 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=229, page=14, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 14>
-Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 14>
-Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 14>
-Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page14 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [53 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=226, page=15, 794.97pt x 614.295pt>
+ [55 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=234, page=15, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 15>
-Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 15>
-Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 15>
-Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page15 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [54 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=230, page=16, 794.97pt x 614.295pt>
+ [56 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=238, page=16, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 16>
-Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 16>
-Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 16>
-Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page16 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [55 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=235, page=17, 794.97pt x 614.295pt>
+ [57 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=242, page=17, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 17>
-Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 17>
-Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 17>
-Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page17 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [56 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=239, page=18, 794.97pt x 614.295pt>
+ [58 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=246, page=18, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 18>
-Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 18>
-Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 18>
-Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page18 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [57 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=243, page=19, 794.97pt x 614.295pt>
+ [59 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=250, page=19, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 19>
-Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 19>
-Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 19>
-Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page19 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [58 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=247, page=20, 794.97pt x 614.295pt>
+ [60 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=254, page=20, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 20>
-Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 20>
-Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 20>
-Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page20 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [59 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=251, page=21, 794.97pt x 614.295pt>
+ [61 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=259, page=21, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 21>
-Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 21>
-Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 21>
-Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page21 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [60 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=255, page=22, 794.97pt x 614.295pt>
+ [62 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=263, page=22, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 22>
-Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 22>
-Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 22>
-Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page22 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [61 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=260, page=23, 794.97pt x 614.295pt>
+ [63 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=267, page=23, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 23>
-Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 23>
-Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 23>
-Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page23 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [62 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=264, page=24, 794.97pt x 614.295pt>
+ [64 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=271, page=24, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 24>
-Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 24>
-Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 24>
-Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page24 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [63 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=268, page=25, 794.97pt x 614.295pt>
+ [65 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=275, page=25, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 25>
-Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 25>
-Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 25>
-Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page25 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [64 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=272, page=26, 794.97pt x 614.295pt>
+ [66 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=279, page=26, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 26>
-Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 26>
-Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 26>
-Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page26 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [65 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
-de.pdf, id=276, page=27, 794.97pt x 614.295pt>
+ [67 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] <sourceco
+de.pdf, id=284, page=27, 794.97pt x 614.295pt>
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 27>
-Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
  <use sourcecode.pdf, page 27>
-Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
 File: sourcecode.pdf Graphic file (type pdf)
 
 <use sourcecode.pdf, page 27>
-Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1084.
+Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1068.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [66 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>]
-
-Package natbib Warning: There were undefined citations.
-
-("D:\GitRepo\reports\final report.aux" (D:\GitRepo\reports\gitlog.aux)) ) 
+ [68 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] ("D:\GitR
+epo\reports\final report.aux"
+(D:\GitRepo\reports\gitlog.aux)) ) 
 Here is how much of TeX's memory you used:
- 4166 strings out of 493921
- 58018 string characters out of 3147279
- 125536 words of memory out of 3000000
- 7392 multiletter control sequences out of 15000+200000
- 12695 words of font info for 33 fonts, out of 3000000 for 9000
+ 4199 strings out of 493921
+ 58610 string characters out of 3147279
+ 127024 words of memory out of 3000000
+ 7416 multiletter control sequences out of 15000+200000
+ 13384 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  39i,18n,43p,878b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\U
-sers\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx109
-5.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecbx1200.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
-ppen\ec\dpi600\ecbx1440.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\
-ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.
-9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\aasenf\AppData\Loca
-l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk><D:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "final report.pdf" (66 pages, 1389229 bytes).
+ <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk> <C:\Users\aasenf\AppData\Local\Mi
+KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\aasenf\AppDa
+ta\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\a
+asenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> 
+<C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
+rm1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
+c\dpi600\ecrm1200.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
+\jknappen\ec\dpi600\ecrm1728.pk><D:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb>
+Output written on "final report.pdf" (68 pages, 1399222 bytes).
 PDF statistics:
- 606 PDF objects out of 1000 (max. 8388607)
+ 634 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

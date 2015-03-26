@@ -1,15 +1,28 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.1.15)  26 MAR 2015 01:04
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  25 MAR 2015 22:10
+>>>>>>> origin/master
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
- %&-line parsing enabled.
-**"final report.tex"
-(./final report.tex
-LaTeX2e <2014/05/01>
-Babel <3.9k> and hyphenation patterns for 78 languages loaded.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
+**C:/Users/aasenf/Documents/kcl*modules/GPR*group*project/final*report/reports/
+final*report.tex
+
+("C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/reports/
+final report.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size11.clo
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -24,22 +37,22 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+("D:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+("D:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count87
@@ -54,28 +67,29 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen109
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks15
-)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+("D:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+("D:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+("D:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count90
@@ -83,7 +97,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty
+("D:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count91
 \float@exts=\toks16
@@ -91,7 +105,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks17
 \@floatcapt=\box27
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/enumitem/enumitem.sty
+("D:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip43
 \enit@outerparindent=\dimen113
@@ -99,12 +113,21 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box28
 \enitdp@description=\count92
 )
+<<<<<<< HEAD
 (/usr/local/texlive/2014/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
 )
 (/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty
+=======
+("D:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty"
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+)
+("D:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+>>>>>>> origin/master
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 
 
@@ -116,16 +139,25 @@ Package natbib Warning: The `cite' package should not be used
 LaTeX Info: Redefining \cite on input line 694.
 LaTeX Info: Redefining \citenum on input line 708.
 \c@NAT@ctr=\count93
+<<<<<<< HEAD
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/fontenc.sty
+=======
+) ("D:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+>>>>>>> origin/master
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.def
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 ))
+<<<<<<< HEAD
 (./final report.aux)
 \openout1 = `"final report.aux"'.
 
+=======
+("C:\Users\aasenf\Documents\kcl modules\GPR group project\final report\reports\
+final report.aux")
+>>>>>>> origin/master
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
@@ -173,7 +205,7 @@ LaTeX Font Info:    ... okay on input line 33.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count94
 \scratchdimen=\dimen114
@@ -186,49 +218,7 @@ LaTeX Font Info:    ... okay on input line 33.
 \MPnumerator=\count98
 \makeMPintoPDFobject=\count99
 \everyMPtoPDFconversion=\toks20
-) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
-
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.jpeg,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -236,11 +226,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 39.
 
-(./final report.lot)
+("C:\Users\aasenf\Documents\kcl modules\GPR group project\final report\reports\
+final report.lot")
 \tf@lot=\write3
-\openout3 = `"final report.lot"'.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 Overfull \hbox (1.90916pt too wide) in paragraph at lines 52--53
 \T1/cmr/m/n/10.95 (ABM) through us-ing Repast Sim-phony, and gained ex-pe-ri-en
 ce with ver-sion con-trol through
@@ -257,7 +250,11 @@ Package pdftex.def Info: england_traffic.jpg used on input line 65.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+<<<<<<< HEAD
 ./final report.tex:72: LaTeX Error: Environment singlespace undefined.
+=======
+! LaTeX Error: Environment singlespace undefined.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -268,17 +265,25 @@ l.72 \begin{singlespace}
 ? r
 OK, entering \nonstopmode...
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
+<<<<<<< HEAD
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
+=======
+("D:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+>>>>>>> origin/master
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
  [1
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 
+<<<<<<< HEAD
 ./final report.tex:84: LaTeX Error: \begin{document} ended by \end{singlespace}
 .
+=======
+! LaTeX Error: \begin{document} ended by \end{singlespace}.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -290,9 +295,14 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[2 <./england_traffic.jpg>] [3]
+[2 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/report
+s/england_traffic.jpg>] [3]
 
+<<<<<<< HEAD
 ./final report.tex:146: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -305,7 +315,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+<<<<<<< HEAD
 ./final report.tex:158: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -318,7 +332,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+<<<<<<< HEAD
 ./final report.tex:167: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -331,7 +349,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+<<<<<<< HEAD
 ./final report.tex:176: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -365,7 +387,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--197
 
 [5]
 
+<<<<<<< HEAD
 ./final report.tex:203: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -382,7 +408,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--237
 
  []
 
-<creating_road_segments_from_shapefile.jpg, id=28, 719.68875pt x 418.56375pt>
+<creating_road_segments_from_shapefile.jpg, id=27, 719.68875pt x 418.56375pt>
 File: creating_road_segments_from_shapefile.jpg Graphic file (type jpg)
 
 <use creating_road_segments_from_shapefile.jpg>
@@ -391,7 +417,11 @@ t line 240.
 (pdftex.def)             Requested size: 287.87039pt x 167.42252pt.
 
 
+<<<<<<< HEAD
 ./final report.tex:246: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -409,15 +439,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--248
 
  []
 
-<creating_new_roads.jpg, id=29, 743.77875pt x 536.0025pt>
+<creating_new_roads.jpg, id=28, 743.77875pt x 536.0025pt>
 File: creating_new_roads.jpg Graphic file (type jpg)
 
 <use creating_new_roads.jpg>
 Package pdftex.def Info: creating_new_roads.jpg used on input line 251.
 (pdftex.def)             Requested size: 223.13535pt x 160.80199pt.
- [7 <./creating_road_segments_from_shapefile.jpg>]
+ [7 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/creating_road_segments_from_shapefile.jpg>]
 
+<<<<<<< HEAD
 ./final report.tex:257: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -434,7 +469,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 269--271
 
  []
 
-<GIS_display_manhattan_loaded.jpg, id=35, 1013.7875pt x 559.08875pt>
+<GIS_display_manhattan_loaded.jpg, id=34, 1013.7875pt x 559.08875pt>
 File: GIS_display_manhattan_loaded.jpg Graphic file (type jpg)
 
 <use GIS_display_manhattan_loaded.jpg>
@@ -443,7 +478,11 @@ Package pdftex.def Info: GIS_display_manhattan_loaded.jpg used on input line 27
 (pdftex.def)             Requested size: 405.50783pt x 223.63153pt.
 
 
+<<<<<<< HEAD
 ./final report.tex:279: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -455,6 +494,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+<<<<<<< HEAD
 [8 <./creating_new_roads.jpg> <./GIS_display_manhattan_loaded.jpg>]
 Overfull \hbox (0.26184pt too wide) in paragraph at lines 293--294
 \T1/cmr/m/n/10.95 cal-cu-lated based on the sum of the dis-place-ment and the c
@@ -468,11 +508,22 @@ d-ual ve-hi-cle be-haviours,
  []
 
 
+=======
+[8 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/report
+s/creating_new_roads.jpg> <C:/Users/aasenf/Documents/kcl modules/GPR group proj
+ect/final report/reports/GIS_display_manhattan_loaded.jpg>]
+Overfull \hbox (7.9399pt too wide) in paragraph at lines 293--294
+\T1/cmr/m/n/10.95 cal-cu-lated based on con-stant val-ues DIST_VEHICLES and DIS
+T_VEHICLES_STOPPED.
+ []
+
+
+>>>>>>> origin/master
 Underfull \hbox (badness 10000) in paragraph at lines 295--297
 
  []
 
-<step_method_seq_diagram.jpg, id=39, 1003.75pt x 1314.9125pt>
+<step_method_seq_diagram.jpg, id=38, 1003.75pt x 1314.9125pt>
 File: step_method_seq_diagram.jpg Graphic file (type jpg)
 
 <use step_method_seq_diagram.jpg>
@@ -484,7 +535,11 @@ Overfull \hbox (24.89198pt too wide) in paragraph at lines 300--301
  []
 
 
+<<<<<<< HEAD
 ./final report.tex:306: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -502,15 +557,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 314--316
 
  []
 
-<overtaking.jpg, id=40, 875.27pt x 250.9375pt>
+<overtaking.jpg, id=39, 875.27pt x 250.9375pt>
 File: overtaking.jpg Graphic file (type jpg)
  <use overtaking.jpg>
 Package pdftex.def Info: overtaking.jpg used on input line 319.
 (pdftex.def)             Requested size: 350.10179pt x 100.37321pt.
  [9]
-[10 <./step_method_seq_diagram.jpg>]
+[10 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/step_method_seq_diagram.jpg>]
 
+<<<<<<< HEAD
 ./final report.tex:325: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -528,7 +588,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 351--353
 
  []
 
-<moving_vehicles.jpg, id=47, 877.2775pt x 637.38126pt>
+<moving_vehicles.jpg, id=46, 877.2775pt x 637.38126pt>
 File: moving_vehicles.jpg Graphic file (type jpg)
 
 <use moving_vehicles.jpg>
@@ -536,7 +596,11 @@ Package pdftex.def Info: moving_vehicles.jpg used on input line 356.
 (pdftex.def)             Requested size: 263.18527pt x 191.21585pt.
 
 
+<<<<<<< HEAD
 ./final report.tex:361: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -548,10 +612,15 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[11 <./overtaking.jpg>]
+[11 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/overtaking.jpg>]
 
+<<<<<<< HEAD
 ./final report.tex:371: LaTeX Error: \begin{enumerate} on input line 363 ended 
 by \end{enumeration}.
+=======
+! LaTeX Error: \begin{enumerate} on input line 363 ended by \end{enumeration}.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -568,8 +637,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 383--385
 
  []
 
-[12 <./moving_vehicles.jpg>]
-<traffic_light_junction.jpg, id=54, 402.50375pt x 263.98625pt>
+[12 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/moving_vehicles.jpg>]
+<traffic_light_junction.jpg, id=53, 402.50375pt x 263.98625pt>
 File: traffic_light_junction.jpg Graphic file (type jpg)
 
 <use traffic_light_junction.jpg>
@@ -577,7 +647,11 @@ Package pdftex.def Info: traffic_light_junction.jpg used on input line 388.
 (pdftex.def)             Requested size: 160.99864pt x 105.59262pt.
 
 
+<<<<<<< HEAD
 ./final report.tex:394: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -590,7 +664,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<give_way_junction.jpg, id=55, 735.74875pt x 294.09875pt>
+<give_way_junction.jpg, id=54, 735.74875pt x 294.09875pt>
 File: give_way_junction.jpg Graphic file (type jpg)
 
 <use give_way_junction.jpg>
@@ -602,7 +676,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 394--401
  []
 
 
+<<<<<<< HEAD
 ./final report.tex:403: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -614,39 +692,69 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+<<<<<<< HEAD
 [13 <./traffic_light_junction.jpg> <./give_way_junction.jpg>] [14]
 Underfull \hbox (badness 10000) in paragraph at lines 468--470
+=======
+[13 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/traffic_light_junction.jpg> <C:/Users/aasenf/Documents/kcl modules/GPR group
+ project/final report/reports/give_way_junction.jpg>] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 469--471
+>>>>>>> origin/master
 
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 471--473
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 472--474
+>>>>>>> origin/master
 
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 474--476
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 475--477
+>>>>>>> origin/master
 
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 488--490
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 485--487
+>>>>>>> origin/master
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <10.95> on input line 495.
 
 Underfull \hbox (badness 10000) in paragraph at lines 494--498
+=======
+(Font)              <10.95> on input line 490.
+
+Underfull \hbox (badness 10000) in paragraph at lines 489--493
+>>>>>>> origin/master
 
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 501--506
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 499--504
+>>>>>>> origin/master
 
  []
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 507--512
 
  []
@@ -680,10 +788,44 @@ File: junction.jpg Graphic file (type jpg)
  <use junction.jpg>
 Package pdftex.def Info: junction.jpg used on input line 541.
 (pdftex.def)             Requested size: 144.53963pt x 124.21375pt.
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 505--510
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 523--528
+
+ []
+
+<junction.jpg, id=65, 144.54pt x 124.21407pt>
+File: junction.jpg Graphic file (type jpg)
+ <use junction.jpg>
+Package pdftex.def Info: junction.jpg used on input line 531.
+(pdftex.def)             Requested size: 144.53963pt x 124.21375pt.
+ [16 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repo
+rts/junction.jpg>] <4cars.jpeg, id=69, 171.64125pt x 317.185pt>
+File: 4cars.jpeg Graphic file (type jpg)
+ <use 4cars.jpeg>
+Package pdftex.def Info: 4cars.jpeg used on input line 556.
+(pdftex.def)             Requested size: 137.31316pt x 253.74832pt.
+
+<manhattan_section.jpg, id=70, 750.805pt x 715.67375pt>
+File: manhattan_section.jpg Graphic file (type jpg)
+
+<use manhattan_section.jpg>
+Package pdftex.def Info: manhattan_section.jpg used on input line 572.
+(pdftex.def)             Requested size: 225.24323pt x 214.70378pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--576
+>>>>>>> origin/master
 
 
+<<<<<<< HEAD
 ./final report.tex:544: LaTeX Error: \begin{enumerate} on input line 487 ended 
 by \end{itemize}.
+=======
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -696,6 +838,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 553--559
 
  []
@@ -706,12 +849,46 @@ File: 4Cars.jpeg Graphic file (type jpg)
 <use 4Cars.jpeg>
 Package pdftex.def Info: 4Cars.jpeg used on input line 567.
 (pdftex.def)             Requested size: 137.31316pt x 253.74832pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 560--570
+=======
+Underfull \hbox (badness 10000) in paragraph at lines 578--581
 
  []
 
+[17 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/4cars.jpeg>] <RoadNetwork.png, id=74, 246.1697pt x 140.02313pt>
+File: RoadNetwork.png Graphic file (type png)
 
+<use RoadNetwork.png>
+Package pdftex.def Info: RoadNetwork.png used on input line 585.
+(pdftex.def)             Requested size: 172.3176pt x 98.01552pt.
+ <Sim.png, id=76, 238.64156pt x 225.84375pt>
+File: Sim.png Graphic file (type png)
+
+<use Sim.png>
+Package pdftex.def Info: Sim.png used on input line 586.
+(pdftex.def)             Requested size: 238.64096pt x 225.84319pt.
+
+Overfull \hbox (19.48111pt too wide) in paragraph at lines 581--588
+$[]$ \T1/cmr/m/n/10.95 of next.printVehiclesQueue(origin):[signalGreen.Vehicle@
+54008645,
+ []
+>>>>>>> origin/master
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--570
+
+<<<<<<< HEAD
+=======
+Overfull \hbox (31.15533pt too wide) in paragraph at lines 581--588
+[] [] 
+>>>>>>> origin/master
+ []
+
+[18 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/manhattan_section.jpg> <C:/Users/aasenf/Documents/kcl modules/GPR group proj
+ect/final report/reports/RoadNetwork.png> <C:/Users/aasenf/Documents/kcl module
+s/GPR group project/final report/reports/Sim.png>] [19]
+
+<<<<<<< HEAD
 Underfull \hbox (badness 10000) in paragraph at lines 571--576
 
  []
@@ -758,17 +935,25 @@ Overfull \hbox (22.5072pt too wide) in paragraph at lines 601--617
 [19 <./RoadNetwork.png> <./Sim.png>] [20]
 
 ./final report.tex:688: LaTeX Error: There's no line here to end.
+=======
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
+<<<<<<< HEAD
 l.688 
+=======
+l.653 
+>>>>>>> origin/master
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+<<<<<<< HEAD
 [21]
 Underfull \hbox (badness 10000) in paragraph at lines 710--712
 
@@ -788,17 +973,43 @@ Package pdftex.def Info: gantt26Mar.jpg used on input line 784.
 
 
 ./final report.tex:789: LaTeX Error: There's no line here to end.
+=======
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 675--677
+
+ []
+
+[21] <gantt8Feb.jpg, id=92, 478.78876pt x 385.44pt>
+File: gantt8Feb.jpg Graphic file (type jpg)
+ <use gantt8Feb.jpg>
+Package pdftex.def Info: gantt8Feb.jpg used on input line 742.
+(pdftex.def)             Requested size: 335.14984pt x 269.80615pt.
+
+<gantt26Mar.jpg, id=93, 478.78876pt x 379.4175pt>
+File: gantt26Mar.jpg Graphic file (type jpg)
+ <use gantt26Mar.jpg>
+Package pdftex.def Info: gantt26Mar.jpg used on input line 749.
+(pdftex.def)             Requested size: 287.27547pt x 227.65225pt.
+
+
+! LaTeX Error: There's no line here to end.
+>>>>>>> origin/master
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
+<<<<<<< HEAD
 l.789 
+=======
+l.754 
+>>>>>>> origin/master
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+<<<<<<< HEAD
 
 Underfull \hbox (badness 10000) in paragraph at lines 797--799
 
@@ -821,13 +1032,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--8
 enhamza-
  []
 
+=======
+[22 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/gantt8Feb.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 762--764
+
+ []
+
+[23 <C:/Users/aasenf/Documents/kcl modules/GPR group project/final report/repor
+ts/gantt26Mar.jpg>]
+("C:\Users\aasenf\Documents\kcl modules\GPR group project\final report\reports\
+final report.bbl"
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+[]\T1/cmr/m/n/10.95 Karima Ben-hamza, Salah El-lagoune, Hamid Seridi, and Her-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+\T1/cmr/m/n/10.95 man Akdag.  Agent-based mod-el-ing for traf-fic sim-u-la-tion
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+\T1/cmr/m/n/10.95 http://www.umc.edu.dz/vf/images/misc/session4A/34-4A-paper2-B
+enhamza-
+ []
+
+>>>>>>> origin/master
 
 Underfull \hbox (badness 5607) in paragraph at lines 10--15
 []\T1/cmr/m/n/10.95 Department for Trans-port British Gov-er-ment.  Road trans-
 port fore-casts
  []
 
+<<<<<<< HEAD
 [25]
+=======
+
+>>>>>>> origin/master
 Underfull \hbox (badness 10000) in paragraph at lines 17--21
 []\T1/cmr/m/n/10.95 Nick Col-lier and Michael North.  Repast java get-ting star
 ted.
@@ -839,6 +1082,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--21
 df.  A tu-to-rial,
  []
 
+<<<<<<< HEAD
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--29
 []\T1/cmr/m/n/10.95 Simone Gi-an-nec-chini.  Grid-con-ver-gencean-gle-calc.java
@@ -870,6 +1114,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--36
  []
 
 
+=======
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+[]\T1/cmr/m/n/10.95 Simone Gi-an-nec-chini.  Grid-con-ver-gencean-gle-calc.java
+.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+\T1/cmr/m/n/10.95 https://github.com/geotools/geotools/blob/master/modules/unsu
+pported/process-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--29
+\T1/cmr/m/n/10.95 raster/src/main/java/org/geotools/process/raster/GridConverge
+nceAngleCalc.java,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
+[]\T1/cmr/m/n/10.95 Andrew Lans-downe.  Traf-fic sim-u-la-tion us-ing agent-bas
+ed mod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--36
+\T1/cmr/m/n/10.95 elling.  Un-der-grad-u-ate bach-e-lor hon-ours the-sis. avail
+-able at
+ []
+
+
+>>>>>>> origin/master
 Underfull \hbox (badness 3872) in paragraph at lines 31--36
 \T1/cmr/m/n/10.95 http://www.myhomezone.co.uk/project/report.htm, Uni-ver-sity 
 of the West of
@@ -887,13 +1164,21 @@ Underfull \hbox (badness 6157) in paragraph at lines 38--43
 06.  avail-able at
  []
 
+<<<<<<< HEAD
 
+=======
+[24]
+>>>>>>> origin/master
 Underfull \hbox (badness 1810) in paragraph at lines 51--57
 \T1/cmr/m/n/10.95 net-work.  http://crimesim.blogspot.it/2008/05/using-repast-t
 o-move-agents-along-
  []
 
+<<<<<<< HEAD
 ./final report.bbl:65: Undefined control sequence.
+=======
+! Undefined control sequence.
+>>>>>>> origin/master
 l.65   \url
            {http://rjwagner49.com/Robotics/Software/Applet/Traffic/Traffic.j...
 The control sequence at the end of the top line
@@ -902,6 +1187,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+<<<<<<< HEAD
 ) [26] (./final report.aux) ) 
 Here is how much of TeX's memory you used:
  3094 strings out of 493117
@@ -925,6 +1211,32 @@ Output written on "final report.pdf" (26 pages, 1319272 bytes).
 PDF statistics:
  141 PDF objects out of 1000 (max. 8388607)
  85 compressed objects within 1 object stream
+=======
+) [25]
+("C:\Users\aasenf\Documents\kcl modules\GPR group project\final report\reports\
+final report.aux") ) 
+Here is how much of TeX's memory you used:
+ 2746 strings out of 493921
+ 37707 string characters out of 3147279
+ 97805 words of memory out of 3000000
+ 6014 multiletter control sequences out of 15000+200000
+ 13384 words of font info for 34 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 27i,7n,29p,1012b,527s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ecti1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\aasenf\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\aasenf\AppData\
+Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\aase
+nf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:
+\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1
+200.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecrm1728.pk><D:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+msy10.pfb>
+Output written on "final report.pdf" (25 pages, 1131173 bytes).
+PDF statistics:
+ 439 PDF objects out of 1000 (max. 8388607)
+>>>>>>> origin/master
  0 named destinations out of 1000 (max. 500000)
  86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

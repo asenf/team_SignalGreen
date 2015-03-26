@@ -45,5 +45,5 @@
 \contentsline {subsection}{\numberline {8.3}Final Characteristics from Milestone Requirements}{29}
 \contentsline {subsection}{\numberline {8.4}Functional Requirements Coverage}{30}
 \contentsline {subsection}{\numberline {8.5}Repast Simphony}{30}
-\contentsline {subsection}{\numberline {8.6}Further Work}{31}
+\contentsline {subsection}{\numberline {8.6}Further Work}{32}
 \contentsline {section}{\numberline {9}PEER ASSESSMENT}{32}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  28 MAR 2015 19:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.31)  1 APR 2015 10:36
 entering extended mode
 **D:/GitRepo/reports/final*report*completed.tex
 ("D:/GitRepo/reports/final report completed.tex"
@@ -281,9 +281,6 @@ Overfull \hbox (1.90916pt too wide) in paragraph at lines 55--56
 ce with ver-sion con-trol through
  []
 
-
-Package natbib Warning: Citation `10j' on page 4 undefined on input line 63.
-
 <england_traffic.jpg, id=16, 414.04688pt x 294.34969pt>
 File: england_traffic.jpg Graphic file (type jpg)
 
@@ -326,44 +323,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-Package natbib Warning: Citation `7g' on page 5 undefined on input line 106.
-
-
-Package natbib Warning: Citation `5e' on page 5 undefined on input line 108.
-
-
-Package natbib Warning: Citation `5e' on page 5 undefined on input line 108.
-
-
-Package natbib Warning: Citation `5e' on page 5 undefined on input line 108.
-
-
-Package natbib Warning: Citation `4d' on page 5 undefined on input line 110.
-
-
-Package natbib Warning: Citation `8h' on page 5 undefined on input line 112.
-
-
-Package natbib Warning: Citation `6f' on page 5 undefined on input line 112.
-
-[5]
-
-Package natbib Warning: Citation `1a' on page 6 undefined on input line 114.
-
-
-Package natbib Warning: Citation `3c' on page 6 undefined on input line 114.
-
-
-Package natbib Warning: Citation `2b' on page 6 undefined on input line 116.
-
-
-Package natbib Warning: Citation `5e' on page 6 undefined on input line 125.
-
-
-Package natbib Warning: Citation `8h' on page 6 undefined on input line 131.
-
-[6]
+[5] [6]
 Underfull \hbox (badness 10000) in paragraph at lines 182--189
 
  []
@@ -433,12 +393,6 @@ or  <return>  to continue without it.
 
 [8]
 
-Package natbib Warning: Citation `5e' on page 9 undefined on input line 241.
-
-
-Package natbib Warning: Citation `4d' on page 9 undefined on input line 251.
-
-
 ! LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -451,11 +405,7 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[9]
-
-Package natbib Warning: Citation `12m' on page 10 undefined on input line 269.
-
-[10]
+[9] [10]
 Underfull \hbox (badness 10000) in paragraph at lines 313--316
 
  []
@@ -482,9 +432,6 @@ l.325 E
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
-
-
-Package natbib Warning: Citation `3c' on page 12 undefined on input line 325.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 325--327
@@ -601,10 +548,6 @@ or  <return>  to continue without it.
 
 [14 <D:/GitRepo/reports/overtaking.jpg>] [15 <D:/GitRepo/reports/step_method_se
 q_diagram.jpg>]
-
-Package natbib Warning: Citation `9i' on page 16 undefined on input line 434.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 436--438
 
  []
@@ -1090,9 +1033,6 @@ or  <return>  to continue without it.
 Underfull \hbox (badness 10000) in paragraph at lines 1038--1040
 
  []
-
-
-Package natbib Warning: Citation `4d' on page 35 undefined on input line 1046.
 
 [35] [36] ("D:\GitRepo\reports\final report completed.bbl"
 Underfull \hbox (badness 10000) in paragraph at lines 9--13
@@ -8929,20 +8869,13 @@ File: sourcecode.pdf Graphic file (type pdf)
 <use sourcecode.pdf, page 27>
 Package pdftex.def Info: sourcecode.pdf, page27 used on input line 1109.
 (pdftex.def)             Requested size: 598.22752pt x 462.26671pt.
- [71 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>]
-
-Package natbib Warning: There were undefined citations.
-
-("D:\GitRepo\reports\final report completed.aux"
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
+ [71 <D:/GitRepo/reports/sourcecode.pdf, page is rotated 90 degrees>] ("D:\GitR
+epo\reports\final report completed.aux"
 (D:\GitRepo\reports\gitlog.aux)) ) 
 Here is how much of TeX's memory you used:
  4241 strings out of 493921
  59931 string characters out of 3147279
- 126864 words of memory out of 3000000
+ 127024 words of memory out of 3000000
  7456 multiletter control sequences out of 15000+200000
  13384 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -8957,9 +8890,9 @@ rm1095.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
 c\dpi600\ecrm1200.pk> <C:\Users\aasenf\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
 \jknappen\ec\dpi600\ecrm1728.pk><D:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmsy10.pfb>
-Output written on "final report completed.pdf" (71 pages, 2498250 bytes).
+Output written on "final report completed.pdf" (71 pages, 2496341 bytes).
 PDF statistics:
- 649 PDF objects out of 1000 (max. 8388607)
+ 645 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  286 words of extra memory for PDF output out of 10000 (max. 10000000)
 
